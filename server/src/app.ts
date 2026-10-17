@@ -10,6 +10,7 @@ import { PLAY_FROM, PLAY_TO, buildTimeline } from "../../shared/simulation";
 import { validate } from "./domain/validate";
 import { computeStations, whyWaiting } from "./domain/stations";
 import { blockRange } from "./domain/alerts";
+import { answerQuestion } from "./domain/chat";
 import { createActivityLog, summarise, wallClock, type ActivityLog } from "./activity";
 import { ConflictError, NotFoundError, createState, type MeridianState } from "./state";
 import { hasAnyTarget } from "./targets";
@@ -185,12 +186,12 @@ export function createApp(state: MeridianState = createState(), activity: Activi
     );
   });
 
-  app.get("/api/cases/:id", (c) => {
-    const id = c.req.param("id").toUpperCase();
+  const caseDetail = (raw: string): CaseDetail | null => {
+    const id = raw.toUpperCase();
     const rec = state.data.cases.find((x) => x.caseId === id);
-    if (!rec) return c.json({ error: `No case ${id} in the simulated dataset` }, 404);
+    if (!rec) return null;
     const caseEvents = state.data.events.filter((e) => e.caseId === id);
-    const detail: CaseDetail = {
+    return {
       ...summary(rec, alertIdsByCase()),
       waiting: whyWaiting(state.data, id),
       blocks: state.data.blocks
@@ -208,11 +209,14 @@ export function createApp(state: MeridianState = createState(), activity: Activi
         .map((s) => ({ slideId: s.slideId, blockId: s.blockId, level: s.level ?? undefined, basket: s.basket ? generic(s.basket) : undefined })),
       timeline: [...caseEvents].sort((a, b) => parseSimTime(a.at) - parseSimTime(b.at) || a.eventId.localeCompare(b.eventId)).map(toFeedEvent),
     };
-    return c.json(detail);
+  };
+
+  app.get("/api/cases/:id", (c) => {
+    const detail = caseDetail(c.req.param("id"));
+    return detail ? c.json(detail) : c.json({ error: `No case ${c.req.param("id").toUpperCase()} in the simulated dataset` }, 404);
   });
 
-  app.get("/api/delayed", (c) => {
-    const { programme } = c.req.query();
+  const delayed = (programme?: string): DelayedResponse => {
     const ids = alertIdsByCase();
     // Recorded holds (active alerts), plus cases past a configured target. Delay is
     // never claimed without a target in config/targets.json.
@@ -226,8 +230,24 @@ export function createApp(state: MeridianState = createState(), activity: Activi
       : unset.length
         ? `target comparison unavailable for: ${unset.join(", ")}`
         : undefined;
-    const body: DelayedResponse = note ? { cases, note } : { cases };
-    return c.json(body);
+    return note ? { cases, note } : { cases };
+  };
+
+  app.get("/api/delayed", (c) => c.json(delayed(c.req.query().programme)));
+
+  // Meridian chat: deterministic answers from the same read functions (spec Screen E). Read-only.
+  app.get("/api/chat", (c) => {
+    const q = c.req.query().q ?? "";
+    const ids = alertIdsByCase();
+    return c.json(
+      answerQuestion(q, {
+        cases: () => state.data.cases.map((x) => summary(x, ids)),
+        caseDetail,
+        stations: () => computeStations(state.data, state.alerts),
+        alerts: () => state.alerts,
+        delayed,
+      }),
+    );
   });
 
   app.get("/api/stream", (c) =>

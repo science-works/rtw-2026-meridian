@@ -302,3 +302,17 @@ export interface SimulationResponse {
   cases: { caseId: string; urgent: boolean; waypoints: [number, string][] }[];
   incidents: { t: number; node: string }[];
 }
+
+/** GET /api/chat?q=: a deterministic answer built from the same functions as the UI (no model). */
+export interface ChatAnswer {
+  question: string;
+  intent: "where_case" | "why_case" | "station" | "basket" | "urgent" | "screening_delayed" | "out_of_scope" | "unknown";
+  /** Direct answer, one or two sentences. */
+  answer: string;
+  /** Evidence, estimate (or unknown) and the staff check, one per line. */
+  facts: string[];
+  caseIds: string[];
+  links: { label: string; to: string }[];
+  /** The read functions used, shown under the answer. */
+  sources: string[];
+}

@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { AgentConsole } from "./agent/AgentConsole";
 import { api } from "./api";
+import { ChatDock } from "./components/ChatDock";
 import { ControlBar } from "./components/Header";
 import { NavBar } from "./components/NavBar";
 import { LabFlow } from "./flow/LabFlow";
@@ -57,6 +58,7 @@ export function App() {
       {live.error && <p className="error banner">Cannot reach the Meridian API ({live.error}). Is `npm run dev` running?</p>}
       <main className="page-wrap">{page}</main>
       <ControlBar busy={busy} onReset={() => run(api.reset)} />
+      <ChatDock />
       <div className="agent-float">
         <AgentConsole activity={live.activity} onOpenCase={(id) => navigate(paths.case(id))} onClear={() => void api.clearAgent()} />
       </div>
