@@ -18,4 +18,7 @@ export const api = {
   async reset(): Promise<void> {
     await fetch("/api/sim/reset", { method: "POST" });
   },
+  async clearAgent(): Promise<void> {
+    await fetch("/api/agent/clear", { method: "POST" });
+  },
 };

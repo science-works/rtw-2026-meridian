@@ -211,6 +211,21 @@ export interface EventsPage {
   events: FeedEvent[];
 }
 
+/** One read made by an AI agent through the MCP server (shown in the dashboard's agent console). */
+export interface AgentActivity {
+  id: number;
+  /** Wall-clock time of the call, HH:MM:SS (not the simulated clock). */
+  at: string;
+  tool: string;
+  runId?: string;
+  path: string;
+  /** Case ID and filters only. */
+  args: Record<string, string>;
+  /** Built by code from the API response, never by a model. */
+  resultSummary: string;
+  caseIds: string[];
+}
+
 export interface TriggerResponse {
   fired: true;
   affectedCases: number;

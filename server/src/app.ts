@@ -7,6 +7,7 @@ import { parseSimTime } from "../../shared/clock";
 import { STAGES } from "../../shared/types";
 import type { BlockRecord, CaseDetail, CaseRecord, CaseSummary, DelayedResponse, EventRecord, EventsPage, FeedEvent, Overview, Stage, TriggerResponse } from "../../shared/types";
 import { validate } from "./domain/validate";
+import { createActivityLog, summarise, wallClock, type ActivityLog } from "./activity";
 import { AlreadyFiredError, createState, type MeridianState } from "./state";
 import { hasAnyTarget } from "./targets";
 
@@ -43,9 +44,24 @@ const intParam = (v: string | undefined, fallback: number) => {
 const matchesProgramme = (tag: string | null, q: string) =>
   q === "any" ? tag !== null : (tag ?? "").toLowerCase() === q.toLowerCase();
 
-export function createApp(state: MeridianState = createState()) {
+export function createApp(state: MeridianState = createState(), activity: ActivityLog = createActivityLog()) {
   const app = new Hono();
   app.use("/api/*", cors());
+
+  // Agent console: log reads the MCP server tags as its own. Auxiliary lookups are not shown.
+  app.use("/api/*", async (c, next) => {
+    await next();
+    if (c.req.method !== "GET" || c.req.header("X-Meridian-Client") !== "mcp" || c.req.header("X-Meridian-Aux")) return;
+    if (c.req.path === "/api/stream" || c.req.path.startsWith("/api/agent")) return;
+    const body = await c.res.clone().json().catch(() => null);
+    activity.add({
+      at: wallClock(),
+      tool: c.req.header("X-Meridian-Tool") ?? "unknown",
+      ...(c.req.header("X-Meridian-Run") ? { runId: c.req.header("X-Meridian-Run") } : {}),
+      path: c.req.path,
+      ...summarise(c.req.path, c.req.query(), c.res.status, body),
+    });
+  });
 
   const alertIdsByCase = () => {
     const m = new Map<string, string[]>();
@@ -166,15 +182,29 @@ export function createApp(state: MeridianState = createState()) {
     streamSSE(c, async (stream) => {
       const send = (version: number) => stream.writeSSE({ event: "state-changed", data: JSON.stringify({ version }) });
       const unsubscribe = state.subscribe((v) => void send(v));
-      stream.onAbort(unsubscribe);
+      const unsubscribeActivity = activity.subscribe((e) =>
+        void stream.writeSSE(e.type === "add" ? { event: "agent-activity", data: JSON.stringify(e.record) } : { event: "agent-cleared", data: "{}" }),
+      );
+      stream.onAbort(() => {
+        unsubscribe();
+        unsubscribeActivity();
+      });
       await send(state.version);
       while (!stream.aborted) {
         await stream.sleep(15_000);
         if (!stream.aborted) await stream.writeSSE({ event: "ping", data: "" });
       }
       unsubscribe();
+      unsubscribeActivity();
     }),
   );
+
+  app.get("/api/agent/activity", (c) => c.json(activity.list()));
+  // Simulator-style control for rehearsals: clears the console log only, never case state.
+  app.post("/api/agent/clear", (c) => {
+    activity.clear();
+    return c.json({ cleared: true });
+  });
 
   app.post("/api/sim/basket-failure", (c) => {
     try {
@@ -188,6 +218,7 @@ export function createApp(state: MeridianState = createState()) {
 
   app.post("/api/sim/reset", (c) => {
     state.reset();
+    activity.clear();
     return c.json({ reset: true, version: state.version });
   });
 

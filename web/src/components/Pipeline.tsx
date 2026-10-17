@@ -13,6 +13,8 @@ interface Props {
   pulse: Set<string>;
   /** Changing this replays the "lab wakes up" animation (Story mode step 1). */
   wakeKey?: number;
+  /** Cases an AI agent is reading right now. */
+  glow?: Set<string>;
 }
 
 /** Short lane labels for the projector; the full recorded stage name is the tooltip and the filter title. */
@@ -35,7 +37,7 @@ const WAKE_MS = 800; // whole lab-river entrance, ≤ 900 ms
  * The workflow pipeline ("lab river"): one lane per stage, one dot per real case.
  * Counts come straight from /api/overview; dots from /api/cases.
  */
-export function Pipeline({ overview, cases, alerts, selected, onSelect, pulse, wakeKey = 0 }: Props) {
+export function Pipeline({ overview, cases, alerts, selected, onSelect, pulse, wakeKey = 0, glow }: Props) {
   const fx = useFx();
   const [awake, setAwake] = useState(!fx.on);
 
@@ -58,12 +60,13 @@ export function Pipeline({ overview, cases, alerts, selected, onSelect, pulse, w
         const nFlagged = inStage.filter((c) => flagged.has(c.caseId)).length;
         const nUrgent = inStage.filter((c) => c.priority === "Urgent").length;
         const isPulsing = inStage.some((c) => pulse.has(c.caseId));
+        const isRead = !!glow && inStage.some((c) => glow.has(c.caseId));
         const perDot = inStage.length ? Math.min(0.006, (WAKE_MS / 1000 - 0.25) / inStage.length) : 0;
         return (
           <button
             key={s.stage}
             data-stage={s.stage}
-            className={`lane ${selected === s.stage ? "selected" : ""} ${isPulsing ? "pulse" : ""} ${s.stage === "Ready for pathologist handoff" ? "done" : ""}`}
+            className={`lane ${selected === s.stage ? "selected" : ""} ${isPulsing ? "pulse" : ""} ${isRead ? "agent-glow" : ""} ${s.stage === "Ready for pathologist handoff" ? "done" : ""}`}
             onClick={() => onSelect(selected === s.stage ? null : s.stage)}
             aria-pressed={selected === s.stage}
             title={s.stage}

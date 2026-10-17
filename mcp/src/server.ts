@@ -1,16 +1,25 @@
 // Meridian MCP server: three read-only tools and one prompt over the Meridian HTTP API.
 // It keeps no data of its own, so Claude and the dashboard always see the same state.
+import { randomUUID } from "node:crypto";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import type { Alert, CaseDetail, CaseSummary, DelayedResponse, Estimate } from "../../shared/types";
 
 /** Fetches an API path (e.g. "/api/alerts"). Over HTTP in production, in-process in tests. */
-export type ApiFetch = (path: string) => Response | Promise<Response>;
+export type ApiFetch = (path: string, init?: { headers?: Record<string, string> }) => Response | Promise<Response>;
+
+/** Who is asking: tagged on every call so the dashboard's agent console can show it. */
+export interface CallTag {
+  tool: string;
+  runId?: string;
+  /** Secondary lookups (e.g. attaching alerts to a case) are not shown as separate console rows. */
+  aux?: boolean;
+}
 
 export const httpFetch =
   (base = process.env.MERIDIAN_API_URL ?? process.env.MERIDIAN_API ?? "http://localhost:8787"): ApiFetch =>
-  (path) =>
-    fetch(new URL(path, base));
+  (path, init) =>
+    fetch(new URL(path, base), init);
 
 const DATA_NOTE = "Simulated data: fictional cases and illustrative timings; not connected to any laboratory.";
 const ANSWER_PATTERN =
@@ -32,10 +41,18 @@ const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: 
 
 class ApiUnreachable extends Error {}
 
-async function getJson<T>(api: ApiFetch, path: string): Promise<{ status: number; body: T }> {
+async function getJson<T>(api: ApiFetch, path: string, tag?: CallTag): Promise<{ status: number; body: T }> {
+  const headers: Record<string, string> = tag
+    ? {
+        "X-Meridian-Client": "mcp",
+        "X-Meridian-Tool": tag.tool,
+        ...(tag.runId ? { "X-Meridian-Run": tag.runId } : {}),
+        ...(tag.aux ? { "X-Meridian-Aux": "1" } : {}),
+      }
+    : {};
   let res: Response;
   try {
-    res = await api(path);
+    res = await api(path, { headers });
   } catch (e) {
     throw new ApiUnreachable(`Meridian API not reachable (${e instanceof Error ? e.message : String(e)}). Start it with \`npm run dev\`.`);
   }
@@ -50,12 +67,15 @@ const failed = (e: unknown) => {
 
 // ---------- Data functions shared by the tools and the shift_handover prompt ----------
 
-export async function caseData(api: ApiFetch, caseId: string) {
+const aux = (t?: CallTag): CallTag | undefined => (t ? { ...t, aux: true } : undefined);
+
+export async function caseData(api: ApiFetch, caseId: string, runId?: string) {
+  const tag: CallTag = { tool: "get_case", runId };
   const id = caseId.trim().toUpperCase();
-  const res = await getJson<CaseDetail | { error: string }>(api, `/api/cases/${encodeURIComponent(id)}`);
+  const res = await getJson<CaseDetail | { error: string }>(api, `/api/cases/${encodeURIComponent(id)}`, tag);
   if (res.status === 404 || "error" in res.body) return null;
   const c = res.body;
-  const alerts = (await getJson<Alert[]>(api, "/api/alerts")).body.filter((a) => a.caseIds.includes(c.caseId));
+  const alerts = (await getJson<Alert[]>(api, "/api/alerts", aux(tag))).body.filter((a) => a.caseIds.includes(c.caseId));
   return {
     caseId: c.caseId,
     recordedStage: c.stage,
@@ -73,22 +93,24 @@ export async function caseData(api: ApiFetch, caseId: string) {
   };
 }
 
-export async function alertsData(api: ApiFetch, filters: { kind?: Alert["kind"]; caseId?: string } = {}) {
+export async function alertsData(api: ApiFetch, filters: { kind?: Alert["kind"]; caseId?: string } = {}, runId?: string) {
+  const tag: CallTag = { tool: "list_alerts", runId };
   const id = filters.caseId?.trim().toUpperCase();
-  const alerts = (await getJson<Alert[]>(api, "/api/alerts")).body
+  const alerts = (await getJson<Alert[]>(api, "/api/alerts", tag)).body
     .filter((a) => !filters.kind || a.kind === filters.kind)
     .filter((a) => !id || a.caseIds.includes(id));
-  const clock = (await getJson<{ clock: string }>(api, "/api/health")).body.clock;
+  const clock = (await getJson<{ clock: string }>(api, "/api/health", aux(tag))).body.clock;
   return { clock, count: alerts.length, alerts };
 }
 
-export async function delayedData(api: ApiFetch, filters: { programme?: string; priority?: "Urgent" | "Routine" } = {}) {
+export async function delayedData(api: ApiFetch, filters: { programme?: string; priority?: "Urgent" | "Routine" } = {}, runId?: string) {
+  const tag: CallTag = { tool: "cases_delayed", runId };
   const p = filters.programme && /^screening$/i.test(filters.programme.trim()) ? "any" : filters.programme?.trim();
   const q = p ? `?programme=${encodeURIComponent(p)}` : "";
-  const delayed = (await getJson<DelayedResponse>(api, `/api/delayed${q}`)).body;
+  const delayed = (await getJson<DelayedResponse>(api, `/api/delayed${q}`, tag)).body;
   const cases = delayed.cases.filter((c) => !filters.priority || c.priority === filters.priority);
-  const tracked = p ? (await getJson<CaseSummary[]>(api, `/api/cases${q}`)).body.length : undefined;
-  const urgent = (await getJson<CaseSummary[]>(api, `/api/cases?priority=Urgent${p ? `&programme=${encodeURIComponent(p)}` : ""}`)).body;
+  const tracked = p ? (await getJson<CaseSummary[]>(api, `/api/cases${q}`, aux(tag))).body.length : undefined;
+  const urgent = (await getJson<CaseSummary[]>(api, `/api/cases?priority=Urgent${p ? `&programme=${encodeURIComponent(p)}` : ""}`, aux(tag))).body;
   return {
     ...(delayed.note ? { note: delayed.note } : {}),
     count: cases.length,
@@ -122,12 +144,12 @@ const estimateText = (e: Estimate) =>
       ? `handoff estimate ${e.readyAt}${e.components.some((c) => c.step.startsWith("Repeat")) ? " (includes the repeat H&E run)" : ""}`
       : `estimate unknown: ${e.reasonUnknown}`;
 
-export async function buildShiftHandover(api: ApiFetch): Promise<string> {
-  const { clock, alerts } = await alertsData(api);
+export async function buildShiftHandover(api: ApiFetch, runId: string = randomUUID()): Promise<string> {
+  const { clock, alerts } = await alertsData(api, {}, runId);
   const affected = [...new Set(alerts.flatMap((a) => a.caseIds))];
-  const cases = (await Promise.all(affected.map((id) => caseData(api, id)))).filter((c) => c !== null);
-  const delayed = await delayedData(api);
-  const all = (await getJson<CaseSummary[]>(api, "/api/cases")).body;
+  const cases = (await Promise.all(affected.map((id) => caseData(api, id, runId)))).filter((c) => c !== null);
+  const delayed = await delayedData(api, {}, runId);
+  const all = (await getJson<CaseSummary[]>(api, "/api/cases", { tool: "shift_handover", runId, aux: true })).body;
 
   const unknownCounts = new Map<string, number>();
   for (const c of all) if (c.estimate.status === "unknown" && !affected.includes(c.caseId)) {
@@ -199,6 +221,9 @@ export function agentHandoverPrompt(focus?: string): string {
 
 export function createMeridianMcp(api: ApiFetch = httpFetch()): McpServer {
   const server = new McpServer({ name: "meridian", version: "0.1.0" }, { instructions: INSTRUCTIONS });
+  // After shift_handover is requested in agent mode, the agent's next tool calls form one run.
+  let activeRun: { id: string; until: number } | null = null;
+  const currentRun = () => (activeRun && Date.now() < activeRun.until ? activeRun.id : undefined);
 
   server.registerTool(
     "get_case",
@@ -210,7 +235,7 @@ export function createMeridianMcp(api: ApiFetch = httpFetch()): McpServer {
     },
     async ({ case_id }) => {
       try {
-        const c = await caseData(api, case_id);
+        const c = await caseData(api, case_id, currentRun());
         if (!c) {
           const id = case_id.trim().toUpperCase();
           return { content: [{ type: "text" as const, text: `Not enough information: there is no case ${id} in the simulated dataset. ${DATA_NOTE}` }] };
@@ -235,7 +260,7 @@ export function createMeridianMcp(api: ApiFetch = httpFetch()): McpServer {
     },
     async ({ kind, case_id }) => {
       try {
-        return ok({ ...(await alertsData(api, { kind, caseId: case_id })), answerPattern: ANSWER_PATTERN });
+        return ok({ ...(await alertsData(api, { kind, caseId: case_id }, currentRun())), answerPattern: ANSWER_PATTERN });
       } catch (e) {
         return failed(e);
       }
@@ -255,7 +280,7 @@ export function createMeridianMcp(api: ApiFetch = httpFetch()): McpServer {
     },
     async ({ programme, priority }) => {
       try {
-        return ok({ ...(await delayedData(api, { programme, priority })), answerPattern: ANSWER_PATTERN });
+        return ok({ ...(await delayedData(api, { programme, priority }, currentRun())), answerPattern: ANSWER_PATTERN });
       } catch (e) {
         return failed(e);
       }
@@ -297,6 +322,7 @@ export function createMeridianMcp(api: ApiFetch = httpFetch()): McpServer {
           ],
         };
       }
+      activeRun = { id: randomUUID(), until: Date.now() + 5 * 60_000 };
       return {
         description: "Investigate the lab with Meridian's read-only tools and write a shift handover brief",
         messages: [{ role: "user" as const, content: { type: "text" as const, text: agentHandoverPrompt(focus) } }],
@@ -309,7 +335,7 @@ export function createMeridianMcp(api: ApiFetch = httpFetch()): McpServer {
     "meridian://overview",
     { title: "Lab overview", description: `${SCOPE} Clock, totals and stage counts.`, mimeType: "application/json" },
     async (uri) => {
-      const body = (await getJson<object>(api, "/api/overview")).body;
+      const body = (await getJson<object>(api, "/api/overview", { tool: "overview_resource" })).body;
       return { contents: [{ uri: uri.href, mimeType: "application/json", text: JSON.stringify({ ...body, dataNote: DATA_NOTE }, null, 2) }] };
     },
   );

@@ -11,7 +11,7 @@ let api: ReturnType<typeof freshApp>;
 beforeEach(async () => {
   api = freshApp();
   // The MCP server reaches the API only through this fetch, exactly as it does over HTTP.
-  const server = createMeridianMcp((path) => api.app.request(path));
+  const server = createMeridianMcp((path, init) => api.app.request(path, init));
   const [a, b] = InMemoryTransport.createLinkedPair();
   await server.connect(a);
   client = new Client({ name: "test", version: "0" });
@@ -120,6 +120,14 @@ describe("C2: tools return live data from the HTTP API", () => {
     await call("cases_delayed");
     expect(api.state.version).toBe(before);
     expect(api.state.triggerFired).toBe(false);
+  });
+
+  it("tags every API call so the dashboard's agent console can show it", async () => {
+    await call("list_alerts");
+    await call("get_case", { case_id: "26H1004" });
+    const log = (await api.get<{ tool: string; caseIds: string[] }[]>("/api/agent/activity")).body;
+    expect(log.map((a) => a.tool)).toContain("list_alerts");
+    expect(log.find((a) => a.tool === "get_case" && a.caseIds.includes("26H1004"))).toBeTruthy();
   });
 
   it("reports an unreachable API as an error instead of guessing", async () => {

@@ -2,13 +2,15 @@
 // from the API at the moment it is shown; nothing is recorded or hard-coded.
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { Alert, CaseDetail, Overview } from "../../../shared/types";
+import type { AgentActivity, Alert, CaseDetail, Overview } from "../../../shared/types";
 import { api } from "../api";
 import { Spotlight } from "../components/Spotlight";
 
 interface Props {
   overview: Overview | null;
   alerts: Alert[];
+  /** Live agent reads (MCP); step 4 waits for the first one. */
+  activity: AgentActivity[];
   /** Replays the lab-river entrance (step 1). */
   onWake: () => void;
   onExit: () => void;
@@ -17,12 +19,15 @@ interface Props {
 const SPOT_CASE = "26H1003";
 const TITLES = ["The lab wakes up", "One block holds a whole case", "A stainer basket fails", "Ask the agent", "Over to you"];
 
-export function StoryMode({ overview, alerts, onWake, onExit }: Props) {
+export function StoryMode({ overview, alerts, activity, onWake, onExit }: Props) {
   const [step, setStep] = useState(0);
   const [note, setNote] = useState<string | null>(null);
   const [affected, setAffected] = useState<CaseDetail | null>(null);
   const started = useRef(false);
   const fired = useRef(false);
+  const agentFrom = useRef<number | null>(null);
+  if (step === 3 && agentFrom.current === null) agentFrom.current = activity.at(-1)?.id ?? 0;
+  const agentRead = step === 3 && agentFrom.current !== null ? activity.filter((a) => a.id > agentFrom.current!).at(-1) : undefined;
 
   // Step 1 entry: restore the initial state so the trigger can run, then replay the river.
   useEffect(() => {
@@ -80,7 +85,9 @@ export function StoryMode({ overview, alerts, onWake, onExit }: Props) {
         if (!basket) return "Triggering the simulated stain-run failure…";
         return `${basket.what}. Handoff estimates recalculated${affected?.estimate.readyAt ? `: ${affected.caseId} now ${affected.estimate.readyAt}` : ""}.`;
       case 3:
-        return "Ask Claude through MCP: “I'm starting the next shift. What do I need to know?” The agent reads Meridian and explains; it cannot change anything.";
+        return agentRead
+          ? `Claude is reading Meridian: ${agentRead.tool} · ${agentRead.resultSummary}`
+          : "Ask Claude through MCP: “I'm starting the next shift. What do I need to know?” The agent reads Meridian and explains; it cannot change anything.";
       default:
         return "Back to the live dashboard.";
     }

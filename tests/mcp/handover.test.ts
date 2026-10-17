@@ -10,7 +10,7 @@ let api: ReturnType<typeof freshApp>;
 
 beforeEach(async () => {
   api = freshApp();
-  const server = createMeridianMcp((path) => api.app.request(path));
+  const server = createMeridianMcp((path, init) => api.app.request(path, init));
   const [a, b] = InMemoryTransport.createLinkedPair();
   await server.connect(a);
   client = new Client({ name: "test", version: "0" });
@@ -61,11 +61,22 @@ describe("C2b: shift_handover in agent mode (default): the agent makes the tool 
     expect(await agentPrompt({ focus: "26H1005" })).toMatch(/Focus: 26H1005/);
   });
 
+  it("tags the agent's tool calls that follow the prompt with one run ID", async () => {
+    await client.getPrompt({ name: "shift_handover", arguments: {} });
+    await client.callTool({ name: "list_alerts", arguments: {} });
+    await client.callTool({ name: "get_case", arguments: { case_id: "26H1003" } });
+    await client.callTool({ name: "cases_delayed", arguments: {} });
+    const log = (await api.get<{ tool: string; runId?: string }[]>("/api/agent/activity")).body;
+    const runs = new Set(log.map((a) => a.runId));
+    expect(runs.size).toBe(1);
+    expect([...runs][0]).toBeTruthy();
+  });
+
   it("does not call the API itself in agent mode (the agent's own calls are the evidence)", async () => {
     let calls = 0;
-    const counting = createMeridianMcp((path) => {
+    const counting = createMeridianMcp((path, init) => {
       calls++;
-      return api.app.request(path);
+      return api.app.request(path, init);
     });
     const [x, y] = InMemoryTransport.createLinkedPair();
     await counting.connect(x);
@@ -117,6 +128,15 @@ describe("C2b: shift_handover in brief mode (deterministic, for the Inspector)",
     const risk = section(t, "Cases at risk");
     expect(risk).toMatch(/Cases at risk \(13\)/);
     expect(risk).toMatch(/26H1005 .*Day 1 12:55/);
+  });
+
+  it("groups its calls as one run of at least three distinct tools", async () => {
+    await brief();
+    const log = (await api.get<{ tool: string; runId?: string }[]>("/api/agent/activity")).body;
+    const runs = new Set(log.map((a) => a.runId));
+    expect(runs.size).toBe(1);
+    expect([...runs][0]).toBeTruthy();
+    expect(new Set(log.map((a) => a.tool))).toEqual(new Set(["list_alerts", "get_case", "cases_delayed"]));
   });
 
   it("lists unknowns with their reasons instead of guessing", async () => {

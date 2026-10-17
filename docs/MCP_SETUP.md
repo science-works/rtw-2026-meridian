@@ -19,6 +19,15 @@ In Claude Desktop, pick the prompt from the "+" (attach) menu → meridian → s
 
 All data is simulated. Meridian estimates readiness for pathologist handoff only; it never diagnoses, reports, or predicts reporting times or screening deadlines.
 
+## Watching the agent on the dashboard
+
+Every call the MCP server makes is tagged (`X-Meridian-Client: mcp`, `X-Meridian-Tool`, `X-Meridian-Run`), so the dashboard's **agent console** (right column, "Claude via MCP · read-only") shows each call live:
+- time, tool name, case IDs and a one-line summary built by Meridian's code, never model text;
+- the cases being read get a periwinkle outline;
+- a one-way beam points from the badge into the dashboard.
+
+`shift_handover` calls are grouped as one run. Logging never changes case state. **Reset demo** (or the console's **Clear**) empties it. On stage, put Claude Desktop on the left and Meridian on the right.
+
 ## 1. Start the API
 
 ```bash

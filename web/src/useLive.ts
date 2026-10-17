@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { Alert, CaseSummary, Overview } from "../../shared/types";
+import type { AgentActivity, Alert, CaseSummary, Overview } from "../../shared/types";
 import { api } from "./api";
 
 export interface LiveState {
@@ -8,12 +8,14 @@ export interface LiveState {
   cases: CaseSummary[];
   version: number;
   connected: boolean;
+  /** Reads made by AI agents through MCP, newest last. */
+  activity: AgentActivity[];
   error: string | null;
 }
 
 /** Fetches the dashboard state and re-fetches whenever the server emits state-changed. */
 export function useLive(): LiveState & { refresh: () => Promise<void> } {
-  const [state, setState] = useState<LiveState>({ overview: null, alerts: [], cases: [], version: -1, connected: false, error: null });
+  const [state, setState] = useState<LiveState>({ overview: null, alerts: [], cases: [], version: -1, connected: false, error: null, activity: [] });
   const latest = useRef(0);
 
   const refresh = useCallback(async () => {
@@ -28,7 +30,16 @@ export function useLive(): LiveState & { refresh: () => Promise<void> } {
 
   useEffect(() => {
     void refresh();
+    fetch("/api/agent/activity")
+      .then((r) => (r.ok ? r.json() : []))
+      .then((activity: AgentActivity[]) => setState((s) => ({ ...s, activity })))
+      .catch(() => {});
     const es = new EventSource("/api/stream");
+    es.addEventListener("agent-activity", (ev) => {
+      const record = JSON.parse((ev as MessageEvent).data) as AgentActivity;
+      setState((s) => ({ ...s, activity: [...s.activity, record].slice(-50) }));
+    });
+    es.addEventListener("agent-cleared", () => setState((s) => ({ ...s, activity: [] })));
     es.addEventListener("state-changed", (ev) => {
       const { version } = JSON.parse((ev as MessageEvent).data) as { version: number };
       setState((s) => ({ ...s, version, connected: true }));

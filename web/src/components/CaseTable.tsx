@@ -9,11 +9,13 @@ interface Props {
   onClearStage: () => void;
   onOpenCase: (id: string) => void;
   pulse: Set<string>;
+  /** Cases an AI agent is reading right now (agent console). */
+  glow?: Set<string>;
 }
 
 type Scope = "demo" | "flagged" | "all";
 
-export function CaseTable({ cases, alerts, stage, onClearStage, onOpenCase, pulse }: Props) {
+export function CaseTable({ cases, alerts, stage, onClearStage, onOpenCase, pulse, glow }: Props) {
   const [scope, setScope] = useState<Scope>("demo");
   const [query, setQuery] = useState("");
   const flagged = useMemo(() => new Set(alerts.flatMap((a) => a.caseIds)), [alerts]);
@@ -65,7 +67,7 @@ export function CaseTable({ cases, alerts, stage, onClearStage, onOpenCase, puls
                 key={c.caseId}
                 data-case={c.caseId}
                 onClick={() => onOpenCase(c.caseId)}
-                className={`${flagged.has(c.caseId) ? "flagged" : ""} ${pulse.has(c.caseId) ? "pulse" : ""}`}
+                className={`${flagged.has(c.caseId) ? "flagged" : ""} ${pulse.has(c.caseId) ? "pulse" : ""} ${glow?.has(c.caseId) ? "agent-glow" : ""}`}
               >
                 <td className="mono case-id">
                   {flagged.has(c.caseId) && <span className="dot-alert" aria-label="flagged" />}
