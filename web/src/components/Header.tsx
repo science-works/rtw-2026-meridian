@@ -68,10 +68,14 @@ export function Header({ overview, connected, tab, onTab, onSearch }: Props) {
 interface ControlProps {
   busy: boolean;
   onReset: () => void;
+  onStory: () => void;
+  /** Story mode controls, shown in place of the Story mode button while it runs. */
+  story: React.ReactNode;
+  storyActive: boolean;
 }
 
-/** Small demo bar: Reset demo · LIMS view · Presenter, plus the boundary sentence. */
-export function ControlBar({ busy, onReset }: ControlProps) {
+/** Small demo bar: Reset demo · LIMS view · Presenter · Story mode, plus the boundary sentence. */
+export function ControlBar({ busy, onReset, onStory, story, storyActive }: ControlProps) {
   const fx = useFx();
   return (
     <footer className="footer">
@@ -86,9 +90,15 @@ export function ControlBar({ busy, onReset }: ControlProps) {
         <Link to="/lims-view" className="btn-quiet">
           LIMS view
         </Link>
-        <Link to="/presenter" className="btn-quiet">
+        <a href="/presenter" target="meridian-presenter" className="btn-quiet" title="Opens the speaker notes in their own window">
           Presenter
-        </Link>
+        </a>
+        {!storyActive && (
+          <button className="btn-quiet" onClick={onStory}>
+            Story mode
+          </button>
+        )}
+        {story}
         <label className="fx-toggle" title={fx.reason === "env" ? "Effects are off (VITE_FX=off)" : fx.reason === "reduced" ? "Effects are off (reduced motion is set)" : undefined}>
           <input type="checkbox" checked={!fx.on} disabled={fx.reason === "env" || fx.reason === "reduced"} onChange={(e) => fx.setSkip(e.target.checked)} /> Skip animations
         </label>

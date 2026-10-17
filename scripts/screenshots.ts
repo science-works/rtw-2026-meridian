@@ -21,6 +21,11 @@ const PAGES: [string, string][] = [
   ["section-urgent", "/section/urgent"],
   ["section-bcsp", "/section/bcsp"],
   ["section-cytopathology", "/section/cytopathology"],
+  ["section-backlog", "/section/backlog"],
+  ["section-new", "/section/new"],
+  ["section-csp", "/section/csp"],
+  ["station-microtomy-4", "/station/microtomy-4"],
+  ["presenter", "/presenter"],
   ["lims-view", "/lims-view"],
 ];
 

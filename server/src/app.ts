@@ -1,4 +1,6 @@
 // HTTP API over the single in-memory state (MASTER_PLAN §4).
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { streamSSE } from "hono/streaming";
@@ -14,6 +16,8 @@ import { answerQuestion } from "./domain/chat";
 import { createActivityLog, summarise, wallClock, type ActivityLog } from "./activity";
 import { ConflictError, NotFoundError, createState, type MeridianState } from "./state";
 import { hasAnyTarget } from "./targets";
+
+const SCRIPT_PATH = fileURLToPath(new URL("../../pitch/SCRIPT.md", import.meta.url));
 
 const toFeedEvent = (e: EventRecord): FeedEvent => ({
   eventId: e.eventId,
@@ -234,6 +238,15 @@ export function createApp(state: MeridianState = createState(), activity: Activi
   };
 
   app.get("/api/delayed", (c) => c.json(delayed(c.req.query().programme)));
+
+  // Presenter notes: pitch/SCRIPT.md verbatim (read on each request, so edits show on reload).
+  app.get("/api/pitch", (c) => {
+    try {
+      return c.json({ markdown: readFileSync(SCRIPT_PATH, "utf8") });
+    } catch {
+      return c.json({ error: "pitch/SCRIPT.md not found" }, 404);
+    }
+  });
 
   // Meridian chat: deterministic answers from the same read functions (spec Screen E). Read-only.
   app.get("/api/chat", (c) => {
