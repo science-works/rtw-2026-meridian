@@ -1,5 +1,7 @@
 # CLAUDE.md — Meridian build contract
 
+> **v7 (Saturday night): `docs/playbooks/07_V7_SPEC_BUILD.md` is the active build plan, and `docs/CELLPATH_MASTER_PRODUCT_VISUAL_SPEC.md` (Victoria's final spec) decides screens, labels and the demo story. The playbook's "Decisions already made" override this file where they conflict. Fallback demo: git tag `demo-safe-v6`.**
+
 > **Product name: Meridian** (formerly CellPath, briefly Microtome). Tagline: *"Every case, every station, mapped live."* Use "Meridian" in the UI, README and MCP server name (`meridian`). File names such as `CellPath_Mock_Data.xlsx` and `CELLPATH_*.md` keep their original names.
 
 Read this file, **`docs/PRD.md` (problem, users, flows, functional requirements)**, **`docs/MASTER_PLAN.md` (judging criteria, task cards, contracts, folder ownership for parallel agents)**, the playbooks in `docs/playbooks/` (start at `00_INDEX.md`), `docs/DATA_PROVENANCE.md` (how the synthetic data was made), `docs/CELLPATH_MASTER_PRODUCT_VISUAL_SPEC.md` and `docs/CELLPATH_HACKATHON_PLAYBOOK.md` before changing anything. The master visual spec decides screens, interactions and exact case timelines. This file decides the stack, the build order, safety and the fixes listed here. If the two conflict, stop and ask. For background and the reasons behind decisions, read `context/00_READ_ME_FIRST.md` (`context/05_DECISION_LOG.md` overrides older documents in `context/`). **Order of authority: CLAUDE.md > `docs/PRD.md` > `docs/MASTER_PLAN.md` > `docs/playbooks/*`.** These rules apply to Claude Code, Devin or any coding agent. (`AGENTS.md` is a copy of this file for other agents.)
@@ -19,7 +21,7 @@ A live, interactive prototype that layers a dashboard and an AI agent over **fic
 
 - **TypeScript everywhere, Node 20+.** One language for the server, the MCP server and the UI.
 - `data/CellPath_Mock_Data.xlsx` is the source artifact and is never edited. `scripts/convert.ts` (SheetJS `xlsx` package) converts it to `data/cellpath.json`. Skip blank rows.
-- **`server/`**: a small Hono or Express app on `http://localhost:8787`. It holds the **single in-memory state** and exposes a read API plus one simulator endpoint, `POST /api/sim/basket-failure`. It pushes updates to the UI with Server-Sent Events (`GET /api/stream`).
+- **`server/`**: a small Hono or Express app on `http://localhost:8787`. It holds the **single in-memory state** and exposes a read API plus the demo controls `POST /api/sim/replay-incident` (once; 409 after), `POST /api/alerts/:id/acknowledge` (a human action from the dashboard) and `POST /api/sim/reset`. It pushes updates to the UI with Server-Sent Events (`GET /api/stream`).
 - **`mcp/`**: an MCP server using `@modelcontextprotocol/sdk` (stdio). Its three tools call the HTTP API on :8787, so the dashboard, the chat and Claude Desktop always see the same state. It must not keep its own copy of the data.
 - **`web/`**: Vite + React. Design tokens below. The approved visual toolkit is in `docs/VISUAL_LAYER.md`: Motion, Magic UI, NumberFlow and shadcn/ui, all MIT. Add nothing else without asking. Keep a `VITE_FX=off` plain fallback.
 - **Tests:** Vitest. `npm test` runs every acceptance test.
@@ -54,8 +56,8 @@ The equipment/station view is **optional** (do it only if P0–P7 are done).
 - A missing scan record never proves a slide is misplaced. Wording: "missing scan event; check the slide location or scan record."
 - Decalcification is a normal stage. Never flag it by duration alone, and never give it an estimate unless a duration is configured.
 - Urgency comes only from the recorded priority (26H2345 is urgent, with no fault injected).
-- **MCP tools are read-only.** Only the dashboard's simulator button may append the staged basket-failure event. No model may create events, clear alerts, change priority, approve recuts or edit protocols or source data.
-- Use only fictional IDs and no patient information. Use generic equipment labels in the UI (e.g. "Processor A", "Stainer 1"); keep the workbook names only in data.
+- **MCP tools are read-only.** Only the dashboard's demo controls (a person pressing "Replay H&E incident" or "Acknowledge") may append the staged incident events. MCP may not replay, acknowledge, reset or write anything. No model may create events, clear alerts, change priority, approve recuts or edit protocols or source data.
+- Use only fictional IDs and no patient information. Use only the spec's generic equipment labels on screen: Processor A–D, Embedding station 1–2, Microtomy station 1–6, H&E auto-stainer 1 (3 boxes × 3 baskets × 20 slides), Digital scanner 1–2 and IQC workstation 1. Never "Stainer 1" or Scanners 3–4. Normalise inconsistent raw station strings in the loader for display; keep the raw values in data. Fictional staff initials (AA/BB, embedding only) are for traceability and are never ranked.
 
 ## Data model
 
@@ -65,7 +67,7 @@ Case → blocks → slides; case/block/slide → timestamped events; basket → 
 
 1. **Outstanding block (26H1003):** completed required blocks < expected. A1–E1 are in the large-specimen processor (output expected 12:00–13:00); F1 is still at cut-up. No reliable whole-case estimate while F1 is outstanding.
 2. **Protocol mismatch (26H1004):** levels recorded (1) < levels required (3). Request staff review; never auto-advance.
-3. **Basket failure (PRISMA-BASKET-01):** pending until the trigger, then 20 slides across 26H1005–26H1014. Add the 60-minute repeat run to the affected estimates.
+3. **Failed basket (H&E-BASKET-01):** the recorded incident (EV-01215 fault 10:45 → EV-01255 acknowledged 10:47 → EV-01254 basket reloaded 11:04 → EV-01256 repeat H&E run started 11:05) is held back on start and on reset, and replayed from the dashboard ("Replay H&E incident", then the presenter's "Acknowledge"). It affects exactly 20 slides across 26H1005–26H1014. Add the **30-minute** repeat run from 11:05 to the affected estimates. The alert stays open at 11:30 (no completion event exists). Do not assume recuts. Event IDs are not chronological: always sort by parsed simulated time.
 4. **Scan gap (26H1015):** scan expected Monday 15:30, no scan-complete event, while later comparator cases have one.
 
 ## Handoff estimate
@@ -82,23 +84,15 @@ Answer pattern: direct answer → case IDs and recorded stage → evidence → e
 
 ## Design system
 
-The look is light, calm and clinical, matching the event's palette:
+Per the spec (§4 Screen A) and playbook 07 decision 1:
 
-- **Colours (CSS variables):**
-  - `--bg #F8F5F2` (cream);
-  - `--ink #2A0F1E`;
-  - `--plum #5C0F35` (headers, primary);
-  - `--crimson #D62E4C` (alerts only);
-  - `--teal #0E6B63` (on track or done);
-  - `--periwinkle #5A6FD6` (in progress);
-  - `--amber #C98A1B` (a hold, e.g. an outstanding block; fills and borders only, since it is 2.7:1 on cream) with `--amber-ink #8A5A00` (5.5:1) for amber text;
-  - `--muted #8A7A82`;
-  - `--card #FFFFFF`;
-  - `--line #E8E0E4`.
-- **Fonts:** a serif for headings (e.g. "Source Serif 4"), Inter for UI text, and a monospaced font for case IDs and times.
-- **Layout:** header strip with the clock, a "SIMULATED DATA" badge and four stat tiles; a horizontal workflow pipeline of stage lanes with counts (click to filter); the attention queue on the right; the case drawer slides in. Every alert card shows **what, evidence, why it is flagged, and the suggested check**.
-- **Motion:** brief and purposeful. When the basket fails, the affected cards pulse crimson once and the counts animate.
-- Must work on a 1440×900 projector screen and stay readable from the back of a room (base text 16px or larger).
+- **Theme:** deep navy background, high-contrast white text, a restrained green accent; purple for BCSP tags and green for cervical-screening tags. Set through CSS variables only.
+- **No red/amber/green severity ranking.** Every open alert uses one uniform `!` marker. States: New (gentle bounce) → Acknowledged (no bounce, card stays) → In progress (shows the recorded staff action) → Resolved (only on a recorded completion/check event). No sound, no blocking modal; a static equivalent under reduced motion.
+- **Branding:** wordmark `MERIDIAN` (light green to white) with the sub-label `CellPath lab workflow assistant`. The `SIMULATED` badge is always visible.
+- **Fonts:** Inter for UI text, a monospaced font for case IDs and times.
+- **Layout:** top bar (clock, case search, tabs Overview · Lab flow · Screening · Diagnostic cytopathology · Archive); headline counts; stage strip; attention area; the lab-flow map is the hero; the case drawer slides in; a deterministic Meridian chat panel. Every alert card shows **what, evidence, why it is flagged, and the suggested check**.
+- **Motion:** calm and event-driven only, each animation ≤900 ms; `VITE_FX=off` and `prefers-reduced-motion` fallbacks.
+- Must work on a 1440×900 projector; base text 16px, secondary text at least 14px.
 
 ## Story mode (P7, only after P5 works)
 
@@ -106,7 +100,7 @@ A "Story mode" button plays the pitch arc **on the live app, driven by real stat
 
 1. **Lab wakes up:** case dots flow into the stage lanes and counts tick up to the real totals.
 2. **Zoom to 26H1003:** A1–E1 shown in the processor (teal), F1 pulsing at cut-up (amber); caption "No whole-case handoff time yet: F1 outstanding."
-3. **Trigger:** calls the real `POST /api/sim/basket-failure`. A crimson ripple spreads from the stainer to its 20 slides and 10 cases, and their estimates animate to the new times.
+3. **Incident replay:** calls the real `POST /api/sim/replay-incident`; the basket's 20 slides and 10 cases are flagged, the presenter clicks Acknowledge, and the reload and repeat-run events follow; estimates update.
 4. **Hand-off:** a caption invites the agent question (asked live in Claude Desktop via MCP).
 5. **End on the normal, fully clickable dashboard.**
 
@@ -133,17 +127,21 @@ Rules:
 
 ## Required tests
 
-- 450 cases = 104 backlog + 346 current-day.
-- All case/block/slide/event links resolve.
-- Event order is valid, and nothing is after Day 1 11:30.
+- 450 cases = 104 backlog + 346 current-day; stage buckets: Received/booked 72 · Waiting for dissection/cut-up 3 · Awaiting processor or processing 151 · Decalcification 20 · Embedding 29 · Microtomy 139 · H&E staining 15 · Scanning 8 · IQC 5 · Ready for pathologist handoff 8.
+- 712 blocks, 426 slides, 1,253 events; unique IDs; all case/block/slide/event links resolve.
+- Event order is valid (`scripts/check_event_order.py` all zeros), sorted by parsed time, and nothing is after Day 1 11:30.
+- Staff initials appear only as AA/BB, on embedding events.
+- Equipment set is exactly: Processor A–D, Embedding station 1–2, Microtomy station 1–6, H&E auto-stainer 1, Digital scanner 1–2, IQC workstation 1.
 - Each of the four alerts returns the expected IDs and evidence.
-- The trigger flags exactly 20 slides and 10 cases, exactly once.
+- The incident replay appends exactly the four recorded events in time order, once (409 after); it flags exactly 20 slides and 10 cases; acknowledge only stops the motion and never resolves; reset restores the staged state; MCP can do none of these.
+- Affected estimates include the 30-minute repeat run from 11:05.
 - 26H1003 is not ready while F1 is outstanding.
 - 26H1004 shows 1 of 3 levels.
 - 26H1015 is described only as a missing scan event.
 - 26H1016 has no invented estimate.
-- 26H2345 stays urgent with no invented fault.
+- 26H2345 stays urgent with no invented fault (ready for handoff at 09:30).
 - 26H1018 is ready for pathologist handoff.
+- Chat answers the six spec questions with exact IDs from the same server functions as the UI, and handles an unknown question honestly.
 - No output claims a diagnosis, a reporting time or a screening deadline.
 - Missing data returns explicit uncertainty.
 

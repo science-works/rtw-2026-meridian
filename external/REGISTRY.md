@@ -15,3 +15,9 @@
 | @number-flow/react | https://github.com/barvian/number-flow | MIT | npm ^0.6 | 2026-10-17 | Counts and times that roll to new values | adopted (via npm) |
 | tailwindcss + @tailwindcss/vite | https://github.com/tailwindlabs/tailwindcss | MIT | npm ^4.3 | 2026-10-17 | Utility CSS (approved 17 Oct) | adopted (via npm) |
 | shadcn/ui + Magic UI registry | https://github.com/shadcn-ui/ui, https://github.com/magicuidesign/magicui | MIT | — | 2026-10-17 | Planned for animated list / ripple | rejected (shadcn CLI deps need Node ≥20.17; this build pins Node 20.11. Same effects built directly with motion) |
+| pbakaus/impeccable | https://github.com/pbakaus/impeccable |                                  Apache  | 08d5b47 | 2026-10-17 | design polish reference for the projector pass | evaluating |
+| tt-a1i/archify | https://github.com/tt-a1i/archify | MIT License  Copyright (c) 2026 tt-a1i ( | 68be1e0 | 2026-10-17 | README architecture diagram | evaluating |
+| mattpocock/skills | https://github.com/mattpocock/skills | MIT License  Copyright (c) 2026 Matt Poc | 49dd158 | 2026-10-17 | skills reference (already installed as a plugin) | evaluating |
+| nextlevelbuilder/ui-ux-pro-max-skill | https://github.com/nextlevelbuilder/ui-ux-pro-max-skill | MIT License  Copyright (c) 2024 Next Lev | 56ea9cf | 2026-10-17 | UI/UX reference, after the hackathon | evaluating |
+| leonxlnx/taste-skill | https://github.com/leonxlnx/taste-skill | MIT License  Copyright (c) 2026 Leonxlnx | f624f37 | 2026-10-17 | visual taste reference, after the hackathon | evaluating |
+| modelcontextprotocol/typescript-sdk | https://github.com/modelcontextprotocol/typescript-sdk | The MCP project is undergoing a licensin | 9bc40e9 | 2026-10-17 | MCP SDK examples if MCP breaks | evaluating |
