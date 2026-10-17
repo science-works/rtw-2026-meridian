@@ -152,7 +152,7 @@ const toneOf = (state: string, loaded: boolean) =>
   /failed/i.test(state) ? "failed" : /Acknowledged/.test(state) ? "ack" : /progress|Troubleshooting|reloaded/i.test(state) ? "progress" : loaded ? "loaded" : "empty";
 
 /** 3 boxes × 3 baskets (20 slides each); occupied baskets get a one-line detail with their state. */
-function BasketGrid({ card, onOpenCase }: { card: StationCard; onOpenCase: (id: string) => void }) {
+export function BasketGrid({ card, onOpenCase }: { card: StationCard; onOpenCase: (id: string) => void }) {
   const occupied = card.baskets!.filter((b) => b.basketId);
   return (
     <div className="basket-wrap">

@@ -69,11 +69,10 @@ interface ControlProps {
   busy: boolean;
   onTrigger: () => void;
   onReset: () => void;
-  onStory: () => void;
 }
 
 /** Presenter controls plus the boundary sentence, in one bottom bar so the top bar fits a projector. */
-export function ControlBar({ overview, busy, onTrigger, onReset, onStory }: ControlProps) {
+export function ControlBar({ overview, busy, onTrigger, onReset }: ControlProps) {
   const fx = useFx();
   return (
     <footer className="footer">
@@ -87,9 +86,6 @@ export function ControlBar({ overview, busy, onTrigger, onReset, onStory }: Cont
         </button>
         <button className="btn-quiet" onClick={onReset} disabled={busy}>
           Reset demo
-        </button>
-        <button className="btn-quiet btn-story" onClick={onStory} disabled={busy || !overview}>
-          Story mode
         </button>
         <label className="fx-toggle" title={fx.reason === "env" ? "Effects are off (VITE_FX=off)" : fx.reason === "reduced" ? "Effects are off (reduced motion is set)" : undefined}>
           <input type="checkbox" checked={!fx.on} disabled={fx.reason === "env" || fx.reason === "reduced"} onChange={(e) => fx.setSkip(e.target.checked)} /> Skip animations
