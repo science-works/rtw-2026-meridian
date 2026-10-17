@@ -1,0 +1,23 @@
+# --- dependencies & build ---
+node_modules/
+dist/
+build/
+.vite/
+coverage/
+# --- secrets ---
+.env
+.env.*
+!.env.example
+# --- private planning context (readable by agents, never published) ---
+context/
+# --- third-party clones for reference only (adopt via npm, never commit) ---
+external/*
+!external/README.md
+!external/REGISTRY.md
+# --- agent skill installs ---
+.agents/
+.claude/skills/
+.claude/settings.local.json
+# --- OS / editor ---
+.DS_Store
+*.log

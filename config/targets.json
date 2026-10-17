@@ -1,0 +1,7 @@
+{
+  "_note": "ILLUSTRATIVE handoff targets, to be set by Victoria. Leave null if unknown; the app then says target comparison unavailable.",
+  "unit": "working hours from receipt to ready-for-pathologist handoff",
+  "urgent": null,
+  "screening": null,
+  "routine": null
+}

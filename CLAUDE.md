@@ -1,0 +1,151 @@
+# CLAUDE.md — Meridian build contract
+
+> **Product name: Meridian** (formerly CellPath, briefly Microtome). Tagline: *"Every case, every station, mapped live."* Use "Meridian" in the UI, README and MCP server name (`meridian`). File names such as `CellPath_Mock_Data.xlsx` and `CELLPATH_*.md` keep their original names.
+
+Read this file, **`docs/MASTER_PLAN.md` (judging criteria, task cards, contracts, folder ownership for parallel agents)**, `docs/CELLPATH_MASTER_PRODUCT_VISUAL_SPEC.md` and `docs/CELLPATH_HACKATHON_PLAYBOOK.md` before changing anything. The master visual spec decides screens, interactions and exact case timelines. This file decides the stack, the build order, safety and the fixes listed here. If the two conflict, stop and ask. For background and the reasons behind decisions, read `context/00_READ_ME_FIRST.md` (`context/05_DECISION_LOG.md` overrides older documents in `context/`). These rules apply to Claude Code, Devin or any coding agent. (`AGENTS.md` is a copy of this file for other agents.)
+
+## Context and deadline
+
+- Hackathon: Science Works "Reinvent the Wheel". Brief: *use agentic AI to improve scientific software*. Our target: **an open, AI-ready layer that sits alongside a lab's LIMS**.
+- **Submission: Sunday 10:00** (public repo URL + commit hash). The venue closes Saturday 20:00. Pitch: 3 min demo + 2 min judge questions.
+- Judged equally on Impact, Technical execution ("is it working, usable, does it do what it claims?") and Presentation.
+- **Scope rule: working and honest beats feature-rich.** Build in priority order (below). Do not start a later priority until the earlier one works end to end.
+
+## Mission
+
+A live, interactive prototype that layers a dashboard and an AI agent over **fictional** histology workflow events. Deterministic code computes current state, alerts and handoff estimates. The LLM only explains tool results in plain language. The data feed is simulated; never describe the prototype as connected to a live lab.
+
+## Stack (fixed; do not change without asking)
+
+- **TypeScript everywhere, Node 20+.** One language for the server, the MCP server and the UI.
+- `data/CellPath_Mock_Data.xlsx` is the source artifact and is never edited. `scripts/convert.ts` (SheetJS `xlsx` package) converts it to `data/cellpath.json`. Skip blank rows.
+- **`server/`**: a small Hono or Express app on `http://localhost:8787`. It holds the **single in-memory state** and exposes a read API plus one simulator endpoint, `POST /api/sim/basket-failure`. It pushes updates to the UI with Server-Sent Events (`GET /api/stream`).
+- **`mcp/`**: an MCP server using `@modelcontextprotocol/sdk` (stdio). Its three tools call the HTTP API on :8787, so the dashboard, the chat and Claude Desktop always see the same state. It must not keep its own copy of the data.
+- **`web/`**: Vite + React. Design tokens below. The approved visual toolkit is in `docs/VISUAL_LAYER.md`: Motion, Magic UI, NumberFlow and shadcn/ui, all MIT. Add nothing else without asking. Keep a `VITE_FX=off` plain fallback.
+- **Tests:** Vitest. `npm test` runs every acceptance test.
+- **Scripts:**
+  - `npm run dev` starts the server and the web app together (with `concurrently`) and hot-reloads;
+  - `npm run mcp` starts the MCP server;
+  - `npm test` runs the tests.
+- **In-app chat (optional, P6):** uses the Anthropic API with the same three tools. The key is read only from `.env` as `ANTHROPIC_API_KEY`. Never commit `.env`; only `.env.example` is committed. If there is no key, the chat panel shows "Connect Claude Desktop via MCP" instead of failing.
+
+## Build order (priorities)
+
+| P | Work | Done when |
+|---|---|---|
+| P0 | Repo skeleton, MIT `LICENSE`, README stub, `.gitignore` (node_modules, .env, dist, .agents, skill folders) | `npm run dev` serves a blank page |
+| P1 | Convert, load and validate | Counts reconcile (450 = 104 + 346); every link resolves; no event after Day 1 11:30 |
+| P2 | State plus the four alert rules, written test-first | Each alert returns the right evidence and IDs (tests green) |
+| P3 | Simple handoff estimate | Remaining steps × configured durations within working windows; queues listed as "not modelled"; explicit unknowns |
+| P4 | Dashboard: header, stage lanes, attention queue, case drawer | Usable and live via SSE |
+| P5 | Basket-failure trigger | One click appends one event, flags 20 slides / 10 cases, recomputes estimates; a second click does nothing |
+| P6 | MCP server, then optional in-app chat | Claude Desktop can answer "Where is 26H1003?" from the tools |
+| P7 | **Story mode** (see below), polish, README with screenshots | Story mode plays end to end on live state; backup video recorded |
+
+The equipment/station view is **optional** (do it only if P0–P7 are done).
+
+## Safety and scope (non-negotiable)
+
+- **Histopathology preparation only.** Cervical examples are cervical *biopsies* processed through histology, not cervical liquid-based cytology or HPV testing. Do not add LLETZ, patient recall, diagnosis, reporting, patient management or full screening-deadline prediction.
+
+- Never diagnose, interpret tissue, report cases, decide patient management or judge clinical adequacy.
+- Predict **lab preparation and handoff to the pathologist only**. Never predict reporting time or screening-programme deadlines.
+- Never invent events, times, protocols, sample attributes or causes of delay. If something is missing or contradictory, say "not enough information".
+- A missing scan record never proves a slide is misplaced. Wording: "missing scan event; check the slide location or scan record."
+- Decalcification is a normal stage. Never flag it by duration alone, and never give it an estimate unless a duration is configured.
+- Urgency comes only from the recorded priority (26H2345 is urgent, with no fault injected).
+- **MCP tools are read-only.** Only the dashboard's simulator button may append the staged basket-failure event. No model may create events, clear alerts, change priority, approve recuts or edit protocols or source data.
+- Use only fictional IDs and no patient information. Use generic equipment labels in the UI (e.g. "Processor A", "Stainer 1"); keep the workbook names only in data.
+
+## Data model
+
+Case → blocks → slides; case/block/slide → timestamped events; basket → slides → cases; rule → alert or estimate component. A case can have blocks at different stages. Whole-case handoff waits for every required block. **The latest recorded event per case is the source of truth** (some cases have no snapshot event). Ignore the free-text "Timing inputs pending" ETA column and compute from the rules instead. Shared clock: Tuesday, Day 1 11:30; Day 0 = Monday; Day -1 = the previous working day. The 22 cases marked as demo cases carry the detailed stories; the 428 background cases give scale only.
+
+## Alert rules (deterministic)
+
+1. **Outstanding block (26H1003):** completed required blocks < expected. A1–E1 are in the large-specimen processor (output expected 12:00–13:00); F1 is still at cut-up. No reliable whole-case estimate while F1 is outstanding.
+2. **Protocol mismatch (26H1004):** levels recorded (1) < levels required (3). Request staff review; never auto-advance.
+3. **Basket failure (PRISMA-BASKET-01):** pending until the trigger, then 20 slides across 26H1005–26H1014. Add the 60-minute repeat run to the affected estimates.
+4. **Scan gap (26H1015):** scan expected Monday 15:30, no scan-complete event, while later comparator cases have one.
+
+## Handoff estimate
+
+Estimate = now + remaining required steps × configured durations, moved into working windows (staffed 07:00–17:00; processors run overnight with the stated output times). Show the parts of the calculation, and show active minutes separately from wall-clock time. Label queues and parallel capacity "not modelled". **Delay** is claimed only against a configured target in `config/targets.json` (illustrative values set by Victoria). If no target is configured, return the holds and say "target comparison unavailable".
+
+## MCP tools
+
+- `get_case(case_id)`: stage, cohort, priority, programme tag, block/slide/level state, timeline, alerts, and the estimate or the reason it is unavailable.
+- `list_alerts(filters?)`: alerts with evidence, affected entities, event time and the suggested staff check.
+- `cases_delayed(filters?)`: holds and cases past a configured target; otherwise "target comparison unavailable".
+
+Answer pattern: direct answer → case IDs and recorded stage → evidence → estimate with assumptions, or "unknown" → the staff check. Plain language, never a clinical recommendation.
+
+## Design system
+
+The look is light, calm and clinical, matching the event's palette:
+
+- **Colours (CSS variables):**
+  - `--bg #F8F5F2` (cream);
+  - `--ink #2A0F1E`;
+  - `--plum #5C0F35` (headers, primary);
+  - `--crimson #D62E4C` (alerts only);
+  - `--teal #0E6B63` (on track or done);
+  - `--periwinkle #5A6FD6` (in progress);
+  - `--muted #8A7A82`;
+  - `--card #FFFFFF`;
+  - `--line #E8E0E4`.
+- **Fonts:** a serif for headings (e.g. "Source Serif 4"), Inter for UI text, and a monospaced font for case IDs and times.
+- **Layout:** header strip with the clock, a "SIMULATED DATA" badge and four stat tiles; a horizontal workflow pipeline of stage lanes with counts (click to filter); the attention queue on the right; the case drawer slides in. Every alert card shows **what, evidence, why it is flagged, and the suggested check**.
+- **Motion:** brief and purposeful. When the basket fails, the affected cards pulse crimson once and the counts animate.
+- Must work on a 1440×900 projector screen and stay readable from the back of a room (base text 16px or larger).
+
+## Story mode (P7, only after P5 works)
+
+A "Story mode" button plays the pitch arc **on the live app, driven by real state, never a recorded video**. Use Framer Motion.
+
+1. **Lab wakes up:** case dots flow into the stage lanes and counts tick up to the real totals.
+2. **Zoom to 26H1003:** A1–E1 shown in the processor (teal), F1 pulsing at cut-up (amber); caption "No whole-case handoff time yet: F1 outstanding."
+3. **Trigger:** calls the real `POST /api/sim/basket-failure`. A crimson ripple spreads from the stainer to its 20 slides and 10 cases, and their estimates animate to the new times.
+4. **Hand-off:** a caption invites the agent question (asked live in Claude Desktop via MCP).
+5. **End on the normal, fully clickable dashboard.**
+
+Rules:
+- Each animation is no longer than about 900 ms.
+- Respect `prefers-reduced-motion` and provide a "skip animations" toggle.
+- Advance with the arrow keys or a click, so the presenter controls the pace.
+- Story mode never fakes numbers; it only reads the API.
+- A "Reset demo" control restarts the server state (undoes the trigger) for rehearsals.
+
+## Core vs external (add-ons)
+
+- **Core** is our code: `server/`, `mcp/`, `web/`, `shared/`, `scripts/`, `data/`, `config/`, `docs/`.
+- **`external/`** holds third-party repos cloned for reference only (see `external/README.md` and `REGISTRY.md`). You may *read* them for patterns. **Never import from or copy code out of `external/`.** Adopt libraries as npm dependencies, mark them `adopted` in `external/REGISTRY.md`, and credit them in the README.
+- **`context/`** is private background; read it, never publish it.
+
+## Engineering rules
+
+- Read before editing. Make small changes. Run `npm test` after every data or rule change.
+- Write the acceptance tests first (TDD), then make them pass.
+- No new infrastructure (no database or Docker). In-memory state, reset on restart.
+- Commit after each priority with a clear message. Never commit secrets.
+- Keep the repository history inside the hackathon window, and never import older code.
+
+## Required tests
+
+- 450 cases = 104 backlog + 346 current-day.
+- All case/block/slide/event links resolve.
+- Event order is valid, and nothing is after Day 1 11:30.
+- Each of the four alerts returns the expected IDs and evidence.
+- The trigger flags exactly 20 slides and 10 cases, exactly once.
+- 26H1003 is not ready while F1 is outstanding.
+- 26H1004 shows 1 of 3 levels.
+- 26H1015 is described only as a missing scan event.
+- 26H1016 has no invented estimate.
+- 26H2345 stays urgent with no invented fault.
+- 26H1018 is ready for pathologist handoff.
+- No output claims a diagnosis, a reporting time or a screening deadline.
+- Missing data returns explicit uncertainty.
+
+## Approved wording
+
+"Meridian is designed to sit alongside a LIMS. The agent reads case events from the lab's workflow systems. We're simulating those feeds in this demo; a live version would connect through the interfaces available at each lab." Never claim that LIMS in general cannot do this.
