@@ -13,3 +13,5 @@
 [18:26] [B] [B1 in-memory state (server/src/state.ts), real read API with alerts, filters, holds + 'target comparison unavailable', generic labels and authoring-note filter on all display text; contract: timeline.station added] done
 [18:26] [B] [B2 SSE /api/stream emits state-changed {version} on connect, trigger and reset] done
 [18:26] [B] [B3+B4 trigger appends EV-01215 once (20 slides/10 cases, 409 after), reset restores state; 3 runs in a row tested; tests mutation-checked] done
+[18:27] [D] [D1-D4 dashboard shell, pipeline, attention queue, live trigger] started
+[18:34] [D] [D1-D4 dashboard: header (clock, SIMULATED DATA, 4 tiles, trigger + reset), 10 stage lanes (sum 450, click to filter), case table, attention queue (what/evidence/why/check), case drawer (basic), SSE live updates, one-shot crimson pulse; browser-verified at 1440x900: trigger->4 alerts/13 cases/10 flagged in H&E, 409 on repeat, reset, x3] done
