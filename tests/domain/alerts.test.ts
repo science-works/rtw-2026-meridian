@@ -91,6 +91,7 @@ describe("rule 3: basket failure (stainer basket 01)", () => {
     expect(a.caseIds).toEqual(Array.from({ length: 10 }, (_, i) => `26H10${String(5 + i).padStart(2, "0")}`));
     expect(a.evidence.map((e) => e.eventId)).toContain("EV-01215");
     expect(a.raisedAt).toBe("Day 1 11:30");
+    expect(a.id).toBe("basket_failure:PRISMA-BASKET-01");
     expect(a.severity).toBe("high");
     expect(allText(a)).toMatch(/60[- ]minute repeat/i);
     expect(allText(a)).not.toMatch(/Prisma/);

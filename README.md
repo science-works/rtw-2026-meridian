@@ -17,6 +17,8 @@ npm run dev       # API on http://localhost:8787, dashboard on http://localhost:
 npm test          # acceptance tests
 ```
 
+Requires Node 20 or later. Tool versions are pinned so the project runs on Node 20.11 (Vite 6, Vitest 3, TypeScript 5.9). `npm audit` reports advisories in Vitest's own dependencies (tinypool, @vitest/mocker); they affect only the local test runner, never the app. On Node 22+ you can move to Vitest 5 to clear them.
+
 <!-- To be completed by workstream H: screenshot, architecture, setup, MCP setup, test results, Built with -->
 
 ## Licence

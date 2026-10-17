@@ -15,3 +15,4 @@
 [18:26] [B] [B3+B4 trigger appends EV-01215 once (20 slides/10 cases, 409 after), reset restores state; 3 runs in a row tested; tests mutation-checked] done
 [18:27] [D] [D1-D4 dashboard shell, pipeline, attention queue, live trigger] started
 [18:34] [D] [D1-D4 dashboard: header (clock, SIMULATED DATA, 4 tiles, trigger + reset), 10 stage lanes (sum 450, click to filter), case table, attention queue (what/evidence/why/check), case drawer (basic), SSE live updates, one-shot crimson pulse; browser-verified at 1440x900: trigger->4 alerts/13 cases/10 flagged in H&E, 409 on repeat, reset, x3] done
+[19:18] [T0] [decisions applied: --amber #C98A1B (fills only, 2.7:1 on cream) + --amber-ink #8A5A00 for text; CLAUDE/AGENTS say 'motion'; basket alert id basket_failure:PRISMA-BASKET-01; README notes Node 20 pins + dev-only audit. FLAG: --muted #8A7A82 is 3.7:1 on cream (below AA 4.5 for small text)] done

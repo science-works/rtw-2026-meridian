@@ -91,6 +91,7 @@ The look is light, calm and clinical, matching the event's palette:
   - `--crimson #D62E4C` (alerts only);
   - `--teal #0E6B63` (on track or done);
   - `--periwinkle #5A6FD6` (in progress);
+  - `--amber #C98A1B` (a hold, e.g. an outstanding block; fills and borders only, since it is 2.7:1 on cream) with `--amber-ink #8A5A00` (5.5:1) for amber text;
   - `--muted #8A7A82`;
   - `--card #FFFFFF`;
   - `--line #E8E0E4`.
@@ -101,7 +102,7 @@ The look is light, calm and clinical, matching the event's palette:
 
 ## Story mode (P7, only after P5 works)
 
-A "Story mode" button plays the pitch arc **on the live app, driven by real state, never a recorded video**. Use Framer Motion.
+A "Story mode" button plays the pitch arc **on the live app, driven by real state, never a recorded video**. Use Motion (the `motion` package, formerly Framer Motion).
 
 1. **Lab wakes up:** case dots flow into the stage lanes and counts tick up to the real totals.
 2. **Zoom to 26H1003:** A1–E1 shown in the processor (teal), F1 pulsing at cut-up (amber); caption "No whole-case handoff time yet: F1 outstanding."

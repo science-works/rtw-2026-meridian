@@ -21,12 +21,12 @@ describe("B3: basket-failure trigger", () => {
     const c = (await get<CaseDetail>("/api/cases/26H1005")).body;
     expect(c.timeline.filter((e) => e.eventId === "EV-01215")).toHaveLength(1);
     expect(c.timeline.at(-1)!.details).not.toMatch(/PENDING|pitch/i);
-    expect(c.alertIds).toEqual(["basket_failure:EV-01215"]);
+    expect(c.alertIds).toEqual(["basket_failure:PRISMA-BASKET-01"]);
     for (let i = 5; i <= 14; i++) {
       const id = `26H10${String(i).padStart(2, "0")}`;
-      expect((await get<CaseDetail>(`/api/cases/${id}`)).body.alertIds).toContain("basket_failure:EV-01215");
+      expect((await get<CaseDetail>(`/api/cases/${id}`)).body.alertIds).toContain("basket_failure:PRISMA-BASKET-01");
     }
-    expect((await get<CaseDetail>("/api/cases/26H1015")).body.alertIds).not.toContain("basket_failure:EV-01215");
+    expect((await get<CaseDetail>("/api/cases/26H1015")).body.alertIds).not.toContain("basket_failure:PRISMA-BASKET-01");
   });
 
   it("marks the overview as fired without changing stage counts", async () => {

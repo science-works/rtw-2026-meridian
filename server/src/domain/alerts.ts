@@ -96,9 +96,10 @@ function basketFailures(data: CellpathData, events: EventRecord[]): Alert[] {
       const slides = data.slides.filter((s) => s.basket && f.station?.includes(s.basket));
       const caseIds = [...new Set(slides.map((s) => s.caseId))].sort();
       const loaded = events.filter((e) => e.type === "BASKET_LOADED" && slides.some((s) => s.slideId === e.slideId));
-      const basket = generic(slides[0]?.basket ?? f.station ?? "Stainer basket");
+      const basketId = slides[0]?.basket ?? f.eventId;
+      const basket = generic(basketId);
       return {
-        id: `basket_failure:${f.eventId}`,
+        id: `basket_failure:${basketId}`,
         kind: "basket_failure",
         severity: "high",
         raisedAt: f.at,
