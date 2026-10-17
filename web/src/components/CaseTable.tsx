@@ -61,6 +61,7 @@ export function CaseTable({ cases, alerts, stage, onClearStage, onOpenCase, puls
           <tbody>
             {rows.map((c) => (
               <tr
+                style={pulse.has(c.caseId) ? ({ "--i": [...pulse].filter((id) => id.startsWith("26H")).sort().indexOf(c.caseId) } as React.CSSProperties) : undefined}
                 key={c.caseId}
                 data-case={c.caseId}
                 onClick={() => onOpenCase(c.caseId)}

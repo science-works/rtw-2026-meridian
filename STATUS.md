@@ -30,3 +30,5 @@
 [19:38] [D] [VX0: motion + @number-flow/react + Tailwind v4 (Vite plugin, '@' alias); FxProvider = VITE_FX=off | prefers-reduced-motion | 'Skip animations' toggle (localStorage, try/catch) -> MotionConfig + .fx class; --muted #8A7A82 -> #76666E (4.96:1 cream, 5.39:1 white); VITE_FX=off verified in browser (no pulse, all data). shadcn CLI/Magic UI skipped: CLI deps need Node>=20.17 -> effects built with motion (logged in REGISTRY)] done
 [19:38] [D] [VX1+VX2 lab river + rolling counts + alert stream] started
 [19:41] [D] [VX1+VX2: lab river (one dot per real case per lane: crimson flagged / plum urgent / faded backlog; staggered entrance <=800ms; counts roll 0->total via NumberFlow; verified 450 counted = 450 dots), rolling tiles/queue counts, TimeFlow estimates (11:55->12:55->11:55 verified), alert stream slides in with layout animation; fixed pulse firing on first load] done
+[19:41] [D] [VX3 failure ripple] started
+[19:42] [D] [VX3 failure ripple: 3 crimson rings from the H&E lane + '20 slides · 10 cases' label from the alert (<=900ms), staggered row flash (<=875ms), estimates roll 11:55->12:55; browser-run 3x trigger->reset identical] done

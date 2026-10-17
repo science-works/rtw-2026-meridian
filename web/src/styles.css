@@ -221,7 +221,11 @@ table.mini { background: var(--card); border: 1px solid var(--line); border-radi
 /* ---------- Motion (off with VITE_FX=off or reduced motion) ---------- */
 .fx .pulse { animation: pulse-crimson 900ms ease-out 1; }
 .fx tr.pulse { animation: none; }
-.fx tr.pulse td { animation: row-flash 900ms ease-out 1; }
+.fx tr.pulse td { animation: row-flash 650ms ease-out 1; animation-delay: calc(var(--i, 0) * 25ms); } /* ≤ 900 ms incl. stagger */
+.ripple-layer { position: fixed; inset: 0; pointer-events: none; z-index: 20; overflow: hidden; }
+.ripple-ring { position: absolute; width: 1400px; height: 1400px; margin: -700px 0 0 -700px; border-radius: 50%; border: 6px solid var(--crimson); box-shadow: 0 0 40px rgba(214, 46, 76, 0.35) inset; }
+.ripple-anchor { position: absolute; transform: translate(-50%, -50%); }
+.ripple-label { display: block; background: var(--crimson); color: #fff; font-weight: 700; padding: 4px 12px; border-radius: 999px; white-space: nowrap; font-size: 16px; }
 @keyframes row-flash {
   0% { background-color: rgba(214, 46, 76, 0.28); }
   100% { background-color: transparent; }

@@ -6,6 +6,7 @@ import { CaseDrawer } from "./components/CaseDrawer";
 import { CaseTable } from "./components/CaseTable";
 import { Header } from "./components/Header";
 import { Pipeline } from "./components/Pipeline";
+import { Ripple } from "./components/Ripple";
 import { useFx } from "./fx";
 import { useLive } from "./useLive";
 
@@ -17,6 +18,7 @@ export function App() {
   const [openCase, setOpenCase] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [pulse, setPulse] = useState<Set<string>>(new Set());
+  const [ripple, setRipple] = useState<{ label: string; key: number } | null>(null);
   const seenAlerts = useRef<Set<string> | null>(null);
   const fx = useFx();
 
@@ -30,9 +32,13 @@ export function App() {
     const fresh = live.alerts.filter((a) => !prev.has(a.id));
     if (fresh.length === 0) return;
     setPulse(new Set([...fresh.map((a) => a.id), ...fresh.flatMap((a) => a.caseIds)]));
+    const basket = fresh.find((a) => a.kind === "basket_failure");
+    if (basket) setRipple({ label: `${basket.slideIds?.length ?? 0} slides · ${basket.caseIds.length} cases`, key: Date.now() });
     const t = setTimeout(() => setPulse(new Set()), PULSE_MS + 100);
     return () => clearTimeout(t);
   }, [live.alerts, live.overview, fx.on]);
+
+  const clearRipple = useCallback(() => setRipple(null), []);
 
   const run = useCallback(async (fn: () => Promise<unknown>) => {
     setBusy(true);
@@ -56,6 +62,7 @@ export function App() {
         Meridian is designed to sit alongside a LIMS. We're simulating the lab's feeds in this demo; a live version would connect through the interfaces available at each lab. It
         predicts when a case should be ready for the pathologist; it never diagnoses, reports or predicts screening deadlines.
       </footer>
+      {ripple && <Ripple key={ripple.key} from='.lane[data-stage="H&E staining"]' label={ripple.label} onDone={clearRipple} />}
       {openCase && <CaseDrawer caseId={openCase} version={live.version} alerts={live.alerts} onClose={() => setOpenCase(null)} onOpenCase={setOpenCase} />}
     </div>
   );
