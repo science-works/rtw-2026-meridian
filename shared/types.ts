@@ -145,7 +145,7 @@ export interface Estimate {
 export type AlertKind = "outstanding_block" | "protocol_mismatch" | "basket_failure" | "scan_gap";
 
 /** Spec §6. Derived only from recorded events; Resolved needs a recorded completion/check. */
-export type AlertState = "new" | "acknowledged" | "in_progress" | "resolved";
+export type AlertState = "new" | "check_needed" | "acknowledged" | "in_progress" | "resolved";
 
 export interface Alert {
   id: string;

@@ -6,13 +6,13 @@ import { freshApp } from "./helpers";
 describe("B5: GET /api/events (paged, read-only)", () => {
   it("returns the first page of recorded events in time order", async () => {
     const { body } = await freshApp().get<EventsPage>("/api/events");
-    expect(body).toMatchObject({ feed: "workbook", total: 1237, offset: 0, limit: 100, nextOffset: 100 });
+    expect(body).toMatchObject({ feed: "workbook", total: 1253, offset: 0, limit: 100, nextOffset: 100 });
     expect(body.events).toHaveLength(100);
     const t = body.events.map((e) => parseSimTime(e.at));
     expect(t).toEqual([...t].sort((a, b) => a - b));
   });
 
-  it("pages through every logged event exactly once; the 16 staged incident events are held back", async () => {
+  it("pages through every event of the workbook exactly once (nothing held back)", async () => {
     const { get } = freshApp();
     const ids: string[] = [];
     let offset: number | null = 0;
@@ -21,20 +21,18 @@ describe("B5: GET /api/events (paged, read-only)", () => {
       ids.push(...body.events.map((e) => e.eventId));
       offset = body.nextOffset;
     }
-    expect(ids).toHaveLength(1237);
-    expect(new Set(ids).size).toBe(1237);
-    expect(ids).not.toContain("EV-01215");
+    expect(ids).toHaveLength(1253);
+    expect(new Set(ids).size).toBe(1253);
+    expect(ids).toContain("EV-01215");
   });
 
-  it("includes the H&E incident once the dashboard replays it, and drops it on reset", async () => {
+  it("includes the recorded H&E incident with its station, box and basket; reset keeps it", async () => {
     const { get, post } = freshApp();
-    await post("/api/sim/basket-failure");
     const fired = (await get<EventsPage>("/api/events?type=STAIN_RUN_FAILED")).body;
     expect(fired.total).toBe(1);
     expect(fired.events[0]).toMatchObject({ eventId: "EV-01215", at: "Day 1 10:45", station: "H&E auto-stainer 1", box: "Box 1", basket: "Basket 1", activation: "Detected; attention required" });
-    expect((await get<EventsPage>("/api/events")).body.total).toBe(1253);
     await post("/api/sim/reset");
-    expect((await get<EventsPage>("/api/events")).body.total).toBe(1237);
+    expect((await get<EventsPage>("/api/events")).body.total).toBe(1253);
   });
 
   it("filters by case (any case) and by event type", async () => {
@@ -52,7 +50,7 @@ describe("B5: GET /api/events (paged, read-only)", () => {
     expect((await get<EventsPage>("/api/events?offset=-5")).body.offset).toBe(0);
     expect((await get<EventsPage>("/api/events?limit=abc")).body.limit).toBe(100);
     const last = (await get<EventsPage>("/api/events?offset=1200&limit=100")).body;
-    expect(last.events).toHaveLength(37);
+    expect(last.events).toHaveLength(53);
     expect(last.nextOffset).toBeNull();
   });
 

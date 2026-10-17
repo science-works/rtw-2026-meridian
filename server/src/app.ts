@@ -5,11 +5,11 @@ import { streamSSE } from "hono/streaming";
 import { displayText, generic, stationParts } from "../../shared/labels";
 import { parseSimTime } from "../../shared/clock";
 import { STAGES } from "../../shared/types";
-import type { BlockRecord, CaseDetail, CaseRecord, CaseSummary, DelayedResponse, EventRecord, EventsPage, FeedEvent, Overview, Stage, TriggerResponse } from "../../shared/types";
+import type { BlockRecord, CaseDetail, CaseRecord, CaseSummary, DelayedResponse, EventRecord, EventsPage, FeedEvent, Overview, Stage } from "../../shared/types";
 import { validate } from "./domain/validate";
 import { computeStations, whyWaiting } from "./domain/stations";
 import { createActivityLog, summarise, wallClock, type ActivityLog } from "./activity";
-import { AlreadyFiredError, ConflictError, NotFoundError, createState, type MeridianState } from "./state";
+import { ConflictError, NotFoundError, createState, type MeridianState } from "./state";
 import { hasAnyTarget } from "./targets";
 
 const toFeedEvent = (e: EventRecord): FeedEvent => ({
@@ -235,24 +235,10 @@ export function createApp(state: MeridianState = createState(), activity: Activi
     return c.json({ cleared: true });
   });
 
-  app.post("/api/sim/basket-failure", (c) => {
-    try {
-      const r = state.fireBasketFailure();
-      return c.json<TriggerResponse>({ fired: true, ...r });
-    } catch (e) {
-      if (e instanceof AlreadyFiredError) return c.json({ error: e.message }, 409);
-      throw e;
-    }
-  });
+  // The recorded H&E incident is part of the 11:30 data, so there is nothing to replay (409).
+  app.post("/api/sim/basket-failure", (c) => c.json({ error: "The H&E incident is already recorded in the 11:30 data; there is nothing to replay." }, 409));
 
-  app.post("/api/sim/replay-incident", (c) => {
-    try {
-      return c.json<TriggerResponse>({ fired: true, ...state.replayIncident() });
-    } catch (e) {
-      if (e instanceof AlreadyFiredError) return c.json({ error: e.message }, 409);
-      throw e;
-    }
-  });
+  app.post("/api/sim/replay-incident", (c) => c.json({ error: "The H&E incident is already recorded in the 11:30 data; there is nothing to replay." }, 409));
 
   app.post("/api/sim/reset", (c) => {
     state.reset();

@@ -31,11 +31,11 @@ describe("B2: SSE stream", () => {
     expect(await readStateChanges(res.body!, 1)).toEqual([0]);
   });
 
-  it("emits state-changed on the trigger and on reset", async () => {
+  it("emits state-changed on the presenter's Acknowledge and on reset", async () => {
     const { app, post } = freshApp();
     const res = await app.request("/api/stream");
     const versions = await readStateChanges(res.body!, 3, async () => {
-      await post("/api/sim/basket-failure");
+      await post(`/api/alerts/${encodeURIComponent("protocol_mismatch:26H1004/A1")}/acknowledge`);
       await post("/api/sim/reset");
     });
     expect(versions).toEqual([0, 1, 2]);

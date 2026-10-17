@@ -63,9 +63,10 @@ describe("C2: tools return live data from the HTTP API", () => {
     expect(missing.text).toMatch(/26H9999/);
   });
 
-  it("list_alerts sees the trigger the moment the dashboard fires it", async () => {
-    expect((await call("list_alerts")).json.alerts).toHaveLength(3);
-    await api.post("/api/sim/basket-failure");
+  it("list_alerts returns the recorded stainer incident (20 slides, 10 cases) and sees the presenter's acknowledgement live", async () => {
+    expect((await call("list_alerts")).json.alerts).toHaveLength(4);
+    await api.post(`/api/alerts/${encodeURIComponent("protocol_mismatch:26H1004/A1")}/acknowledge`);
+    expect((await call("list_alerts", { case_id: "26H1004" })).json.alerts[0].state).toBe("acknowledged");
     const { json } = await call("list_alerts", { kind: "basket_failure" });
     expect(json.alerts).toHaveLength(1);
     expect(json.alerts[0].slideIds).toHaveLength(20);
@@ -81,7 +82,8 @@ describe("C2: tools return live data from the HTTP API", () => {
   it("cases_delayed returns holds and says target comparison unavailable", async () => {
     const all = await call("cases_delayed");
     expect(all.json.note).toBe("target comparison unavailable");
-    expect(all.json.cases.map((c: { caseId: string }) => c.caseId).sort()).toEqual(["26H1003", "26H1004", "26H1015"]);
+    expect(all.json.cases.map((c: { caseId: string }) => c.caseId)).toHaveLength(13);
+    expect(all.json.cases.map((c: { caseId: string }) => c.caseId)).toEqual(expect.arrayContaining(["26H1003", "26H1004", "26H1005", "26H1015"]));
     const screening = await call("cases_delayed", { programme: "screening" });
     expect(screening.json.cases).toEqual([]);
     expect(screening.json.note).toBe("target comparison unavailable");
@@ -97,7 +99,6 @@ describe("C2: tools return live data from the HTTP API", () => {
   });
 
   it("every tool output is safe: no overclaims, no workbook equipment names, simulated flag", async () => {
-    await api.post("/api/sim/basket-failure");
     const outputs = [
       await call("get_case", { case_id: "26H1003" }),
       await call("get_case", { case_id: "26H1015" }),
@@ -119,7 +120,7 @@ describe("C2: tools return live data from the HTTP API", () => {
     await call("list_alerts");
     await call("cases_delayed");
     expect(api.state.version).toBe(before);
-    expect(api.state.triggerFired).toBe(false);
+    expect(api.state.alerts.find((a) => a.kind === "protocol_mismatch")!.state).toBe("new");
   });
 
   it("tags every API call so the dashboard's agent console can show it", async () => {

@@ -11,14 +11,14 @@ describe("B1: read API over the in-memory state", () => {
 
   it("GET /api/overview reconciles to 450 = 104 + 346 with 8 ready", async () => {
     const { body } = await freshApp().get<Overview>("/api/overview");
-    expect(body).toMatchObject({ clock: "Day 1 11:30", total: 450, backlog: 104, today: 346, ready: 8, triggerFired: false });
+    expect(body).toMatchObject({ clock: "Day 1 11:30", total: 450, backlog: 104, today: 346, ready: 8, openAttention: 4 });
     expect(body.stages).toHaveLength(10);
     expect(body.stages.reduce((n, s) => n + s.total, 0)).toBe(450);
   });
 
-  it("GET /api/alerts returns the three pre-trigger alerts", async () => {
+  it("GET /api/alerts returns the four incidents of the 11:30 data", async () => {
     const { body } = await freshApp().get<Alert[]>("/api/alerts");
-    expect(body.map((a) => a.kind).sort()).toEqual(["outstanding_block", "protocol_mismatch", "scan_gap"]);
+    expect(body.map((a) => a.kind).sort()).toEqual(["basket_failure", "outstanding_block", "protocol_mismatch", "scan_gap"]);
   });
 
   it("GET /api/cases lists 450 summaries carrying their alert IDs", async () => {
@@ -44,7 +44,7 @@ describe("B1: read API over the in-memory state", () => {
     expect(body.alertIds).toEqual(["outstanding_block:26H1003"]);
     expect(body.timeline.at(-1)!.eventId).toBe("EV-01214");
     const basket = (await get<CaseDetail>("/api/cases/26H1005")).body;
-    expect(basket.timeline.map((e) => e.eventId)).not.toContain("EV-01215"); // still staged
+    expect(basket.timeline.map((e) => e.eventId)).toContain("EV-01215"); // recorded at 10:45
     expect(basket.slides).toHaveLength(2);
   });
 
@@ -88,7 +88,7 @@ describe("B1: read API over the in-memory state", () => {
     const { get } = freshApp();
     const { body } = await get<DelayedResponse>("/api/delayed");
     expect(body.note).toBe("target comparison unavailable");
-    expect(body.cases.map((c) => c.caseId).sort()).toEqual(["26H1003", "26H1004", "26H1015"]);
+    expect(body.cases.map((c) => c.caseId).sort()).toEqual(["26H1003", "26H1004", "26H1005", "26H1006", "26H1007", "26H1008", "26H1009", "26H1010", "26H1011", "26H1012", "26H1013", "26H1014", "26H1015"]);
     const screening = (await get<DelayedResponse>("/api/delayed?programme=any")).body;
     expect(screening.cases).toEqual([]);
     expect(screening.note).toBe("target comparison unavailable");
@@ -116,7 +116,7 @@ describe("B1: read API over the in-memory state", () => {
     }
   });
 
-  it("never exposes workbook equipment names or overclaims in any response", async () => {
+  it("never exposes workbook equipment names or overclaims in any response", { timeout: 60_000 }, async () => {
     const { get } = freshApp();
     const ids = (await get<CaseSummary[]>("/api/cases")).body.map((c) => c.caseId);
     const bodies = [

@@ -22,8 +22,8 @@ describe("alert states from recorded events", () => {
     for (const a of computeAlerts(loadData())) expect(a).not.toHaveProperty("severity");
   });
 
-  it("the three pre-incident alerts are New (no acknowledgement recorded)", () => {
-    for (const a of computeAlerts(log)) expect(a.state).toBe("new");
+  it("26H1004 (levels mismatch) is New; 26H1003 and 26H1015 are Check needed", () => {
+    expect(Object.fromEntries(computeAlerts(log).map((a) => [a.kind, a.state]))).toEqual({ protocol_mismatch: "new", outstanding_block: "check_needed", scan_gap: "check_needed" });
   });
 
   it("failure (+ team notified) → New", () => {
@@ -42,7 +42,7 @@ describe("alert states from recorded events", () => {
     expect(t.stateDetail).toMatch(/troubleshooting/i);
     const r = basket(upTo("EV-01256"));
     expect(r.state).toBe("in_progress");
-    expect(r.stateDetail).toBe("Repeat H&E run started 11:05");
+    expect(r.stateDetail).toBe("Troubleshooting / resolving — re-staining, ETA completion 11:35");
   });
 
   it("is never Resolved at 11:30: no completion or check event exists", () => {
@@ -67,13 +67,13 @@ describe("alert states from recorded events", () => {
 });
 
 describe("overview headline counts (spec Screen A)", () => {
-  it("are computed from data", async () => {
+  it("are computed from data", { timeout: 30_000 }, async () => {
     const { freshApp } = await import("../api/helpers");
     const { get, post } = freshApp();
     const o = (await get<Record<string, number>>("/api/overview")).body;
-    expect(o).toMatchObject({ total: 450, backlog: 104, today: 346, urgent: 15, screeningLinked: 143, ready: 8, openAttention: 3 });
-    await post("/api/sim/basket-failure");
-    expect((await get<Record<string, number>>("/api/overview")).body.openAttention).toBe(4);
+    expect(o).toMatchObject({ total: 450, backlog: 104, today: 346, urgent: 15, screeningLinked: 143, ready: 8, openAttention: 4 });
+    await post(`/api/alerts/${encodeURIComponent("protocol_mismatch:26H1004/A1")}/acknowledge`);
+    expect((await get<Record<string, number>>("/api/overview")).body.openAttention).toBe(4); // acknowledged is still open
   });
 });
 

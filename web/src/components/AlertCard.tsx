@@ -8,9 +8,8 @@ const KIND_LABEL: Record<Alert["kind"], string> = {
   scan_gap: "Missing scan event",
 };
 
-const STATE_LABEL: Record<Alert["state"], string> = {
-  new: "New",
-  acknowledged: "Acknowledged",
+const STATE_LABEL: Record<Alert["state"], string> = { new: "New", check_needed: "Check needed",
+  acknowledged: "Acknowledged — awaiting check",
   in_progress: "In progress",
   resolved: "Resolved",
 };

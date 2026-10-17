@@ -37,7 +37,7 @@ export const INSTRUCTIONS = [
   `Answer pattern: ${ANSWER_PATTERN}`,
 ].join("\n");
 
-const STATE_LABEL = { new: "new", acknowledged: "acknowledged", in_progress: "in progress", resolved: "resolved" } as const;
+const STATE_LABEL = { new: "new", check_needed: "check needed", acknowledged: "acknowledged, awaiting check", in_progress: "in progress", resolved: "resolved" } as const;
 
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false } as const;
 

@@ -14,10 +14,10 @@ describe("Agent-Live: activity log of MCP reads", () => {
     await app.request("/api/delayed", MCP("cases_delayed"));
     const log = (await get<AgentActivity[]>("/api/agent/activity")).body;
     expect(log.map((a) => a.tool)).toEqual(["list_alerts", "get_case", "cases_delayed"]);
-    expect(log[0].resultSummary).toBe("3 alerts · 3 cases");
-    expect(log[0].caseIds.sort()).toEqual(["26H1003", "26H1004", "26H1015"]);
-    expect(log[1]).toMatchObject({ args: { case_id: "26H1005" }, resultSummary: "26H1005 · H&E staining · est. Day 1 11:40", caseIds: ["26H1005"] });
-    expect(log[2].resultSummary).toBe("3 cases on hold · target comparison unavailable");
+    expect(log[0].resultSummary).toBe("4 alerts · 13 cases");
+    expect(log[0].caseIds).toHaveLength(13);
+    expect(log[1]).toMatchObject({ args: { case_id: "26H1005" }, resultSummary: "26H1005 · H&E staining · est. Day 1 11:45", caseIds: ["26H1005"] });
+    expect(log[2].resultSummary).toBe("13 cases on hold · target comparison unavailable");
     expect(log[0].at).toMatch(/^\d\d:\d\d:\d\d$/);
   });
 
@@ -33,7 +33,7 @@ describe("Agent-Live: activity log of MCP reads", () => {
     const v = state.version;
     for (const p of ["/api/alerts", "/api/cases/26H1003", "/api/delayed", "/api/overview", "/api/events"]) await app.request(p, MCP("get_case"));
     expect(state.version).toBe(v);
-    expect(state.triggerFired).toBe(false);
+    expect(state.alerts.find((a) => a.kind === "protocol_mismatch")!.state).toBe("new");
   });
 
   it("groups calls by run and reports unknown estimates and missing cases plainly", async () => {

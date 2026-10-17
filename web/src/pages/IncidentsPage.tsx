@@ -7,7 +7,7 @@ export const KIND_LABEL: Record<Alert["kind"], string> = {
   basket_failure: "H&E basket failure",
   scan_gap: "Missing scan event",
 };
-export const STATE_LABEL: Record<Alert["state"], string> = { new: "New", acknowledged: "Acknowledged", in_progress: "In progress", resolved: "Resolved" };
+export const STATE_LABEL: Record<Alert["state"], string> = { new: "New", check_needed: "Check needed", acknowledged: "Acknowledged — awaiting check", in_progress: "In progress", resolved: "Resolved" };
 
 function Rows({ alerts }: { alerts: Alert[] }) {
   return (

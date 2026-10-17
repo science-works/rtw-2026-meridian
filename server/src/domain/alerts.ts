@@ -1,6 +1,6 @@
 // The four deterministic alert rules (CLAUDE.md). Rules read the event log as it stands;
 // the staged H&E incident counts only after the dashboard has replayed it.
-import { parseSimTime } from "../../../shared/clock";
+import { formatSimTime, parseSimTime } from "../../../shared/clock";
 import { displayText, generic, stationParts } from "../../../shared/labels";
 import type { Alert, BlockRecord, CellpathData, EventRecord } from "../../../shared/types";
 
@@ -50,7 +50,7 @@ function outstandingBlocks(data: CellpathData, events: EventRecord[]): Alert[] {
           ...[...new Set(open.map((b) => generic(b.location)))].map((loc) => `${loc} (${blockRange(open.filter((b) => generic(b.location) === loc).map((b) => b.blockId))})`),
         ].join(" · "),
         raisedAt: raised?.at ?? data.meta.clock,
-        state: "new",
+        state: "check_needed",
         history: [{ at: raised?.at ?? data.meta.clock, ...(raised ? { eventId: raised.eventId } : {}), label: "Flagged" }],
         caseIds: [c.caseId],
         what: `${c.caseId}: ${c.blocksComplete} of ${c.blocksExpected} blocks complete; ${openIds} outstanding`,
@@ -109,9 +109,14 @@ const STAFF_ACTIONS = Object.keys(ACTION_LABEL).filter((t) => t !== "STAIN_RUN_F
 const IN_PROGRESS = ["TROUBLESHOOTING_STARTED", "BASKET_RELOADED", "REPEAT_STAIN_STARTED"];
 
 /** State from recorded staff actions only (spec §6). Acknowledging is not a fix. */
-function incidentState(actions: EventRecord[]): Pick<Alert, "state" | "stateDetail"> {
+function incidentState(actions: EventRecord[], repeatMinutes: number | null): Pick<Alert, "state" | "stateDetail"> {
   const has = (t: string) => actions.some((e) => e.type === t);
   if (has("STAINING_COMPLETE")) return { state: "resolved" };
+  const repeat = actions.find((e) => e.type === "REPEAT_STAIN_STARTED");
+  if (repeat) {
+    const eta = repeatMinutes === null ? "ETA unknown (repeat-run duration not configured)" : `ETA completion ${formatSimTime(parseSimTime(repeat.at) + repeatMinutes).slice(-5)}`;
+    return { state: "in_progress", stateDetail: `Troubleshooting / resolving — re-staining, ${eta}` };
+  }
   const progress = actions.filter((e) => IN_PROGRESS.includes(e.type)).at(-1);
   if (progress) return { state: "in_progress", stateDetail: `${ACTION_LABEL[progress.type]} ${progress.at.slice(-5)}` };
   if (has("INCIDENT_ACKNOWLEDGED")) return { state: "acknowledged" };
@@ -136,7 +141,7 @@ function basketFailures(data: CellpathData, events: EventRecord[]): Alert[] {
         id: `basket_failure:${basketId ?? f.eventId}`,
         kind: "basket_failure",
         where: [generic(f.station ?? "H&E auto-stainer 1"), [stationParts(f.station).box, stationParts(f.station).basket].filter(Boolean).join(" / "), basketId].filter(Boolean).join(" · "),
-        ...incidentState(actions),
+        ...incidentState(actions, repeat),
         history: [f, ...actions].map((e) => ({ at: e.at, eventId: e.eventId, label: ACTION_LABEL[e.type] })),
         raisedAt: f.at,
         caseIds,
@@ -174,7 +179,7 @@ function scanGaps(data: CellpathData, events: EventRecord[]): Alert[] {
           kind: "scan_gap",
           where: generic(exp.station ?? "Scanner queue"),
             raisedAt: data.meta.clock,
-          state: "new",
+          state: "check_needed",
           history: [{ at: data.meta.clock, eventId: exp.eventId, label: "Flagged" }],
           caseIds: [exp.caseId],
           slideIds: slides.map((s) => s.slideId),

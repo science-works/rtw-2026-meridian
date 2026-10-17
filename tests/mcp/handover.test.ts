@@ -111,17 +111,16 @@ describe("C2b: shift_handover in brief mode (deterministic, for the Inspector)",
     expect(t).toMatch(/list_alerts → get_case .* → cases_delayed/);
   });
 
-  it("before the trigger: three alerts with their evidence IDs and checks", async () => {
+  it("at 11:30: four incidents with their evidence IDs and checks", async () => {
     const t = await brief();
     const alerts = section(t, "Open alerts");
-    expect(alerts).toMatch(/Open alerts \(3\)/);
+    expect(alerts).toMatch(/Open alerts \(4\)/);
     for (const id of ["EV-01121", "EV-01230", "EV-01099"]) expect(alerts).toContain(id);
     expect(section(t, "Staff checks")).toContain("Missing scan event; check the slide location or scan record.");
     expect(section(t, "Targets")).toContain("target comparison unavailable");
   });
 
-  it("after the dashboard trigger: the stain failure, its 10 cases and their new estimates", async () => {
-    await api.post("/api/sim/basket-failure");
+  it("includes the stainer incident, its 10 cases and their estimates (repeat run included)", async () => {
     const t = await brief();
     expect(section(t, "Open alerts")).toMatch(/Open alerts \(4\)/);
     expect(section(t, "Open alerts")).toContain("EV-01215");
@@ -152,7 +151,6 @@ describe("C2b: shift_handover in brief mode (deterministic, for the Inspector)",
   });
 
   it("is safe: no overclaims outside the scope line, no workbook names, no mutation", async () => {
-    await api.post("/api/sim/basket-failure");
     const version = api.state.version;
     const t = await brief();
     const body = t.slice(0, t.indexOf("## Not in scope"));
