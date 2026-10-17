@@ -7,6 +7,7 @@ import { parseSimTime } from "../../shared/clock";
 import { STAGES } from "../../shared/types";
 import type { BlockRecord, CaseDetail, CaseRecord, CaseSummary, DelayedResponse, EventRecord, EventsPage, FeedEvent, Overview, Stage, TriggerResponse } from "../../shared/types";
 import { validate } from "./domain/validate";
+import { computeStations, whyWaiting } from "./domain/stations";
 import { createActivityLog, summarise, wallClock, type ActivityLog } from "./activity";
 import { AlreadyFiredError, createState, type MeridianState } from "./state";
 import { hasAnyTarget } from "./targets";
@@ -125,6 +126,13 @@ export function createApp(state: MeridianState = createState(), activity: Activi
 
   app.get("/api/alerts", (c) => c.json(state.alerts));
 
+  // Lab-flow map (spec Screen B): zones and equipment with their recorded contents.
+  app.get("/api/stations", (c) => c.json(computeStations(state.data, state.alerts)));
+  app.get("/api/stations/:id", (c) => {
+    const card = computeStations(state.data, state.alerts).find((s) => s.id === c.req.param("id").toLowerCase());
+    return card ? c.json(card) : c.json({ error: `No station ${c.req.param("id")} on the lab-flow map` }, 404);
+  });
+
   app.get("/api/cases", (c) => {
     const { stage, priority, programme, demo } = c.req.query();
     const ids = alertIdsByCase();
@@ -145,6 +153,7 @@ export function createApp(state: MeridianState = createState(), activity: Activi
     const caseEvents = state.data.events.filter((e) => e.caseId === id);
     const detail: CaseDetail = {
       ...summary(rec, alertIdsByCase()),
+      waiting: whyWaiting(state.data, id),
       blocks: state.data.blocks
         .filter((b) => b.caseId === id)
         .map((b) => ({

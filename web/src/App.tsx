@@ -4,7 +4,9 @@ import { api } from "./api";
 import { AttentionQueue } from "./components/AttentionQueue";
 import { CaseDrawer } from "./components/CaseDrawer";
 import { CaseTable } from "./components/CaseTable";
-import { Header, type Tab } from "./components/Header";
+import { ControlBar, Header, type Tab } from "./components/Header";
+import { LabFlow } from "./flow/LabFlow";
+import { StationDrawer } from "./flow/StationDrawer";
 import { HeadlineCounts, type CaseScope } from "./components/HeadlineCounts";
 import { Pipeline } from "./components/Pipeline";
 import { Ripple } from "./components/Ripple";
@@ -22,6 +24,7 @@ export function App() {
   const [stage, setStage] = useState<Stage | null>(null);
   const [tab, setTab] = useState<Tab>("Overview");
   const [scope, setScope] = useState<CaseScope>("demo");
+  const [openStation, setOpenStation] = useState<string | null>(null);
   const [openCase, setOpenCase] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [pulse, setPulse] = useState<Set<string>>(new Set());
@@ -92,17 +95,9 @@ export function App() {
       <Header
         overview={o}
         connected={live.connected}
-        busy={busy || story > 0}
         tab={tab}
         onTab={setTab}
         onSearch={search}
-        onTrigger={() => run(api.trigger)}
-        onReset={() => run(api.reset)}
-        onStory={() => {
-          setOpenCase(null);
-          setTab("Overview");
-          setStory((n) => n + 1);
-        }}
       />
       {live.error && <p className="error banner">Cannot reach the Meridian API ({live.error}). Is `npm run dev` running?</p>}
       {tab === "Overview" && (
@@ -128,12 +123,7 @@ export function App() {
           </main>
         </>
       )}
-      {tab === "Lab flow" && (
-        <section className="tab-page">
-          <h2>Lab flow</h2>
-          <p>The interactive lab-flow map (reception to pathologist handoff, with equipment cards) is being built in this version. The Overview shows the same live data.</p>
-        </section>
-      )}
+      {tab === "Lab flow" && <LabFlow stations={live.stations} cases={live.cases} alerts={live.alerts} onOpenStation={setOpenStation} onOpenCase={setOpenCase} />}
       {tab === "Screening" && (
         <section className="tab-page">
           <h2>Screening-linked cases</h2>
@@ -156,13 +146,24 @@ export function App() {
           <p>Search by case ID with the search box above. It searches the fictional demo workbook only, never real patient records.</p>
         </section>
       )}
-      <footer className="footer">
-        The agent reads case events from the lab&apos;s existing workflow and information systems. We&apos;re simulating those feeds in this demo; a live version would connect through the
-        interfaces available at each lab. Meridian covers lab preparation up to pathologist handoff; it never diagnoses, reports or predicts screening deadlines.
-      </footer>
+      <ControlBar
+        overview={o}
+        busy={busy || story > 0}
+        onTrigger={() => run(api.trigger)}
+        onReset={() => run(api.reset)}
+        onStory={() => {
+          setOpenCase(null);
+          setOpenStation(null);
+          setTab("Overview");
+          setStory((n) => n + 1);
+        }}
+      />
       {ripple && <Ripple key={ripple.key} from='.lane[data-stage="H&E staining"]' label={ripple.label} onDone={clearRipple} />}
       {beam && <AgentBeam key={beam.key} caseIds={beam.caseIds} onDone={clearBeam} />}
       {story > 0 && <StoryMode key={story} overview={o} alerts={live.alerts} activity={live.activity} onWake={wake} onExit={exitStory} />}
+      {openStation && live.stations.find((x) => x.id === openStation) && (
+        <StationDrawer card={live.stations.find((x) => x.id === openStation)!} cases={live.cases} onClose={() => setOpenStation(null)} onOpenCase={setOpenCase} />
+      )}
       {openCase && <CaseDrawer caseId={openCase} version={live.version} alerts={live.alerts} onClose={() => setOpenCase(null)} onOpenCase={setOpenCase} />}
     </div>
   );

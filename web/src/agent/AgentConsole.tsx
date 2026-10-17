@@ -20,12 +20,16 @@ const TOOL_LABEL: Record<string, string> = {
  * API call the MCP server made; the text is built by Meridian's code, never by the model.
  */
 export function AgentConsole({ activity, onOpenCase, onClear }: Props) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false); // secondary in v7: collapsed until an agent calls
+
   const [now, setNow] = useState(Date.now());
   const [lastSeen, setLastSeen] = useState<number | null>(null);
 
   useEffect(() => {
-    if (activity.length) setLastSeen(Date.now());
+    if (activity.length) {
+      setLastSeen(Date.now());
+      setOpen(true);
+    }
   }, [activity.length]);
   useEffect(() => {
     const t = setInterval(() => setNow(Date.now()), 1000);

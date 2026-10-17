@@ -60,6 +60,22 @@ describe("B1: read API over the in-memory state", () => {
     expect(new Set(queue.blocks.map((b) => b.stage))).toEqual(new Set(["Waiting for dissection/cut-up"]));
   });
 
+  it("GET /api/stations returns the lab-flow map; /api/stations/:id one card; unknown → 404", async () => {
+    const { get } = freshApp();
+    const all = (await get<{ id: string }[]>("/api/stations")).body;
+    expect(all.map((c) => c.id)).toContain("processor-d");
+    const d = (await get<{ items: string[] }>("/api/stations/processor-d")).body;
+    expect(d.items).toEqual(["26H1003 · A1–E1"]);
+    expect((await get("/api/stations/nope")).status).toBe(404);
+  });
+
+  it("case detail says why the case is waiting", async () => {
+    const { get } = freshApp();
+    const c = (await get<CaseDetail>("/api/cases/26H1004")).body;
+    expect(c.waiting.missing).toMatch(/Levels 2–3 not recorded/);
+    expect(c.waiting.latest?.at).toBe("Day 1 11:30");
+  });
+
   it("GET /api/cases/:id is case-insensitive and 404s unknown IDs", async () => {
     const { get } = freshApp();
     expect((await get<CaseDetail>("/api/cases/26h1004")).body.caseId).toBe("26H1004");

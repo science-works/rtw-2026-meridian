@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 import type { Alert } from "../../../shared/types";
 import { AlertCard } from "./AlertCard";
 import { Count } from "./Flow";
@@ -14,6 +15,7 @@ export function AttentionQueue({ alerts, onOpenCase, pulse }: Props) {
   const sorted = [...alerts].sort((a, b) => Number(a.state === "resolved") - Number(b.state === "resolved") || b.raisedAt.localeCompare(a.raisedAt));
   const nCases = new Set(alerts.flatMap((a) => a.caseIds)).size;
   const open = alerts.filter((a) => a.state !== "resolved").length;
+  const [expanded, setExpanded] = useState<string | null>(null);
   return (
     <aside className="queue" aria-label="Attention queue">
       <header className="queue-head">
@@ -29,12 +31,12 @@ export function AttentionQueue({ alerts, onOpenCase, pulse }: Props) {
             <motion.div
               key={a.id}
               layout
-              initial={{ opacity: 0, y: -18 }}
-              animate={{ opacity: 1, y: 0, transition: { duration: 0.35, delay: Math.min(i * 0.12, 0.5) } }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { duration: 0.35, delay: Math.min(i * 0.12, 0.5) } }}
               exit={{ opacity: 0, transition: { duration: 0.2 } }}
               transition={{ layout: { duration: 0.35 } }}
             >
-              <AlertCard alert={a} onOpenCase={onOpenCase} pulse={pulse.has(a.id)} compact />
+              <AlertCard alert={a} onOpenCase={onOpenCase} pulse={pulse.has(a.id)} compact expanded={expanded === a.id} onToggle={() => setExpanded((x) => (x === a.id ? null : a.id))} />
             </motion.div>
           ))}
         </AnimatePresence>

@@ -178,6 +178,7 @@ export interface CaseSummary {
 }
 
 export interface CaseDetail extends CaseSummary {
+  waiting: WaitingReason;
   /** Block `stage` is null when it cannot be derived from recorded data ("not enough information"). */
   blocks: { blockId: string; stage: Stage | null; location: string; status: string; levelsRequired?: number; levelsRecorded?: number }[];
   slides: { slideId: string; blockId: string; level?: string; basket?: string }[];
@@ -196,6 +197,34 @@ export interface Overview {
   openAttention: number;
   stages: OverviewStageRow[];
   triggerFired: boolean;
+}
+
+/** One card on the lab-flow map (spec Screen B). Contents come only from recorded data. */
+export interface StationCard {
+  id: string;
+  label: string;
+  zone: string;
+  kind: "zone" | "queue" | "processor" | "embedding" | "microtomy" | "stainer" | "scanner" | "iqc";
+  /** Current state in plain words, e.g. "Overnight run · output expected 12:00–13:00". */
+  state: string;
+  caseIds: string[];
+  /** Block-level contents where a case is split across stations, e.g. "26H1003 · A1–E1". */
+  items?: string[];
+  blocks: number;
+  slides: number;
+  load?: string;
+  latestEvent?: { eventId: string; at: SimTime; text: string };
+  nextMilestone?: { text: string; at?: SimTime; rule?: string };
+  /** Embedding traceability only (fictional initials); never ranked. */
+  initials?: { at: SimTime; initials: string; eventId: string; caseId: string }[];
+  baskets?: { box: number; basket: number; basketId?: string; slides: number; caseIds: string[]; state: string }[];
+  handoff?: { digital: string; physical: string };
+}
+
+export interface WaitingReason {
+  latest: { eventId: string; at: SimTime; text: string } | null;
+  /** The missing next event, or null when the case is ready for handoff. */
+  missing: string | null;
 }
 
 export interface DelayedResponse {

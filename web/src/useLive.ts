@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { AgentActivity, Alert, CaseSummary, Overview } from "../../shared/types";
+import type { AgentActivity, Alert, CaseSummary, Overview, StationCard } from "../../shared/types";
 import { api } from "./api";
 
 export interface LiveState {
   overview: Overview | null;
   alerts: Alert[];
   cases: CaseSummary[];
+  stations: StationCard[];
   version: number;
   connected: boolean;
   /** Reads made by AI agents through MCP, newest last. */
@@ -15,14 +16,14 @@ export interface LiveState {
 
 /** Fetches the dashboard state and re-fetches whenever the server emits state-changed. */
 export function useLive(): LiveState & { refresh: () => Promise<void> } {
-  const [state, setState] = useState<LiveState>({ overview: null, alerts: [], cases: [], version: -1, connected: false, error: null, activity: [] });
+  const [state, setState] = useState<LiveState>({ overview: null, alerts: [], cases: [], stations: [], version: -1, connected: false, error: null, activity: [] });
   const latest = useRef(0);
 
   const refresh = useCallback(async () => {
     const ticket = ++latest.current;
     try {
-      const [overview, alerts, cases] = await Promise.all([api.overview(), api.alerts(), api.cases()]);
-      if (ticket === latest.current) setState((s) => ({ ...s, overview, alerts, cases, error: null }));
+      const [overview, alerts, cases, stations] = await Promise.all([api.overview(), api.alerts(), api.cases(), api.stations()]);
+      if (ticket === latest.current) setState((s) => ({ ...s, overview, alerts, cases, stations, error: null }));
     } catch (e) {
       setState((s) => ({ ...s, error: e instanceof Error ? e.message : String(e) }));
     }

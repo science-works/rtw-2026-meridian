@@ -75,6 +75,27 @@ export function CaseDrawer({ caseId, version, alerts, onClose, onOpenCase }: Pro
             </section>
 
             <section>
+              <h3>Why is it waiting?</h3>
+              {detail.waiting.missing === null ? (
+                <p className="est-ready">Nothing: lab preparation is complete.</p>
+              ) : (
+                <p className="waiting">
+                  <span className="muted">Latest event: </span>
+                  {detail.waiting.latest ? (
+                    <>
+                      <span className="mono">{detail.waiting.latest.at}</span> · {detail.waiting.latest.text} <span className="mono ev-id">{detail.waiting.latest.eventId}</span>
+                    </>
+                  ) : (
+                    "none recorded"
+                  )}
+                  <br />
+                  <span className="muted">Missing next: </span>
+                  <b>{detail.waiting.missing}</b>
+                </p>
+              )}
+            </section>
+
+            <section>
               <h3>Handoff estimate</h3>
               {est?.status === "ready" && <p className="est-ready">Ready for pathologist handoff</p>}
               {est?.status === "estimated" && (
@@ -169,6 +190,8 @@ export function CaseDrawer({ caseId, version, alerts, onClose, onOpenCase }: Pro
                     </span>
                     <span className="tl-detail">
                       {e.details}
+                      {e.initials && <span className="muted"> · recorded by {e.initials} (fictional)</span>}
+                      {e.basket && <span className="muted"> · {[e.box, e.basket].filter(Boolean).join(" / ")}</span>}
                       {e.station && <span className="muted"> · {e.station}</span>}
                     </span>
                   </li>

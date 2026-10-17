@@ -19,7 +19,10 @@ interface Props {
   alert: Alert;
   onOpenCase: (id: string) => void;
   pulse?: boolean;
+  /** Compact: marker, what, cases and state; evidence on click. */
   compact?: boolean;
+  expanded?: boolean;
+  onToggle?: () => void;
 }
 
 /**
@@ -27,12 +30,18 @@ interface Props {
  * until acknowledged; the card stays open until a completion/check event is recorded.
  * Every alert shows what, the evidence, why it is flagged, and the suggested staff check.
  */
-export function AlertCard({ alert, onOpenCase, pulse, compact }: Props) {
+export function AlertCard({ alert, onOpenCase, pulse, compact, expanded, onToggle }: Props) {
   const fx = useFx();
-  const evidence = compact ? alert.evidence.slice(0, 2) : alert.evidence;
-  const showHistory = alert.history.length > 1;
+  const full = !compact || expanded;
+  const evidence = alert.evidence;
+  const showHistory = full && alert.history.length > 1;
   return (
-    <article className={`alert-card ${alert.state} ${pulse ? "pulse" : ""}`} aria-label={`${KIND_LABEL[alert.kind]}: ${STATE_LABEL[alert.state]}`}>
+    <article
+      className={`alert-card ${alert.state} ${pulse ? "pulse" : ""} ${compact ? "compact" : ""}`}
+      aria-label={`${KIND_LABEL[alert.kind]}: ${STATE_LABEL[alert.state]}`}
+      aria-expanded={compact ? !!expanded : undefined}
+      onClick={compact ? onToggle : undefined}
+    >
       <header className="alert-head">
         <span className={`alert-marker ${alert.state === "new" && fx.on ? "bounce" : ""}`} aria-hidden>
           !
@@ -40,12 +49,20 @@ export function AlertCard({ alert, onOpenCase, pulse, compact }: Props) {
         <span className="alert-kind">{KIND_LABEL[alert.kind]}</span>
         <span className="mono alert-time">{alert.raisedAt}</span>
         <span className={`alert-state ${alert.state}`}>{STATE_LABEL[alert.state]}</span>
+        {compact && <span className="alert-more" aria-hidden>{expanded ? "▴" : "▾"}</span>}
       </header>
       <h3 className="alert-what">{alert.what}</h3>
       {alert.stateDetail && <p className="alert-detail">{alert.stateDetail}</p>}
       <div className="alert-cases">
         {alert.caseIds.map((id) => (
-          <button key={id} className="chip mono" onClick={() => onOpenCase(id)}>
+          <button
+            key={id}
+            className="chip mono"
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpenCase(id);
+            }}
+          >
             {id}
           </button>
         ))}
@@ -59,6 +76,7 @@ export function AlertCard({ alert, onOpenCase, pulse, compact }: Props) {
           ))}
         </ol>
       )}
+      {full && (
       <dl className="alert-body">
         <dt>Evidence</dt>
         <dd>
@@ -68,7 +86,6 @@ export function AlertCard({ alert, onOpenCase, pulse, compact }: Props) {
                 {e.eventId && <span className="mono ev-id">{e.eventId}</span>} {e.text}
               </li>
             ))}
-            {compact && alert.evidence.length > evidence.length && <li className="muted">+{alert.evidence.length - evidence.length} more in the case view</li>}
           </ul>
         </dd>
         <dt>Why flagged</dt>
@@ -76,6 +93,7 @@ export function AlertCard({ alert, onOpenCase, pulse, compact }: Props) {
         <dt>Suggested check</dt>
         <dd className="alert-check">{alert.suggestedCheck}</dd>
       </dl>
+      )}
     </article>
   );
 }

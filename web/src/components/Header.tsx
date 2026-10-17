@@ -1,6 +1,6 @@
+import { useFx } from "../fx";
 import { useState } from "react";
 import type { Overview } from "../../../shared/types";
-import { useFx } from "../fx";
 
 export const TABS = ["Overview", "Lab flow", "Screening", "Diagnostic cytopathology", "Archive"] as const;
 export type Tab = (typeof TABS)[number];
@@ -8,14 +8,10 @@ export type Tab = (typeof TABS)[number];
 interface Props {
   overview: Overview | null;
   connected: boolean;
-  busy: boolean;
   tab: Tab;
   onTab: (t: Tab) => void;
   /** Returns false when the case ID is not in the simulated dataset. */
   onSearch: (caseId: string) => Promise<boolean>;
-  onTrigger: () => void;
-  onReset: () => void;
-  onStory: () => void;
 }
 
 const DAY_NAMES: Record<string, string> = { "-1": "Previous working day", "0": "Monday", "1": "Tuesday" };
@@ -25,9 +21,8 @@ function clockLabel(clock: string) {
   return m ? `${DAY_NAMES[m[1]] ?? `Day ${m[1]}`} ${m[2]}` : clock;
 }
 
-/** Top bar (spec Screen A): identity, tabs, case search, fixed simulated clock, SIMULATED badge, demo controls. */
-export function Header({ overview, connected, busy, tab, onTab, onSearch, onTrigger, onReset, onStory }: Props) {
-  const fx = useFx();
+/** Top bar (spec Screen A): identity, tabs, case search, fixed simulated clock, SIMULATED badge. */
+export function Header({ overview, connected, tab, onTab, onSearch }: Props) {
   const [q, setQ] = useState("");
   const [msg, setMsg] = useState<string | null>(null);
 
@@ -57,14 +52,34 @@ export function Header({ overview, connected, busy, tab, onTab, onSearch, onTrig
         <input value={q} onChange={(e) => (setQ(e.target.value), setMsg(null))} placeholder="Case ID, e.g. 26H2345" aria-label="Search case ID" />
         {msg && <span className="search-msg">{msg}</span>}
       </form>
-      <div className="clock" aria-label="Simulated clock">
-        <span className="clock-label">Simulated clock (fixed)</span>
+      <div className="clock" aria-label="Simulated clock (fixed)" title="Fixed simulated clock">
         <span className="mono clock-time">{overview ? clockLabel(overview.clock) : "…"}</span>
-        <span className={`live ${connected ? "on" : "off"}`}>{connected ? "● live feed (simulated)" : "○ reconnecting"}</span>
+        <span className={`live ${connected ? "on" : "off"}`}>{connected ? "● simulated feed" : "○ reconnecting"}</span>
       </div>
       <span className="badge-sim" title="Fictional dataset; not connected to any laboratory">
         SIMULATED
       </span>
+    </header>
+  );
+}
+
+interface ControlProps {
+  overview: Overview | null;
+  busy: boolean;
+  onTrigger: () => void;
+  onReset: () => void;
+  onStory: () => void;
+}
+
+/** Presenter controls plus the boundary sentence, in one bottom bar so the top bar fits a projector. */
+export function ControlBar({ overview, busy, onTrigger, onReset, onStory }: ControlProps) {
+  const fx = useFx();
+  return (
+    <footer className="footer">
+      <p className="footer-text">
+        The agent reads case events from the lab&apos;s existing workflow and information systems. We&apos;re simulating those feeds in this demo; a live version would connect through
+        the interfaces available at each lab. Lab preparation to pathologist handoff only: no diagnosis, reporting or screening deadlines.
+      </p>
       <div className="demo-controls" aria-label="Demo controls">
         <button className="btn-trigger" onClick={onTrigger} disabled={busy || !overview || overview.triggerFired}>
           {overview?.triggerFired ? "H&E incident replayed" : "Replay H&E incident"}
@@ -79,6 +94,6 @@ export function Header({ overview, connected, busy, tab, onTab, onSearch, onTrig
           <input type="checkbox" checked={!fx.on} disabled={fx.reason === "env" || fx.reason === "reduced"} onChange={(e) => fx.setSkip(e.target.checked)} /> Skip animations
         </label>
       </div>
-    </header>
+    </footer>
   );
 }
