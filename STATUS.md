@@ -34,3 +34,5 @@
 [19:42] [D] [VX3 failure ripple: 3 crimson rings from the H&E lane + '20 slides · 10 cases' label from the alert (<=900ms), staggered row flash (<=875ms), estimates roll 11:55->12:55; browser-run 3x trigger->reset identical] done
 [19:43] [D] [VX4 spotlight] started
 [19:44] [D] [VX4 spotlight: dim scrim + case card with block chips at API-derived stages (A1-E1 teal at Processor, F1 amber pulsing x3 at Cut-up, <=900ms), caption computed from blocks/estimate ('No whole-case handoff time yet: F1 outstanding.'); drawer 'Spotlight' button; browser-verified 26H1003 + 26H1018] done
+[19:45] [E] [E1 Story mode] started
+[19:46] [E] [E1 Story mode: 5 steps on live state (reset+lab river from /api/overview; spotlight 26H1003 caption from blocks; real POST trigger -> ripple, caption from alert + case estimate; MCP hand-off caption; ends on live dashboard); arrows/space/click advance, Esc exits; browser-run 3x in a row without refresh (identical), plus VITE_FX=off and prefers-reduced-motion runs (no ripple/pulse, same numbers)] done

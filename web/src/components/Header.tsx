@@ -8,6 +8,7 @@ interface Props {
   busy: boolean;
   onTrigger: () => void;
   onReset: () => void;
+  onStory: () => void;
 }
 
 const DAY_NAMES: Record<string, string> = { "-1": "Previous working day", "0": "Monday", "1": "Tuesday" };
@@ -17,7 +18,7 @@ function clockLabel(clock: string) {
   return m ? `${DAY_NAMES[m[1]] ?? `Day ${m[1]}`} ${m[2]}` : clock;
 }
 
-export function Header({ overview, connected, busy, onTrigger, onReset }: Props) {
+export function Header({ overview, connected, busy, onTrigger, onReset, onStory }: Props) {
   const fx = useFx();
   const tiles = overview
     ? [
@@ -55,6 +56,9 @@ export function Header({ overview, connected, busy, onTrigger, onReset }: Props)
         </button>
         <button className="btn-quiet" onClick={onReset} disabled={busy}>
           Reset demo
+        </button>
+        <button className="btn-quiet btn-story" onClick={onStory} disabled={busy || !overview}>
+          Story mode
         </button>
         <label className="fx-toggle" title={fx.reason === "env" ? "Effects are off (VITE_FX=off)" : fx.reason === "reduced" ? "Effects are off (reduced motion is set)" : undefined}>
           <input type="checkbox" checked={!fx.on} disabled={fx.reason === "env" || fx.reason === "reduced"} onChange={(e) => fx.setSkip(e.target.checked)} /> Skip animations
