@@ -1,7 +1,6 @@
 import { useCallback, useState } from "react";
 import { AgentConsole } from "./agent/AgentConsole";
 import { api } from "./api";
-import { Dock } from "./components/Dock";
 import { ControlBar } from "./components/Header";
 import { NavBar } from "./components/NavBar";
 import { LabFlow } from "./flow/LabFlow";
@@ -10,6 +9,7 @@ import { CasePage } from "./pages/CasePage";
 import { Dashboard } from "./pages/Dashboard";
 import { IncidentPage } from "./pages/IncidentPage";
 import { IncidentsPage } from "./pages/IncidentsPage";
+import { LimsView } from "./pages/LimsView";
 import { SectionPage } from "./pages/SectionPage";
 import { StationPage } from "./pages/StationPage";
 import { match, navigate, paths, usePath } from "./router";
@@ -31,11 +31,12 @@ export function App() {
   }, []);
 
   const o = live.overview;
-  const open = live.alerts.filter((a) => a.state !== "resolved").length;
   let page: React.ReactNode = <p className="page muted">Loading…</p>;
   let m: Record<string, string> | null;
   if (o) {
-    if (path === "/") page = <Dashboard overview={o} cases={live.cases} openIncidents={open} />;
+    if (path === "/") page = <Dashboard overview={o} cases={live.cases} alerts={live.alerts} />;
+    else if (path === "/lims-view") page = <LimsView version={live.version} />;
+    else if (path === "/presenter") page = <section className="page"><h1>Presenter notes</h1><p className="empty-state">The speaker-notes view reads pitch/SCRIPT.md; it arrives in P3.</p></section>;
     else if ((m = match("/case/:id", path))) page = <CasePage caseId={m.id.toUpperCase()} version={live.version} alerts={live.alerts} />;
     else if (path === "/incidents") page = <IncidentsPage alerts={live.alerts} />;
     else if ((m = match("/incident/:id", path))) page = <IncidentPage id={m.id} alerts={live.alerts} cases={live.cases} stations={live.stations} />;
@@ -54,13 +55,10 @@ export function App() {
       <NavBar path={path} overview={o} connected={live.connected} />
       {live.error && <p className="error banner">Cannot reach the Meridian API ({live.error}). Is `npm run dev` running?</p>}
       <main className="page-wrap">{page}</main>
-      <Dock alerts={live.alerts} />
-      <ControlBar overview={o} busy={busy} onTrigger={() => run(api.trigger)} onReset={() => run(api.reset)} />
-      {path === "/simulator" && (
-        <div className="agent-float">
-          <AgentConsole activity={live.activity} onOpenCase={(id) => navigate(paths.case(id))} onClear={() => void api.clearAgent()} />
-        </div>
-      )}
+      <ControlBar busy={busy} onReset={() => run(api.reset)} />
+      <div className="agent-float">
+        <AgentConsole activity={live.activity} onOpenCase={(id) => navigate(paths.case(id))} onClear={() => void api.clearAgent()} />
+      </div>
     </div>
   );
 }

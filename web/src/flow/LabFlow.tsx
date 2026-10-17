@@ -152,7 +152,7 @@ const toneOf = (state: string, loaded: boolean) =>
   /failed/i.test(state) ? "failed" : /Acknowledged/.test(state) ? "ack" : /progress|Troubleshooting|reloaded/i.test(state) ? "progress" : loaded ? "loaded" : "empty";
 
 /** 3 boxes × 3 baskets (20 slides each); occupied baskets get a one-line detail with their state. */
-export function BasketGrid({ card, onOpenCase }: { card: StationCard; onOpenCase: (id: string) => void }) {
+export function BasketGrid({ card, onOpenCase, highlight }: { card: StationCard; onOpenCase: (id: string) => void; highlight?: string }) {
   const occupied = card.baskets!.filter((b) => b.basketId);
   return (
     <div className="basket-wrap">
@@ -172,7 +172,7 @@ export function BasketGrid({ card, onOpenCase }: { card: StationCard; onOpenCase
                 <motion.span
                   key={box}
                   layout
-                  className={`basket ${toneOf(b.state, !!b.basketId)}`}
+                  className={`basket ${toneOf(b.state, !!b.basketId)} ${highlight && b.basketId === highlight ? "highlight" : ""}`}
                   title={b.basketId ? `Box ${box} / Basket ${basket}: ${b.basketId}, ${b.slides} slides, ${b.caseIds.length} cases. ${b.state}` : `Box ${box} / Basket ${basket}: empty (none recorded)`}
                 >
                   {b.basketId ? `${b.slides}` : ""}
@@ -183,7 +183,7 @@ export function BasketGrid({ card, onOpenCase }: { card: StationCard; onOpenCase
         ))}
       </div>
       {occupied.map((b) => (
-        <div key={b.basketId} className={`basket-detail ${toneOf(b.state, true)}`}>
+        <div key={b.basketId} className={`basket-detail ${toneOf(b.state, true)} ${highlight && b.basketId === highlight ? "highlight" : ""}`}>
           <span>
             Box {b.box} / Basket {b.basket} · <span className="mono">{b.basketId}</span> · {b.slides} slides · {b.caseIds.length} cases
           </span>

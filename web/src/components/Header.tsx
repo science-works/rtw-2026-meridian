@@ -1,4 +1,5 @@
 import { useFx } from "../fx";
+import { Link } from "../router";
 import { useState } from "react";
 import { SearchIcon } from "../theme/icons";
 import type { Overview } from "../../../shared/types";
@@ -65,28 +66,29 @@ export function Header({ overview, connected, tab, onTab, onSearch }: Props) {
 }
 
 interface ControlProps {
-  overview: Overview | null;
   busy: boolean;
-  onTrigger: () => void;
   onReset: () => void;
 }
 
-/** Presenter controls plus the boundary sentence, in one bottom bar so the top bar fits a projector. */
-export function ControlBar({ overview, busy, onTrigger, onReset }: ControlProps) {
+/** Small demo bar: Reset demo · LIMS view · Presenter, plus the boundary sentence. */
+export function ControlBar({ busy, onReset }: ControlProps) {
   const fx = useFx();
   return (
     <footer className="footer">
       <p className="footer-text">
-        The agent reads case events from the lab&apos;s existing workflow and information systems. We&apos;re simulating those feeds in this demo; a live version would connect through
-        the interfaces available at each lab. Lab preparation to pathologist handoff only: no diagnosis, reporting or screening deadlines.
+        Simulated feed: the agent reads case events from the lab&apos;s workflow systems; a live version would connect through the interfaces available at each lab. Lab preparation to
+        pathologist handoff only: no diagnosis, reporting or screening deadlines.
       </p>
       <div className="demo-controls" aria-label="Demo controls">
-        <button className="btn-trigger" onClick={onTrigger} disabled={busy || !overview || overview.triggerFired}>
-          {overview?.triggerFired ? "H&E incident replayed" : "Replay H&E incident"}
-        </button>
         <button className="btn-quiet" onClick={onReset} disabled={busy}>
           Reset demo
         </button>
+        <Link to="/lims-view" className="btn-quiet">
+          LIMS view
+        </Link>
+        <Link to="/presenter" className="btn-quiet">
+          Presenter
+        </Link>
         <label className="fx-toggle" title={fx.reason === "env" ? "Effects are off (VITE_FX=off)" : fx.reason === "reduced" ? "Effects are off (reduced motion is set)" : undefined}>
           <input type="checkbox" checked={!fx.on} disabled={fx.reason === "env" || fx.reason === "reduced"} onChange={(e) => fx.setSkip(e.target.checked)} /> Skip animations
         </label>

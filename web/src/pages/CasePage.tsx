@@ -65,6 +65,12 @@ export function CasePage({ caseId, version, alerts }: { caseId: string; version:
               {d.stage} <span className="muted mono">since {d.stageEnteredAt}</span>
             </p>
             <p className="muted">Location: {now}</p>
+            <p className="muted">
+              Staff:{" "}
+              {d.timeline.some((e) => e.initials)
+                ? `${[...new Set(d.timeline.filter((e) => e.initials).map((e) => `${e.initials} at ${e.station}`))].join(", ")} (fictional initials; traceability only)`
+                : "Staff not recorded"}
+            </p>
             <JourneyBar detail={d} alerts={linked} />
           </section>
 

@@ -176,6 +176,8 @@ export interface CaseSummary {
   programmeTag: string | null;
   stage: Stage;
   stageEnteredAt: SimTime;
+  /** Where the case's blocks are (generic labels), e.g. "Microtomy station 4". */
+  location: string;
   isDemo: boolean;
   alertIds: string[];
   estimate: Estimate;

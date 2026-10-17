@@ -28,6 +28,15 @@ describe("B1: read API over the in-memory state", () => {
     expect(body.find((c) => c.caseId === "26H2345")!.alertIds).toEqual([]);
   });
 
+  it("every case summary says where it is (block locations, generic labels)", async () => {
+    const { body } = await freshApp().get<CaseSummary[]>("/api/cases");
+    const at = Object.fromEntries(body.map((c) => [c.caseId, c.location]));
+    expect(at["26H1004"]).toBe("Microtomy station 4");
+    expect(at["26H1003"]).toBe("Processor D (A1–E1) · Pathologist dissection / cut-up area (F1)");
+    expect(at["26H1005"]).toBe("H&E auto-stainer 1");
+    expect(body.every((c) => typeof c.location === "string" && c.location.length > 0)).toBe(true);
+  });
+
   it("GET /api/cases filters by stage, priority, programme and demo", async () => {
     const { get } = freshApp();
     expect((await get<CaseSummary[]>("/api/cases?stage=Microtomy")).body).toHaveLength(139);

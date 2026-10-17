@@ -1,5 +1,5 @@
 import type { Alert, CaseSummary, Overview } from "../../../shared/types";
-import { TimeFlow } from "../components/Flow";
+import { CaseLine } from "../caseLine";
 import { navigate, paths } from "../router";
 
 export const SECTIONS: Record<string, { title: string; note?: string; filter: (c: CaseSummary) => boolean }> = {
@@ -34,36 +34,22 @@ export function SectionPage({ name, cases, alerts }: { name: string; cases: Case
         <p className="empty-state">No cases received today (cell blocks and clots). Search the mock archive by case ID from the search box.</p>
       ) : (
         <section className="panel table-panel">
-          <table className="mini">
-            <thead>
-              <tr>
-                <th>Case</th>
-                <th>Specimen</th>
-                <th>Recorded stage</th>
-                <th>Since</th>
-                <th>Handoff estimate</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((c) => (
-                <tr key={c.caseId} onClick={() => navigate(paths.case(c.caseId))}>
-                  <td className="mono case-id">
-                    {flagged.has(c.caseId) && (
-                      <span className="flag sm" aria-label="open incident">
-                        !
-                      </span>
-                    )}{" "}
-                    {c.caseId}
-                    {c.priority === "Urgent" && <span className="tag tag-urgent sm">Urgent</span>}
-                  </td>
-                  <td>{c.specimen}</td>
-                  <td>{c.stage}</td>
-                  <td className="mono">{c.stageEnteredAt}</td>
-                  <td>{c.estimate.status === "ready" ? <span className="est-ready">Ready</span> : c.estimate.status === "estimated" ? <TimeFlow className="mono" value={c.estimate.readyAt!} /> : <span className="muted">Unknown</span>}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <ul className="case-rows">
+            {rows.map((c) => (
+              <li key={c.caseId}>
+                <button className="case-row" onClick={() => navigate(paths.case(c.caseId))}>
+                  {flagged.has(c.caseId) ? (
+                    <span className="flag sm" aria-label="open incident">
+                      !
+                    </span>
+                  ) : (
+                    <span className="flag-space" />
+                  )}
+                  <CaseLine c={c} />
+                </button>
+              </li>
+            ))}
+          </ul>
         </section>
       )}
     </section>

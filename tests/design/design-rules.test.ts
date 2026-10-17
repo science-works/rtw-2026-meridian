@@ -23,15 +23,18 @@ describe("design rules", () => {
   });
 
   it("4. text colours are at least 4.5:1 on the dark surfaces and the light simulation board", () => {
-    for (const fg of [color.ink, color.muted, color.accent, color.alert, color.progress, color.bcsp, color.csp]) {
+    for (const fg of [color.ink, color.muted, color.accent, color.urgent, color.attention, color.progress, color.bcsp, color.csp]) {
       for (const bg of [color.bg, color.card]) expect(contrast(fg, bg)).toBeGreaterThanOrEqual(4.5);
     }
     for (const fg of [color.simInk, color.simMuted]) expect(contrast(fg, color.simCanvas)).toBeGreaterThanOrEqual(4.5);
-    expect(contrast(color.onLight, color.alert)).toBeGreaterThanOrEqual(4.5); // the "!" glyph on the red marker
+    expect(contrast(color.onLight, color.attention)).toBeGreaterThanOrEqual(4.5); // the "!" glyph on the incident marker
   });
 
-  it("3. no second warning colour: the old yellow and amber are gone", () => {
-    expect(css.toLowerCase()).not.toMatch(/#ffd06b|#c98a1b|amber|--attn/);
+  it("3. red is for urgent cases only; incidents use the one attention tone; no other severity colours", () => {
+    expect(css.toLowerCase()).not.toMatch(/#ffd06b|#c98a1b|amber|--attn|--alert/);
+    const rules = [...css.matchAll(/([^{}]+)\{([^}]*var\(--urgent\)[^}]*)\}/g)].map((m) => m[1].trim());
+    expect(rules.length).toBeGreaterThan(0);
+    for (const sel of rules) expect(sel, sel).toMatch(/urgent/);
   });
 
   it("6. no text below 14px", () => {

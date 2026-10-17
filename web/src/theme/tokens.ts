@@ -9,7 +9,8 @@ export const color = {
   muted: "#a8b3c9",
   line: "#2a3c6b",
   accent: "#7fdca9", // the one accent
-  alert: "#ff5c5c", // the one alert colour: open incidents and urgent flags
+  urgent: "#ff5c5c", // bold red: urgent cases only
+  attention: "#ffb547", // warm incident "!" (with a soft glow); no other severity colours
   progress: "#9fb2ff",
   bcsp: "#c8aeff",
   csp: "#74e3b4",
@@ -17,6 +18,11 @@ export const color = {
   simCanvas: "#f6f8fb", // light simulation board
   simInk: "#0b1530",
   simMuted: "#4a5a7a",
+  limsBg: "#e9ebee", // deliberately plain "old way" LIMS view
+  limsPanel: "#f4f5f7",
+  limsInk: "#2b2f36",
+  limsMuted: "#4a5059",
+  limsLine: "#b9bec6",
 } as const;
 
 export const space = [4, 8, 12, 16, 24, 32, 48] as const;

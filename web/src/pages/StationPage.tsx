@@ -1,4 +1,5 @@
 import type { Alert, CaseSummary, StationCard } from "../../../shared/types";
+import { CaseLine } from "../caseLine";
 import { BasketGrid } from "../flow/LabFlow";
 import { Link, navigate, paths } from "../router";
 
@@ -33,33 +34,22 @@ export function StationPage({ id, stations, cases, alerts }: { id: string; stati
             {rows.length === 0 ? (
               <p className="empty-state">No case recorded here now.</p>
             ) : (
-              <table className="mini">
-                <thead>
-                  <tr>
-                    <th>Case</th>
-                    <th>Recorded stage</th>
-                    <th>Priority</th>
-                    <th>Handoff estimate</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.map((c) => (
-                    <tr key={c.caseId} onClick={() => navigate(paths.case(c.caseId))}>
-                      <td className="mono case-id">{c.caseId}</td>
-                      <td>{c.stage}</td>
-                      <td>{c.priority === "Urgent" ? <span className="tag tag-urgent sm">Urgent</span> : c.priority}</td>
-                      <td className="mono">{c.estimate.status === "ready" ? "Ready" : (c.estimate.readyAt ?? "Unknown")}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <ul className="case-rows">
+                {rows.map((c) => (
+                  <li key={c.caseId}>
+                    <button className="case-row" onClick={() => navigate(paths.case(c.caseId))}>
+                      <CaseLine c={c} />
+                    </button>
+                  </li>
+                ))}
+              </ul>
             )}
           </section>
         </div>
         <aside className="case-side">
           <section className="panel">
             <h2>Who is at the station</h2>
-            <p>{initials ? `Recorded initials: ${initials} (fictional; traceability only, never ranked)` : "Not recorded"}</p>
+            <p>{initials ? `Recorded initials: ${initials} (fictional; traceability only, never ranked)` : "Staff not recorded"}</p>
           </section>
           <section className="panel">
             <h2>Load and capacity</h2>

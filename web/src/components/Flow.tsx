@@ -9,7 +9,8 @@ export function Count({ value, className }: { value: number; className?: string 
   if (!fx.on) return <span className={className} data-value={value}>{value}</span>;
   return (
     <span className={className} data-value={value}>
-      <NumberFlow value={value} spinTiming={TIMING} transformTiming={TIMING} opacityTiming={{ duration: 350, easing: "ease-out" }} />
+      <span className="sr-only">{value}</span>
+      <NumberFlow aria-hidden value={value} spinTiming={TIMING} transformTiming={TIMING} opacityTiming={{ duration: 350, easing: "ease-out" }} />
     </span>
   );
 }
@@ -21,9 +22,12 @@ export function TimeFlow({ value, className }: { value: string; className?: stri
   if (!fx.on || !m) return <span className={className} data-value={value}>{value}</span>;
   const two = { minimumIntegerDigits: 2, useGrouping: false } as const;
   return (
-    <span className={className} aria-label={value} data-value={value}>
-      Day <NumberFlow value={Number(m[1])} spinTiming={TIMING} transformTiming={TIMING} /> <NumberFlow value={Number(m[2])} format={two} spinTiming={TIMING} transformTiming={TIMING} />:
-      <NumberFlow value={Number(m[3])} format={two} spinTiming={TIMING} transformTiming={TIMING} />
+    <span className={className} data-value={value}>
+      <span className="sr-only">{value}</span>
+      <span aria-hidden>
+        Day <NumberFlow value={Number(m[1])} spinTiming={TIMING} transformTiming={TIMING} /> <NumberFlow value={Number(m[2])} format={two} spinTiming={TIMING} transformTiming={TIMING} />:
+        <NumberFlow value={Number(m[3])} format={two} spinTiming={TIMING} transformTiming={TIMING} />
+      </span>
     </span>
   );
 }

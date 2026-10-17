@@ -2,7 +2,8 @@ import { useState } from "react";
 import type { Alert, CaseSummary, StationCard } from "../../../shared/types";
 import { BasketGrid } from "../flow/LabFlow";
 import { Link, navigate, paths } from "../router";
-import { KIND_LABEL, STATE_LABEL } from "./IncidentsPage";
+import { CaseLine } from "../caseLine";
+import { KIND_LABEL, statusText } from "./IncidentsPage";
 
 const STEPS = ["Run failed", "Team notified", "Acknowledged", "Troubleshooting started", "Basket reloaded", "Repeat H&E run started"];
 
@@ -45,8 +46,8 @@ export function IncidentPage({ id, alerts, cases, stations }: { id: string; aler
           </p>
         </div>
         <div className="incident-actions">
-          <span className={`alert-state big ${a.state}`}>{STATE_LABEL[a.state]}</span>
-          {a.state === "new" && isBasket && (
+          <span className={`alert-state big ${a.state}`}>{statusText(a)}</span>
+          {(a.state === "new" || a.state === "check_needed") && (
             <button
               className="btn-trigger btn-ack"
               disabled={busy}
@@ -101,7 +102,7 @@ export function IncidentPage({ id, alerts, cases, stations }: { id: string; aler
                   </li>
                 ))}
               </ol>
-              <p className="muted small">No acknowledgement is recorded for this alert in the simulated data; staff act on it in the lab.</p>
+              <p className="muted small">Acknowledging records that the presenter has seen it (this demo session, not a lab event). It stays open until a check is recorded.</p>
             </section>
           )}
 
@@ -125,36 +126,24 @@ export function IncidentPage({ id, alerts, cases, stations }: { id: string; aler
           {isBasket && stainer && (
             <section className="panel">
               <h2>H&E auto-stainer 1</h2>
-              <BasketGrid card={stainer} onOpenCase={(cid) => navigate(paths.case(cid))} />
+              <BasketGrid card={stainer} highlight={a.id.replace("basket_failure:", "")} onOpenCase={(cid) => navigate(paths.case(cid))} />
             </section>
           )}
           <section className="panel">
             <h2>
-              Affected: {a.slideIds?.length ? `${a.slideIds.length} slides · ` : ""}
-              {affected.length} cases
+              Affected: {a.slideIds?.length ? `${a.slideIds.length} slide${a.slideIds.length === 1 ? "" : "s"} · ` : ""}
+              {affected.length} case{affected.length === 1 ? "" : "s"}
             </h2>
-            <table className="mini">
-              <thead>
-                <tr>
-                  <th>Case</th>
-                  <th>Status</th>
-                  <th>Emitted by the lab?</th>
-                </tr>
-              </thead>
-              <tbody>
-                {affected.map((c) => (
-                  <tr key={c.caseId} onClick={() => navigate(paths.case(c.caseId))}>
-                    <td className="mono case-id">{c.caseId}</td>
-                    <td>
-                      {c.stage}
-                      <br />
-                      <span className="muted small">{c.estimate.status === "estimated" ? `handoff est. ${c.estimate.readyAt}` : c.estimate.status === "ready" ? "ready" : "estimate unknown"}</span>
-                    </td>
-                    <td>{c.stage === "Ready for pathologist handoff" ? "Yes" : "No"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <ul className="case-rows">
+              {affected.map((c) => (
+                <li key={c.caseId}>
+                  <button className="case-row" onClick={() => navigate(paths.case(c.caseId))}>
+                    <CaseLine c={c} />
+                    <span className="emitted">{c.stage === "Ready for pathologist handoff" ? "Emitted by the lab" : "Not yet emitted"}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
           </section>
         </aside>
       </div>

@@ -9,6 +9,9 @@ export const KIND_LABEL: Record<Alert["kind"], string> = {
 };
 export const STATE_LABEL: Record<Alert["state"], string> = { new: "New", check_needed: "Check needed", acknowledged: "Acknowledged — awaiting check", in_progress: "In progress", resolved: "Resolved" };
 
+/** Status as shown everywhere: the recorded detail for In progress, the label otherwise. */
+export const statusText = (a: Alert) => (a.state === "in_progress" && a.stateDetail ? a.stateDetail : STATE_LABEL[a.state]);
+
 function Rows({ alerts }: { alerts: Alert[] }) {
   return (
     <table className="mini incidents-table">
@@ -44,7 +47,7 @@ function Rows({ alerts }: { alerts: Alert[] }) {
             <td>{a.where}</td>
             <td className="mono">{a.raisedAt}</td>
             <td>
-              <span className={`alert-state ${a.state}`}>{STATE_LABEL[a.state]}</span>
+              <span className={`alert-state ${a.state}`}>{statusText(a)}</span>
             </td>
             <td className="mono">{a.caseIds.length}</td>
           </tr>

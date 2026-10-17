@@ -8,6 +8,7 @@ import { STAGES } from "../../shared/types";
 import type { BlockRecord, CaseDetail, CaseRecord, CaseSummary, DelayedResponse, EventRecord, EventsPage, FeedEvent, Overview, Stage } from "../../shared/types";
 import { validate } from "./domain/validate";
 import { computeStations, whyWaiting } from "./domain/stations";
+import { blockRange } from "./domain/alerts";
 import { createActivityLog, summarise, wallClock, type ActivityLog } from "./activity";
 import { ConflictError, NotFoundError, createState, type MeridianState } from "./state";
 import { hasAnyTarget } from "./targets";
@@ -72,6 +73,14 @@ export function createApp(state: MeridianState = createState(), activity: Activi
     return m;
   };
 
+  /** Block locations: one label, or each distinct location with its blocks. */
+  const locationOf = (caseId: string) => {
+    const blocks = state.data.blocks.filter((b) => b.caseId === caseId);
+    const locs = [...new Set(blocks.map((b) => generic(b.location)))];
+    if (locs.length <= 1) return locs[0] ?? "Not recorded";
+    return locs.map((l) => `${l} (${blockRange(blocks.filter((b) => generic(b.location) === l).map((b) => b.blockId))})`).join(" · ");
+  };
+
   const summary = (c: CaseRecord, alertIds: Map<string, string[]>): CaseSummary => ({
     caseId: c.caseId,
     cohort: c.cohort,
@@ -80,6 +89,7 @@ export function createApp(state: MeridianState = createState(), activity: Activi
     programmeTag: c.programmeTag,
     stage: c.stageSnapshot,
     stageEnteredAt: c.stageEnteredAt,
+    location: locationOf(c.caseId),
     isDemo: c.isDemo,
     alertIds: alertIds.get(c.caseId) ?? [],
     estimate: state.estimates.get(c.caseId)!,
