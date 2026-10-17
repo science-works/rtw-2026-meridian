@@ -29,6 +29,15 @@
   --lims-ink: #2b2f36;
   --lims-muted: #4a5059;
   --lims-line: #b9bec6;
+  --edge-active: #4a5f94;
+  --tooltip-bg: rgba(11,21,48,0.94);
+  --grid-dot: rgba(74,90,122,0.18);
+  --sim-edge: #c3cbdb;
+  --sim-node: #ffffff;
+  --shadow-card: 0 1px 2px rgba(0,0,0,.35), 0 4px 8px rgba(0,0,0,.25);
+  --shadow-card-hover: 0 2px 6px 1px rgba(0,0,0,.4);
+  --shadow-sim-card: 0 1px 2px rgba(11,21,48,.12), 0 3px 8px rgba(11,21,48,.08);
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   --sans: Inter, system-ui, -apple-system, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
   --radius: 10px;
@@ -599,3 +608,50 @@ a { color: inherit; text-decoration: none; }
 .case-side .case-line { grid-template-columns: 84px minmax(0, 1fr) auto; }
 .basket.highlight { outline: 3px solid var(--attention); outline-offset: 1px; box-shadow: 0 0 14px rgba(255, 181, 71, 0.5); }
 .basket-detail.highlight { border-left-color: var(--attention); }
+
+/* ---------- Light simulation (/simulation): Victoria's "Histo main lab" board ---------- */
+.sim-page { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 12px; height: 100%; min-height: 0; }
+.sim-legend { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 0; color: var(--muted); font-size: 14px; }
+.sim-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--sim-ink); box-shadow: 0 0 0 2px var(--sim-canvas); margin-left: 8px; }
+.sim-dot.urgent { background: var(--urgent); }
+.sim-flag { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--attention); color: var(--on-light); font-weight: 800; font-size: 14px; box-shadow: 0 0 12px rgba(255, 181, 71, 0.45); margin-left: 8px; }
+.sim-board { position: relative; min-height: 300px; border-radius: 16px; background-color: var(--sim-canvas); background-image: radial-gradient(var(--grid-dot) 1.2px, transparent 1.2px); background-size: 32px 32px; overflow: hidden; color: var(--sim-ink); }
+.sim-lines { position: absolute; inset: 0; pointer-events: none; }
+.sim-edge { fill: none; stroke: var(--sim-edge); stroke-width: 2; transition: stroke 150ms var(--ease), stroke-width 150ms var(--ease); }
+.sim-edge.hot { stroke: var(--edge-active); stroke-width: 3; }
+.sim-token { fill: var(--sim-ink); }
+.sim-token.urgent { fill: var(--urgent); }
+.sim-node { position: absolute; transform: translate(-50%, -50%); display: grid; justify-items: center; gap: 0; min-width: 92px; max-width: 112px; padding: 4px 10px; border: 1.5px solid var(--sim-edge); border-radius: 10px; background: var(--sim-node); color: var(--sim-ink); box-shadow: var(--shadow-sim-card); line-height: 1.2; transition: border-color 150ms var(--ease), box-shadow 150ms var(--ease); }
+.sim-node:hover, .sim-node.focus, .sim-node:focus-visible { border-color: var(--edge-active); box-shadow: 0 0 0 3px rgba(74, 95, 148, 0.25), var(--shadow-sim-card); outline: none; }
+.sim-label { font-size: 14px; font-weight: 600; text-align: center; }
+.sim-count { font-size: 20px; font-weight: 700; }
+.sim-node.start, .sim-node.end { background: var(--sim-ink); color: var(--sim-canvas); border-color: var(--sim-ink); }
+.sim-node.queue { min-width: 0; max-width: none; padding: 0; border-radius: 50%; align-content: center; background: #e8ecf4; overflow: visible; }
+.sim-node.queue .sim-count { font-size: 18px; }
+.sim-qlabel { position: absolute; top: calc(100% + 4px); left: 50%; transform: translateX(-50%); font-size: 14px; font-weight: 600; white-space: nowrap; color: var(--sim-ink); background: var(--sim-canvas); padding: 0 4px; border-radius: 4px; }
+.sim-flag.on-node { position: absolute; top: -10px; right: -10px; margin: 0; }
+.fx .sim-node.pulse { animation: attn-pulse 850ms var(--ease) 1; }
+.sim-pop { position: absolute; z-index: 5; width: 300px; display: grid; gap: 6px; padding: 12px 16px; border-radius: 6px; background: var(--tooltip-bg); color: var(--ink); box-shadow: var(--shadow-card); font-size: 15px; animation: sim-pop-in 120ms ease-out 1; }
+.sim-pop p { margin: 0; }
+.sim-pop-title { font-weight: 700; font-size: 16px; }
+.sim-pop-cases { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.sim-pop .chip { color: var(--ink); text-decoration: none; }
+.sim-pop .btn-trigger { justify-self: start; }
+@keyframes sim-pop-in { from { opacity: 0; } to { opacity: 1; } }
+.sim-end { display: inline-flex; align-items: center; gap: 12px; font-weight: 600; white-space: nowrap; }
+.sim-end .btn-trigger { text-decoration: none; padding: 8px 14px; }
+.sim-controls { display: flex; align-items: center; gap: 16px; padding: 4px 0; }
+.sim-play { display: inline-flex; align-items: center; gap: 8px; font-size: 16px; padding: 10px 18px; min-height: 44px; white-space: nowrap; }
+.sim-scrub { flex: 1; min-width: 160px; accent-color: var(--accent); height: 28px; }
+.sim-clock { font-size: 20px; font-weight: 700; min-width: 140px; }
+.sim-range { font-size: 14px; white-space: nowrap; }
+@media (max-height: 800px) {
+  .sim-node { padding: 2px 8px; }
+  .sim-count { font-size: 17px; }
+  .sim-page { gap: 8px; }
+}
+
+/* Station page: recorded work at the station, newest first */
+.worked-rows { list-style: none; margin: 0; padding: 0; display: grid; }
+.worked-rows li { display: grid; grid-template-columns: 130px 90px minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 8px 0; border-top: 1px solid var(--line); }
+.worked-rows a { color: var(--ink); }

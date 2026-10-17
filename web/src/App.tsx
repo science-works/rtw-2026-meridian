@@ -11,6 +11,7 @@ import { IncidentPage } from "./pages/IncidentPage";
 import { IncidentsPage } from "./pages/IncidentsPage";
 import { LimsView } from "./pages/LimsView";
 import { SectionPage } from "./pages/SectionPage";
+import { SimulationPage } from "./pages/SimulationPage";
 import { StationPage } from "./pages/StationPage";
 import { match, navigate, paths, usePath } from "./router";
 import { useLive } from "./useLive";
@@ -46,7 +47,7 @@ export function App() {
       page = (
         <LabFlow stations={live.stations} cases={live.cases} alerts={live.alerts} onOpenStation={(id) => navigate(paths.station(id))} onOpenCase={(id) => navigate(paths.case(id))} />
       );
-    else if (path === "/simulation") page = <section className="page"><h1>Simulation</h1><p className="empty-state">The light simulation of the histology lab is being built (P2). The detailed simulator shows the same live data.</p></section>;
+    else if (path === "/simulation") page = <SimulationPage alerts={live.alerts} />;
     else page = <section className="page"><h1>Not found</h1><p className="empty-state">No page at {path}.</p></section>;
   }
 

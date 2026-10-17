@@ -225,6 +225,9 @@ export interface StationCard {
   initials?: { at: SimTime; initials: string; eventId: string; caseId: string }[];
   baskets?: { box: number; basket: number; basketId?: string; slides: number; caseIds: string[]; state: string }[];
   handoff?: { digital: string; physical: string };
+  /** Recorded events at this station, newest first (capped); `workedTotal` counts all of them. */
+  worked?: { eventId: string; at: SimTime; caseId: string; text: string; initials?: string }[];
+  workedTotal?: number;
 }
 
 export interface WaitingReason {
@@ -291,3 +294,11 @@ export interface ApiError {
 }
 
 export const API_PORT = 8787;
+
+/** GET /api/simulation: recorded waypoints per case ([minutes, node]); the browser replays them with stateAt(t). */
+export interface SimulationResponse {
+  from: number;
+  to: number;
+  cases: { caseId: string; urgent: boolean; waypoints: [number, string][] }[];
+  incidents: { t: number; node: string }[];
+}

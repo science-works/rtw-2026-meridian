@@ -45,6 +45,28 @@ export function StationPage({ id, stations, cases, alerts }: { id: string; stati
               </ul>
             )}
           </section>
+          <section className="panel table-panel">
+            <h2>Worked here earlier ({card.workedTotal ?? 0} recorded events)</h2>
+            {!card.worked?.length ? (
+              <p className="empty-state">No recorded event at this station.</p>
+            ) : (
+              <>
+                <ul className="worked-rows">
+                  {card.worked.map((w) => (
+                    <li key={w.eventId}>
+                      <span className="mono">{w.at}</span>
+                      <Link to={paths.case(w.caseId)} className="mono">
+                        {w.caseId}
+                      </Link>
+                      <span>{w.text}</span>
+                      {w.initials && <span className="muted mono">{w.initials}</span>}
+                    </li>
+                  ))}
+                </ul>
+                {(card.workedTotal ?? 0) > card.worked.length && <p className="muted">Showing the latest {card.worked.length}.</p>}
+              </>
+            )}
+          </section>
         </div>
         <aside className="case-side">
           <section className="panel">

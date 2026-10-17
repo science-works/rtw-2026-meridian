@@ -2,6 +2,7 @@
 // equipment, from recorded stages, block locations and station events. Where the data does
 // not record a unit (most microtomy and scanning work), cases wait in a queue card instead
 // of being assigned to a station. Nothing here is invented.
+import { NODE_TO_CARD, nodeForStation } from "../../../shared/simulation";
 import { formatSimTime, parseSimTime } from "../../../shared/clock";
 import { displayText, generic, stationParts } from "../../../shared/labels";
 import type { Alert, CaseRecord, CellpathData, EventRecord, StationCard, WaitingReason } from "../../../shared/types";
@@ -280,6 +281,23 @@ export function computeStations(data: CellpathData, alerts: Alert[]): StationCar
     latestEvent: ev(latestOf(data.events.filter((e) => e.type === "CASE_READY_FOR_PATHOLOGIST"))),
   });
 
+  // Cases worked here earlier: every recorded (non-snapshot) event whose station maps to this card.
+  const caseById = new Map(data.cases.map((c) => [c.caseId, c]));
+  const workedBy = new Map<string, EventRecord[]>();
+  for (const e of activity(data.events)) {
+    const node = nodeForStation(e.station, caseById.get(e.caseId)?.processor ?? null);
+    const card = node ? NODE_TO_CARD[node] : undefined;
+    if (card) workedBy.set(card, [...(workedBy.get(card) ?? []), e]);
+  }
+  for (const card of cards) {
+    const evs = [...(workedBy.get(card.id) ?? [])].sort(byTime).reverse();
+    card.workedTotal = evs.length;
+    card.worked = evs.slice(0, 60).map((e) => ({ eventId: e.eventId, at: e.at, caseId: e.caseId, text: displayText(e.details), ...(e.initials ? { initials: e.initials } : {}) }));
+    if (!card.initials?.length) {
+      const withInitials = evs.filter((e) => e.initials);
+      if (withInitials.length) card.initials = withInitials.map((e) => ({ at: e.at, initials: e.initials!, eventId: e.eventId, caseId: e.caseId }));
+    }
+  }
   return cards;
 }
 

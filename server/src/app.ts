@@ -5,7 +5,8 @@ import { streamSSE } from "hono/streaming";
 import { displayText, generic, stationParts } from "../../shared/labels";
 import { parseSimTime } from "../../shared/clock";
 import { STAGES } from "../../shared/types";
-import type { BlockRecord, CaseDetail, CaseRecord, CaseSummary, DelayedResponse, EventRecord, EventsPage, FeedEvent, Overview, Stage } from "../../shared/types";
+import type { BlockRecord, CaseDetail, CaseRecord, CaseSummary, DelayedResponse, EventRecord, EventsPage, FeedEvent, Overview, SimulationResponse, Stage } from "../../shared/types";
+import { PLAY_FROM, PLAY_TO, buildTimeline } from "../../shared/simulation";
 import { validate } from "./domain/validate";
 import { computeStations, whyWaiting } from "./domain/stations";
 import { blockRange } from "./domain/alerts";
@@ -150,6 +151,18 @@ export function createApp(state: MeridianState = createState(), activity: Activi
       if (e instanceof ConflictError) return c.json({ error: e.message }, 409);
       throw e;
     }
+  });
+
+  // Light simulation: each case's recorded waypoints, replayed in the browser with the same pure stateAt(t).
+  app.get("/api/simulation", (c) => {
+    const tl = buildTimeline(state.data);
+    const body: SimulationResponse = {
+      from: PLAY_FROM,
+      to: PLAY_TO,
+      cases: [...tl.cases].map(([caseId, v]) => ({ caseId, urgent: v.urgent, waypoints: v.waypoints.map((w) => [w.t, w.node] as [number, string]) })),
+      incidents: tl.incidents,
+    };
+    return c.json(body);
   });
 
   // Lab-flow map (spec Screen B): zones and equipment with their recorded contents.

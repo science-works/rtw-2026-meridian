@@ -34,3 +34,16 @@ Distilled on 17 October 2026 from three reference repos in `external/` (impeccab
 19. Animate only `transform` and `opacity`; each animation is at most 900 ms.
 20. Motion is for meaning: a new incident's "!" bounces (macOS dock style) until it is acknowledged. Nothing else moves continuously.
 21. **[test]** `prefers-reduced-motion` and `VITE_FX=off` remove all motion; a static red "!" remains.
+
+## Reference patterns (docs/reference/REFERENCE_PATTERNS.md, "Apply to Meridian")
+
+Applied through tokens (`edgeActive`, `tooltipBg`, `gridDot`, `simEdge`, `simNode`, `shadow.*`, `motion.hoverMs/tooltipMs/focusMs/tokenHopMs/ease/trailSteps`, `type.stat/statLabel/label`, `zoom.lodThreshold`) and these rules:
+
+- **R-Ref-1. The base stays quiet.** Surfaces use surface tokens; colour only carries meaning.
+- **R-Ref-2. Hover affects one thing and reverses.** Only the hovered station and its own lines change.
+- **R-Ref-3. Tokens travel on drawn lines.** A moving sample follows the shortest drawn route between its two recorded stations.
+- **R-Ref-4. Motion only on recorded events.** A sample moves only when the playback clock passes its recorded time, for one hop (≤ 900 ms), never before it. Nothing loops or drifts.
+- **R-Ref-5. Labels are HTML, ≥ 14 px.** Station names and counts are DOM text on the board, never SVG/canvas text.
+- **R-Ref-6. Level of detail, not shrinking.** Popovers list 4 case IDs then "+N more".
+- **R-Ref-7. Overlays never move with the scene.** Playback controls and the clock sit outside the board.
+- **R-Ref-8. Reduced motion.** With reduced motion, `VITE_FX=off` or "Skip animations", no samples fly and no pulse runs; counts still update from the same `stateAt(t)`.

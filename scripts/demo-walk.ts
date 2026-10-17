@@ -56,11 +56,18 @@ const beats: Beat[] = [
     async run(page) {
       await page.goto(`${BASE}/simulation`);
       const play = page.locator("[data-testid=sim-play]");
-      if ((await play.count()) === 0) throw Object.assign(new Error("simulation not built yet (P2)"), { pending: true });
+      await play.waitFor({ timeout: 10_000 });
       await play.click();
-      await page.locator("[data-testid=sim-clock]", { hasText: "11:30" }).waitFor({ timeout: 60_000 });
-      await page.goto(`${BASE}/`);
-      check((await page.locator(".flag-card .flag.bounce").count()) === 1 || (await page.locator(".flag-card").count()) === 1, "dashboard flag is not there after the playback");
+      const started = Date.now();
+      await page.locator("[data-testid=sim-clock][data-state=playing]").waitFor({ timeout: 5_000 });
+      await page.locator("[data-testid=sim-clock][data-state=ended]", { hasText: "Day 1 11:30" }).waitFor({ timeout: 60_000 });
+      const secs = (Date.now() - started) / 1000;
+      check(secs > 30 && secs < 50, `playback took ${secs.toFixed(1)} s (expected about 40 s)`);
+      check((await page.locator("[data-node=stainer] .sim-flag").count()) === 1, "stainer incident marker missing at 11:30");
+      await page.locator(".sim-end a").click();
+      await page.locator(".flag-card").first().waitFor({ timeout: 10_000 });
+      check((await page.locator(".flag-card").count()) === 1, "dashboard flag is not there after the playback");
+      check((await page.locator(".flag-card", { hasText: "Microtomy station 4" }).count()) === 1, "the flag after playback is not 26H1004 at Microtomy station 4");
     },
   },
   {
