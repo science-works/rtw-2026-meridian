@@ -155,6 +155,10 @@ export interface Alert {
   /** For In progress: the latest recorded staff action, e.g. "Repeat H&E run started 11:05". */
   stateDetail?: string;
   history: { at: SimTime; eventId?: string; label: string }[];
+  /** Where it is: station, basket or area, from the recorded events. */
+  where: string;
+  /** True when the alert appeared during this session (a replayed incident); only these bounce while New. */
+  arrivedLive?: boolean;
   raisedAt: SimTime;
   caseIds: string[];
   slideIds?: string[];

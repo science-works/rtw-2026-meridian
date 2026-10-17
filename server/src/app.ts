@@ -9,7 +9,7 @@ import type { BlockRecord, CaseDetail, CaseRecord, CaseSummary, DelayedResponse,
 import { validate } from "./domain/validate";
 import { computeStations, whyWaiting } from "./domain/stations";
 import { createActivityLog, summarise, wallClock, type ActivityLog } from "./activity";
-import { AlreadyFiredError, createState, type MeridianState } from "./state";
+import { AlreadyFiredError, ConflictError, NotFoundError, createState, type MeridianState } from "./state";
 import { hasAnyTarget } from "./targets";
 
 const toFeedEvent = (e: EventRecord): FeedEvent => ({
@@ -125,6 +125,22 @@ export function createApp(state: MeridianState = createState(), activity: Activi
   });
 
   app.get("/api/alerts", (c) => c.json(state.alerts));
+  app.get("/api/alerts/:id", (c) => {
+    const a = state.alerts.find((x) => x.id === c.req.param("id"));
+    return a ? c.json(a) : c.json({ error: `No alert ${c.req.param("id")}` }, 404);
+  });
+
+  // The presenter's Acknowledge (a human action from the dashboard; MCP cannot call it).
+  app.post("/api/alerts/:id/acknowledge", (c) => {
+    try {
+      state.acknowledge(c.req.param("id"));
+      return c.json({ acknowledged: true });
+    } catch (e) {
+      if (e instanceof NotFoundError) return c.json({ error: e.message }, 404);
+      if (e instanceof ConflictError) return c.json({ error: e.message }, 409);
+      throw e;
+    }
+  });
 
   // Lab-flow map (spec Screen B): zones and equipment with their recorded contents.
   app.get("/api/stations", (c) => c.json(computeStations(state.data, state.alerts)));
@@ -223,6 +239,15 @@ export function createApp(state: MeridianState = createState(), activity: Activi
     try {
       const r = state.fireBasketFailure();
       return c.json<TriggerResponse>({ fired: true, ...r });
+    } catch (e) {
+      if (e instanceof AlreadyFiredError) return c.json({ error: e.message }, 409);
+      throw e;
+    }
+  });
+
+  app.post("/api/sim/replay-incident", (c) => {
+    try {
+      return c.json<TriggerResponse>({ fired: true, ...state.replayIncident() });
     } catch (e) {
       if (e instanceof AlreadyFiredError) return c.json({ error: e.message }, 409);
       throw e;

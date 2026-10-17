@@ -76,3 +76,15 @@ describe("overview headline counts (spec Screen A)", () => {
     expect((await get<Record<string, number>>("/api/overview")).body.openAttention).toBe(4);
   });
 });
+
+describe("where each incident is (incidents page)", () => {
+  it("names the station, basket or area from the recorded events", () => {
+    const where = Object.fromEntries(computeAlerts(loadData()).map((a) => [a.kind, a.where]));
+    expect(where).toEqual({
+      basket_failure: "H&E auto-stainer 1 · Box 1 / Basket 1 · H&E-BASKET-01",
+      protocol_mismatch: "Microtomy station 4",
+      outstanding_block: "Processor D (A1–E1) · Pathologist dissection / cut-up area (F1)",
+      scan_gap: "Scanner queue",
+    });
+  });
+});

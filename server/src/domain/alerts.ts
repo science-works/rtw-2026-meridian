@@ -1,7 +1,7 @@
 // The four deterministic alert rules (CLAUDE.md). Rules read the event log as it stands;
 // the staged H&E incident counts only after the dashboard has replayed it.
 import { parseSimTime } from "../../../shared/clock";
-import { displayText, generic } from "../../../shared/labels";
+import { displayText, generic, stationParts } from "../../../shared/labels";
 import type { Alert, BlockRecord, CellpathData, EventRecord } from "../../../shared/types";
 
 const byTime = (a: EventRecord, b: EventRecord) => parseSimTime(a.at) - parseSimTime(b.at) || a.eventId.localeCompare(b.eventId);
@@ -45,6 +45,10 @@ function outstandingBlocks(data: CellpathData, events: EventRecord[]): Alert[] {
       return {
         id: `outstanding_block:${c.caseId}`,
         kind: "outstanding_block",
+        where: [
+          ...[...new Set(done.map((b) => generic(b.location)))].map((loc) => `${loc} (${blockRange(done.filter((b) => generic(b.location) === loc).map((b) => b.blockId))})`),
+          ...[...new Set(open.map((b) => generic(b.location)))].map((loc) => `${loc} (${blockRange(open.filter((b) => generic(b.location) === loc).map((b) => b.blockId))})`),
+        ].join(" · "),
         raisedAt: raised?.at ?? data.meta.clock,
         state: "new",
         history: [{ at: raised?.at ?? data.meta.clock, ...(raised ? { eventId: raised.eventId } : {}), label: "Flagged" }],
@@ -73,6 +77,7 @@ function protocolMismatches(data: CellpathData, events: EventRecord[]): Alert[] 
       return {
         id: `protocol_mismatch:${b.caseId}/${b.blockId}`,
         kind: "protocol_mismatch",
+        where: generic(station ?? b.location),
         raisedAt: cut.at(-1)?.at ?? data.meta.clock,
         state: "new",
         history: [{ at: cut.at(-1)?.at ?? data.meta.clock, ...(cut.at(-1) ? { eventId: cut.at(-1)!.eventId } : {}), label: "Flagged" }],
@@ -130,6 +135,7 @@ function basketFailures(data: CellpathData, events: EventRecord[]): Alert[] {
       return {
         id: `basket_failure:${basketId ?? f.eventId}`,
         kind: "basket_failure",
+        where: [generic(f.station ?? "H&E auto-stainer 1"), [stationParts(f.station).box, stationParts(f.station).basket].filter(Boolean).join(" / "), basketId].filter(Boolean).join(" · "),
         ...incidentState(actions),
         history: [f, ...actions].map((e) => ({ at: e.at, eventId: e.eventId, label: ACTION_LABEL[e.type] })),
         raisedAt: f.at,
@@ -166,6 +172,7 @@ function scanGaps(data: CellpathData, events: EventRecord[]): Alert[] {
         {
           id: `scan_gap:${exp.caseId}`,
           kind: "scan_gap",
+          where: generic(exp.station ?? "Scanner queue"),
             raisedAt: data.meta.clock,
           state: "new",
           history: [{ at: data.meta.clock, eventId: exp.eventId, label: "Flagged" }],
