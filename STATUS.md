@@ -11,3 +11,4 @@
 [18:23] [A] [A3+A4 four alert rules (server/src/domain/alerts.ts), one-shot trigger (trigger.ts), wording guard, generic labels (shared/labels.ts), CLAUDE.md acceptance suite; 64 green, 1 todo (#13 waits for A5)] done
 [18:24] [B] [B1 in-memory state + real API] started
 [18:26] [B] [B1 in-memory state (server/src/state.ts), real read API with alerts, filters, holds + 'target comparison unavailable', generic labels and authoring-note filter on all display text; contract: timeline.station added] done
+[18:26] [B] [B2 SSE /api/stream emits state-changed {version} on connect, trigger and reset] done
