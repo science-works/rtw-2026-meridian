@@ -66,6 +66,27 @@ describe("B1: read API over the in-memory state", () => {
     expect(screening.note).toBe("target comparison unavailable");
   });
 
+  it("serves computed estimates: ready, estimated and explicit unknowns", async () => {
+    const { get } = freshApp();
+    const est = async (id: string) => (await get<CaseDetail>(`/api/cases/${id}`)).body.estimate;
+    expect(await est("26H1018")).toMatchObject({ status: "ready", readyAt: "Day 1 11:15" });
+    expect(await est("26H1001")).toMatchObject({ status: "estimated", readyAt: "Day 1 12:58" });
+    expect((await est("26H1016")).status).toBe("unknown");
+    expect((await est("26H1003")).reasonUnknown).toMatch(/F1/);
+  });
+
+  it("GET /api/delayed compares against configured targets only", async () => {
+    const { get } = freshApp({ urgent: null, screening: null, routine: 8 });
+    const { body } = await get<DelayedResponse>("/api/delayed");
+    expect(body.note).toBe("target comparison unavailable for: urgent, screening");
+    const ids = body.cases.map((c) => c.caseId);
+    expect(ids).toEqual(expect.arrayContaining(["26H1003", "26H1004", "26H1015", "26H1018"]));
+    for (const c of body.cases) {
+      if (c.alertIds.length) continue;
+      expect(c.estimate.target).toMatchObject({ late: true, label: "Routine: 8 working hours" });
+    }
+  });
+
   it("never exposes workbook equipment names or overclaims in any response", async () => {
     const { get } = freshApp();
     const ids = (await get<CaseSummary[]>("/api/cases")).body.map((c) => c.caseId);

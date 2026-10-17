@@ -129,7 +129,10 @@ export interface EstimateComponent {
 export interface Estimate {
   status: "estimated" | "unknown" | "ready";
   readyAt?: SimTime;
+  /** Sum of configured step minutes (excludes overnight processing and embedding batch time). */
   activeMinutes?: number;
+  /** Elapsed time from the simulated clock to readyAt. */
+  wallClockMinutes?: number;
   components: EstimateComponent[];
   assumptions: string[]; // e.g. "queues not modelled"
   reasonUnknown?: string; // e.g. "F1 still at cut-up"

@@ -48,6 +48,19 @@ describe("B3: basket-failure trigger", () => {
   });
 });
 
+describe("A5 + B3: the trigger recalculates handoff estimates", () => {
+  it("26H1005 moves from Day 1 11:55 to Day 1 12:55, and back on reset", async () => {
+    const { get, post } = freshApp();
+    const at = async () => (await get<CaseDetail>("/api/cases/26H1005")).body.estimate.readyAt;
+    expect(await at()).toBe("Day 1 11:55");
+    await post("/api/sim/basket-failure");
+    expect(await at()).toBe("Day 1 12:55");
+    expect((await get<CaseDetail>("/api/cases/26H1005")).body.estimate.components.map((c) => c.step)).toContain("Repeat H&E run (failed basket)");
+    await post("/api/sim/reset");
+    expect(await at()).toBe("Day 1 11:55");
+  });
+});
+
 describe("B4: reset", () => {
   it("restores the initial state so the trigger works again, 3 times in a row", async () => {
     const { get, post } = freshApp();

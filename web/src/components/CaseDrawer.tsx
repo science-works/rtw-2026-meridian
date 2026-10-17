@@ -11,6 +11,7 @@ interface Props {
   onOpenCase: (id: string) => void;
 }
 
+const fmtDuration = (m: number) => (m >= 60 ? `${Math.floor(m / 60)} h ${m % 60} min` : `${m} min`);
 const humanType = (t: string) => t.charAt(0) + t.slice(1).toLowerCase().replace(/_/g, " ");
 
 export function CaseDrawer({ caseId, version, alerts, onClose, onOpenCase }: Props) {
@@ -68,7 +69,15 @@ export function CaseDrawer({ caseId, version, alerts, onClose, onOpenCase }: Pro
             <section>
               <h3>Handoff estimate</h3>
               {est?.status === "ready" && <p className="est-ready">Ready for pathologist handoff</p>}
-              {est?.status === "estimated" && <p className="mono">{est.readyAt}</p>}
+              {est?.status === "estimated" && (
+                <p className="est-line">
+                  <span className="mono est-time">{est.readyAt}</span>
+                  <span className="muted">
+                    {" "}
+                    · active {est.activeMinutes} min · wall-clock {fmtDuration(est.wallClockMinutes ?? 0)}
+                  </span>
+                </p>
+              )}
               {est?.status === "unknown" && <p className="muted">Unknown: {est.reasonUnknown}</p>}
               {est && est.components.length > 0 && (
                 <ul className="est-parts">
@@ -82,6 +91,18 @@ export function CaseDrawer({ caseId, version, alerts, onClose, onOpenCase }: Pro
                 </ul>
               )}
               {est && est.assumptions.length > 0 && <p className="muted small">Assumptions: {est.assumptions.join("; ")}</p>}
+              {est?.target && (
+                <p className="small">
+                  {typeof est.target === "string" ? (
+                    <span className="muted">Target: {est.target}</span>
+                  ) : (
+                    <span className={est.target.late ? "error" : ""}>
+                      Target ({est.target.label}): due {est.target.dueAt}
+                      {est.target.late ? " — past target" : " — within target"}
+                    </span>
+                  )}
+                </p>
+              )}
             </section>
 
             {caseAlerts.length > 0 && (

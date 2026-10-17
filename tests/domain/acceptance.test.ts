@@ -6,6 +6,7 @@ import { validate } from "../../server/src/domain/validate";
 import { computeAlerts } from "../../server/src/domain/alerts";
 import { fireBasketFailure } from "../../server/src/domain/trigger";
 import { findOverclaims } from "../../server/src/domain/wording";
+import { estimateAll } from "../../server/src/domain/estimate";
 import type { CellpathData } from "../../shared/types";
 
 let data: CellpathData;
@@ -78,5 +79,12 @@ describe("CLAUDE.md required tests", () => {
     expect(findOverclaims(JSON.stringify(computeAlerts(fireBasketFailure(data))))).toEqual([]);
   });
 
-  it.todo("13. missing data returns explicit uncertainty (estimate engine, A5)");
+  it("13. missing data returns explicit uncertainty", () => {
+    const d = structuredClone(data);
+    d.timingRules = d.timingRules.filter((r) => r.rule !== "Digital scanners");
+    const e = estimateAll({ data: d, alerts: computeAlerts(d), targets: { urgent: null, screening: null, routine: null } }).get("26H1017")!;
+    expect(e.status).toBe("estimated"); // 26H1017 is already scanned, so the scan rule is not needed
+    const e2 = estimateAll({ data: d, alerts: computeAlerts(d), targets: { urgent: null, screening: null, routine: null } }).get("26H1001")!;
+    expect(e2).toMatchObject({ status: "unknown", reasonUnknown: expect.stringMatching(/not configured/i) });
+  });
 });

@@ -3,22 +3,15 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { streamSSE } from "hono/streaming";
 import { displayText, generic } from "../../shared/labels";
-import type { CaseDetail, CaseRecord, CaseSummary, DelayedResponse, Estimate, Overview, TriggerResponse } from "../../shared/types";
+import type { CaseDetail, CaseRecord, CaseSummary, DelayedResponse, Overview, TriggerResponse } from "../../shared/types";
 import { validate } from "./domain/validate";
 import { AlreadyFiredError, createState, type MeridianState } from "./state";
-import { hasAnyTarget, loadTargets, type Targets } from "./targets";
-
-const NO_ESTIMATE_YET: Estimate = {
-  status: "unknown",
-  components: [],
-  assumptions: [],
-  reasonUnknown: "Handoff estimates are not built yet.",
-};
+import { hasAnyTarget } from "./targets";
 
 const matchesProgramme = (tag: string | null, q: string) =>
   q === "any" ? tag !== null : (tag ?? "").toLowerCase() === q.toLowerCase();
 
-export function createApp(state: MeridianState = createState(), targets: Targets = loadTargets()) {
+export function createApp(state: MeridianState = createState()) {
   const app = new Hono();
   app.use("/api/*", cors());
 
@@ -38,7 +31,7 @@ export function createApp(state: MeridianState = createState(), targets: Targets
     stageEnteredAt: c.stageEnteredAt,
     isDemo: c.isDemo,
     alertIds: alertIds.get(c.caseId) ?? [],
-    estimate: NO_ESTIMATE_YET,
+    estimate: state.estimates.get(c.caseId)!,
   });
 
   app.get("/api/health", (c) => c.json({ ok: true, simulated: true, clock: state.data.meta.clock, version: state.version }));
@@ -108,12 +101,19 @@ export function createApp(state: MeridianState = createState(), targets: Targets
   app.get("/api/delayed", (c) => {
     const { programme } = c.req.query();
     const ids = alertIdsByCase();
-    // Without configured targets, only recorded holds (active alerts) can be reported.
+    // Recorded holds (active alerts), plus cases past a configured target. Delay is
+    // never claimed without a target in config/targets.json.
     const cases = state.data.cases
-      .filter((x) => ids.has(x.caseId))
       .filter((x) => !programme || matchesProgramme(x.programmeTag, programme))
-      .map((x) => summary(x, ids));
-    const body: DelayedResponse = hasAnyTarget(targets) ? { cases } : { cases, note: "target comparison unavailable" };
+      .map((x) => summary(x, ids))
+      .filter((x) => x.alertIds.length > 0 || (typeof x.estimate.target === "object" && x.estimate.target.late));
+    const unset = (Object.keys(state.targets) as (keyof typeof state.targets)[]).filter((k) => state.targets[k] === null);
+    const note = !hasAnyTarget(state.targets)
+      ? "target comparison unavailable"
+      : unset.length
+        ? `target comparison unavailable for: ${unset.join(", ")}`
+        : undefined;
+    const body: DelayedResponse = note ? { cases, note } : { cases };
     return c.json(body);
   });
 
