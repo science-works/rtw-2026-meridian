@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Alert, CaseDetail } from "../../../shared/types";
 import { api } from "../api";
 import { AlertCard } from "./AlertCard";
+import { TimeFlow } from "./Flow";
 import { JourneyBar } from "./JourneyBar";
 
 interface Props {
@@ -73,7 +74,7 @@ export function CaseDrawer({ caseId, version, alerts, onClose, onOpenCase }: Pro
               {est?.status === "ready" && <p className="est-ready">Ready for pathologist handoff</p>}
               {est?.status === "estimated" && (
                 <p className="est-line">
-                  <span className="mono est-time">{est.readyAt}</span>
+                  <TimeFlow className="mono est-time" value={est.readyAt!} />
                   <span className="muted">
                     {" "}
                     · active {est.activeMinutes} min · wall-clock {fmtDuration(est.wallClockMinutes ?? 0)}

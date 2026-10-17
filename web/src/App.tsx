@@ -22,6 +22,7 @@ export function App() {
 
   // Pulse (once) whatever the server newly flagged: new alert cards and their cases.
   useEffect(() => {
+    if (!live.overview) return; // nothing loaded yet: the first real alert set is the baseline, not news
     const ids = new Set(live.alerts.map((a) => a.id));
     const prev = seenAlerts.current;
     seenAlerts.current = ids;
@@ -31,7 +32,7 @@ export function App() {
     setPulse(new Set([...fresh.map((a) => a.id), ...fresh.flatMap((a) => a.caseIds)]));
     const t = setTimeout(() => setPulse(new Set()), PULSE_MS + 100);
     return () => clearTimeout(t);
-  }, [live.alerts, fx.on]);
+  }, [live.alerts, live.overview, fx.on]);
 
   const run = useCallback(async (fn: () => Promise<unknown>) => {
     setBusy(true);

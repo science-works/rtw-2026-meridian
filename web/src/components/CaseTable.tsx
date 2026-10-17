@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import type { Alert, CaseSummary, Stage } from "../../../shared/types";
+import { TimeFlow } from "./Flow";
 
 interface Props {
   cases: CaseSummary[];
@@ -59,7 +60,12 @@ export function CaseTable({ cases, alerts, stage, onClearStage, onOpenCase, puls
           </thead>
           <tbody>
             {rows.map((c) => (
-              <tr key={c.caseId} onClick={() => onOpenCase(c.caseId)} className={`${flagged.has(c.caseId) ? "flagged" : ""} ${pulse.has(c.caseId) ? "pulse" : ""}`}>
+              <tr
+                key={c.caseId}
+                data-case={c.caseId}
+                onClick={() => onOpenCase(c.caseId)}
+                className={`${flagged.has(c.caseId) ? "flagged" : ""} ${pulse.has(c.caseId) ? "pulse" : ""}`}
+              >
                 <td className="mono case-id">
                   {flagged.has(c.caseId) && <span className="dot-alert" aria-label="flagged" />}
                   {c.caseId}
@@ -73,7 +79,7 @@ export function CaseTable({ cases, alerts, stage, onClearStage, onOpenCase, puls
                   {c.estimate.status === "ready" ? (
                     <span className="est-ready">Ready</span>
                   ) : c.estimate.status === "estimated" ? (
-                    <span className="mono">{c.estimate.readyAt}</span>
+                    <TimeFlow className="mono" value={c.estimate.readyAt!} />
                   ) : (
                     <span className="muted" title={c.estimate.reasonUnknown}>
                       Unknown

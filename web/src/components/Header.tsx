@@ -1,5 +1,6 @@
 import type { Overview } from "../../../shared/types";
 import { useFx } from "../fx";
+import { Count } from "./Flow";
 
 interface Props {
   overview: Overview | null;
@@ -43,7 +44,7 @@ export function Header({ overview, connected, busy, onTrigger, onReset }: Props)
       <div className="tiles">
         {tiles.map((t) => (
           <div key={t.label} className={`tile ${t.tone ?? ""}`}>
-            <span className="tile-value mono">{t.value}</span>
+            <Count className="tile-value mono" value={t.value} />
             <span className="tile-label">{t.label}</span>
           </div>
         ))}
