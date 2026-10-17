@@ -7,3 +7,5 @@
 [18:17] [G] [npm test: 4 files, 36 tests green; tsc clean; npm run dev serves :5173 + :8787] done
 [18:17] [T0] [note: Node here is 20.11.1, so vite@6 / vitest@3 / typescript@5.9 are pinned. npm audit flags vitest@3 deps (dev-only). Fix: Node 22 LTS, then vitest@5] blocked:needs-owner-decision
 [18:17] [T0] [note: docs/CELLPATH_MASTER_PRODUCT_VISUAL_SPEC.md still missing; /tdd skill not installed, TDD done by hand (red->green)] blocked:missing-input
+[18:21] [A] [A3+A4 alert rules + acceptance tests] started
+[18:23] [A] [A3+A4 four alert rules (server/src/domain/alerts.ts), one-shot trigger (trigger.ts), wording guard, generic labels (shared/labels.ts), CLAUDE.md acceptance suite; 64 green, 1 todo (#13 waits for A5)] done
