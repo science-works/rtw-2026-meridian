@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useRef, useState, type CSSProperties } from "react";
 import type { Alert, CaseSummary, StationCard } from "../../../shared/types";
 import { Count } from "../components/Flow";
+import { SendIcon, TrayIcon } from "../theme/icons";
 
 interface Props {
   stations: StationCard[];
@@ -138,8 +139,8 @@ function Card({ card, cases, flagged, compact, onOpenStation, onOpenCase }: { ca
       {card.baskets && <BasketGrid card={card} onOpenCase={onOpenCase} />}
       {card.handoff && (
         <div className="st-handoff">
-          <span>📥 Physical tray: not recorded separately</span>
-          <span>💻 Digital send: {card.handoff.digital.replace(/^Digital send recorded for /, "")}</span>
+          <span className="icon-line"><TrayIcon /> Physical tray: not recorded separately</span>
+          <span className="icon-line"><SendIcon /> Digital send: {card.handoff.digital.replace(/^Digital send recorded for /, "")}</span>
         </div>
       )}
       {hover && <Popover card={card} anchor={hover} />}

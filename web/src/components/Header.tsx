@@ -1,5 +1,6 @@
 import { useFx } from "../fx";
 import { useState } from "react";
+import { SearchIcon } from "../theme/icons";
 import type { Overview } from "../../../shared/types";
 
 export const TABS = ["Overview", "Lab flow", "Screening", "Diagnostic cytopathology", "Archive"] as const;
@@ -48,7 +49,7 @@ export function Header({ overview, connected, tab, onTab, onSearch }: Props) {
         ))}
       </nav>
       <form className="search-box" onSubmit={submit} role="search">
-        <span aria-hidden>🔍</span>
+        <SearchIcon />
         <input value={q} onChange={(e) => (setQ(e.target.value), setMsg(null))} placeholder="Case ID, e.g. 26H2345" aria-label="Search case ID" />
         {msg && <span className="search-msg">{msg}</span>}
       </form>
