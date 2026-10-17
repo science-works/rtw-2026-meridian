@@ -1,11 +1,14 @@
 import { useMemo, useState } from "react";
 import type { Alert, CaseSummary, Stage } from "../../../shared/types";
 import { TimeFlow } from "./Flow";
+import type { CaseScope } from "./HeadlineCounts";
 
 interface Props {
   cases: CaseSummary[];
   alerts: Alert[];
   stage: Stage | null;
+  scope: CaseScope;
+  onScope: (s: CaseScope) => void;
   onClearStage: () => void;
   onOpenCase: (id: string) => void;
   pulse: Set<string>;
@@ -13,25 +16,42 @@ interface Props {
   glow?: Set<string>;
 }
 
-type Scope = "demo" | "flagged" | "all";
+const SCOPE_TITLE: Record<CaseScope, string> = {
+  all: "All tracked cases",
+  demo: "Demo cases",
+  flagged: "Cases with open attention items",
+  urgent: "Urgent cases",
+  screening: "Screening-linked cases (lab handoff only)",
+  backlog: "Previous-day backlog",
+  today: "Current-day workload",
+  ready: "Ready for pathologist handoff",
+};
 
-export function CaseTable({ cases, alerts, stage, onClearStage, onOpenCase, pulse, glow }: Props) {
-  const [scope, setScope] = useState<Scope>("demo");
+export function CaseTable({ cases, alerts, stage, scope, onScope, onClearStage, onOpenCase, pulse, glow }: Props) {
   const [query, setQuery] = useState("");
-  const flagged = useMemo(() => new Set(alerts.flatMap((a) => a.caseIds)), [alerts]);
+  const flagged = useMemo(() => new Set(alerts.filter((a) => a.state !== "resolved").flatMap((a) => a.caseIds)), [alerts]);
 
   const rows = useMemo(() => {
     const q = query.trim().toUpperCase();
+    const inScope = (c: CaseSummary) =>
+      scope === "all" ||
+      (scope === "demo" && c.isDemo) ||
+      (scope === "flagged" && flagged.has(c.caseId)) ||
+      (scope === "urgent" && c.priority === "Urgent") ||
+      (scope === "screening" && c.programmeTag !== null) ||
+      (scope === "backlog" && c.cohort === "Previous-day backlog") ||
+      (scope === "today" && c.cohort === "Current-day workload") ||
+      (scope === "ready" && c.stage === "Ready for pathologist handoff");
     return cases
       .filter((c) => !stage || c.stage === stage)
-      .filter((c) => (q ? c.caseId.includes(q) : scope === "all" || stage !== null || (scope === "demo" ? c.isDemo : flagged.has(c.caseId))))
+      .filter((c) => (q ? c.caseId.includes(q) : stage !== null || inScope(c)))
       .sort((a, b) => Number(flagged.has(b.caseId)) - Number(flagged.has(a.caseId)) || Number(b.priority === "Urgent") - Number(a.priority === "Urgent") || a.caseId.localeCompare(b.caseId));
   }, [cases, stage, scope, query, flagged]);
 
   return (
     <section className="cases" aria-label="Cases">
       <header className="cases-head">
-        <h2>{stage ? stage : "Cases"}</h2>
+        <h2>{stage ? stage : SCOPE_TITLE[scope]}</h2>
         <span className="muted">{rows.length} shown</span>
         {stage && (
           <button className="btn-quiet small" onClick={onClearStage}>
@@ -39,8 +59,8 @@ export function CaseTable({ cases, alerts, stage, onClearStage, onOpenCase, puls
           </button>
         )}
         <div className="scope" role="group" aria-label="Which cases">
-          {(["demo", "flagged", "all"] as Scope[]).map((s) => (
-            <button key={s} className={scope === s ? "on" : ""} onClick={() => setScope(s)} disabled={stage !== null}>
+          {(["demo", "flagged", "all"] as CaseScope[]).map((s) => (
+            <button key={s} className={scope === s ? "on" : ""} onClick={() => onScope(s)} disabled={stage !== null}>
               {s === "demo" ? "Demo cases" : s === "flagged" ? "Flagged" : "All 450"}
             </button>
           ))}
@@ -70,12 +90,26 @@ export function CaseTable({ cases, alerts, stage, onClearStage, onOpenCase, puls
                 className={`${flagged.has(c.caseId) ? "flagged" : ""} ${pulse.has(c.caseId) ? "pulse" : ""} ${glow?.has(c.caseId) ? "agent-glow" : ""}`}
               >
                 <td className="mono case-id">
-                  {flagged.has(c.caseId) && <span className="dot-alert" aria-label="flagged" />}
+                  {flagged.has(c.caseId) && (
+                    <span className="dot-alert" aria-label="open attention item">
+                      !
+                    </span>
+                  )}
                   {c.caseId}
                 </td>
                 <td>{c.specimen}</td>
                 <td>{c.priority === "Urgent" ? <span className="chip-urgent">Urgent</span> : <span className="muted">Routine</span>}</td>
-                <td>{c.programmeTag ?? <span className="muted">—</span>}</td>
+                <td>
+                  {c.programmeTag === "BCSP" ? (
+                    <span className="tag tag-bcsp">BCSP</span>
+                  ) : c.programmeTag === "Cervical screening" ? (
+                    <span className="tag tag-cervical">Cervical</span>
+                  ) : c.programmeTag ? (
+                    c.programmeTag
+                  ) : (
+                    <span className="muted">—</span>
+                  )}
+                </td>
                 <td>{c.stage}</td>
                 <td className="mono">{c.stageEnteredAt}</td>
                 <td>

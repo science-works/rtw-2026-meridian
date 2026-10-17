@@ -114,7 +114,10 @@ export function createApp(state: MeridianState = createState(), activity: Activi
       total: counts.cases,
       backlog: counts.backlog,
       today: counts.today,
+      urgent: state.data.cases.filter((c) => c.priority === "Urgent").length,
+      screeningLinked: state.data.cases.filter((c) => c.programmeTag !== null).length,
       ready: counts.stages.find((s) => s.stage === "Ready for pathologist handoff")!.total,
+      openAttention: state.alerts.filter((a) => a.state !== "resolved").length,
       stages: counts.stages,
       triggerFired: state.triggerFired,
     });

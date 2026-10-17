@@ -37,6 +37,8 @@ export const INSTRUCTIONS = [
   `Answer pattern: ${ANSWER_PATTERN}`,
 ].join("\n");
 
+const STATE_LABEL = { new: "new", acknowledged: "acknowledged", in_progress: "in progress", resolved: "resolved" } as const;
+
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false } as const;
 
 class ApiUnreachable extends Error {}
@@ -159,8 +161,7 @@ export async function buildShiftHandover(api: ApiFetch, runId: string = randomUU
     const r = c.estimate.reasonUnknown ?? "not enough information";
     unknownCounts.set(r, (unknownCounts.get(r) ?? 0) + 1);
   }
-  const order = { high: 0, medium: 1 } as const;
-  const sorted = [...alerts].sort((a, b) => order[a.severity] - order[b.severity]);
+  const sorted = [...alerts].sort((a, b) => b.raisedAt.localeCompare(a.raisedAt)); // newest first; no severity ranking
   const lines: string[] = [];
   const out = (s = "") => lines.push(s);
 
@@ -170,7 +171,7 @@ export async function buildShiftHandover(api: ApiFetch, runId: string = randomUU
   out(`## Open alerts (${alerts.length})`);
   sorted.forEach((a, i) => {
     const ids = a.evidence.map((e) => e.eventId).filter(Boolean);
-    out(`${i + 1}. [${a.severity.toUpperCase()}] ${a.what} (raised ${a.raisedAt})`);
+    out(`${i + 1}. ${a.what} (raised ${a.raisedAt}; ${STATE_LABEL[a.state]}${a.stateDetail ? `: ${a.stateDetail}` : ""})`);
     out(`   Evidence: ${ids.length ? ids.join(", ") : "see alert text"}. Cases: ${a.caseIds.join(", ")}.`);
     out(`   Why: ${a.why}`);
   });
@@ -210,7 +211,7 @@ export function agentHandoverPrompt(focus?: string): string {
     "3. Call cases_delayed.",
     "",
     "Then write the brief with exactly these sections:",
-    "1. Open alerts: each with its severity, what happened, and its evidence event IDs (e.g. EV-01215).",
+    "1. Open alerts: each with its state (new, acknowledged, in progress), what happened, and its evidence event IDs (e.g. EV-01215). Do not rank them by severity.",
     "2. Cases at risk: case ID, recorded stage, and the handoff estimate, or 'unknown' with the reason the tool gives.",
     "3. Things we can't know yet: every 'unknown' or missing value, said as 'not enough information' plus the reason. Include the target comparison note.",
     "4. Suggested staff checks: the suggestedCheck from each alert, as a checklist.",

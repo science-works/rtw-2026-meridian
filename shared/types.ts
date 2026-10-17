@@ -144,10 +144,17 @@ export interface Estimate {
 
 export type AlertKind = "outstanding_block" | "protocol_mismatch" | "basket_failure" | "scan_gap";
 
+/** Spec §6. Derived only from recorded events; Resolved needs a recorded completion/check. */
+export type AlertState = "new" | "acknowledged" | "in_progress" | "resolved";
+
 export interface Alert {
   id: string;
   kind: AlertKind;
-  severity: "high" | "medium";
+  /** No severity ranking (spec): every open alert gets the same marker. */
+  state: AlertState;
+  /** For In progress: the latest recorded staff action, e.g. "Repeat H&E run started 11:05". */
+  stateDetail?: string;
+  history: { at: SimTime; eventId?: string; label: string }[];
   raisedAt: SimTime;
   caseIds: string[];
   slideIds?: string[];
@@ -182,7 +189,11 @@ export interface Overview {
   total: number;
   backlog: number;
   today: number;
+  urgent: number;
+  screeningLinked: number;
   ready: number;
+  /** Alerts not yet resolved. */
+  openAttention: number;
   stages: OverviewStageRow[];
   triggerFired: boolean;
 }

@@ -4,7 +4,8 @@ import { api } from "./api";
 import { AttentionQueue } from "./components/AttentionQueue";
 import { CaseDrawer } from "./components/CaseDrawer";
 import { CaseTable } from "./components/CaseTable";
-import { Header } from "./components/Header";
+import { Header, type Tab } from "./components/Header";
+import { HeadlineCounts, type CaseScope } from "./components/HeadlineCounts";
 import { Pipeline } from "./components/Pipeline";
 import { Ripple } from "./components/Ripple";
 import { useFx } from "./fx";
@@ -19,6 +20,8 @@ export function App() {
   const live = useLive();
   const fx = useFx();
   const [stage, setStage] = useState<Stage | null>(null);
+  const [tab, setTab] = useState<Tab>("Overview");
+  const [scope, setScope] = useState<CaseScope>("demo");
   const [openCase, setOpenCase] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [pulse, setPulse] = useState<Set<string>>(new Set());
@@ -73,35 +76,93 @@ export function App() {
     }
   }, []);
 
+  const search = useCallback(async (id: string) => {
+    try {
+      await api.case(id);
+      setOpenCase(id);
+      return true;
+    } catch {
+      return false;
+    }
+  }, []);
+
+  const o = live.overview;
   return (
-    <div className={`app ${fx.on ? "fx" : "no-fx"}`}>
+    <div className={`app ${fx.on ? "fx" : "no-fx"} ${tab === "Overview" ? "" : "tab-other"}`}>
       <Header
-        overview={live.overview}
+        overview={o}
         connected={live.connected}
         busy={busy || story > 0}
+        tab={tab}
+        onTab={setTab}
+        onSearch={search}
         onTrigger={() => run(api.trigger)}
         onReset={() => run(api.reset)}
         onStory={() => {
           setOpenCase(null);
+          setTab("Overview");
           setStory((n) => n + 1);
         }}
       />
       {live.error && <p className="error banner">Cannot reach the Meridian API ({live.error}). Is `npm run dev` running?</p>}
-      {live.overview && <Pipeline overview={live.overview} cases={live.cases} alerts={live.alerts} selected={stage} onSelect={setStage} pulse={pulse} wakeKey={wakeKey} glow={agentGlow} />}
-      <main className="main">
-        <CaseTable cases={live.cases} alerts={live.alerts} stage={stage} onClearStage={() => setStage(null)} onOpenCase={setOpenCase} pulse={pulse} glow={agentGlow} />
-        <div className="right-col">
-          <AttentionQueue alerts={live.alerts} onOpenCase={setOpenCase} pulse={pulse} />
-          <AgentConsole activity={live.activity} onOpenCase={setOpenCase} onClear={() => void api.clearAgent()} />
-        </div>
-      </main>
+      {tab === "Overview" && (
+        <>
+          {o && <HeadlineCounts overview={o} scope={scope} onScope={(s) => (setScope(s), setStage(null))} />}
+          {o && <Pipeline overview={o} cases={live.cases} alerts={live.alerts} selected={stage} onSelect={setStage} pulse={pulse} wakeKey={wakeKey} glow={agentGlow} />}
+          <main className="main">
+            <CaseTable
+              cases={live.cases}
+              alerts={live.alerts}
+              stage={stage}
+              scope={scope}
+              onScope={setScope}
+              onClearStage={() => setStage(null)}
+              onOpenCase={setOpenCase}
+              pulse={pulse}
+              glow={agentGlow}
+            />
+            <div className="right-col">
+              <AttentionQueue alerts={live.alerts} onOpenCase={setOpenCase} pulse={pulse} />
+              <AgentConsole activity={live.activity} onOpenCase={setOpenCase} onClear={() => void api.clearAgent()} />
+            </div>
+          </main>
+        </>
+      )}
+      {tab === "Lab flow" && (
+        <section className="tab-page">
+          <h2>Lab flow</h2>
+          <p>The interactive lab-flow map (reception to pathologist handoff, with equipment cards) is being built in this version. The Overview shows the same live data.</p>
+        </section>
+      )}
+      {tab === "Screening" && (
+        <section className="tab-page">
+          <h2>Screening-linked cases</h2>
+          <p>
+            {o ? `${o.screeningLinked} cases carry a BCSP or cervical-screening tag.` : ""} Times refer to lab handoff to the pathologist only, never the programme deadline. Open the
+            &ldquo;Screening-linked&rdquo; count on Overview for the filterable list.
+          </p>
+        </section>
+      )}
+      {tab === "Diagnostic cytopathology" && (
+        <section className="tab-page">
+          <h2>Diagnostic cytopathology</h2>
+          <div className="empty-state">No cases received today (cell blocks and clots).</div>
+          <p>This simulated day contains no diagnostic cytopathology work. Search the mock archive by case ID from the search box.</p>
+        </section>
+      )}
+      {tab === "Archive" && (
+        <section className="tab-page">
+          <h2>Archive</h2>
+          <p>Search by case ID with the search box above. It searches the fictional demo workbook only, never real patient records.</p>
+        </section>
+      )}
       <footer className="footer">
-        Meridian is designed to sit alongside a LIMS. We're simulating the lab's feeds in this demo; a live version would connect through the interfaces available at each lab. It
-        predicts when a case should be ready for the pathologist; it never diagnoses, reports or predicts screening deadlines.
+        The agent reads case events from the lab&apos;s existing workflow and information systems. We&apos;re simulating those feeds in this demo; a live version would connect through the
+        interfaces available at each lab. Meridian covers lab preparation up to pathologist handoff; it never diagnoses, reports or predicts screening deadlines.
       </footer>
       {ripple && <Ripple key={ripple.key} from='.lane[data-stage="H&E staining"]' label={ripple.label} onDone={clearRipple} />}
       {beam && <AgentBeam key={beam.key} caseIds={beam.caseIds} onDone={clearBeam} />}
-      {story > 0 && <StoryMode key={story} overview={live.overview} alerts={live.alerts} activity={live.activity} onWake={wake} onExit={exitStory} />}
+      {story > 0 && <StoryMode key={story} overview={o} alerts={live.alerts} activity={live.activity} onWake={wake} onExit={exitStory} />}
       {openCase && <CaseDrawer caseId={openCase} version={live.version} alerts={live.alerts} onClose={() => setOpenCase(null)} onOpenCase={setOpenCase} />}
     </div>
   );

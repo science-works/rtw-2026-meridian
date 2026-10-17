@@ -9,21 +9,20 @@ interface Props {
   pulse: Set<string>;
 }
 
-const ORDER = { high: 0, medium: 1 } as const;
-
-/** Alerts slide in one by one (newest and most severe first); the rest make room. */
+/** Alerts slide in one by one, newest first (no severity ranking); the rest make room. */
 export function AttentionQueue({ alerts, onOpenCase, pulse }: Props) {
-  const sorted = [...alerts].sort((a, b) => ORDER[a.severity] - ORDER[b.severity] || b.raisedAt.localeCompare(a.raisedAt));
+  const sorted = [...alerts].sort((a, b) => Number(a.state === "resolved") - Number(b.state === "resolved") || b.raisedAt.localeCompare(a.raisedAt));
   const nCases = new Set(alerts.flatMap((a) => a.caseIds)).size;
+  const open = alerts.filter((a) => a.state !== "resolved").length;
   return (
     <aside className="queue" aria-label="Attention queue">
       <header className="queue-head">
-        <h2>Attention queue</h2>
+        <h2>Needs attention</h2>
         <span className="queue-count">
-          <Count className="mono" value={alerts.length} /> alerts · <Count className="mono" value={nCases} /> cases
+          <Count className="mono" value={open} /> open · <Count className="mono" value={nCases} /> cases
         </span>
       </header>
-      <p className="queue-note">Rules flag; staff decide. Meridian never changes a case.</p>
+      <p className="queue-note">Rules flag from recorded events; staff decide and record the action. Acknowledging is not a fix.</p>
       <div className="queue-list">
         <AnimatePresence initial>
           {sorted.map((a, i) => (

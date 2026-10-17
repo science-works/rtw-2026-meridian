@@ -11,7 +11,7 @@ interface Props {
 
 const RINGS = [0, 0.12, 0.24];
 
-/** One crimson ripple spreading from the failed station. ≤ 900 ms, then it removes itself. */
+/** One attention-coloured ripple spreading from the failed station. ≤ 900 ms, then it removes itself. */
 export function Ripple({ from, label, onDone }: Props) {
   const [origin, setOrigin] = useState<{ x: number; y: number } | null>(null);
 

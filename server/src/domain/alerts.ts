@@ -45,8 +45,9 @@ function outstandingBlocks(data: CellpathData, events: EventRecord[]): Alert[] {
       return {
         id: `outstanding_block:${c.caseId}`,
         kind: "outstanding_block",
-        severity: "medium",
         raisedAt: raised?.at ?? data.meta.clock,
+        state: "new",
+        history: [{ at: raised?.at ?? data.meta.clock, ...(raised ? { eventId: raised.eventId } : {}), label: "Flagged" }],
         caseIds: [c.caseId],
         what: `${c.caseId}: ${c.blocksComplete} of ${c.blocksExpected} blocks complete; ${openIds} outstanding`,
         evidence: [...open.map(evidenceFor), ...done.map(evidenceFor)],
@@ -72,8 +73,9 @@ function protocolMismatches(data: CellpathData, events: EventRecord[]): Alert[] 
       return {
         id: `protocol_mismatch:${b.caseId}/${b.blockId}`,
         kind: "protocol_mismatch",
-        severity: "high",
         raisedAt: cut.at(-1)?.at ?? data.meta.clock,
+        state: "new",
+        history: [{ at: cut.at(-1)?.at ?? data.meta.clock, ...(cut.at(-1) ? { eventId: cut.at(-1)!.eventId } : {}), label: "Flagged" }],
         caseIds: [b.caseId],
         slideIds: slides.map((s) => s.slideId),
         what: `${b.caseId} block ${b.blockId}: ${b.levelsRecorded} of ${b.levelsRequired} required levels recorded`,
@@ -89,7 +91,27 @@ function protocolMismatches(data: CellpathData, events: EventRecord[]): Alert[] 
 
 // Rule 3: a recorded stain-run failure. The basket is named in the event; its slides
 // and cases come from the Slides sheet. Later staff actions are shown as evidence.
-const STAFF_ACTIONS = ["TEAM_NOTIFIED", "INCIDENT_ACKNOWLEDGED", "TROUBLESHOOTING_STARTED", "BASKET_RELOADED", "REPEAT_STAIN_STARTED"];
+const ACTION_LABEL: Record<string, string> = {
+  STAIN_RUN_FAILED: "Run failed",
+  TEAM_NOTIFIED: "Team notified",
+  INCIDENT_ACKNOWLEDGED: "Acknowledged",
+  TROUBLESHOOTING_STARTED: "Troubleshooting started",
+  BASKET_RELOADED: "Basket reloaded",
+  REPEAT_STAIN_STARTED: "Repeat H&E run started",
+  STAINING_COMPLETE: "Repeat run complete",
+};
+const STAFF_ACTIONS = Object.keys(ACTION_LABEL).filter((t) => t !== "STAIN_RUN_FAILED");
+const IN_PROGRESS = ["TROUBLESHOOTING_STARTED", "BASKET_RELOADED", "REPEAT_STAIN_STARTED"];
+
+/** State from recorded staff actions only (spec §6). Acknowledging is not a fix. */
+function incidentState(actions: EventRecord[]): Pick<Alert, "state" | "stateDetail"> {
+  const has = (t: string) => actions.some((e) => e.type === t);
+  if (has("STAINING_COMPLETE")) return { state: "resolved" };
+  const progress = actions.filter((e) => IN_PROGRESS.includes(e.type)).at(-1);
+  if (progress) return { state: "in_progress", stateDetail: `${ACTION_LABEL[progress.type]} ${progress.at.slice(-5)}` };
+  if (has("INCIDENT_ACKNOWLEDGED")) return { state: "acknowledged" };
+  return { state: "new" };
+}
 
 function basketFailures(data: CellpathData, events: EventRecord[]): Alert[] {
   const repeat = ruleMinutes(data, "H&E repeat stain");
@@ -108,7 +130,8 @@ function basketFailures(data: CellpathData, events: EventRecord[]): Alert[] {
       return {
         id: `basket_failure:${basketId ?? f.eventId}`,
         kind: "basket_failure",
-        severity: "high",
+        ...incidentState(actions),
+        history: [f, ...actions].map((e) => ({ at: e.at, eventId: e.eventId, label: ACTION_LABEL[e.type] })),
         raisedAt: f.at,
         caseIds,
         slideIds: slides.map((s) => s.slideId),
@@ -143,8 +166,9 @@ function scanGaps(data: CellpathData, events: EventRecord[]): Alert[] {
         {
           id: `scan_gap:${exp.caseId}`,
           kind: "scan_gap",
-          severity: "medium",
-          raisedAt: data.meta.clock,
+            raisedAt: data.meta.clock,
+          state: "new",
+          history: [{ at: data.meta.clock, eventId: exp.eventId, label: "Flagged" }],
           caseIds: [exp.caseId],
           slideIds: slides.map((s) => s.slideId),
           what: `${exp.caseId}: missing scan event (scan expected since ${exp.at})`,

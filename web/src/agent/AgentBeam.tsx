@@ -40,13 +40,13 @@ export function AgentBeam({ caseIds, onDone }: Props) {
     <svg className="agent-beam" aria-hidden>
       <defs>
         <marker id="beam-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--periwinkle)" />
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--progress)" />
         </marker>
       </defs>
       <motion.path
         d={path.d}
         fill="none"
-        stroke="var(--periwinkle)"
+        stroke="var(--progress)"
         strokeWidth={3}
         strokeLinecap="round"
         markerEnd="url(#beam-head)"

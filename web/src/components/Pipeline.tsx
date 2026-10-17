@@ -57,7 +57,7 @@ export function Pipeline({ overview, cases, alerts, selected, onSelect, pulse, w
     <nav className="pipeline" aria-label="Workflow stages">
       {overview.stages.map((s, lane) => {
         const inStage = cases.filter((c) => c.stage === s.stage);
-        const nFlagged = inStage.filter((c) => flagged.has(c.caseId)).length;
+        const nFlagged = inStage.filter((c) => flagged.has(c.caseId)).length; // open attention items
         const nUrgent = inStage.filter((c) => c.priority === "Urgent").length;
         const isPulsing = inStage.some((c) => pulse.has(c.caseId));
         const isRead = !!glow && inStage.some((c) => glow.has(c.caseId));
@@ -72,7 +72,10 @@ export function Pipeline({ overview, cases, alerts, selected, onSelect, pulse, w
             title={s.stage}
           >
             <span className="lane-name">{SHORT_STAGE[s.stage]}</span>
-            <Count className="lane-total mono" value={awake ? s.total : 0} />
+            <span className="lane-total-row">
+              <Count className="lane-total mono" value={awake ? s.total : 0} />
+              <span className="lane-pct">{overview.total ? Math.round((s.total / overview.total) * 100) : 0}%</span>
+            </span>
             <span className="lane-split">
               <span className="split-backlog">{s.backlog > 0 ? `${s.backlog} backlog` : " "}</span>
               <span>{s.today} today</span>

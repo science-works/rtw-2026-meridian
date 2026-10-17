@@ -1,11 +1,18 @@
+import { useState } from "react";
 import type { Overview } from "../../../shared/types";
 import { useFx } from "../fx";
-import { Count } from "./Flow";
+
+export const TABS = ["Overview", "Lab flow", "Screening", "Diagnostic cytopathology", "Archive"] as const;
+export type Tab = (typeof TABS)[number];
 
 interface Props {
   overview: Overview | null;
   connected: boolean;
   busy: boolean;
+  tab: Tab;
+  onTab: (t: Tab) => void;
+  /** Returns false when the case ID is not in the simulated dataset. */
+  onSearch: (caseId: string) => Promise<boolean>;
   onTrigger: () => void;
   onReset: () => void;
   onStory: () => void;
@@ -18,41 +25,49 @@ function clockLabel(clock: string) {
   return m ? `${DAY_NAMES[m[1]] ?? `Day ${m[1]}`} ${m[2]}` : clock;
 }
 
-export function Header({ overview, connected, busy, onTrigger, onReset, onStory }: Props) {
+/** Top bar (spec Screen A): identity, tabs, case search, fixed simulated clock, SIMULATED badge, demo controls. */
+export function Header({ overview, connected, busy, tab, onTab, onSearch, onTrigger, onReset, onStory }: Props) {
   const fx = useFx();
-  const tiles = overview
-    ? [
-        { label: "Tracked cases", value: overview.total },
-        { label: "Previous-day backlog", value: overview.backlog },
-        { label: "Current-day workload", value: overview.today },
-        { label: "Ready for pathologist", value: overview.ready, tone: "teal" },
-      ]
-    : [];
+  const [q, setQ] = useState("");
+  const [msg, setMsg] = useState<string | null>(null);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const id = q.trim().toUpperCase();
+    if (!id) return;
+    const found = await onSearch(id);
+    setMsg(found ? null : `No case ${id} in the simulated dataset`);
+  };
+
   return (
-    <header className="header">
+    <header className="topbar">
       <div className="brand">
-        <h1>Meridian</h1>
-        <p className="tagline">Every case, every station, mapped live.</p>
+        <span className="wordmark">MERIDIAN</span>
+        <span className="sublabel">CellPath lab workflow assistant</span>
       </div>
+      <nav className="tabs" aria-label="Sections">
+        {TABS.map((t) => (
+          <button key={t} className={`tab ${t === tab ? "on" : ""}`} onClick={() => onTab(t)} aria-current={t === tab ? "page" : undefined}>
+            {t}
+          </button>
+        ))}
+      </nav>
+      <form className="search-box" onSubmit={submit} role="search">
+        <span aria-hidden>🔍</span>
+        <input value={q} onChange={(e) => (setQ(e.target.value), setMsg(null))} placeholder="Case ID, e.g. 26H2345" aria-label="Search case ID" />
+        {msg && <span className="search-msg">{msg}</span>}
+      </form>
       <div className="clock" aria-label="Simulated clock">
-        <span className="clock-label">Simulated clock</span>
+        <span className="clock-label">Simulated clock (fixed)</span>
         <span className="mono clock-time">{overview ? clockLabel(overview.clock) : "…"}</span>
-        <span className={`live ${connected ? "on" : "off"}`}>{connected ? "● live" : "○ reconnecting"}</span>
+        <span className={`live ${connected ? "on" : "off"}`}>{connected ? "● live feed (simulated)" : "○ reconnecting"}</span>
       </div>
       <span className="badge-sim" title="Fictional dataset; not connected to any laboratory">
-        SIMULATED DATA
+        SIMULATED
       </span>
-      <div className="tiles">
-        {tiles.map((t) => (
-          <div key={t.label} className={`tile ${t.tone ?? ""}`}>
-            <Count className="tile-value mono" value={t.value} />
-            <span className="tile-label">{t.label}</span>
-          </div>
-        ))}
-      </div>
       <div className="demo-controls" aria-label="Demo controls">
         <button className="btn-trigger" onClick={onTrigger} disabled={busy || !overview || overview.triggerFired}>
-          {overview?.triggerFired ? "Stainer failure triggered" : "Trigger stainer basket failure"}
+          {overview?.triggerFired ? "H&E incident replayed" : "Replay H&E incident"}
         </button>
         <button className="btn-quiet" onClick={onReset} disabled={busy}>
           Reset demo
