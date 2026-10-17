@@ -15,7 +15,8 @@
     "convert": "tsx scripts/convert.ts",
     "mcp": "tsx mcp/src/index.ts",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "export:hf": "tsx scripts/export_hf_dataset.ts"
   },
   "dependencies": {
     "@hono/node-server": "^2.1.5",

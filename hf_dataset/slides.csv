@@ -1,0 +1,424 @@
+Case ID,Block ID,Slide ID,Level,Stainer basket,Slide status,Scan status
+26H1002,A1,26H1002-S01,L1,,Cut; awaiting H&E staining,Not yet scanned
+26H1002,A1,26H1002-S02,L2,,Cut; awaiting H&E staining,Not yet scanned
+26H1002,A1,26H1002-S03,L3,,Cut; awaiting H&E staining,Not yet scanned
+26H1004,A1,26H1004-S01,L1,,Level L1 cut; required L2-L3 not recorded,Not yet scanned
+26H1005,A1,26H1005-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1005,A1,26H1005-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1006,A1,26H1006-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1006,A1,26H1006-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1007,A1,26H1007-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1007,A1,26H1007-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1008,A1,26H1008-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1008,A1,26H1008-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1009,A1,26H1009-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1009,A1,26H1009-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1010,A1,26H1010-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1010,A1,26H1010-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1011,A1,26H1011-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1011,A1,26H1011-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1012,A1,26H1012-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1012,A1,26H1012-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1013,A1,26H1013-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1013,A1,26H1013-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1014,A1,26H1014-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1014,A1,26H1014-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1015,A1,26H1015-S01,L1,,Scan-ready; waiting in digital scan queue,Expected; no scan-complete event recorded
+26H1015,A1,26H1015-S02,L2,,Scan-ready; waiting in digital scan queue,Expected; no scan-complete event recorded
+26H1017,A1,26H1017-S01,L1,,Scanned; awaiting IQC,SCAN_COMPLETE recorded
+26H1017,A1,26H1017-S02,L2,,Scanned; awaiting IQC,SCAN_COMPLETE recorded
+26H1018,A1,26H1018-S01,L1,,Scan and IQC complete; ready for handoff,SCAN_COMPLETE recorded
+26H1018,A1,26H1018-S02,L2,,Scan and IQC complete; ready for handoff,SCAN_COMPLETE recorded
+26H1022,A1,26H1022-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1022,A1,26H1022-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1023,A1,26H1023-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1023,A1,26H1023-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1023,A1,26H1023-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1024,A1,26H1024-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1024,A1,26H1024-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1024,A1,26H1024-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1024,A1,26H1024-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1025,A1,26H1025-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1026,A1,26H1026-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1026,A1,26H1026-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1027,A1,26H1027-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1027,A1,26H1027-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1027,A1,26H1027-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1028,A1,26H1028-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1028,A1,26H1028-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1028,A1,26H1028-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1028,A1,26H1028-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1029,A1,26H1029-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1030,A1,26H1030-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1030,A1,26H1030-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1031,A1,26H1031-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1031,A1,26H1031-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1031,A1,26H1031-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1032,A1,26H1032-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1032,A1,26H1032-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1032,A1,26H1032-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1032,A1,26H1032-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1033,A1,26H1033-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1034,A1,26H1034-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1034,A1,26H1034-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1035,A1,26H1035-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1035,A1,26H1035-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1035,A1,26H1035-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1036,A1,26H1036-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1036,A1,26H1036-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1036,A1,26H1036-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1036,A1,26H1036-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1037,A1,26H1037-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1038,A1,26H1038-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1038,A1,26H1038-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1039,A1,26H1039-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1039,A1,26H1039-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1039,A1,26H1039-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1040,A1,26H1040-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1040,A1,26H1040-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1040,A1,26H1040-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1040,A1,26H1040-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1041,A1,26H1041-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1042,A1,26H1042-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1042,A1,26H1042-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1043,A1,26H1043-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1043,A1,26H1043-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1043,A1,26H1043-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1044,A1,26H1044-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1044,A1,26H1044-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1044,A1,26H1044-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1044,A1,26H1044-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1045,A1,26H1045-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1046,A1,26H1046-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1046,A1,26H1046-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1047,A1,26H1047-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1047,A1,26H1047-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1047,A1,26H1047-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1048,A1,26H1048-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1048,A1,26H1048-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1048,A1,26H1048-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1048,A1,26H1048-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1049,A1,26H1049-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1050,A1,26H1050-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1050,A1,26H1050-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1051,A1,26H1051-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1051,A1,26H1051-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1051,A1,26H1051-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1052,A1,26H1052-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1052,A1,26H1052-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1052,A1,26H1052-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1052,A1,26H1052-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1053,A1,26H1053-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1054,A1,26H1054-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1054,A1,26H1054-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1055,A1,26H1055-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1055,A1,26H1055-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1055,A1,26H1055-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1056,A1,26H1056-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1056,A1,26H1056-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1056,A1,26H1056-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1056,A1,26H1056-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1057,A1,26H1057-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1058,A1,26H1058-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1058,A1,26H1058-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1059,A1,26H1059-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1059,A1,26H1059-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1059,A1,26H1059-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1060,A1,26H1060-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1060,A1,26H1060-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1060,A1,26H1060-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1060,A1,26H1060-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1061,A1,26H1061-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1062,A1,26H1062-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1062,A1,26H1062-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1063,A1,26H1063-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1063,A1,26H1063-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1063,A1,26H1063-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1064,A1,26H1064-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1064,A1,26H1064-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1064,A1,26H1064-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1064,A1,26H1064-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1065,A1,26H1065-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1066,A1,26H1066-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1066,A1,26H1066-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1067,A1,26H1067-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1067,A1,26H1067-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1067,A1,26H1067-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1068,A1,26H1068-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1068,A1,26H1068-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1068,A1,26H1068-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1068,A1,26H1068-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1069,A1,26H1069-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1070,A1,26H1070-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1070,A1,26H1070-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1071,A1,26H1071-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1071,A1,26H1071-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1071,A1,26H1071-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1072,A1,26H1072-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1072,A1,26H1072-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1072,A1,26H1072-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1072,A1,26H1072-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1073,A1,26H1073-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1074,A1,26H1074-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1074,A1,26H1074-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1075,A1,26H1075-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1075,A1,26H1075-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1075,A1,26H1075-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1076,A1,26H1076-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1076,A1,26H1076-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1076,A1,26H1076-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1076,A1,26H1076-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1077,A1,26H1077-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1078,A1,26H1078-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1078,A1,26H1078-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1079,A1,26H1079-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1079,A1,26H1079-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1079,A1,26H1079-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1080,A1,26H1080-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1080,A1,26H1080-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1080,A1,26H1080-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1080,A1,26H1080-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1081,A1,26H1081-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1082,A1,26H1082-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1082,A1,26H1082-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1083,A1,26H1083-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1083,A1,26H1083-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1083,A1,26H1083-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1084,A1,26H1084-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1084,A1,26H1084-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1084,A1,26H1084-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1084,A1,26H1084-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1085,A1,26H1085-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1086,A1,26H1086-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1086,A1,26H1086-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1087,A1,26H1087-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1087,A1,26H1087-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1087,A1,26H1087-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1088,A1,26H1088-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1088,A1,26H1088-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1088,A1,26H1088-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1088,A1,26H1088-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1089,A1,26H1089-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1090,A1,26H1090-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1090,A1,26H1090-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1091,A1,26H1091-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1091,A1,26H1091-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1091,A1,26H1091-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1092,A1,26H1092-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1092,A1,26H1092-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1092,A1,26H1092-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1092,A1,26H1092-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1093,A1,26H1093-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1094,A1,26H1094-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1094,A1,26H1094-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1095,A1,26H1095-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1095,A1,26H1095-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1095,A1,26H1095-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1096,A1,26H1096-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1096,A1,26H1096-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1096,A1,26H1096-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1096,A1,26H1096-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1097,A1,26H1097-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1098,A1,26H1098-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1098,A1,26H1098-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1099,A1,26H1099-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1099,A1,26H1099-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1099,A1,26H1099-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1100,A1,26H1100-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1100,A1,26H1100-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1100,A1,26H1100-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1100,A1,26H1100-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1101,A1,26H1101-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1102,A1,26H1102-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1102,A1,26H1102-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1103,A1,26H1103-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1103,A1,26H1103-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1103,A1,26H1103-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1104,A1,26H1104-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1104,A1,26H1104-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1104,A1,26H1104-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1104,A1,26H1104-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1105,A1,26H1105-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1106,A1,26H1106-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1106,A1,26H1106-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1107,A1,26H1107-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1107,A1,26H1107-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1107,A1,26H1107-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1108,A1,26H1108-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1108,A1,26H1108-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1108,A1,26H1108-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1108,A1,26H1108-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1109,A1,26H1109-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1110,A1,26H1110-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1110,A1,26H1110-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1111,A1,26H1111-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1111,A1,26H1111-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1111,A1,26H1111-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1112,A1,26H1112-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1112,A1,26H1112-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1112,A1,26H1112-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1112,A1,26H1112-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1113,A1,26H1113-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1114,A1,26H1114-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1114,A1,26H1114-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1115,A1,26H1115-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1115,A1,26H1115-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1115,A1,26H1115-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1116,A1,26H1116-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1116,A1,26H1116-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1116,A1,26H1116-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1116,A1,26H1116-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1117,A1,26H1117-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1118,A1,26H1118-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1118,A1,26H1118-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1119,A1,26H1119-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1119,A1,26H1119-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1119,A1,26H1119-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1120,A1,26H1120-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1120,A1,26H1120-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1120,A1,26H1120-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1120,A1,26H1120-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1121,A1,26H1121-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1122,A1,26H1122-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1122,A1,26H1122-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1123,A1,26H1123-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1123,A1,26H1123-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1123,A1,26H1123-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1395,A1,26H1395-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1395,A1,26H1395-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1395,A1,26H1395-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1396,A1,26H1396-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1396,A1,26H1396-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1396,A1,26H1396-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1396,A1,26H1396-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1397,A1,26H1397-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1398,A1,26H1398-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1398,A1,26H1398-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1399,A1,26H1399-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1399,A1,26H1399-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1399,A1,26H1399-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1400,A1,26H1400-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1400,A1,26H1400-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1400,A1,26H1400-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1400,A1,26H1400-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1401,A1,26H1401-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1402,A1,26H1402-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1402,A1,26H1402-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1403,A1,26H1403-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1403,A1,26H1403-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1403,A1,26H1403-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1404,A1,26H1404-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1404,A1,26H1404-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1404,A1,26H1404-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1404,A1,26H1404-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1405,A1,26H1405-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1406,A1,26H1406-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1406,A1,26H1406-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1407,A1,26H1407-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1407,A1,26H1407-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1407,A1,26H1407-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1408,A1,26H1408-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1408,A1,26H1408-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1408,A1,26H1408-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1408,A1,26H1408-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1409,A1,26H1409-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1410,A1,26H1410-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1410,A1,26H1410-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1411,A1,26H1411-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1411,A1,26H1411-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1411,A1,26H1411-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1412,A1,26H1412-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1412,A1,26H1412-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1412,A1,26H1412-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1412,A1,26H1412-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1413,A1,26H1413-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1414,A1,26H1414-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1414,A1,26H1414-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1415,A1,26H1415-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1415,A1,26H1415-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1415,A1,26H1415-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1416,A1,26H1416-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1416,A1,26H1416-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1416,A1,26H1416-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1416,A1,26H1416-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1417,A1,26H1417-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1418,A1,26H1418-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1418,A1,26H1418-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1419,A1,26H1419-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1419,A1,26H1419-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1419,A1,26H1419-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1420,A1,26H1420-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1420,A1,26H1420-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1420,A1,26H1420-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1420,A1,26H1420-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1421,A1,26H1421-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1422,A1,26H1422-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1422,A1,26H1422-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1423,A1,26H1423-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1423,A1,26H1423-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1423,A1,26H1423-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1424,A1,26H1424-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1424,A1,26H1424-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1424,A1,26H1424-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1424,A1,26H1424-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1425,A1,26H1425-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1426,A1,26H1426-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1426,A1,26H1426-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1427,A1,26H1427-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1427,A1,26H1427-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1427,A1,26H1427-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1428,A1,26H1428-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1428,A1,26H1428-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1428,A1,26H1428-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1428,A1,26H1428-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1429,A1,26H1429-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1430,A1,26H1430-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1430,A1,26H1430-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1431,A1,26H1431-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1431,A1,26H1431-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1431,A1,26H1431-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1432,A1,26H1432-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1432,A1,26H1432-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1432,A1,26H1432-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1432,A1,26H1432-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1433,A1,26H1433-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1434,A1,26H1434-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1434,A1,26H1434-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1435,A1,26H1435-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1435,A1,26H1435-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1435,A1,26H1435-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1436,A1,26H1436-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1436,A1,26H1436-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1436,A1,26H1436-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1436,A1,26H1436-S04,L4,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1437,A1,26H1437-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1438,A1,26H1438-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1438,A1,26H1438-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1439,A1,26H1439-S01,L1,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1439,A1,26H1439-S02,L2,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1439,A1,26H1439-S03,L3,,Current stage in workflow,Not yet scanned / not required at this stage
+26H1440,A1,26H1440-S01,L1,,Scan complete; awaiting IQC,Scan-complete event recorded
+26H1440,A1,26H1440-S02,L2,,Scan complete; awaiting IQC,Scan-complete event recorded
+26H1440,A1,26H1440-S03,L3,,Scan complete; awaiting IQC,Scan-complete event recorded
+26H1440,A1,26H1440-S04,L4,,Scan complete; awaiting IQC,Scan-complete event recorded
+26H1441,A1,26H1441-S01,L1,,Scan complete; awaiting IQC,Scan-complete event recorded
+26H1442,A1,26H1442-S01,L1,,Scan complete; awaiting IQC,Scan-complete event recorded
+26H1442,A1,26H1442-S02,L2,,Scan complete; awaiting IQC,Scan-complete event recorded
+26H1443,A1,26H1443-S01,L1,,Scan complete; awaiting IQC,Scan-complete event recorded
+26H1443,A1,26H1443-S02,L2,,Scan complete; awaiting IQC,Scan-complete event recorded
+26H1443,A1,26H1443-S03,L3,,Scan complete; awaiting IQC,Scan-complete event recorded
+26H1444,A1,26H1444-S01,L1,,Scan complete; case ready for handoff,Scan-complete event recorded
+26H1444,A1,26H1444-S02,L2,,Scan complete; case ready for handoff,Scan-complete event recorded
+26H1444,A1,26H1444-S03,L3,,Scan complete; case ready for handoff,Scan-complete event recorded
+26H1444,A1,26H1444-S04,L4,,Scan complete; case ready for handoff,Scan-complete event recorded
+26H1445,A1,26H1445-S01,L1,,Scan complete; case ready for handoff,Scan-complete event recorded
+26H1446,A1,26H1446-S01,L1,,Scan complete; case ready for handoff,Scan-complete event recorded
+26H1446,A1,26H1446-S02,L2,,Scan complete; case ready for handoff,Scan-complete event recorded
+26H1447,A1,26H1447-S01,L1,,Scan complete; case ready for handoff,Scan-complete event recorded
+26H1447,A1,26H1447-S02,L2,,Scan complete; case ready for handoff,Scan-complete event recorded
+26H1447,A1,26H1447-S03,L3,,Scan complete; case ready for handoff,Scan-complete event recorded
+26H1448,A1,26H1448-S01,L1,,Scan complete; case ready for handoff,Scan-complete event recorded
+26H1448,A1,26H1448-S02,L2,,Scan complete; case ready for handoff,Scan-complete event recorded
+26H1448,A1,26H1448-S03,L3,,Scan complete; case ready for handoff,Scan-complete event recorded
+26H1448,A1,26H1448-S04,L4,,Scan complete; case ready for handoff,Scan-complete event recorded
+26H1449,A1,26H1449-S01,L1,,Scan complete; case ready for handoff,Scan-complete event recorded

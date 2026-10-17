@@ -1,0 +1,1231 @@
+Event ID,Simulated time,Case ID,Block ID,Slide ID,Stage,Station / equipment,Event type,Event details,Activation state
+EV-00006,Day -1 06:30,26H1015,,,Received/booked,Booking,CASE_RECEIVED,Small biopsy received on the previous working day.,Recorded
+EV-00209,Day -1 08:30,26H1015,,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,One block prepared.,Recorded
+EV-00380,Day -1 16:30,26H1015,,,Awaiting processor or processing,Processor A,PROCESSOR_LOADED,Loaded before the illustrative 17:00 cutoff.,Recorded
+EV-00001,Day 0 06:30,26H1001,,,Received/booked,Booking,CASE_RECEIVED,BCSP-linked bowel polyp biopsy received.,Recorded
+EV-00002,Day 0 06:30,26H1002,,,Received/booked,Booking,CASE_RECEIVED,Cervical-screening biopsy received.,Recorded
+EV-00003,Day 0 06:30,26H1003,,,Received/booked,Booking,CASE_RECEIVED,Large resection received; six blocks expected.,Recorded
+EV-00004,Day 0 06:30,26H1004,,,Received/booked,Booking,CASE_RECEIVED,GI mucosal biopsy received.,Recorded
+EV-00005,Day 0 06:30,26H1005,,,Received/booked,Booking,CASE_RECEIVED,Routine tissue case received.,Recorded
+EV-00007,Day 0 06:30,26H1017,,,Received/booked,Booking,CASE_RECEIVED,Routine biopsy received.,Recorded
+EV-00008,Day 0 06:30,26H1018,,,Received/booked,Booking,CASE_RECEIVED,Routine biopsy received.,Recorded
+EV-00009,Day 0 06:30,26H1022,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00010,Day 0 06:30,26H1023,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00011,Day 0 06:30,26H1024,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00012,Day 0 06:30,26H1025,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00013,Day 0 06:30,26H1026,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00014,Day 0 06:30,26H1027,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00015,Day 0 06:30,26H1028,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00016,Day 0 06:30,26H1029,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00017,Day 0 06:30,26H1030,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00018,Day 0 06:30,26H1031,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00019,Day 0 06:30,26H1032,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00020,Day 0 06:30,26H1033,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00021,Day 0 06:30,26H1034,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00022,Day 0 06:30,26H1035,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00023,Day 0 06:30,26H1036,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00024,Day 0 06:30,26H1037,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00025,Day 0 06:30,26H1038,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00026,Day 0 06:30,26H1039,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00027,Day 0 06:30,26H1040,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00028,Day 0 06:30,26H1041,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00029,Day 0 06:30,26H1042,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00030,Day 0 06:30,26H1043,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00031,Day 0 06:30,26H1044,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00032,Day 0 06:30,26H1045,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00033,Day 0 06:30,26H1046,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00034,Day 0 06:30,26H1047,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00035,Day 0 06:30,26H1048,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00036,Day 0 06:30,26H1049,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00037,Day 0 06:30,26H1050,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00038,Day 0 06:30,26H1051,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00039,Day 0 06:30,26H1052,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00040,Day 0 06:30,26H1053,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00041,Day 0 06:30,26H1054,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00042,Day 0 06:30,26H1055,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00043,Day 0 06:30,26H1056,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00044,Day 0 06:30,26H1057,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00045,Day 0 06:30,26H1058,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00046,Day 0 06:30,26H1059,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00047,Day 0 06:30,26H1060,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00048,Day 0 06:30,26H1061,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00049,Day 0 06:30,26H1062,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00050,Day 0 06:30,26H1063,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00051,Day 0 06:30,26H1064,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00052,Day 0 06:30,26H1065,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00053,Day 0 06:30,26H1066,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00054,Day 0 06:30,26H1067,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00055,Day 0 06:30,26H1068,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00056,Day 0 06:30,26H1069,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00057,Day 0 06:30,26H1070,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00058,Day 0 06:30,26H1071,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00059,Day 0 06:30,26H1072,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00060,Day 0 06:30,26H1073,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00061,Day 0 06:30,26H1074,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00062,Day 0 06:30,26H1075,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00063,Day 0 06:30,26H1076,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00064,Day 0 06:30,26H1077,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00065,Day 0 06:30,26H1078,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00066,Day 0 06:30,26H1079,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00067,Day 0 06:30,26H1080,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00068,Day 0 06:30,26H1081,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00069,Day 0 06:30,26H1082,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00070,Day 0 06:30,26H1083,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00071,Day 0 06:30,26H1084,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00072,Day 0 06:30,26H1085,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00073,Day 0 06:30,26H1086,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00074,Day 0 06:30,26H1087,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00075,Day 0 06:30,26H1088,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00076,Day 0 06:30,26H1089,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00077,Day 0 06:30,26H1090,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00078,Day 0 06:30,26H1091,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00079,Day 0 06:30,26H1092,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00080,Day 0 06:30,26H1093,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00081,Day 0 06:30,26H1094,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00082,Day 0 06:30,26H1095,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00083,Day 0 06:30,26H1096,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00084,Day 0 06:30,26H1097,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00085,Day 0 06:30,26H1098,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00086,Day 0 06:30,26H1099,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00087,Day 0 06:30,26H1100,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00088,Day 0 06:30,26H1101,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00089,Day 0 06:30,26H1102,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00090,Day 0 06:30,26H1103,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00091,Day 0 06:30,26H1104,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00092,Day 0 06:30,26H1105,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00093,Day 0 06:30,26H1106,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00094,Day 0 06:30,26H1107,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00095,Day 0 06:30,26H1108,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00096,Day 0 06:30,26H1109,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00097,Day 0 06:30,26H1110,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00098,Day 0 06:30,26H1111,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00099,Day 0 06:30,26H1112,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00100,Day 0 06:30,26H1113,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00101,Day 0 06:30,26H1114,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00102,Day 0 06:30,26H1115,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00103,Day 0 06:30,26H1116,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00104,Day 0 06:30,26H1117,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00105,Day 0 06:30,26H1118,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00106,Day 0 06:30,26H1119,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00107,Day 0 06:30,26H1120,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00108,Day 0 06:30,26H1121,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00109,Day 0 06:30,26H1122,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00110,Day 0 06:30,26H1123,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00111,Day 0 06:30,26H1366,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00112,Day 0 06:30,26H1367,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00113,Day 0 06:30,26H1368,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00114,Day 0 06:30,26H1369,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00115,Day 0 06:30,26H1370,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00116,Day 0 06:30,26H1371,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00117,Day 0 06:30,26H1372,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00118,Day 0 06:30,26H1373,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00119,Day 0 06:30,26H1374,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00120,Day 0 06:30,26H1375,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00121,Day 0 06:30,26H1376,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00122,Day 0 06:30,26H1377,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00123,Day 0 06:30,26H1378,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00124,Day 0 06:30,26H1379,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00125,Day 0 06:30,26H1380,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00126,Day 0 06:30,26H1381,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00127,Day 0 06:30,26H1382,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00128,Day 0 06:30,26H1383,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00129,Day 0 06:30,26H1384,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00130,Day 0 06:30,26H1385,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00131,Day 0 06:30,26H1386,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00132,Day 0 06:30,26H1387,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00133,Day 0 06:30,26H1388,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00134,Day 0 06:30,26H1389,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00135,Day 0 06:30,26H1390,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00136,Day 0 06:30,26H1391,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00137,Day 0 06:30,26H1392,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00138,Day 0 06:30,26H1393,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00139,Day 0 06:30,26H1394,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00140,Day 0 06:30,26H1395,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00141,Day 0 06:30,26H1396,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00142,Day 0 06:30,26H1397,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00143,Day 0 06:30,26H1398,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00144,Day 0 06:30,26H1399,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00145,Day 0 06:30,26H1400,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00146,Day 0 06:30,26H1401,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00147,Day 0 06:30,26H1402,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00148,Day 0 06:30,26H1403,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00149,Day 0 06:30,26H1404,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00150,Day 0 06:30,26H1405,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00151,Day 0 06:30,26H1406,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00152,Day 0 06:30,26H1407,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00153,Day 0 06:30,26H1408,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00154,Day 0 06:30,26H1409,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00155,Day 0 06:30,26H1410,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00156,Day 0 06:30,26H1411,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00157,Day 0 06:30,26H1412,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00158,Day 0 06:30,26H1413,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00159,Day 0 06:30,26H1414,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00160,Day 0 06:30,26H1415,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00161,Day 0 06:30,26H1416,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00162,Day 0 06:30,26H1417,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00163,Day 0 06:30,26H1418,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00164,Day 0 06:30,26H1419,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00165,Day 0 06:30,26H1420,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00166,Day 0 06:30,26H1421,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00167,Day 0 06:30,26H1422,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00168,Day 0 06:30,26H1423,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00169,Day 0 06:30,26H1424,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00170,Day 0 06:30,26H1425,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00171,Day 0 06:30,26H1426,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00172,Day 0 06:30,26H1427,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00173,Day 0 06:30,26H1428,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00174,Day 0 06:30,26H1429,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00175,Day 0 06:30,26H1430,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00176,Day 0 06:30,26H1431,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00177,Day 0 06:30,26H1432,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00178,Day 0 06:30,26H1433,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00179,Day 0 06:30,26H1434,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00180,Day 0 06:30,26H1435,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00181,Day 0 06:30,26H1436,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00182,Day 0 06:30,26H1437,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00183,Day 0 06:30,26H1438,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00184,Day 0 06:30,26H1439,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00185,Day 0 06:30,26H1440,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00186,Day 0 06:30,26H1441,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00187,Day 0 06:30,26H1442,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00188,Day 0 06:30,26H1443,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00189,Day 0 06:30,26H1444,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00190,Day 0 06:30,26H1445,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00191,Day 0 06:30,26H1446,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00192,Day 0 06:30,26H1447,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00193,Day 0 06:30,26H1448,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00194,Day 0 06:30,26H1449,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-01221,Day 0 06:30,26H1019,,,Received/booked,Booking,CASE_RECEIVED,Case received on Day 0; it later remained uncut in the previous-day microtomy backlog.,Recorded
+EV-00195,Day 0 06:40,26H1006,,,Received/booked,Booking,CASE_RECEIVED,Routine tissue case received.,Recorded
+EV-00643,Day 0 06:45,26H1015,,,Awaiting processor or processing,Processor A,PROCESSOR_COMPLETE,Overnight run complete.,Recorded
+EV-00196,Day 0 06:50,26H1007,,,Received/booked,Booking,CASE_RECEIVED,Routine tissue case received.,Recorded
+EV-00197,Day 0 07:00,26H1008,,,Received/booked,Booking,CASE_RECEIVED,Routine tissue case received.,Recorded
+EV-00659,Day 0 07:00,26H1015,,,Embedding,Embedding station,EMBEDDING_STARTED,Embedding begins in the staffed morning window.,Recorded
+EV-00198,Day 0 07:10,26H1009,,,Received/booked,Booking,CASE_RECEIVED,Routine tissue case received.,Recorded
+EV-00199,Day 0 07:20,26H1010,,,Received/booked,Booking,CASE_RECEIVED,Routine tissue case received.,Recorded
+EV-00200,Day 0 07:30,26H1011,,,Received/booked,Booking,CASE_RECEIVED,Routine tissue case received.,Recorded
+EV-00201,Day 0 07:40,26H1012,,,Received/booked,Booking,CASE_RECEIVED,Routine tissue case received.,Recorded
+EV-00202,Day 0 07:50,26H1013,,,Received/booked,Booking,CASE_RECEIVED,Routine tissue case received.,Recorded
+EV-00203,Day 0 08:00,26H1005,,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,One block prepared.,Recorded
+EV-00204,Day 0 08:00,26H1014,,,Received/booked,Booking,CASE_RECEIVED,Routine tissue case received.,Recorded
+EV-00205,Day 0 08:10,26H1006,,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,One block prepared.,Recorded
+EV-00206,Day 0 08:20,26H1007,,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,One block prepared.,Recorded
+EV-00207,Day 0 08:30,26H1001,,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,Two blocks prepared.,Recorded
+EV-00208,Day 0 08:30,26H1008,,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,One block prepared.,Recorded
+EV-00882,Day 0 08:30,26H1015,,,Microtomy,Microtomy station 3,EMBEDDING_COMPLETE,Block embedded.,Recorded
+EV-00210,Day 0 08:40,26H1009,,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,One block prepared.,Recorded
+EV-00211,Day 0 08:47,26H1004,A1,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,One block prepared; protocol requires three levels.,Recorded
+EV-00212,Day 0 08:50,26H1010,,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,One block prepared.,Recorded
+EV-00213,Day 0 09:00,26H1002,,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,One block prepared.,Recorded
+EV-00214,Day 0 09:00,26H1011,,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,One block prepared.,Recorded
+EV-00215,Day 0 09:00,26H1017,,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,One block prepared.,Recorded
+EV-00216,Day 0 09:00,26H1018,,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,One block prepared.,Recorded
+EV-01095,Day 0 09:00,26H1015,A1,,H&E staining,Microtomy station 3,LEVELS_CUT,Two slides prepared.,Recorded
+EV-00217,Day 0 09:10,26H1012,,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,One block prepared.,Recorded
+EV-00218,Day 0 09:20,26H1013,,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,One block prepared.,Recorded
+EV-00219,Day 0 09:30,26H1014,,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,One block prepared.,Recorded
+EV-00220,Day 0 10:00,26H1003,A1,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,Block A1 completed cut-up; block F1 remains for pathologist cut-up.,Recorded
+EV-01222,Day 0 10:00,26H1003,B1,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,Block B1 completed cut-up; block F1 remains for pathologist cut-up.,Recorded
+EV-01223,Day 0 10:00,26H1003,C1,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,Block C1 completed cut-up; block F1 remains for pathologist cut-up.,Recorded
+EV-01224,Day 0 10:00,26H1003,D1,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,Block D1 completed cut-up; block F1 remains for pathologist cut-up.,Recorded
+EV-01225,Day 0 10:00,26H1003,E1,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,Block E1 completed cut-up; block F1 remains for pathologist cut-up.,Recorded
+EV-00221,Day 0 10:30,26H1019,,,Embedding,Embedding station,EMBEDDING_COMPLETE,Representative carry-over case embedded during the prior working day.,Recorded
+EV-01098,Day 0 11:00,26H1015,,,Scanning,H&E stainer,STAINING_COMPLETE,Slides stained and scan-ready.,Recorded
+EV-00222,Day 0 15:00,26H1019,,,Microtomy,Microtomy queue,BACKLOG_ENTERED_MICROTOMY,Embedded case remained uncut at the end of the prior day; no slides created.,Recorded
+EV-00226,Day 0 15:00,26H1024,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00230,Day 0 15:00,26H1027,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00234,Day 0 15:00,26H1030,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00238,Day 0 15:00,26H1033,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00242,Day 0 15:00,26H1036,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00246,Day 0 15:00,26H1039,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00250,Day 0 15:00,26H1042,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00254,Day 0 15:00,26H1045,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00258,Day 0 15:00,26H1048,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00261,Day 0 15:00,26H1050,,,Microtomy,Priority queue,URGENT_PRIORITY_TRACKED,Urgent priority flag; no failure injected.,Recorded
+EV-00263,Day 0 15:00,26H1051,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00267,Day 0 15:00,26H1054,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00271,Day 0 15:00,26H1057,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00273,Day 0 15:00,26H1058,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,BCSP linked.,Recorded
+EV-00276,Day 0 15:00,26H1060,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00280,Day 0 15:00,26H1063,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00282,Day 0 15:00,26H1064,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00285,Day 0 15:00,26H1066,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00289,Day 0 15:00,26H1069,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00293,Day 0 15:00,26H1072,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00297,Day 0 15:00,26H1075,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00301,Day 0 15:00,26H1078,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00303,Day 0 15:00,26H1079,,,Microtomy,Priority queue,URGENT_PRIORITY_TRACKED,Urgent priority flag; no failure injected.,Recorded
+EV-00306,Day 0 15:00,26H1081,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00310,Day 0 15:00,26H1084,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00314,Day 0 15:00,26H1087,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00318,Day 0 15:00,26H1090,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00322,Day 0 15:00,26H1093,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00325,Day 0 15:00,26H1095,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,BCSP linked.,Recorded
+EV-00327,Day 0 15:00,26H1096,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00331,Day 0 15:00,26H1099,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00335,Day 0 15:00,26H1102,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00339,Day 0 15:00,26H1105,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00342,Day 0 15:00,26H1107,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00344,Day 0 15:00,26H1108,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00345,Day 0 15:00,26H1108,,,Microtomy,Priority queue,URGENT_PRIORITY_TRACKED,Urgent priority flag; no failure injected.,Recorded
+EV-00349,Day 0 15:00,26H1111,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00353,Day 0 15:00,26H1114,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00357,Day 0 15:00,26H1117,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00361,Day 0 15:00,26H1120,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00365,Day 0 15:00,26H1123,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01099,Day 0 15:30,26H1015,,,Scanning,Digital scan queue,SCAN_EXPECTED,Slides have no scan-complete event; later cases do.,Recorded
+EV-00366,Day 0 16:30,26H1001,,,Awaiting processor or processing,Processor A,PROCESSOR_LOADED,Loaded before the illustrative 17:00 cutoff.,Recorded
+EV-00367,Day 0 16:30,26H1002,,,Awaiting processor or processing,Processor A,PROCESSOR_LOADED,Loaded before the illustrative 17:00 cutoff.,Recorded
+EV-00368,Day 0 16:30,26H1003,A1,,Awaiting processor or processing,Processor D,PROCESSOR_LOADED,Block A1 loaded for the overnight large-specimen run.,Recorded
+EV-00369,Day 0 16:30,26H1004,,,Awaiting processor or processing,Processor A,PROCESSOR_LOADED,Loaded before the illustrative 17:00 cutoff.,Recorded
+EV-00370,Day 0 16:30,26H1005,,,Awaiting processor or processing,Processor A,PROCESSOR_LOADED,Loaded before the illustrative 17:00 cutoff.,Recorded
+EV-00371,Day 0 16:30,26H1006,,,Awaiting processor or processing,Processor A,PROCESSOR_LOADED,Loaded before the illustrative 17:00 cutoff.,Recorded
+EV-00372,Day 0 16:30,26H1007,,,Awaiting processor or processing,Processor A,PROCESSOR_LOADED,Loaded before the illustrative 17:00 cutoff.,Recorded
+EV-00373,Day 0 16:30,26H1008,,,Awaiting processor or processing,Processor A,PROCESSOR_LOADED,Loaded before the illustrative 17:00 cutoff.,Recorded
+EV-00374,Day 0 16:30,26H1009,,,Awaiting processor or processing,Processor A,PROCESSOR_LOADED,Loaded before the illustrative 17:00 cutoff.,Recorded
+EV-00375,Day 0 16:30,26H1010,,,Awaiting processor or processing,Processor A,PROCESSOR_LOADED,Loaded before the illustrative 17:00 cutoff.,Recorded
+EV-00376,Day 0 16:30,26H1011,,,Awaiting processor or processing,Processor A,PROCESSOR_LOADED,Loaded before the illustrative 17:00 cutoff.,Recorded
+EV-00377,Day 0 16:30,26H1012,,,Awaiting processor or processing,Processor A,PROCESSOR_LOADED,Loaded before the illustrative 17:00 cutoff.,Recorded
+EV-00378,Day 0 16:30,26H1013,,,Awaiting processor or processing,Processor A,PROCESSOR_LOADED,Loaded before the illustrative 17:00 cutoff.,Recorded
+EV-00379,Day 0 16:30,26H1014,,,Awaiting processor or processing,Processor A,PROCESSOR_LOADED,Loaded before the illustrative 17:00 cutoff.,Recorded
+EV-00381,Day 0 16:30,26H1017,,,Awaiting processor or processing,Processor A,PROCESSOR_LOADED,Loaded before the illustrative 17:00 cutoff.,Recorded
+EV-00382,Day 0 16:30,26H1018,,,Awaiting processor or processing,Processor A,PROCESSOR_LOADED,Loaded before the illustrative 17:00 cutoff.,Recorded
+EV-01226,Day 0 16:30,26H1003,B1,,Awaiting processor or processing,Processor D,PROCESSOR_LOADED,Block B1 loaded for the overnight large-specimen run.,Recorded
+EV-01227,Day 0 16:30,26H1003,C1,,Awaiting processor or processing,Processor D,PROCESSOR_LOADED,Block C1 loaded for the overnight large-specimen run.,Recorded
+EV-01228,Day 0 16:30,26H1003,D1,,Awaiting processor or processing,Processor D,PROCESSOR_LOADED,Block D1 loaded for the overnight large-specimen run.,Recorded
+EV-01229,Day 0 16:30,26H1003,E1,,Awaiting processor or processing,Processor D,PROCESSOR_LOADED,Block E1 loaded for the overnight large-specimen run.,Recorded
+EV-00383,Day 1 06:30,26H1016,,,Received/booked,Booking,CASE_RECEIVED,Bone sample received.,Recorded
+EV-00384,Day 1 06:30,26H1020,,,Received/booked,Booking,CASE_RECEIVED,Large tissue sample received.,Recorded
+EV-00385,Day 1 06:30,26H1021,,,Received/booked,Booking,CASE_RECEIVED,Large tissue sample received.,Recorded
+EV-00386,Day 1 06:30,26H1124,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00387,Day 1 06:30,26H1125,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00388,Day 1 06:30,26H1126,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00389,Day 1 06:30,26H1127,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00390,Day 1 06:30,26H1128,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00391,Day 1 06:30,26H1129,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00392,Day 1 06:30,26H1130,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00393,Day 1 06:30,26H1131,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00394,Day 1 06:30,26H1132,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00395,Day 1 06:30,26H1133,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00396,Day 1 06:30,26H1134,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00397,Day 1 06:30,26H1135,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00398,Day 1 06:30,26H1136,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00399,Day 1 06:30,26H1137,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00400,Day 1 06:30,26H1138,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00401,Day 1 06:30,26H1139,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00402,Day 1 06:30,26H1140,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00403,Day 1 06:30,26H1141,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00404,Day 1 06:30,26H1142,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00405,Day 1 06:30,26H1143,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00406,Day 1 06:30,26H1144,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00407,Day 1 06:30,26H1145,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00408,Day 1 06:30,26H1146,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00409,Day 1 06:30,26H1147,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00410,Day 1 06:30,26H1148,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00411,Day 1 06:30,26H1149,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00412,Day 1 06:30,26H1150,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00413,Day 1 06:30,26H1151,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00414,Day 1 06:30,26H1152,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00415,Day 1 06:30,26H1153,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00416,Day 1 06:30,26H1154,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00417,Day 1 06:30,26H1155,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00418,Day 1 06:30,26H1156,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00419,Day 1 06:30,26H1157,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00420,Day 1 06:30,26H1158,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00421,Day 1 06:30,26H1159,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00422,Day 1 06:30,26H1160,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00423,Day 1 06:30,26H1161,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00424,Day 1 06:30,26H1162,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00425,Day 1 06:30,26H1163,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00426,Day 1 06:30,26H1164,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00427,Day 1 06:30,26H1165,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00428,Day 1 06:30,26H1166,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00429,Day 1 06:30,26H1167,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00430,Day 1 06:30,26H1168,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00431,Day 1 06:30,26H1169,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00432,Day 1 06:30,26H1170,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00433,Day 1 06:30,26H1171,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00434,Day 1 06:30,26H1172,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00435,Day 1 06:30,26H1173,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00436,Day 1 06:30,26H1174,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00437,Day 1 06:30,26H1175,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00438,Day 1 06:30,26H1176,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00439,Day 1 06:30,26H1177,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00440,Day 1 06:30,26H1178,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00441,Day 1 06:30,26H1179,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00442,Day 1 06:30,26H1180,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00443,Day 1 06:30,26H1181,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00444,Day 1 06:30,26H1182,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00445,Day 1 06:30,26H1183,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00446,Day 1 06:30,26H1184,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00447,Day 1 06:30,26H1185,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00448,Day 1 06:30,26H1186,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00449,Day 1 06:30,26H1187,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00450,Day 1 06:30,26H1188,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00451,Day 1 06:30,26H1189,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00452,Day 1 06:30,26H1190,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00453,Day 1 06:30,26H1191,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00454,Day 1 06:30,26H1192,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00455,Day 1 06:30,26H1193,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00456,Day 1 06:30,26H1194,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00457,Day 1 06:30,26H1195,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00458,Day 1 06:30,26H1196,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00459,Day 1 06:30,26H1197,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00460,Day 1 06:30,26H1198,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00461,Day 1 06:30,26H1199,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00462,Day 1 06:30,26H1200,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00463,Day 1 06:30,26H1201,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00464,Day 1 06:30,26H1202,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00465,Day 1 06:30,26H1203,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00466,Day 1 06:30,26H1204,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00467,Day 1 06:30,26H1205,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00468,Day 1 06:30,26H1206,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00469,Day 1 06:30,26H1207,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00470,Day 1 06:30,26H1208,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00471,Day 1 06:30,26H1209,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00472,Day 1 06:30,26H1210,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00473,Day 1 06:30,26H1211,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00474,Day 1 06:30,26H1212,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00475,Day 1 06:30,26H1213,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00476,Day 1 06:30,26H1214,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00477,Day 1 06:30,26H1215,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00478,Day 1 06:30,26H1216,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00479,Day 1 06:30,26H1217,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00480,Day 1 06:30,26H1218,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00481,Day 1 06:30,26H1219,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00482,Day 1 06:30,26H1220,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00483,Day 1 06:30,26H1221,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00484,Day 1 06:30,26H1222,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00485,Day 1 06:30,26H1223,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00486,Day 1 06:30,26H1224,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00487,Day 1 06:30,26H1225,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00488,Day 1 06:30,26H1226,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00489,Day 1 06:30,26H1227,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00490,Day 1 06:30,26H1228,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00491,Day 1 06:30,26H1229,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00492,Day 1 06:30,26H1230,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00493,Day 1 06:30,26H1231,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00494,Day 1 06:30,26H1232,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00495,Day 1 06:30,26H1233,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00496,Day 1 06:30,26H1234,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00497,Day 1 06:30,26H1235,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00498,Day 1 06:30,26H1236,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00499,Day 1 06:30,26H1237,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00500,Day 1 06:30,26H1238,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00501,Day 1 06:30,26H1239,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00502,Day 1 06:30,26H1240,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00503,Day 1 06:30,26H1241,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00504,Day 1 06:30,26H1242,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00505,Day 1 06:30,26H1243,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00506,Day 1 06:30,26H1244,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00507,Day 1 06:30,26H1245,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00508,Day 1 06:30,26H1246,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00509,Day 1 06:30,26H1247,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00510,Day 1 06:30,26H1248,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00511,Day 1 06:30,26H1249,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00512,Day 1 06:30,26H1250,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00513,Day 1 06:30,26H1251,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00514,Day 1 06:30,26H1252,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00515,Day 1 06:30,26H1253,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00516,Day 1 06:30,26H1254,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00517,Day 1 06:30,26H1255,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00518,Day 1 06:30,26H1256,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00519,Day 1 06:30,26H1257,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00520,Day 1 06:30,26H1258,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00521,Day 1 06:30,26H1259,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00522,Day 1 06:30,26H1260,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00523,Day 1 06:30,26H1261,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00524,Day 1 06:30,26H1262,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00525,Day 1 06:30,26H1263,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00526,Day 1 06:30,26H1264,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00527,Day 1 06:30,26H1265,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00528,Day 1 06:30,26H1266,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00529,Day 1 06:30,26H1267,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00530,Day 1 06:30,26H1268,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00531,Day 1 06:30,26H1269,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00532,Day 1 06:30,26H1270,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00533,Day 1 06:30,26H1271,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00534,Day 1 06:30,26H1272,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00535,Day 1 06:30,26H1273,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00536,Day 1 06:30,26H1274,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00537,Day 1 06:30,26H1275,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00538,Day 1 06:30,26H1276,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00539,Day 1 06:30,26H1277,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00540,Day 1 06:30,26H1278,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00541,Day 1 06:30,26H1279,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00542,Day 1 06:30,26H1280,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00543,Day 1 06:30,26H1281,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00544,Day 1 06:30,26H1282,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00545,Day 1 06:30,26H1283,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00546,Day 1 06:30,26H1284,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00547,Day 1 06:30,26H1285,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00548,Day 1 06:30,26H1286,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00549,Day 1 06:30,26H1287,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00550,Day 1 06:30,26H1288,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00551,Day 1 06:30,26H1289,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00552,Day 1 06:30,26H1290,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00553,Day 1 06:30,26H1291,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00554,Day 1 06:30,26H1292,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00555,Day 1 06:30,26H1293,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00556,Day 1 06:30,26H1294,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00557,Day 1 06:30,26H1295,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00558,Day 1 06:30,26H1296,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00559,Day 1 06:30,26H1297,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00560,Day 1 06:30,26H1298,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00561,Day 1 06:30,26H1299,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00562,Day 1 06:30,26H1300,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00563,Day 1 06:30,26H1301,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00564,Day 1 06:30,26H1302,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00565,Day 1 06:30,26H1303,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00566,Day 1 06:30,26H1304,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00567,Day 1 06:30,26H1305,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00568,Day 1 06:30,26H1306,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00569,Day 1 06:30,26H1307,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00570,Day 1 06:30,26H1308,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00571,Day 1 06:30,26H1309,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00572,Day 1 06:30,26H1310,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00573,Day 1 06:30,26H1311,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00574,Day 1 06:30,26H1312,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00575,Day 1 06:30,26H1313,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00576,Day 1 06:30,26H1314,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00577,Day 1 06:30,26H1315,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00578,Day 1 06:30,26H1316,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00579,Day 1 06:30,26H1317,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00580,Day 1 06:30,26H1318,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00581,Day 1 06:30,26H1319,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00582,Day 1 06:30,26H1320,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00583,Day 1 06:30,26H1321,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00584,Day 1 06:30,26H1322,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00585,Day 1 06:30,26H1323,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00586,Day 1 06:30,26H1324,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00587,Day 1 06:30,26H1325,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00588,Day 1 06:30,26H1326,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00589,Day 1 06:30,26H1327,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00590,Day 1 06:30,26H1328,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00591,Day 1 06:30,26H1329,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00592,Day 1 06:30,26H1330,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00593,Day 1 06:30,26H1331,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00594,Day 1 06:30,26H1332,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00595,Day 1 06:30,26H1333,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00596,Day 1 06:30,26H1334,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00597,Day 1 06:30,26H1335,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00598,Day 1 06:30,26H1336,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00599,Day 1 06:30,26H1337,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00600,Day 1 06:30,26H1338,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00601,Day 1 06:30,26H1339,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00602,Day 1 06:30,26H1340,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00603,Day 1 06:30,26H1341,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00604,Day 1 06:30,26H1342,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00605,Day 1 06:30,26H1343,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00606,Day 1 06:30,26H1344,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00607,Day 1 06:30,26H1345,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00608,Day 1 06:30,26H1346,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00609,Day 1 06:30,26H1347,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00610,Day 1 06:30,26H1348,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00611,Day 1 06:30,26H1349,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00612,Day 1 06:30,26H1350,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00613,Day 1 06:30,26H1351,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00614,Day 1 06:30,26H1352,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00615,Day 1 06:30,26H1353,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00616,Day 1 06:30,26H1354,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00617,Day 1 06:30,26H1355,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00618,Day 1 06:30,26H1356,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00619,Day 1 06:30,26H1357,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00620,Day 1 06:30,26H1358,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00621,Day 1 06:30,26H1359,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00622,Day 1 06:30,26H1360,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00623,Day 1 06:30,26H1361,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00624,Day 1 06:30,26H1362,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00625,Day 1 06:30,26H1363,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00626,Day 1 06:30,26H1364,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00627,Day 1 06:30,26H1365,,,Received/booked,Booking,CASE_RECEIVED,Synthetic case received and booked in.,Recorded
+EV-00628,Day 1 06:30,26H2345,,,Received/booked,Endoscopy referral / booking,CASE_RECEIVED,Urgent GI mucosal biopsy received.,Recorded
+EV-00629,Day 1 06:30,26H2345,,,Received/booked,Endoscopy referral / booking,URGENT_REFERRAL_FLAG,Urgent priority supplied by endoscopy; no processing fault is inserted.,Recorded
+EV-00630,Day 1 06:45,26H1001,,,Awaiting processor or processing,Processor A,PROCESSOR_COMPLETE,Overnight run complete.,Recorded
+EV-00631,Day 1 06:45,26H1002,,,Awaiting processor or processing,Processor A,PROCESSOR_COMPLETE,Overnight run complete.,Recorded
+EV-00632,Day 1 06:45,26H1004,,,Awaiting processor or processing,Processor A,PROCESSOR_COMPLETE,Overnight run complete.,Recorded
+EV-00633,Day 1 06:45,26H1005,,,Awaiting processor or processing,Processor A,PROCESSOR_COMPLETE,Overnight run complete.,Recorded
+EV-00634,Day 1 06:45,26H1006,,,Awaiting processor or processing,Processor A,PROCESSOR_COMPLETE,Overnight run complete.,Recorded
+EV-00635,Day 1 06:45,26H1007,,,Awaiting processor or processing,Processor A,PROCESSOR_COMPLETE,Overnight run complete.,Recorded
+EV-00636,Day 1 06:45,26H1008,,,Awaiting processor or processing,Processor A,PROCESSOR_COMPLETE,Overnight run complete.,Recorded
+EV-00637,Day 1 06:45,26H1009,,,Awaiting processor or processing,Processor A,PROCESSOR_COMPLETE,Overnight run complete.,Recorded
+EV-00638,Day 1 06:45,26H1010,,,Awaiting processor or processing,Processor A,PROCESSOR_COMPLETE,Overnight run complete.,Recorded
+EV-00639,Day 1 06:45,26H1011,,,Awaiting processor or processing,Processor A,PROCESSOR_COMPLETE,Overnight run complete.,Recorded
+EV-00640,Day 1 06:45,26H1012,,,Awaiting processor or processing,Processor A,PROCESSOR_COMPLETE,Overnight run complete.,Recorded
+EV-00641,Day 1 06:45,26H1013,,,Awaiting processor or processing,Processor A,PROCESSOR_COMPLETE,Overnight run complete.,Recorded
+EV-00642,Day 1 06:45,26H1014,,,Awaiting processor or processing,Processor A,PROCESSOR_COMPLETE,Overnight run complete.,Recorded
+EV-00644,Day 1 06:45,26H1017,,,Awaiting processor or processing,Processor A,PROCESSOR_COMPLETE,Overnight run complete.,Recorded
+EV-00645,Day 1 06:45,26H1018,,,Awaiting processor or processing,Processor A,PROCESSOR_COMPLETE,Overnight run complete.,Recorded
+EV-00646,Day 1 07:00,26H1001,,,Embedding,Embedding station,EMBEDDING_STARTED,Embedding begins in the staffed morning window.,Recorded
+EV-00647,Day 1 07:00,26H1002,,,Embedding,Embedding station,EMBEDDING_STARTED,Embedding begins in the staffed morning window.,Recorded
+EV-00648,Day 1 07:00,26H1004,,,Embedding,Embedding station,EMBEDDING_STARTED,Embedding begins in the staffed morning window.,Recorded
+EV-00649,Day 1 07:00,26H1005,,,Embedding,Embedding station,EMBEDDING_STARTED,Embedding begins in the staffed morning window.,Recorded
+EV-00650,Day 1 07:00,26H1006,,,Embedding,Embedding station,EMBEDDING_STARTED,Embedding begins in the staffed morning window.,Recorded
+EV-00651,Day 1 07:00,26H1007,,,Embedding,Embedding station,EMBEDDING_STARTED,Embedding begins in the staffed morning window.,Recorded
+EV-00652,Day 1 07:00,26H1008,,,Embedding,Embedding station,EMBEDDING_STARTED,Embedding begins in the staffed morning window.,Recorded
+EV-00653,Day 1 07:00,26H1009,,,Embedding,Embedding station,EMBEDDING_STARTED,Embedding begins in the staffed morning window.,Recorded
+EV-00654,Day 1 07:00,26H1010,,,Embedding,Embedding station,EMBEDDING_STARTED,Embedding begins in the staffed morning window.,Recorded
+EV-00655,Day 1 07:00,26H1011,,,Embedding,Embedding station,EMBEDDING_STARTED,Embedding begins in the staffed morning window.,Recorded
+EV-00656,Day 1 07:00,26H1012,,,Embedding,Embedding station,EMBEDDING_STARTED,Embedding begins in the staffed morning window.,Recorded
+EV-00657,Day 1 07:00,26H1013,,,Embedding,Embedding station,EMBEDDING_STARTED,Embedding begins in the staffed morning window.,Recorded
+EV-00658,Day 1 07:00,26H1014,,,Embedding,Embedding station,EMBEDDING_STARTED,Embedding begins in the staffed morning window.,Recorded
+EV-00660,Day 1 07:00,26H1017,,,Embedding,Embedding station,EMBEDDING_STARTED,Embedding begins in the staffed morning window.,Recorded
+EV-00661,Day 1 07:00,26H1018,,,Embedding,Embedding station,EMBEDDING_STARTED,Embedding begins in the staffed morning window.,Recorded
+EV-00662,Day 1 07:15,26H2345,,,Dissection/cut-up,Cut-up bench,CUTUP_STARTED,Cut-up begins during staffed hours.,Recorded
+EV-00663,Day 1 07:40,26H1016,,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,Bone sample prepared for decalcification.,Recorded
+EV-00664,Day 1 07:45,26H2345,A1,,Dissection/cut-up,Cut-up bench,CUTUP_COMPLETE,One block prepared; three levels required at microtomy.,Recorded
+EV-00666,Day 1 08:00,26H1141,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00668,Day 1 08:00,26H1201,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00670,Day 1 08:00,26H1261,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00672,Day 1 08:00,26H1321,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00687,Day 1 08:03,26H1150,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00689,Day 1 08:03,26H1210,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00691,Day 1 08:03,26H1270,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00693,Day 1 08:03,26H1330,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00697,Day 1 08:04,26H1193,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00699,Day 1 08:04,26H1253,,,Awaiting processor or processing,Priority queue,URGENT_PRIORITY_TRACKED,Urgent priority flag; no failure injected.,Recorded
+EV-00702,Day 1 08:04,26H1373,,,Embedding,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00706,Day 1 08:05,26H1236,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00711,Day 1 08:06,26H1159,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00713,Day 1 08:06,26H1219,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00715,Day 1 08:06,26H1279,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00717,Day 1 08:06,26H1339,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00723,Day 1 08:07,26H1322,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00725,Day 1 08:07,26H1382,,,Embedding,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00731,Day 1 08:08,26H1365,,,Decalcification,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00734,Day 1 08:09,26H1168,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00736,Day 1 08:09,26H1228,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00738,Day 1 08:09,26H1288,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00741,Day 1 08:09,26H1408,,,Microtomy,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00747,Day 1 08:10,26H1391,,,Embedding,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00755,Day 1 08:12,26H1177,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00757,Day 1 08:12,26H1237,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00759,Day 1 08:12,26H1297,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00765,Day 1 08:13,26H1280,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,BCSP linked.,Recorded
+EV-00767,Day 1 08:13,26H1340,,,Awaiting processor or processing,Priority queue,URGENT_PRIORITY_TRACKED,Urgent priority flag; no failure injected.,Recorded
+EV-00775,Day 1 08:15,26H1126,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00777,Day 1 08:15,26H1186,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00779,Day 1 08:15,26H1246,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00781,Day 1 08:15,26H1306,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00785,Day 1 08:16,26H1169,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,BCSP linked.,Recorded
+EV-00796,Day 1 08:18,26H1135,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00798,Day 1 08:18,26H1195,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00799,Day 1 08:18,26H1195,,,Received/booked,Priority queue,URGENT_PRIORITY_TRACKED,Urgent priority flag; no failure injected.,Recorded
+EV-00801,Day 1 08:18,26H1255,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00803,Day 1 08:18,26H1315,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00817,Day 1 08:21,26H1144,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00819,Day 1 08:21,26H1204,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00821,Day 1 08:21,26H1264,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00823,Day 1 08:21,26H1324,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00830,Day 1 08:22,26H1367,,,Embedding,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00832,Day 1 08:22,26H1427,,,Microtomy,Priority queue,URGENT_PRIORITY_TRACKED,Urgent priority flag; no failure injected.,Recorded
+EV-00839,Day 1 08:24,26H1153,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00841,Day 1 08:24,26H1213,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00843,Day 1 08:24,26H1273,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00845,Day 1 08:24,26H1333,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00852,Day 1 08:25,26H1376,,,Embedding,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00860,Day 1 08:27,26H1162,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00862,Day 1 08:27,26H1222,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00864,Day 1 08:27,26H1282,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00865,Day 1 08:27,26H1282,,,Awaiting processor or processing,Priority queue,URGENT_PRIORITY_TRACKED,Urgent priority flag; no failure injected.,Recorded
+EV-00867,Day 1 08:27,26H1342,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00874,Day 1 08:28,26H1385,,,Embedding,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00881,Day 1 08:29,26H1428,,,H&E staining,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00883,Day 1 08:30,26H1018,,,Microtomy,Microtomy station 3,EMBEDDING_COMPLETE,Block embedded.,Recorded
+EV-00885,Day 1 08:30,26H1171,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00887,Day 1 08:30,26H1231,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00889,Day 1 08:30,26H1291,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00897,Day 1 08:31,26H1394,,,Embedding,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00899,Day 1 08:32,26H1137,,,Received/booked,Priority queue,URGENT_PRIORITY_TRACKED,Urgent priority flag; no failure injected.,Recorded
+EV-00903,Day 1 08:32,26H1317,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,BCSP linked.,Recorded
+EV-00907,Day 1 08:33,26H1180,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00909,Day 1 08:33,26H1240,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00911,Day 1 08:33,26H1300,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00921,Day 1 08:35,26H1206,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,BCSP linked.,Recorded
+EV-00926,Day 1 08:36,26H1129,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00928,Day 1 08:36,26H1189,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00930,Day 1 08:36,26H1249,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00932,Day 1 08:36,26H1309,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00934,Day 1 08:36,26H1369,,,Embedding,Priority queue,URGENT_PRIORITY_TRACKED,Urgent priority flag; no failure injected.,Recorded
+EV-00936,Day 1 08:36,26H1429,,,H&E staining,Programme tag,SCREENING_CLOCK_ACTIVE,BCSP linked.,Recorded
+EV-01131,Day 1 08:38,26H1440,A1,26H1440-S01,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-00948,Day 1 08:39,26H1138,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00950,Day 1 08:39,26H1198,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00952,Day 1 08:39,26H1258,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00954,Day 1 08:39,26H1318,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01133,Day 1 08:40,26H1440,A1,26H1440-S02,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-00964,Day 1 08:41,26H1224,,,Awaiting processor or processing,Priority queue,URGENT_PRIORITY_TRACKED,Urgent priority flag; no failure injected.,Recorded
+EV-00969,Day 1 08:42,26H1147,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00971,Day 1 08:42,26H1207,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00973,Day 1 08:42,26H1267,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00975,Day 1 08:42,26H1327,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01134,Day 1 08:42,26H1440,A1,26H1440-S03,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-00982,Day 1 08:43,26H1370,,,Embedding,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01135,Day 1 08:44,26H1440,A1,26H1440-S04,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-00990,Day 1 08:45,26H1156,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00992,Day 1 08:45,26H1216,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00994,Day 1 08:45,26H1276,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-00996,Day 1 08:45,26H1336,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01003,Day 1 08:46,26H1379,,,Embedding,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01137,Day 1 08:46,26H1441,A1,26H1441-S01,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01011,Day 1 08:48,26H1165,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01013,Day 1 08:48,26H1225,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01015,Day 1 08:48,26H1285,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01017,Day 1 08:48,26H1345,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01138,Day 1 08:48,26H1442,A1,26H1442-S01,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01024,Day 1 08:49,26H1388,,,Embedding,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01025,Day 1 08:50,26H1016,,,Decalcification,Dedicated decalcification area,DECALCIFICATION_STARTED,Decalcification is a normal longer-running preparation step; no processor run has started.,Recorded
+EV-01030,Day 1 08:50,26H1311,,,Awaiting processor or processing,Priority queue,URGENT_PRIORITY_TRACKED,Urgent priority flag; no failure injected.,Recorded
+EV-01033,Day 1 08:50,26H1431,,,H&E staining,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01140,Day 1 08:50,26H1442,A1,26H1442-S02,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01035,Day 1 08:51,26H1174,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01037,Day 1 08:51,26H1234,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01039,Day 1 08:51,26H1294,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01041,Day 1 08:51,26H1354,,,Decalcification,Programme tag,SCREENING_CLOCK_ACTIVE,BCSP linked.,Recorded
+EV-01141,Day 1 08:52,26H1443,A1,26H1443-S01,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01054,Day 1 08:54,26H1183,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01056,Day 1 08:54,26H1243,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01058,Day 1 08:54,26H1303,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01142,Day 1 08:54,26H1443,A1,26H1443-S02,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01062,Day 1 08:55,26H1166,,,Received/booked,Priority queue,URGENT_PRIORITY_TRACKED,Urgent priority flag; no failure injected.,Recorded
+EV-01143,Day 1 08:56,26H1443,A1,26H1443-S03,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01073,Day 1 08:57,26H1132,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01075,Day 1 08:57,26H1192,,,Received/booked,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01077,Day 1 08:57,26H1252,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01079,Day 1 08:57,26H1312,,,Awaiting processor or processing,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01082,Day 1 08:57,26H1432,,,H&E staining,Programme tag,SCREENING_CLOCK_ACTIVE,BCSP linked.,Recorded
+EV-01144,Day 1 08:58,26H1444,A1,26H1444-S01,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01093,Day 1 08:59,26H1398,,,Microtomy,Priority queue,URGENT_PRIORITY_TRACKED,Urgent priority flag; no failure injected.,Recorded
+EV-01094,Day 1 09:00,26H1002,,,Microtomy,Microtomy station 2,EMBEDDING_COMPLETE,Block embedded.,Recorded
+EV-01096,Day 1 09:00,26H1017,,,Microtomy,Microtomy station 3,EMBEDDING_COMPLETE,Block embedded.,Recorded
+EV-01145,Day 1 09:00,26H1444,A1,26H1444-S02,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01146,Day 1 09:02,26H1444,A1,26H1444-S03,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01147,Day 1 09:04,26H1444,A1,26H1444-S04,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01148,Day 1 09:06,26H1445,A1,26H1445-S01,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01149,Day 1 09:08,26H1446,A1,26H1446-S01,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01150,Day 1 09:10,26H1446,A1,26H1446-S02,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01151,Day 1 09:12,26H1447,A1,26H1447-S01,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01152,Day 1 09:14,26H1447,A1,26H1447-S02,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01153,Day 1 09:16,26H1447,A1,26H1447-S03,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01154,Day 1 09:18,26H1448,A1,26H1448-S01,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01155,Day 1 09:20,26H1448,A1,26H1448-S02,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01156,Day 1 09:22,26H1448,A1,26H1448-S03,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01157,Day 1 09:24,26H1448,A1,26H1448-S04,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01158,Day 1 09:26,26H1449,A1,26H1449-S01,Scanning,Digital scanner,SCAN_COMPLETE,Synthetic later-case scan completed before IQC or pathologist handoff.,Recorded
+EV-01097,Day 1 09:30,26H1018,A1,,H&E staining,Microtomy station 3,LEVELS_CUT,Two slides cut.,Recorded
+EV-01103,Day 1 09:30,26H1005,,,Microtomy,Microtomy station 1,EMBEDDING_COMPLETE,Block embedded.,Recorded
+EV-01104,Day 1 09:30,26H1006,,,Microtomy,Microtomy station 1,EMBEDDING_COMPLETE,Block embedded.,Recorded
+EV-01105,Day 1 09:30,26H1007,,,Microtomy,Microtomy station 1,EMBEDDING_COMPLETE,Block embedded.,Recorded
+EV-01106,Day 1 09:30,26H1008,,,Microtomy,Microtomy station 1,EMBEDDING_COMPLETE,Block embedded.,Recorded
+EV-01107,Day 1 09:30,26H1009,,,Microtomy,Microtomy station 1,EMBEDDING_COMPLETE,Block embedded.,Recorded
+EV-01108,Day 1 09:30,26H1010,,,Microtomy,Microtomy station 1,EMBEDDING_COMPLETE,Block embedded.,Recorded
+EV-01109,Day 1 09:30,26H1011,,,Microtomy,Microtomy station 1,EMBEDDING_COMPLETE,Block embedded.,Recorded
+EV-01110,Day 1 09:30,26H1012,,,Microtomy,Microtomy station 1,EMBEDDING_COMPLETE,Block embedded.,Recorded
+EV-01111,Day 1 09:30,26H1013,,,Microtomy,Microtomy station 1,EMBEDDING_COMPLETE,Block embedded.,Recorded
+EV-01114,Day 1 09:45,26H1005,A1,,Microtomy,Microtomy station 1,LEVELS_CUT,Two sections prepared for H&E.,Recorded
+EV-01123,Day 1 09:50,26H1006,A1,,Microtomy,Microtomy station 1,LEVELS_CUT,Two sections prepared for H&E.,Recorded
+EV-01139,Day 1 09:55,26H1007,A1,,Microtomy,Microtomy station 1,LEVELS_CUT,Two sections prepared for H&E.,Recorded
+EV-01100,Day 1 10:00,26H1017,A1,,H&E staining,Microtomy station 3,LEVELS_CUT,Two slides cut.,Recorded
+EV-01113,Day 1 10:00,26H1002,,,Microtomy,Microtomy station 2,MICROTOMY_STARTED,Microtomy begins during staffed hours.,Recorded
+EV-01159,Day 1 10:00,26H1008,A1,,Microtomy,Microtomy station 1,LEVELS_CUT,Two sections prepared for H&E.,Recorded
+EV-01162,Day 1 10:00,26H1440,,,IQC,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01164,Day 1 10:00,26H1441,,,IQC,Programme tag,SCREENING_CLOCK_ACTIVE,BCSP linked.,Recorded
+EV-01167,Day 1 10:00,26H1443,,,IQC,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01117,Day 1 10:05,26H1009,A1,,Microtomy,Microtomy station 1,LEVELS_CUT,Two sections prepared for H&E.,Recorded
+EV-01124,Day 1 10:10,26H1010,A1,,Microtomy,Microtomy station 1,LEVELS_CUT,Two sections prepared for H&E.,Recorded
+EV-01126,Day 1 10:15,26H1011,A1,,Microtomy,Microtomy station 1,LEVELS_CUT,Two sections prepared for H&E.,Recorded
+EV-01168,Day 1 10:15,26H1002,A1,,Microtomy,Microtomy station 2,LEVELS_CUT,Levels L1-L3 recorded; three slides created.,Recorded
+EV-01112,Day 1 10:20,26H1014,,,Microtomy,Microtomy station 1,EMBEDDING_COMPLETE,Block embedded.,Recorded
+EV-01160,Day 1 10:20,26H1012,A1,,Microtomy,Microtomy station 1,LEVELS_CUT,Two sections prepared for H&E.,Recorded
+EV-01119,Day 1 10:25,26H1013,A1,,Microtomy,Microtomy station 1,LEVELS_CUT,Two sections prepared for H&E.,Recorded
+EV-01101,Day 1 10:30,26H1001,,,Microtomy,Microtomy queue,EMBEDDING_COMPLETE,Both blocks embedded; queued for microtomy.,Recorded
+EV-01102,Day 1 10:30,26H1004,,,Microtomy,Microtomy station 4,EMBEDDING_COMPLETE,Block embedded.,Recorded
+EV-01115,Day 1 10:30,26H1017,,,H&E staining,Stainer 1,STAINING_COMPLETE,Routine H&E run complete.,Recorded
+EV-01116,Day 1 10:30,26H1018,,,Scanning,Stainer 1,STAINING_COMPLETE,Routine H&E run complete.,Recorded
+EV-01122,Day 1 10:30,26H1014,A1,,Microtomy,Microtomy station 1,LEVELS_CUT,Two sections prepared for H&E.,Recorded
+EV-01173,Day 1 10:30,26H1445,,,Ready for pathologist handoff,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01177,Day 1 10:30,26H1448,,,Ready for pathologist handoff,Programme tag,SCREENING_CLOCK_ACTIVE,Cervical screening linked.,Recorded
+EV-01120,Day 1 10:35,26H1004,,,Microtomy,Microtomy station 4,MICROTOMY_STARTED,Microtomy begins during staffed hours.,Recorded
+EV-01127,Day 1 10:35,26H1017,A1,26H1017-S01,Scanning,Digital scanner,SCAN_COMPLETE,First slide scan complete.,Recorded
+EV-01128,Day 1 10:37,26H1017,A1,26H1017-S02,Scanning,Digital scanner,SCAN_COMPLETE,Second slide scan complete.,Recorded
+EV-01129,Day 1 10:40,26H1018,A1,26H1018-S01,Scanning,Digital scanner,SCAN_COMPLETE,First slide scan complete.,Recorded
+EV-01230,Day 1 10:40,26H1004,A1,26H1004-S01,Microtomy,Microtome station 4,LEVELS_CUT,Only level 1 cut and recorded; protocol requires levels 1-3.,Recorded
+EV-01130,Day 1 10:42,26H1018,A1,26H1018-S02,Scanning,Digital scanner,SCAN_COMPLETE,Second slide scan complete.,Recorded
+EV-01132,Day 1 10:45,26H1017,,,IQC,IQC station,IQC_STARTED,Both slide scans are complete before IQC.,Recorded
+EV-01180,Day 1 10:45,26H1005,A1,26H1005-S01,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01181,Day 1 10:45,26H1005,A1,26H1005-S02,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01183,Day 1 10:45,26H1006,A1,26H1006-S01,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01184,Day 1 10:45,26H1006,A1,26H1006-S02,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01186,Day 1 10:45,26H1007,A1,26H1007-S01,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01187,Day 1 10:45,26H1007,A1,26H1007-S02,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01189,Day 1 10:45,26H1008,A1,26H1008-S01,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01190,Day 1 10:45,26H1008,A1,26H1008-S02,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01192,Day 1 10:45,26H1009,A1,26H1009-S01,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01193,Day 1 10:45,26H1009,A1,26H1009-S02,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01195,Day 1 10:45,26H1010,A1,26H1010-S01,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01196,Day 1 10:45,26H1010,A1,26H1010-S02,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01198,Day 1 10:45,26H1011,A1,26H1011-S01,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01199,Day 1 10:45,26H1011,A1,26H1011-S02,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01201,Day 1 10:45,26H1012,A1,26H1012-S01,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01202,Day 1 10:45,26H1012,A1,26H1012-S02,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01204,Day 1 10:45,26H1013,A1,26H1013-S01,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01205,Day 1 10:45,26H1013,A1,26H1013-S02,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01207,Day 1 10:45,26H1014,A1,26H1014-S01,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01208,Day 1 10:45,26H1014,A1,26H1014-S02,H&E staining,Stainer 1 basket 01,BASKET_LOADED,Slide loaded into the shared 20-slide live-demo basket.,Recorded
+EV-01210,Day 1 10:45,26H1004,A1,26H1004-S01,Microtomy,Microtome station 4,LEVEL_PROTOCOL_MISMATCH,Protocol requires levels 1-3; only level 1 is recorded.,Recorded
+EV-01170,Day 1 10:50,26H1020,,,Waiting for dissection/cut-up,Pathologist dissection / cut-up area,PATHOLOGIST_CUTUP_PENDING,Awaiting pathologist cut-up; not yet sent to an overnight processor.,Recorded
+EV-01136,Day 1 10:55,26H1018,,,IQC,IQC station,IQC_PASSED,Both slide scans are complete before IQC.,Recorded
+EV-01179,Day 1 11:00,26H1021,,,Waiting for dissection/cut-up,Pathologist dissection / cut-up area,PATHOLOGIST_CUTUP_PENDING,Awaiting pathologist cut-up; not yet sent to an overnight processor.,Recorded
+EV-01121,Day 1 11:15,26H1003,F1,,Waiting for dissection/cut-up,Pathologist dissection / cut-up area,BLOCK_PENDING,F1 awaits pathologist cut-up; full case cannot be handed off until F1 is processed.,Recorded
+EV-01213,Day 1 11:15,26H1018,,,Ready for pathologist handoff,Case completion / electronic handoff,CASE_READY_FOR_PATHOLOGIST,Lab preparation complete; case ready for pathologist handoff.,Recorded
+EV-00223,Day 1 11:30,26H1022,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00224,Day 1 11:30,26H1023,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00225,Day 1 11:30,26H1024,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00227,Day 1 11:30,26H1025,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00228,Day 1 11:30,26H1026,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00229,Day 1 11:30,26H1027,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00231,Day 1 11:30,26H1028,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00232,Day 1 11:30,26H1029,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00233,Day 1 11:30,26H1030,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00235,Day 1 11:30,26H1031,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00236,Day 1 11:30,26H1032,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00237,Day 1 11:30,26H1033,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00239,Day 1 11:30,26H1034,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00240,Day 1 11:30,26H1035,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00241,Day 1 11:30,26H1036,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00243,Day 1 11:30,26H1037,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00244,Day 1 11:30,26H1038,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00245,Day 1 11:30,26H1039,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00247,Day 1 11:30,26H1040,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00248,Day 1 11:30,26H1041,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00249,Day 1 11:30,26H1042,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00251,Day 1 11:30,26H1043,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00252,Day 1 11:30,26H1044,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00253,Day 1 11:30,26H1045,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00255,Day 1 11:30,26H1046,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00256,Day 1 11:30,26H1047,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00257,Day 1 11:30,26H1048,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00259,Day 1 11:30,26H1049,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00260,Day 1 11:30,26H1050,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Urgent priority tracked; no fault injected.,Recorded
+EV-00262,Day 1 11:30,26H1051,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00264,Day 1 11:30,26H1052,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00265,Day 1 11:30,26H1053,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00266,Day 1 11:30,26H1054,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00268,Day 1 11:30,26H1055,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00269,Day 1 11:30,26H1056,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00270,Day 1 11:30,26H1057,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00272,Day 1 11:30,26H1058,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00274,Day 1 11:30,26H1059,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00275,Day 1 11:30,26H1060,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00277,Day 1 11:30,26H1061,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00278,Day 1 11:30,26H1062,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00279,Day 1 11:30,26H1063,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00281,Day 1 11:30,26H1064,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00283,Day 1 11:30,26H1065,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00284,Day 1 11:30,26H1066,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00286,Day 1 11:30,26H1067,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00287,Day 1 11:30,26H1068,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00288,Day 1 11:30,26H1069,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00290,Day 1 11:30,26H1070,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00291,Day 1 11:30,26H1071,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00292,Day 1 11:30,26H1072,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00294,Day 1 11:30,26H1073,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00295,Day 1 11:30,26H1074,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00296,Day 1 11:30,26H1075,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00298,Day 1 11:30,26H1076,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00299,Day 1 11:30,26H1077,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00300,Day 1 11:30,26H1078,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00302,Day 1 11:30,26H1079,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Urgent priority tracked; no fault injected.,Recorded
+EV-00304,Day 1 11:30,26H1080,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00305,Day 1 11:30,26H1081,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00307,Day 1 11:30,26H1082,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00308,Day 1 11:30,26H1083,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00309,Day 1 11:30,26H1084,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00311,Day 1 11:30,26H1085,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00312,Day 1 11:30,26H1086,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00313,Day 1 11:30,26H1087,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00315,Day 1 11:30,26H1088,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00316,Day 1 11:30,26H1089,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00317,Day 1 11:30,26H1090,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00319,Day 1 11:30,26H1091,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00320,Day 1 11:30,26H1092,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00321,Day 1 11:30,26H1093,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00323,Day 1 11:30,26H1094,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00324,Day 1 11:30,26H1095,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00326,Day 1 11:30,26H1096,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00328,Day 1 11:30,26H1097,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00329,Day 1 11:30,26H1098,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00330,Day 1 11:30,26H1099,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00332,Day 1 11:30,26H1100,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00333,Day 1 11:30,26H1101,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00334,Day 1 11:30,26H1102,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00336,Day 1 11:30,26H1103,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00337,Day 1 11:30,26H1104,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00338,Day 1 11:30,26H1105,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00340,Day 1 11:30,26H1106,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00341,Day 1 11:30,26H1107,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00343,Day 1 11:30,26H1108,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Urgent priority tracked; no fault injected.,Recorded
+EV-00346,Day 1 11:30,26H1109,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00347,Day 1 11:30,26H1110,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00348,Day 1 11:30,26H1111,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00350,Day 1 11:30,26H1112,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00351,Day 1 11:30,26H1113,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00352,Day 1 11:30,26H1114,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00354,Day 1 11:30,26H1115,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00355,Day 1 11:30,26H1116,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00356,Day 1 11:30,26H1117,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00358,Day 1 11:30,26H1118,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00359,Day 1 11:30,26H1119,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00360,Day 1 11:30,26H1120,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00362,Day 1 11:30,26H1121,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00363,Day 1 11:30,26H1122,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00364,Day 1 11:30,26H1123,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Embedded previous-day carry-over; awaiting microtomy.,Recorded
+EV-00665,Day 1 11:30,26H1141,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00667,Day 1 11:30,26H1201,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00669,Day 1 11:30,26H1261,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00671,Day 1 11:30,26H1321,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00673,Day 1 11:30,26H1381,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00674,Day 1 11:30,26H2345,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Urgent GI biopsy from endoscopy. Cut-up completed at 07:45; queued for the overnight processor run. No fault is inserted.,Recorded
+EV-00675,Day 1 11:30,26H1124,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00676,Day 1 11:30,26H1184,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00677,Day 1 11:30,26H1244,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00678,Day 1 11:30,26H1304,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00679,Day 1 11:30,26H1364,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-00680,Day 1 11:30,26H1424,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00681,Day 1 11:30,26H1167,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00682,Day 1 11:30,26H1227,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00683,Day 1 11:30,26H1287,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00684,Day 1 11:30,26H1347,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-00685,Day 1 11:30,26H1407,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00686,Day 1 11:30,26H1150,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00688,Day 1 11:30,26H1210,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00690,Day 1 11:30,26H1270,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00692,Day 1 11:30,26H1330,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00694,Day 1 11:30,26H1390,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00695,Day 1 11:30,26H1133,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00696,Day 1 11:30,26H1193,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00698,Day 1 11:30,26H1253,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Urgent priority tracked; no fault injected.,Recorded
+EV-00700,Day 1 11:30,26H1313,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00701,Day 1 11:30,26H1373,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00703,Day 1 11:30,26H1433,,,Scanning,Digital scan queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00704,Day 1 11:30,26H1176,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00705,Day 1 11:30,26H1236,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00707,Day 1 11:30,26H1296,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00708,Day 1 11:30,26H1356,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-00709,Day 1 11:30,26H1416,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00710,Day 1 11:30,26H1159,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00712,Day 1 11:30,26H1219,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00714,Day 1 11:30,26H1279,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00716,Day 1 11:30,26H1339,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00718,Day 1 11:30,26H1399,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00719,Day 1 11:30,26H1142,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00720,Day 1 11:30,26H1202,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00721,Day 1 11:30,26H1262,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00722,Day 1 11:30,26H1322,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00724,Day 1 11:30,26H1382,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00726,Day 1 11:30,26H1125,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00727,Day 1 11:30,26H1185,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00728,Day 1 11:30,26H1245,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00729,Day 1 11:30,26H1305,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00730,Day 1 11:30,26H1365,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-00732,Day 1 11:30,26H1425,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00733,Day 1 11:30,26H1168,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00735,Day 1 11:30,26H1228,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00737,Day 1 11:30,26H1288,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00739,Day 1 11:30,26H1348,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-00740,Day 1 11:30,26H1408,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00742,Day 1 11:30,26H1151,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00743,Day 1 11:30,26H1211,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00744,Day 1 11:30,26H1271,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00745,Day 1 11:30,26H1331,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00746,Day 1 11:30,26H1391,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00748,Day 1 11:30,26H1134,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00749,Day 1 11:30,26H1194,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00750,Day 1 11:30,26H1254,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00751,Day 1 11:30,26H1314,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00752,Day 1 11:30,26H1374,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00753,Day 1 11:30,26H1434,,,Scanning,Digital scan queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00754,Day 1 11:30,26H1177,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00756,Day 1 11:30,26H1237,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00758,Day 1 11:30,26H1297,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00760,Day 1 11:30,26H1357,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-00761,Day 1 11:30,26H1417,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00762,Day 1 11:30,26H1160,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00763,Day 1 11:30,26H1220,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00764,Day 1 11:30,26H1280,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00766,Day 1 11:30,26H1340,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Urgent priority tracked; no fault injected.,Recorded
+EV-00768,Day 1 11:30,26H1400,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00769,Day 1 11:30,26H1143,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00770,Day 1 11:30,26H1203,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00771,Day 1 11:30,26H1263,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00772,Day 1 11:30,26H1323,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00773,Day 1 11:30,26H1383,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00774,Day 1 11:30,26H1126,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00776,Day 1 11:30,26H1186,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00778,Day 1 11:30,26H1246,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00780,Day 1 11:30,26H1306,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00782,Day 1 11:30,26H1366,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00783,Day 1 11:30,26H1426,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00784,Day 1 11:30,26H1169,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00786,Day 1 11:30,26H1229,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00787,Day 1 11:30,26H1289,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00788,Day 1 11:30,26H1349,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-00789,Day 1 11:30,26H1409,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00790,Day 1 11:30,26H1152,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00791,Day 1 11:30,26H1212,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00792,Day 1 11:30,26H1272,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00793,Day 1 11:30,26H1332,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00794,Day 1 11:30,26H1392,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00795,Day 1 11:30,26H1135,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00797,Day 1 11:30,26H1195,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Urgent priority tracked; no fault injected.,Recorded
+EV-00800,Day 1 11:30,26H1255,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00802,Day 1 11:30,26H1315,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00804,Day 1 11:30,26H1375,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00805,Day 1 11:30,26H1435,,,Scanning,Digital scan queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00806,Day 1 11:30,26H1178,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00807,Day 1 11:30,26H1238,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00808,Day 1 11:30,26H1298,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00809,Day 1 11:30,26H1358,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-00810,Day 1 11:30,26H1418,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00811,Day 1 11:30,26H1161,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00812,Day 1 11:30,26H1221,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00813,Day 1 11:30,26H1281,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00814,Day 1 11:30,26H1341,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00815,Day 1 11:30,26H1401,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00816,Day 1 11:30,26H1144,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00818,Day 1 11:30,26H1204,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00820,Day 1 11:30,26H1264,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00822,Day 1 11:30,26H1324,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00824,Day 1 11:30,26H1384,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00825,Day 1 11:30,26H1127,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00826,Day 1 11:30,26H1187,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00827,Day 1 11:30,26H1247,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00828,Day 1 11:30,26H1307,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00829,Day 1 11:30,26H1367,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00831,Day 1 11:30,26H1427,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Urgent priority tracked; no fault injected.,Recorded
+EV-00833,Day 1 11:30,26H1170,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00834,Day 1 11:30,26H1230,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00835,Day 1 11:30,26H1290,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00836,Day 1 11:30,26H1350,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-00837,Day 1 11:30,26H1410,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00838,Day 1 11:30,26H1153,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00840,Day 1 11:30,26H1213,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00842,Day 1 11:30,26H1273,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00844,Day 1 11:30,26H1333,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00846,Day 1 11:30,26H1393,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00847,Day 1 11:30,26H1136,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00848,Day 1 11:30,26H1196,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00849,Day 1 11:30,26H1256,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00850,Day 1 11:30,26H1316,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00851,Day 1 11:30,26H1376,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00853,Day 1 11:30,26H1436,,,Scanning,Digital scan queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00854,Day 1 11:30,26H1179,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00855,Day 1 11:30,26H1239,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00856,Day 1 11:30,26H1299,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00857,Day 1 11:30,26H1359,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-00858,Day 1 11:30,26H1419,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00859,Day 1 11:30,26H1162,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00861,Day 1 11:30,26H1222,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00863,Day 1 11:30,26H1282,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Urgent priority tracked; no fault injected.,Recorded
+EV-00866,Day 1 11:30,26H1342,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00868,Day 1 11:30,26H1402,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00869,Day 1 11:30,26H1145,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00870,Day 1 11:30,26H1205,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00871,Day 1 11:30,26H1265,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00872,Day 1 11:30,26H1325,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00873,Day 1 11:30,26H1385,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00875,Day 1 11:30,26H1128,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00876,Day 1 11:30,26H1188,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00877,Day 1 11:30,26H1248,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00878,Day 1 11:30,26H1308,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00879,Day 1 11:30,26H1368,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00880,Day 1 11:30,26H1428,,,H&E staining,Stainer 1,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00884,Day 1 11:30,26H1171,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00886,Day 1 11:30,26H1231,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00888,Day 1 11:30,26H1291,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00890,Day 1 11:30,26H1351,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-00891,Day 1 11:30,26H1411,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00892,Day 1 11:30,26H1154,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00893,Day 1 11:30,26H1214,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00894,Day 1 11:30,26H1274,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00895,Day 1 11:30,26H1334,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00896,Day 1 11:30,26H1394,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00898,Day 1 11:30,26H1137,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Urgent priority tracked; no fault injected.,Recorded
+EV-00900,Day 1 11:30,26H1197,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00901,Day 1 11:30,26H1257,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00902,Day 1 11:30,26H1317,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00904,Day 1 11:30,26H1377,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00905,Day 1 11:30,26H1437,,,Scanning,Digital scan queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00906,Day 1 11:30,26H1180,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00908,Day 1 11:30,26H1240,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00910,Day 1 11:30,26H1300,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00912,Day 1 11:30,26H1360,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-00913,Day 1 11:30,26H1420,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00914,Day 1 11:30,26H1163,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00915,Day 1 11:30,26H1223,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00916,Day 1 11:30,26H1283,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00917,Day 1 11:30,26H1343,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00918,Day 1 11:30,26H1403,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00919,Day 1 11:30,26H1146,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00920,Day 1 11:30,26H1206,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00922,Day 1 11:30,26H1266,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00923,Day 1 11:30,26H1326,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00924,Day 1 11:30,26H1386,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00925,Day 1 11:30,26H1129,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00927,Day 1 11:30,26H1189,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00929,Day 1 11:30,26H1249,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00931,Day 1 11:30,26H1309,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00933,Day 1 11:30,26H1369,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Urgent priority tracked; no fault injected.,Recorded
+EV-00935,Day 1 11:30,26H1429,,,H&E staining,Stainer 1,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00937,Day 1 11:30,26H1172,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00938,Day 1 11:30,26H1232,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00939,Day 1 11:30,26H1292,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00940,Day 1 11:30,26H1352,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-00941,Day 1 11:30,26H1412,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00942,Day 1 11:30,26H1155,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00943,Day 1 11:30,26H1215,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00944,Day 1 11:30,26H1275,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00945,Day 1 11:30,26H1335,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00946,Day 1 11:30,26H1395,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00947,Day 1 11:30,26H1138,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00949,Day 1 11:30,26H1198,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00951,Day 1 11:30,26H1258,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00953,Day 1 11:30,26H1318,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00955,Day 1 11:30,26H1378,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00956,Day 1 11:30,26H1438,,,Scanning,Digital scan queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00957,Day 1 11:30,26H1181,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00958,Day 1 11:30,26H1241,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00959,Day 1 11:30,26H1301,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00960,Day 1 11:30,26H1361,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-00961,Day 1 11:30,26H1421,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00962,Day 1 11:30,26H1164,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00963,Day 1 11:30,26H1224,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Urgent priority tracked; no fault injected.,Recorded
+EV-00965,Day 1 11:30,26H1284,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00966,Day 1 11:30,26H1344,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00967,Day 1 11:30,26H1404,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00968,Day 1 11:30,26H1147,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00970,Day 1 11:30,26H1207,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00972,Day 1 11:30,26H1267,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00974,Day 1 11:30,26H1327,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00976,Day 1 11:30,26H1387,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00977,Day 1 11:30,26H1130,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00978,Day 1 11:30,26H1190,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00979,Day 1 11:30,26H1250,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00980,Day 1 11:30,26H1310,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00981,Day 1 11:30,26H1370,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00983,Day 1 11:30,26H1430,,,H&E staining,Stainer 1,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00984,Day 1 11:30,26H1173,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00985,Day 1 11:30,26H1233,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00986,Day 1 11:30,26H1293,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00987,Day 1 11:30,26H1353,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-00988,Day 1 11:30,26H1413,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00989,Day 1 11:30,26H1156,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00991,Day 1 11:30,26H1216,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00993,Day 1 11:30,26H1276,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00995,Day 1 11:30,26H1336,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00997,Day 1 11:30,26H1396,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00998,Day 1 11:30,26H1139,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-00999,Day 1 11:30,26H1199,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01000,Day 1 11:30,26H1259,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01001,Day 1 11:30,26H1319,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01002,Day 1 11:30,26H1379,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01004,Day 1 11:30,26H1439,,,Scanning,Digital scan queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01005,Day 1 11:30,26H1182,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01006,Day 1 11:30,26H1242,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01007,Day 1 11:30,26H1302,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01008,Day 1 11:30,26H1362,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-01009,Day 1 11:30,26H1422,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01010,Day 1 11:30,26H1165,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01012,Day 1 11:30,26H1225,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01014,Day 1 11:30,26H1285,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01016,Day 1 11:30,26H1345,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01018,Day 1 11:30,26H1405,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01019,Day 1 11:30,26H1148,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01020,Day 1 11:30,26H1208,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01021,Day 1 11:30,26H1268,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01022,Day 1 11:30,26H1328,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01023,Day 1 11:30,26H1388,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01026,Day 1 11:30,26H1131,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01027,Day 1 11:30,26H1191,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01028,Day 1 11:30,26H1251,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01029,Day 1 11:30,26H1311,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Urgent priority tracked; no fault injected.,Recorded
+EV-01031,Day 1 11:30,26H1371,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01032,Day 1 11:30,26H1431,,,H&E staining,Stainer 1,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01034,Day 1 11:30,26H1174,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01036,Day 1 11:30,26H1234,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01038,Day 1 11:30,26H1294,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01040,Day 1 11:30,26H1354,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-01042,Day 1 11:30,26H1414,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01043,Day 1 11:30,26H1157,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01044,Day 1 11:30,26H1217,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01045,Day 1 11:30,26H1277,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01046,Day 1 11:30,26H1337,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01047,Day 1 11:30,26H1397,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01048,Day 1 11:30,26H1140,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01049,Day 1 11:30,26H1200,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01050,Day 1 11:30,26H1260,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01051,Day 1 11:30,26H1320,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01052,Day 1 11:30,26H1380,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01053,Day 1 11:30,26H1183,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01055,Day 1 11:30,26H1243,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01057,Day 1 11:30,26H1303,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01059,Day 1 11:30,26H1363,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-01060,Day 1 11:30,26H1423,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01061,Day 1 11:30,26H1166,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Urgent priority tracked; no fault injected.,Recorded
+EV-01063,Day 1 11:30,26H1226,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01064,Day 1 11:30,26H1286,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01065,Day 1 11:30,26H1346,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01066,Day 1 11:30,26H1406,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01067,Day 1 11:30,26H1149,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01068,Day 1 11:30,26H1209,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01069,Day 1 11:30,26H1269,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01070,Day 1 11:30,26H1329,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01071,Day 1 11:30,26H1389,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01072,Day 1 11:30,26H1132,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01074,Day 1 11:30,26H1192,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01076,Day 1 11:30,26H1252,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01078,Day 1 11:30,26H1312,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01080,Day 1 11:30,26H1372,,,Embedding,Embedding station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01081,Day 1 11:30,26H1432,,,H&E staining,Stainer 1,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01083,Day 1 11:30,26H1175,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01084,Day 1 11:30,26H1235,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01085,Day 1 11:30,26H1295,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01086,Day 1 11:30,26H1355,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Normal longer-running decalcification stage.,Recorded
+EV-01087,Day 1 11:30,26H1415,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01088,Day 1 11:30,26H1158,,,Received/booked,Booking,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01089,Day 1 11:30,26H1218,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01090,Day 1 11:30,26H1278,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01091,Day 1 11:30,26H1338,,,Awaiting processor or processing,Processor queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01092,Day 1 11:30,26H1398,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Urgent priority tracked; no fault injected.,Recorded
+EV-01118,Day 1 11:30,26H1001,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: BCSP-linked bowel polyp biopsy; embedded and waiting in the microtomy queue.,Recorded
+EV-01161,Day 1 11:30,26H1440,,,IQC,IQC station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01163,Day 1 11:30,26H1441,,,IQC,IQC station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01165,Day 1 11:30,26H1442,,,IQC,IQC station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01166,Day 1 11:30,26H1443,,,IQC,IQC station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01169,Day 1 11:30,26H1002,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Cervical-screening biopsy; three required levels are cut.,Recorded
+EV-01171,Day 1 11:30,26H1444,,,Ready for pathologist handoff,Case completion / electronic handoff,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01172,Day 1 11:30,26H1445,,,Ready for pathologist handoff,Case completion / electronic handoff,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01174,Day 1 11:30,26H1446,,,Ready for pathologist handoff,Case completion / electronic handoff,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01175,Day 1 11:30,26H1447,,,Ready for pathologist handoff,Case completion / electronic handoff,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01176,Day 1 11:30,26H1448,,,Ready for pathologist handoff,Case completion / electronic handoff,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01178,Day 1 11:30,26H1449,,,Ready for pathologist handoff,Case completion / electronic handoff,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Routine synthetic case; stage snapshot from mock event log.,Recorded
+EV-01182,Day 1 11:30,26H1005,,,H&E staining,Stainer 1,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Two slides from this case are in Stainer 1 basket 01; the live failure event is pending.,Recorded
+EV-01185,Day 1 11:30,26H1006,,,H&E staining,Stainer 1,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Two slides from this case are in Stainer 1 basket 01; the live failure event is pending.,Recorded
+EV-01188,Day 1 11:30,26H1007,,,H&E staining,Stainer 1,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Two slides from this case are in Stainer 1 basket 01; the live failure event is pending.,Recorded
+EV-01191,Day 1 11:30,26H1008,,,H&E staining,Stainer 1,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Two slides from this case are in Stainer 1 basket 01; the live failure event is pending.,Recorded
+EV-01194,Day 1 11:30,26H1009,,,H&E staining,Stainer 1,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Two slides from this case are in Stainer 1 basket 01; the live failure event is pending.,Recorded
+EV-01197,Day 1 11:30,26H1010,,,H&E staining,Stainer 1,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Two slides from this case are in Stainer 1 basket 01; the live failure event is pending.,Recorded
+EV-01200,Day 1 11:30,26H1011,,,H&E staining,Stainer 1,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Two slides from this case are in Stainer 1 basket 01; the live failure event is pending.,Recorded
+EV-01203,Day 1 11:30,26H1012,,,H&E staining,Stainer 1,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Two slides from this case are in Stainer 1 basket 01; the live failure event is pending.,Recorded
+EV-01206,Day 1 11:30,26H1013,,,H&E staining,Stainer 1,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Two slides from this case are in Stainer 1 basket 01; the live failure event is pending.,Recorded
+EV-01209,Day 1 11:30,26H1014,,,H&E staining,Stainer 1,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Two slides from this case are in Stainer 1 basket 01; the live failure event is pending.,Recorded
+EV-01211,Day 1 11:30,26H1004,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Only level 1 recorded at 10:40; protocol requires levels 1-3. Staff review is needed before advancement.,Recorded
+EV-01212,Day 1 11:30,26H1017,,,IQC,IQC station,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Two slides scanned at 10:35 and 10:37; both are now awaiting routine IQC.,Recorded
+EV-01214,Day 1 11:30,26H1003,,,Waiting for dissection/cut-up,Pathologist dissection / cut-up area,CURRENT_STAGE_SNAPSHOT,A1-E1 are in Processor D with output expected 12:00-13:00; F1 still awaits pathologist cut-up.,Recorded
+EV-01215,Day 1 11:30,26H1005,,,H&E staining,Stainer 1 basket 01,STAIN_RUN_FAILED,20 slides across 26H1005-26H1014.,Pending live trigger
+EV-01216,Day 1 11:30,26H1015,,,Scanning,Digital scan queue,CURRENT_STAGE_SNAPSHOT,"Scan-ready since Monday 15:30; no scan-complete event by Tuesday 11:30, while later cases have scan records.",Recorded
+EV-01217,Day 1 11:30,26H1016,,,Decalcification,Dedicated decalcification area,CURRENT_STAGE_SNAPSHOT,Stage at Tuesday 11:30: Bone sample is at the separate decalcification stage after cut-up. This is a normal longer-running process; no delay fault is asserted.,Recorded
+EV-01218,Day 1 11:30,26H1019,,,Microtomy,Microtomy queue,CURRENT_STAGE_SNAPSHOT,Still waiting for microtomy; representative of the previous-day backlog.,Recorded
+EV-01219,Day 1 11:30,26H1020,,,Waiting for dissection/cut-up,Pathologist dissection / cut-up area,CURRENT_STAGE_SNAPSHOT,"Stage at Tuesday 11:30: Awaiting pathologist cut-up; not yet sent to a processor. If cut-up misses the 17:00 loading cutoff, the next overnight run is used.",Recorded
+EV-01220,Day 1 11:30,26H1021,,,Waiting for dissection/cut-up,Pathologist dissection / cut-up area,CURRENT_STAGE_SNAPSHOT,"Stage at Tuesday 11:30: Awaiting pathologist cut-up; not yet sent to a processor. If cut-up misses the 17:00 loading cutoff, the next overnight run is used.",Recorded
+EV-01231,Day 1 11:30,26H1018,,,Ready for pathologist handoff,Case completion / electronic handoff,CURRENT_STAGE_SNAPSHOT,Ready for pathologist handoff since 11:15; lab preparation is complete.,Recorded

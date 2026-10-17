@@ -1,0 +1,27 @@
+Rule / stage,Description,Starting value,Unit,Status,Notes
+Simulated now,Shared dashboard clock,Tuesday Day 1 11:30 (fictional shared clock),simulated time,Illustrative; editable,Day -1 is the preceding working day; Day 0 is Monday and Day 1 is Tuesday. Event timestamps use this shared clock.
+Daily receipt and cut-up,Cases received in the lab during staffed day,07:00-17:00; same-day cut-up when workload permits,staffed-hour window,Workflow agreed for mock,Same-day receipt/cut-up is loaded into the appropriate processor for overnight processing.
+Processor loading cutoff,Overnight processor run,17:00 (demo assumption),clock time,Illustrative; verify,"If cut-up misses the run cutoff, the next processor opportunity is the following overnight run."
+Processor A,Biopsy processor,Typical output ~06:45,time of day,Previously supplied; verify,Machine-specific expected output time; not a general cycle duration.
+Processor B,Urgent tissue processor,Typical output ~06:45,time of day,Previously supplied; verify,Machine-specific expected output time.
+Processor C,Routine processor,Typical output ~08:40,time of day,Previously supplied; verify,Machine-specific expected output time.
+Processor D,Large specimen / mega processor,Typical output ~12:00-13:00,time of day,Previously supplied; verify,Machine-specific expected output time.
+Processor capacity,Equipment capacity,400 total; unit TBC,cases / cassettes / positions,Clarify before pitch,Dashboard case counts and equipment load use separate units.
+Embedding,Two stations; main window about 07:00-11:30,2-4 hours per batch/work window,hours,Victoria’s clarified demo window; verify,Later processor output (e.g. Processor D ~12:00-13:00) may wait for the next available embedding slot. Confirm local practice.
+Microtomy routine cut,Six stations,4 minutes per block (demo assumption),minutes per block,Illustrative; replace with lab average,A queue can add waiting time; this is hands-on cutting time only.
+Microtomy extra level / recut,Per additional level,2 minutes per extra level (demo assumption),minutes per level,Illustrative; replace with lab average,Protocol requirement is checked separately from the time estimate.
+Stainer 1 H&E run,20-slide basket,60 minutes per basket (demo assumption),minutes per basket,Illustrative; verify actual cycle,Basket failure affects every slide linked to that run.
+Stainer 1 repeat stain,Failed 20-slide basket,60 minutes per repeat (demo assumption),minutes per basket,Illustrative; verify actual cycle,Re-run plus queue time is added to estimated lab handoff.
+Digital scanners,Four scanners; can run overnight,2 minutes per slide (demo assumption),minutes per slide,Illustrative; scanner settings change time,Parallel capacity and queue position determine wall-clock wait; scanning is not limited to staffed hours.
+IQC slide review,Per slide,1 minute per slide,minutes per slide,Victoria’s initial estimate; verify,Two-slide case is about 2 minutes of slide review.
+Case completion / emit,Per case,2 minutes (demo assumption),minutes per case,Illustrative; verify,Includes case-level completeness check and emitting lab-prepared case to pathologist queue.
+Physical case handoff,Tray / doctor pigeonhole,1 minute (demo assumption),minutes per case,Illustrative; verify,Physical tray/pigeonhole step occurs during staffed hours.
+Digital image send,Where required,1 minute (demo assumption),minutes per case,Illustrative; verify,Electronic image send/link event; scanner work may already have completed overnight.
+Two-slide post-stain example,Scan + IQC + emit + physical + digital,4 + 2 + 2 + 1 + 1 = about 10 minutes,minutes per case,Calculated from demo assumptions,"Excludes queueing, failed QC, extra slides, and any delays between staffed steps."
+Re-fix,Per case/block,TBC,additional time,Needs Victoria review,Keep outside ETA until an agreed demo duration is supplied.
+Decalcification,By bone type,Case-specific; no fixed ETA assumed,hours,Needs Victoria review,A normal longer-running stage; do not treat it automatically as an error.
+Cut-up delay threshold,Routine vs urgent,Event-based for demo; elapsed threshold TBC,rule,Needs Victoria review,Show urgent priority separately; delay alert threshold remains editable.
+Stage alert thresholds,Each stage,TBC,elapsed time / rule,Needs Victoria review,Do not claim a local SLA until the team confirms it.
+Screening clock,BCSP and cervical,Lab handoff only; target is editable,remaining time,Mock only; no programme deadline claim,"Meridian predicts lab preparation/handoff, not pathologist reporting or the full programme deadline."
+Case ETA rule,All samples,Current stage + remaining steps + holds/rework,calculated time,Rule-based; editable,"For multi-block cases, the whole case is ready only when all required blocks are complete."
+Equipment labels,Processors and Stainer 1,Names shown in private mock,text label,Review before public release,Replace with generic labels if preferred.

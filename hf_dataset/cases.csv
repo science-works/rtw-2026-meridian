@@ -1,0 +1,451 @@
+Case ID,Cohort,Sample type,Priority,Programme tag,Stage snapshot,Stage entered (simulated),Blocks expected,Blocks complete,Levels required,Levels recorded,Processor,Stainer basket,Slides in case,Alert category,Demo case?
+26H2345,Current-day workload,Gastrointestinal mucosal biopsy,Urgent,None,Awaiting processor or processing,Day 1 08:00,1,1,3,0,Processor B,,0,Priority monitoring,Yes
+26H1001,Current-day workload,Bowel polyp biopsy,Routine,BCSP,Microtomy,Day 1 11:15,2,2,3,0,Processor A,,0,Screening clock,Yes
+26H1002,Current-day workload,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 1 10:20,1,1,3,3,Processor A,,3,Screening clock,Yes
+26H1003,Current-day workload,Large tissue resection,Routine,None,Waiting for dissection/cut-up,Day 1 11:15,6,5,0,0,Processor D,,0,Outstanding block,Yes
+26H1004,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 1 10:50,1,1,3,1,Processor A,,1,Protocol mismatch,Yes
+26H1005,Current-day workload,Small biopsy,Routine,None,H&E staining,Day 1 10:45,1,1,2,2,,Stainer 1 basket 01,2,No alert before trigger,Yes
+26H1006,Current-day workload,Routine tissue biopsy,Routine,None,H&E staining,Day 1 10:45,1,1,2,2,,Stainer 1 basket 01,2,No alert before trigger,Yes
+26H1007,Current-day workload,Small biopsy,Routine,None,H&E staining,Day 1 10:45,1,1,2,2,,Stainer 1 basket 01,2,No alert before trigger,Yes
+26H1008,Current-day workload,Routine tissue biopsy,Routine,None,H&E staining,Day 1 10:45,1,1,2,2,,Stainer 1 basket 01,2,No alert before trigger,Yes
+26H1009,Current-day workload,Small biopsy,Routine,None,H&E staining,Day 1 10:45,1,1,2,2,,Stainer 1 basket 01,2,No alert before trigger,Yes
+26H1010,Current-day workload,Routine tissue biopsy,Routine,None,H&E staining,Day 1 10:45,1,1,2,2,,Stainer 1 basket 01,2,No alert before trigger,Yes
+26H1011,Current-day workload,Small biopsy,Routine,None,H&E staining,Day 1 10:45,1,1,2,2,,Stainer 1 basket 01,2,No alert before trigger,Yes
+26H1012,Current-day workload,Routine tissue biopsy,Routine,None,H&E staining,Day 1 10:45,1,1,2,2,,Stainer 1 basket 01,2,No alert before trigger,Yes
+26H1013,Current-day workload,Small biopsy,Routine,None,H&E staining,Day 1 10:45,1,1,2,2,,Stainer 1 basket 01,2,No alert before trigger,Yes
+26H1014,Current-day workload,Routine tissue biopsy,Routine,None,H&E staining,Day 1 10:45,1,1,2,2,,Stainer 1 basket 01,2,No alert before trigger,Yes
+26H1015,Previous-day backlog,Small biopsy,Routine,None,Scanning,Day 0 15:30,1,1,2,2,,,2,Scan queue anomaly,Yes
+26H1016,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:50,1,1,0,0,Not assigned until decalcification is complete,,0,No alert,Yes
+26H1017,Current-day workload,Routine biopsy,Routine,None,IQC,Day 1 10:45,1,1,2,2,,,2,No alert,Yes
+26H1018,Current-day workload,Routine biopsy,Routine,None,Ready for pathologist handoff,Day 1 11:15,1,1,2,2,,,2,No alert,Yes
+26H1019,Previous-day backlog,Routine small biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,0,,,0,Backlog visibility,Yes
+26H1020,Current-day workload,Large tissue sample,Routine,None,Waiting for dissection/cut-up,Day 1 10:50,3,0,0,0,,,0,Dissection queue,Yes
+26H1021,Current-day workload,Large tissue sample,Routine,None,Waiting for dissection/cut-up,Day 1 11:00,3,0,0,0,,,0,Dissection queue,Yes
+26H1022,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,No alert,No
+26H1023,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,1,1,0,3,,,3,No alert,No
+26H1024,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,4,,,4,Screening clock,No
+26H1025,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1026,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,No alert,No
+26H1027,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,3,,,3,Screening clock,No
+26H1028,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,2,2,0,4,,,4,No alert,No
+26H1029,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1030,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,2,,,2,Screening clock,No
+26H1031,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,3,,,3,No alert,No
+26H1032,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,2,2,0,4,,,4,No alert,No
+26H1033,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,1,,,1,Screening clock,No
+26H1034,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,No alert,No
+26H1035,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,1,1,0,3,,,3,No alert,No
+26H1036,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,4,,,4,Screening clock,No
+26H1037,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1038,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,No alert,No
+26H1039,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,3,,,3,Screening clock,No
+26H1040,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,2,2,0,4,,,4,No alert,No
+26H1041,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1042,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,2,,,2,Screening clock,No
+26H1043,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,3,,,3,No alert,No
+26H1044,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,2,2,0,4,,,4,No alert,No
+26H1045,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,1,,,1,Screening clock,No
+26H1046,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,No alert,No
+26H1047,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,1,1,0,3,,,3,No alert,No
+26H1048,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,4,,,4,Screening clock,No
+26H1049,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1050,Previous-day backlog,Bone sample,Urgent,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,Priority monitoring,No
+26H1051,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,3,,,3,Screening clock,No
+26H1052,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,2,2,0,4,,,4,No alert,No
+26H1053,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1054,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,2,,,2,Screening clock,No
+26H1055,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,3,,,3,No alert,No
+26H1056,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,2,2,0,4,,,4,No alert,No
+26H1057,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,1,,,1,Screening clock,No
+26H1058,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,BCSP,Microtomy,Day 0 15:00,2,2,0,2,,,2,Screening clock,No
+26H1059,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,1,1,0,3,,,3,No alert,No
+26H1060,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,4,,,4,Screening clock,No
+26H1061,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1062,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,No alert,No
+26H1063,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,3,,,3,Screening clock,No
+26H1064,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,4,,,4,Screening clock,No
+26H1065,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1066,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,2,,,2,Screening clock,No
+26H1067,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,3,,,3,No alert,No
+26H1068,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,2,2,0,4,,,4,No alert,No
+26H1069,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,1,,,1,Screening clock,No
+26H1070,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,No alert,No
+26H1071,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,1,1,0,3,,,3,No alert,No
+26H1072,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,4,,,4,Screening clock,No
+26H1073,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1074,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,No alert,No
+26H1075,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,3,,,3,Screening clock,No
+26H1076,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,2,2,0,4,,,4,No alert,No
+26H1077,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1078,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,2,,,2,Screening clock,No
+26H1079,Previous-day backlog,Gastrointestinal mucosal biopsy,Urgent,None,Microtomy,Day 0 15:00,1,1,0,3,,,3,Priority monitoring,No
+26H1080,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,2,2,0,4,,,4,No alert,No
+26H1081,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,1,,,1,Screening clock,No
+26H1082,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,No alert,No
+26H1083,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,1,1,0,3,,,3,No alert,No
+26H1084,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,4,,,4,Screening clock,No
+26H1085,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1086,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,No alert,No
+26H1087,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,3,,,3,Screening clock,No
+26H1088,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,2,2,0,4,,,4,No alert,No
+26H1089,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1090,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,2,,,2,Screening clock,No
+26H1091,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,3,,,3,No alert,No
+26H1092,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,2,2,0,4,,,4,No alert,No
+26H1093,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,1,,,1,Screening clock,No
+26H1094,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,No alert,No
+26H1095,Previous-day backlog,Bone sample,Routine,BCSP,Microtomy,Day 0 15:00,1,1,0,3,,,3,Screening clock,No
+26H1096,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,4,,,4,Screening clock,No
+26H1097,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1098,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,No alert,No
+26H1099,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,3,,,3,Screening clock,No
+26H1100,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,2,2,0,4,,,4,No alert,No
+26H1101,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1102,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,2,,,2,Screening clock,No
+26H1103,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,3,,,3,No alert,No
+26H1104,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,2,2,0,4,,,4,No alert,No
+26H1105,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,1,,,1,Screening clock,No
+26H1106,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,No alert,No
+26H1107,Previous-day backlog,Bone sample,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,3,,,3,Screening clock,No
+26H1108,Previous-day backlog,Cervical biopsy,Urgent,Cervical screening,Microtomy,Day 0 15:00,2,2,0,4,,,4,Priority monitoring,No
+26H1109,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1110,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,No alert,No
+26H1111,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,3,,,3,Screening clock,No
+26H1112,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,2,2,0,4,,,4,No alert,No
+26H1113,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1114,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,2,,,2,Screening clock,No
+26H1115,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,3,,,3,No alert,No
+26H1116,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,2,2,0,4,,,4,No alert,No
+26H1117,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,1,,,1,Screening clock,No
+26H1118,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,No alert,No
+26H1119,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,1,1,0,3,,,3,No alert,No
+26H1120,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,2,2,0,4,,,4,Screening clock,No
+26H1121,Previous-day backlog,Gastrointestinal mucosal biopsy,Routine,None,Microtomy,Day 0 15:00,1,1,0,1,,,1,No alert,No
+26H1122,Previous-day backlog,Bone sample,Routine,None,Microtomy,Day 0 15:00,2,2,0,2,,,2,No alert,No
+26H1123,Previous-day backlog,Cervical biopsy,Routine,Cervical screening,Microtomy,Day 0 15:00,1,1,0,3,,,3,Screening clock,No
+26H1124,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:01,2,2,0,0,,,0,No alert,No
+26H1125,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:08,1,1,0,0,,,0,No alert,No
+26H1126,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:15,2,2,0,0,,,0,Screening clock,No
+26H1127,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:22,1,1,0,0,,,0,No alert,No
+26H1128,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:29,2,2,0,0,,,0,No alert,No
+26H1129,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:36,1,1,0,0,,,0,Screening clock,No
+26H1130,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:43,2,2,0,0,,,0,No alert,No
+26H1131,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:50,1,1,0,0,,,0,No alert,No
+26H1132,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:57,2,2,0,0,,,0,Screening clock,No
+26H1133,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:04,1,1,0,0,,,0,No alert,No
+26H1134,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:11,2,2,0,0,,,0,No alert,No
+26H1135,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:18,1,1,0,0,,,0,Screening clock,No
+26H1136,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:25,2,2,0,0,,,0,No alert,No
+26H1137,Current-day workload,Bone sample,Urgent,None,Received/booked,Day 1 08:32,1,1,0,0,,,0,Priority monitoring,No
+26H1138,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:39,2,2,0,0,,,0,Screening clock,No
+26H1139,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:46,1,1,0,0,,,0,No alert,No
+26H1140,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:53,2,2,0,0,,,0,No alert,No
+26H1141,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:00,1,1,0,0,,,0,Screening clock,No
+26H1142,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:07,2,2,0,0,,,0,No alert,No
+26H1143,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:14,1,1,0,0,,,0,No alert,No
+26H1144,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:21,2,2,0,0,,,0,Screening clock,No
+26H1145,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:28,1,1,0,0,,,0,No alert,No
+26H1146,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:35,2,2,0,0,,,0,No alert,No
+26H1147,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:42,1,1,0,0,,,0,Screening clock,No
+26H1148,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:49,2,2,0,0,,,0,No alert,No
+26H1149,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:56,1,1,0,0,,,0,No alert,No
+26H1150,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:03,2,2,0,0,,,0,Screening clock,No
+26H1151,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:10,1,1,0,0,,,0,No alert,No
+26H1152,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:17,2,2,0,0,,,0,No alert,No
+26H1153,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:24,1,1,0,0,,,0,Screening clock,No
+26H1154,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:31,2,2,0,0,,,0,No alert,No
+26H1155,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:38,1,1,0,0,,,0,No alert,No
+26H1156,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:45,2,2,0,0,,,0,Screening clock,No
+26H1157,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:52,1,1,0,0,,,0,No alert,No
+26H1158,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:59,2,2,0,0,,,0,No alert,No
+26H1159,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:06,1,1,0,0,,,0,Screening clock,No
+26H1160,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:13,2,2,0,0,,,0,No alert,No
+26H1161,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:20,1,1,0,0,,,0,No alert,No
+26H1162,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:27,2,2,0,0,,,0,Screening clock,No
+26H1163,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:34,1,1,0,0,,,0,No alert,No
+26H1164,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:41,2,2,0,0,,,0,No alert,No
+26H1165,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:48,1,1,0,0,,,0,Screening clock,No
+26H1166,Current-day workload,Gastrointestinal mucosal biopsy,Urgent,None,Received/booked,Day 1 08:55,2,2,0,0,,,0,Priority monitoring,No
+26H1167,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:02,1,1,0,0,,,0,No alert,No
+26H1168,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:09,2,2,0,0,,,0,Screening clock,No
+26H1169,Current-day workload,Gastrointestinal mucosal biopsy,Routine,BCSP,Received/booked,Day 1 08:16,1,1,0,0,,,0,Screening clock,No
+26H1170,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:23,2,2,0,0,,,0,No alert,No
+26H1171,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:30,1,1,0,0,,,0,Screening clock,No
+26H1172,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:37,2,2,0,0,,,0,No alert,No
+26H1173,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:44,1,1,0,0,,,0,No alert,No
+26H1174,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:51,2,2,0,0,,,0,Screening clock,No
+26H1175,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:58,1,1,0,0,,,0,No alert,No
+26H1176,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:05,2,2,0,0,,,0,No alert,No
+26H1177,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:12,1,1,0,0,,,0,Screening clock,No
+26H1178,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:19,2,2,0,0,,,0,No alert,No
+26H1179,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:26,1,1,0,0,,,0,No alert,No
+26H1180,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:33,2,2,0,0,,,0,Screening clock,No
+26H1181,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:40,1,1,0,0,,,0,No alert,No
+26H1182,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:47,2,2,0,0,,,0,No alert,No
+26H1183,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:54,1,1,0,0,,,0,Screening clock,No
+26H1184,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:01,2,2,0,0,,,0,No alert,No
+26H1185,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:08,1,1,0,0,,,0,No alert,No
+26H1186,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:15,2,2,0,0,,,0,Screening clock,No
+26H1187,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:22,1,1,0,0,,,0,No alert,No
+26H1188,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:29,2,2,0,0,,,0,No alert,No
+26H1189,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:36,1,1,0,0,,,0,Screening clock,No
+26H1190,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Received/booked,Day 1 08:43,2,2,0,0,,,0,No alert,No
+26H1191,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:50,1,1,0,0,,,0,No alert,No
+26H1192,Current-day workload,Cervical biopsy,Routine,Cervical screening,Received/booked,Day 1 08:57,2,2,0,0,,,0,Screening clock,No
+26H1193,Current-day workload,Gastrointestinal mucosal biopsy,Routine,Cervical screening,Received/booked,Day 1 08:04,1,1,0,0,,,0,Screening clock,No
+26H1194,Current-day workload,Bone sample,Routine,None,Received/booked,Day 1 08:11,2,2,0,0,,,0,No alert,No
+26H1195,Current-day workload,Cervical biopsy,Urgent,Cervical screening,Received/booked,Day 1 08:18,1,1,0,0,,,0,Priority monitoring,No
+26H1196,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:25,2,2,0,0,Processor A,,0,No alert,No
+26H1197,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:32,1,1,0,0,Processor C,,0,No alert,No
+26H1198,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:39,2,2,0,0,Processor A,,0,Screening clock,No
+26H1199,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:46,1,1,0,0,Processor A,,0,No alert,No
+26H1200,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:53,2,2,0,0,Processor C,,0,No alert,No
+26H1201,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:00,1,1,0,0,Processor A,,0,Screening clock,No
+26H1202,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:07,2,2,0,0,Processor A,,0,No alert,No
+26H1203,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:14,1,1,0,0,Processor C,,0,No alert,No
+26H1204,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:21,2,2,0,0,Processor A,,0,Screening clock,No
+26H1205,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:28,1,1,0,0,Processor A,,0,No alert,No
+26H1206,Current-day workload,Bone sample,Routine,BCSP,Awaiting processor or processing,Day 1 08:35,2,2,0,0,Processor C,,0,Screening clock,No
+26H1207,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:42,1,1,0,0,Processor A,,0,Screening clock,No
+26H1208,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:49,2,2,0,0,Processor A,,0,No alert,No
+26H1209,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:56,1,1,0,0,Processor C,,0,No alert,No
+26H1210,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:03,2,2,0,0,Processor A,,0,Screening clock,No
+26H1211,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:10,1,1,0,0,Processor A,,0,No alert,No
+26H1212,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:17,2,2,0,0,Processor C,,0,No alert,No
+26H1213,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:24,1,1,0,0,Processor A,,0,Screening clock,No
+26H1214,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:31,2,2,0,0,Processor A,,0,No alert,No
+26H1215,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:38,1,1,0,0,Processor C,,0,No alert,No
+26H1216,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:45,2,2,0,0,Processor A,,0,Screening clock,No
+26H1217,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:52,1,1,0,0,Processor A,,0,No alert,No
+26H1218,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:59,2,2,0,0,Processor C,,0,No alert,No
+26H1219,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:06,1,1,0,0,Processor A,,0,Screening clock,No
+26H1220,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:13,2,2,0,0,Processor A,,0,No alert,No
+26H1221,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:20,1,1,0,0,Processor C,,0,No alert,No
+26H1222,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:27,2,2,0,0,Processor A,,0,Screening clock,No
+26H1223,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:34,1,1,0,0,Processor A,,0,No alert,No
+26H1224,Current-day workload,Bone sample,Urgent,None,Awaiting processor or processing,Day 1 08:41,2,2,0,0,Processor B,,0,Priority monitoring,No
+26H1225,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:48,1,1,0,0,Processor A,,0,Screening clock,No
+26H1226,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:55,2,2,0,0,Processor A,,0,No alert,No
+26H1227,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:02,1,1,0,0,Processor C,,0,No alert,No
+26H1228,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:09,2,2,0,0,Processor A,,0,Screening clock,No
+26H1229,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:16,1,1,0,0,Processor A,,0,No alert,No
+26H1230,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:23,2,2,0,0,Processor C,,0,No alert,No
+26H1231,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:30,1,1,0,0,Processor A,,0,Screening clock,No
+26H1232,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:37,2,2,0,0,Processor A,,0,No alert,No
+26H1233,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:44,1,1,0,0,Processor C,,0,No alert,No
+26H1234,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:51,2,2,0,0,Processor A,,0,Screening clock,No
+26H1235,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:58,1,1,0,0,Processor A,,0,No alert,No
+26H1236,Current-day workload,Bone sample,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:05,2,2,0,0,Processor C,,0,Screening clock,No
+26H1237,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:12,1,1,0,0,Processor A,,0,Screening clock,No
+26H1238,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:19,2,2,0,0,Processor A,,0,No alert,No
+26H1239,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:26,1,1,0,0,Processor C,,0,No alert,No
+26H1240,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:33,2,2,0,0,Processor A,,0,Screening clock,No
+26H1241,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:40,1,1,0,0,Processor A,,0,No alert,No
+26H1242,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:47,2,2,0,0,Processor C,,0,No alert,No
+26H1243,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:54,1,1,0,0,Processor A,,0,Screening clock,No
+26H1244,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:01,2,2,0,0,Processor A,,0,No alert,No
+26H1245,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:08,1,1,0,0,Processor C,,0,No alert,No
+26H1246,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:15,2,2,0,0,Processor A,,0,Screening clock,No
+26H1247,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:22,1,1,0,0,Processor A,,0,No alert,No
+26H1248,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:29,2,2,0,0,Processor C,,0,No alert,No
+26H1249,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:36,1,1,0,0,Processor A,,0,Screening clock,No
+26H1250,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:43,2,2,0,0,Processor A,,0,No alert,No
+26H1251,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:50,1,1,0,0,Processor C,,0,No alert,No
+26H1252,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:57,2,2,0,0,Processor A,,0,Screening clock,No
+26H1253,Current-day workload,Gastrointestinal mucosal biopsy,Urgent,None,Awaiting processor or processing,Day 1 08:04,1,1,0,0,Processor B,,0,Priority monitoring,No
+26H1254,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:11,2,2,0,0,Processor C,,0,No alert,No
+26H1255,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:18,1,1,0,0,Processor A,,0,Screening clock,No
+26H1256,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:25,2,2,0,0,Processor A,,0,No alert,No
+26H1257,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:32,1,1,0,0,Processor C,,0,No alert,No
+26H1258,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:39,2,2,0,0,Processor A,,0,Screening clock,No
+26H1259,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:46,1,1,0,0,Processor A,,0,No alert,No
+26H1260,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:53,2,2,0,0,Processor C,,0,No alert,No
+26H1261,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:00,1,1,0,0,Processor A,,0,Screening clock,No
+26H1262,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:07,2,2,0,0,Processor A,,0,No alert,No
+26H1263,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:14,1,1,0,0,Processor C,,0,No alert,No
+26H1264,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:21,2,2,0,0,Processor A,,0,Screening clock,No
+26H1265,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:28,1,1,0,0,Processor A,,0,No alert,No
+26H1266,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:35,2,2,0,0,Processor C,,0,No alert,No
+26H1267,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:42,1,1,0,0,Processor A,,0,Screening clock,No
+26H1268,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:49,2,2,0,0,Processor A,,0,No alert,No
+26H1269,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:56,1,1,0,0,Processor C,,0,No alert,No
+26H1270,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:03,2,2,0,0,Processor A,,0,Screening clock,No
+26H1271,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:10,1,1,0,0,Processor A,,0,No alert,No
+26H1272,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:17,2,2,0,0,Processor C,,0,No alert,No
+26H1273,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:24,1,1,0,0,Processor A,,0,Screening clock,No
+26H1274,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:31,2,2,0,0,Processor A,,0,No alert,No
+26H1275,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:38,1,1,0,0,Processor C,,0,No alert,No
+26H1276,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:45,2,2,0,0,Processor A,,0,Screening clock,No
+26H1277,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:52,1,1,0,0,Processor A,,0,No alert,No
+26H1278,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:59,2,2,0,0,Processor C,,0,No alert,No
+26H1279,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:06,1,1,0,0,Processor A,,0,Screening clock,No
+26H1280,Current-day workload,Gastrointestinal mucosal biopsy,Routine,BCSP,Awaiting processor or processing,Day 1 08:13,2,2,0,0,Processor A,,0,Screening clock,No
+26H1281,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:20,1,1,0,0,Processor C,,0,No alert,No
+26H1282,Current-day workload,Cervical biopsy,Urgent,Cervical screening,Awaiting processor or processing,Day 1 08:27,2,2,0,0,Processor B,,0,Priority monitoring,No
+26H1283,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:34,1,1,0,0,Processor A,,0,No alert,No
+26H1284,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:41,2,2,0,0,Processor C,,0,No alert,No
+26H1285,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:48,1,1,0,0,Processor A,,0,Screening clock,No
+26H1286,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:55,2,2,0,0,Processor A,,0,No alert,No
+26H1287,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:02,1,1,0,0,Processor C,,0,No alert,No
+26H1288,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:09,2,2,0,0,Processor A,,0,Screening clock,No
+26H1289,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:16,1,1,0,0,Processor A,,0,No alert,No
+26H1290,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:23,2,2,0,0,Processor C,,0,No alert,No
+26H1291,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:30,1,1,0,0,Processor A,,0,Screening clock,No
+26H1292,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:37,2,2,0,0,Processor A,,0,No alert,No
+26H1293,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:44,1,1,0,0,Processor C,,0,No alert,No
+26H1294,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:51,2,2,0,0,Processor A,,0,Screening clock,No
+26H1295,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:58,1,1,0,0,Processor A,,0,No alert,No
+26H1296,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:05,2,2,0,0,Processor C,,0,No alert,No
+26H1297,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:12,1,1,0,0,Processor A,,0,Screening clock,No
+26H1298,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:19,2,2,0,0,Processor A,,0,No alert,No
+26H1299,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:26,1,1,0,0,Processor C,,0,No alert,No
+26H1300,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:33,2,2,0,0,Processor A,,0,Screening clock,No
+26H1301,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:40,1,1,0,0,Processor A,,0,No alert,No
+26H1302,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:47,2,2,0,0,Processor C,,0,No alert,No
+26H1303,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:54,1,1,0,0,Processor A,,0,Screening clock,No
+26H1304,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:01,2,2,0,0,Processor A,,0,No alert,No
+26H1305,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:08,1,1,0,0,Processor C,,0,No alert,No
+26H1306,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:15,2,2,0,0,Processor A,,0,Screening clock,No
+26H1307,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:22,1,1,0,0,Processor A,,0,No alert,No
+26H1308,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:29,2,2,0,0,Processor C,,0,No alert,No
+26H1309,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:36,1,1,0,0,Processor A,,0,Screening clock,No
+26H1310,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:43,2,2,0,0,Processor A,,0,No alert,No
+26H1311,Current-day workload,Bone sample,Urgent,None,Awaiting processor or processing,Day 1 08:50,1,1,0,0,Processor B,,0,Priority monitoring,No
+26H1312,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:57,2,2,0,0,Processor A,,0,Screening clock,No
+26H1313,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:04,1,1,0,0,Processor A,,0,No alert,No
+26H1314,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:11,2,2,0,0,Processor C,,0,No alert,No
+26H1315,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:18,1,1,0,0,Processor A,,0,Screening clock,No
+26H1316,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:25,2,2,0,0,Processor A,,0,No alert,No
+26H1317,Current-day workload,Bone sample,Routine,BCSP,Awaiting processor or processing,Day 1 08:32,1,1,0,0,Processor C,,0,Screening clock,No
+26H1318,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:39,2,2,0,0,Processor A,,0,Screening clock,No
+26H1319,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:46,1,1,0,0,Processor A,,0,No alert,No
+26H1320,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:53,2,2,0,0,Processor C,,0,No alert,No
+26H1321,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:00,1,1,0,0,Processor A,,0,Screening clock,No
+26H1322,Current-day workload,Gastrointestinal mucosal biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:07,2,2,0,0,Processor A,,0,Screening clock,No
+26H1323,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:14,1,1,0,0,Processor C,,0,No alert,No
+26H1324,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:21,2,2,0,0,Processor A,,0,Screening clock,No
+26H1325,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:28,1,1,0,0,Processor A,,0,No alert,No
+26H1326,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:35,2,2,0,0,Processor C,,0,No alert,No
+26H1327,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:42,1,1,0,0,Processor A,,0,Screening clock,No
+26H1328,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:49,2,2,0,0,Processor A,,0,No alert,No
+26H1329,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:56,1,1,0,0,Processor C,,0,No alert,No
+26H1330,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:03,2,2,0,0,Processor A,,0,Screening clock,No
+26H1331,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:10,1,1,0,0,Processor A,,0,No alert,No
+26H1332,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:17,2,2,0,0,Processor C,,0,No alert,No
+26H1333,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:24,1,1,0,0,Processor A,,0,Screening clock,No
+26H1334,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:31,2,2,0,0,Processor A,,0,No alert,No
+26H1335,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:38,1,1,0,0,Processor C,,0,No alert,No
+26H1336,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:45,2,2,0,0,Processor A,,0,Screening clock,No
+26H1337,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:52,1,1,0,0,Processor A,,0,No alert,No
+26H1338,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:59,2,2,0,0,Processor C,,0,No alert,No
+26H1339,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:06,1,1,0,0,Processor A,,0,Screening clock,No
+26H1340,Current-day workload,Gastrointestinal mucosal biopsy,Urgent,None,Awaiting processor or processing,Day 1 08:13,2,2,0,0,Processor B,,0,Priority monitoring,No
+26H1341,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:20,1,1,0,0,Processor C,,0,No alert,No
+26H1342,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:27,2,2,0,0,Processor A,,0,Screening clock,No
+26H1343,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:34,1,1,0,0,Processor A,,0,No alert,No
+26H1344,Current-day workload,Bone sample,Routine,None,Awaiting processor or processing,Day 1 08:41,2,2,0,0,Processor C,,0,No alert,No
+26H1345,Current-day workload,Cervical biopsy,Routine,Cervical screening,Awaiting processor or processing,Day 1 08:48,1,1,0,0,Processor A,,0,Screening clock,No
+26H1346,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Awaiting processor or processing,Day 1 08:55,2,2,0,0,Processor A,,0,No alert,No
+26H1347,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:02,1,1,0,0,,,0,No alert,No
+26H1348,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:09,2,2,0,0,,,0,No alert,No
+26H1349,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:16,1,1,0,0,,,0,No alert,No
+26H1350,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:23,2,2,0,0,,,0,No alert,No
+26H1351,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:30,1,1,0,0,,,0,No alert,No
+26H1352,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:37,2,2,0,0,,,0,No alert,No
+26H1353,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:44,1,1,0,0,,,0,No alert,No
+26H1354,Current-day workload,Bone sample,Routine,BCSP,Decalcification,Day 1 08:51,2,2,0,0,,,0,Screening clock,No
+26H1355,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:58,1,1,0,0,,,0,No alert,No
+26H1356,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:05,2,2,0,0,,,0,No alert,No
+26H1357,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:12,1,1,0,0,,,0,No alert,No
+26H1358,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:19,2,2,0,0,,,0,No alert,No
+26H1359,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:26,1,1,0,0,,,0,No alert,No
+26H1360,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:33,2,2,0,0,,,0,No alert,No
+26H1361,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:40,1,1,0,0,,,0,No alert,No
+26H1362,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:47,2,2,0,0,,,0,No alert,No
+26H1363,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:54,1,1,0,0,,,0,No alert,No
+26H1364,Current-day workload,Bone sample,Routine,None,Decalcification,Day 1 08:01,2,2,0,0,,,0,No alert,No
+26H1365,Current-day workload,Bone sample,Routine,Cervical screening,Decalcification,Day 1 08:08,1,1,0,0,,,0,Screening clock,No
+26H1366,Current-day workload,Bone sample,Routine,None,Embedding,Day 1 08:15,2,2,0,0,,,0,No alert,No
+26H1367,Current-day workload,Cervical biopsy,Routine,Cervical screening,Embedding,Day 1 08:22,1,1,0,0,,,0,Screening clock,No
+26H1368,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Embedding,Day 1 08:29,2,2,0,0,,,0,No alert,No
+26H1369,Current-day workload,Bone sample,Urgent,None,Embedding,Day 1 08:36,1,1,0,0,,,0,Priority monitoring,No
+26H1370,Current-day workload,Cervical biopsy,Routine,Cervical screening,Embedding,Day 1 08:43,2,2,0,0,,,0,Screening clock,No
+26H1371,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Embedding,Day 1 08:50,1,1,0,0,,,0,No alert,No
+26H1372,Current-day workload,Bone sample,Routine,None,Embedding,Day 1 08:57,2,2,0,0,,,0,No alert,No
+26H1373,Current-day workload,Cervical biopsy,Routine,Cervical screening,Embedding,Day 1 08:04,1,1,0,0,,,0,Screening clock,No
+26H1374,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Embedding,Day 1 08:11,2,2,0,0,,,0,No alert,No
+26H1375,Current-day workload,Bone sample,Routine,None,Embedding,Day 1 08:18,1,1,0,0,,,0,No alert,No
+26H1376,Current-day workload,Cervical biopsy,Routine,Cervical screening,Embedding,Day 1 08:25,2,2,0,0,,,0,Screening clock,No
+26H1377,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Embedding,Day 1 08:32,1,1,0,0,,,0,No alert,No
+26H1378,Current-day workload,Bone sample,Routine,None,Embedding,Day 1 08:39,2,2,0,0,,,0,No alert,No
+26H1379,Current-day workload,Cervical biopsy,Routine,Cervical screening,Embedding,Day 1 08:46,1,1,0,0,,,0,Screening clock,No
+26H1380,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Embedding,Day 1 08:53,2,2,0,0,,,0,No alert,No
+26H1381,Current-day workload,Bone sample,Routine,None,Embedding,Day 1 08:00,1,1,0,0,,,0,No alert,No
+26H1382,Current-day workload,Cervical biopsy,Routine,Cervical screening,Embedding,Day 1 08:07,2,2,0,0,,,0,Screening clock,No
+26H1383,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Embedding,Day 1 08:14,1,1,0,0,,,0,No alert,No
+26H1384,Current-day workload,Bone sample,Routine,None,Embedding,Day 1 08:21,2,2,0,0,,,0,No alert,No
+26H1385,Current-day workload,Cervical biopsy,Routine,Cervical screening,Embedding,Day 1 08:28,1,1,0,0,,,0,Screening clock,No
+26H1386,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Embedding,Day 1 08:35,2,2,0,0,,,0,No alert,No
+26H1387,Current-day workload,Bone sample,Routine,None,Embedding,Day 1 08:42,1,1,0,0,,,0,No alert,No
+26H1388,Current-day workload,Cervical biopsy,Routine,Cervical screening,Embedding,Day 1 08:49,2,2,0,0,,,0,Screening clock,No
+26H1389,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Embedding,Day 1 08:56,1,1,0,0,,,0,No alert,No
+26H1390,Current-day workload,Bone sample,Routine,None,Embedding,Day 1 08:03,2,2,0,0,,,0,No alert,No
+26H1391,Current-day workload,Cervical biopsy,Routine,Cervical screening,Embedding,Day 1 08:10,1,1,0,0,,,0,Screening clock,No
+26H1392,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Embedding,Day 1 08:17,2,2,0,0,,,0,No alert,No
+26H1393,Current-day workload,Bone sample,Routine,None,Embedding,Day 1 08:24,1,1,0,0,,,0,No alert,No
+26H1394,Current-day workload,Cervical biopsy,Routine,Cervical screening,Embedding,Day 1 08:31,2,2,0,0,,,0,Screening clock,No
+26H1395,Current-day workload,Larger tissue sample,Routine,None,Microtomy,Day 1 08:38,5,5,0,3,,,3,No alert,No
+26H1396,Current-day workload,Skin biopsy,Routine,None,Microtomy,Day 1 08:45,2,2,0,4,,,4,No alert,No
+26H1397,Current-day workload,Routine small biopsy,Routine,None,Microtomy,Day 1 08:52,1,1,0,1,,,1,No alert,No
+26H1398,Current-day workload,Larger tissue sample,Urgent,None,Microtomy,Day 1 08:59,4,4,0,2,,,2,Priority monitoring,No
+26H1399,Current-day workload,Skin biopsy,Routine,None,Microtomy,Day 1 08:06,1,1,0,3,,,3,No alert,No
+26H1400,Current-day workload,Routine small biopsy,Routine,None,Microtomy,Day 1 08:13,2,2,0,4,,,4,No alert,No
+26H1401,Current-day workload,Larger tissue sample,Routine,None,Microtomy,Day 1 08:20,3,3,0,1,,,1,No alert,No
+26H1402,Current-day workload,Skin biopsy,Routine,None,Microtomy,Day 1 08:27,2,2,0,2,,,2,No alert,No
+26H1403,Current-day workload,Routine small biopsy,Routine,None,Microtomy,Day 1 08:34,1,1,0,3,,,3,No alert,No
+26H1404,Current-day workload,Larger tissue sample,Routine,None,Microtomy,Day 1 08:41,6,6,0,4,,,4,No alert,No
+26H1405,Current-day workload,Skin biopsy,Routine,None,Microtomy,Day 1 08:48,1,1,0,1,,,1,No alert,No
+26H1406,Current-day workload,Routine small biopsy,Routine,None,Microtomy,Day 1 08:55,2,2,0,2,,,2,No alert,No
+26H1407,Current-day workload,Larger tissue sample,Routine,None,Microtomy,Day 1 08:02,5,5,0,3,,,3,No alert,No
+26H1408,Current-day workload,Skin biopsy,Routine,Cervical screening,Microtomy,Day 1 08:09,2,2,0,4,,,4,Screening clock,No
+26H1409,Current-day workload,Routine small biopsy,Routine,None,Microtomy,Day 1 08:16,1,1,0,1,,,1,No alert,No
+26H1410,Current-day workload,Larger tissue sample,Routine,None,Microtomy,Day 1 08:23,4,4,0,2,,,2,No alert,No
+26H1411,Current-day workload,Skin biopsy,Routine,None,Microtomy,Day 1 08:30,1,1,0,3,,,3,No alert,No
+26H1412,Current-day workload,Routine small biopsy,Routine,None,Microtomy,Day 1 08:37,2,2,0,4,,,4,No alert,No
+26H1413,Current-day workload,Larger tissue sample,Routine,None,Microtomy,Day 1 08:44,3,3,0,1,,,1,No alert,No
+26H1414,Current-day workload,Skin biopsy,Routine,None,Microtomy,Day 1 08:51,2,2,0,2,,,2,No alert,No
+26H1415,Current-day workload,Routine small biopsy,Routine,None,Microtomy,Day 1 08:58,1,1,0,3,,,3,No alert,No
+26H1416,Current-day workload,Larger tissue sample,Routine,None,Microtomy,Day 1 08:05,6,6,0,4,,,4,No alert,No
+26H1417,Current-day workload,Skin biopsy,Routine,None,Microtomy,Day 1 08:12,1,1,0,1,,,1,No alert,No
+26H1418,Current-day workload,Routine small biopsy,Routine,None,Microtomy,Day 1 08:19,2,2,0,2,,,2,No alert,No
+26H1419,Current-day workload,Larger tissue sample,Routine,None,Microtomy,Day 1 08:26,5,5,0,3,,,3,No alert,No
+26H1420,Current-day workload,Skin biopsy,Routine,None,Microtomy,Day 1 08:33,2,2,0,4,,,4,No alert,No
+26H1421,Current-day workload,Routine small biopsy,Routine,None,Microtomy,Day 1 08:40,1,1,0,1,,,1,No alert,No
+26H1422,Current-day workload,Larger tissue sample,Routine,None,Microtomy,Day 1 08:47,4,4,0,2,,,2,No alert,No
+26H1423,Current-day workload,Skin biopsy,Routine,None,Microtomy,Day 1 08:54,1,1,0,3,,,3,No alert,No
+26H1424,Current-day workload,Routine small biopsy,Routine,None,Microtomy,Day 1 08:01,2,2,0,4,,,4,No alert,No
+26H1425,Current-day workload,Larger tissue sample,Routine,None,Microtomy,Day 1 08:08,3,3,0,1,,,1,No alert,No
+26H1426,Current-day workload,Skin biopsy,Routine,None,Microtomy,Day 1 08:15,2,2,0,2,,,2,No alert,No
+26H1427,Current-day workload,Routine small biopsy,Urgent,None,Microtomy,Day 1 08:22,1,1,0,3,,,3,Priority monitoring,No
+26H1428,Current-day workload,Cervical biopsy,Routine,Cervical screening,H&E staining,Day 1 08:29,2,2,0,4,,,4,Screening clock,No
+26H1429,Current-day workload,Gastrointestinal mucosal biopsy,Routine,BCSP,H&E staining,Day 1 08:36,1,1,0,1,,,1,Screening clock,No
+26H1430,Current-day workload,Bone sample,Routine,None,H&E staining,Day 1 08:43,2,2,0,2,,,2,No alert,No
+26H1431,Current-day workload,Cervical biopsy,Routine,Cervical screening,H&E staining,Day 1 08:50,1,1,0,3,,,3,Screening clock,No
+26H1432,Current-day workload,Gastrointestinal mucosal biopsy,Routine,BCSP,H&E staining,Day 1 08:57,2,2,0,4,,,4,Screening clock,No
+26H1433,Current-day workload,Skin biopsy,Routine,None,Scanning,Day 1 08:04,1,1,0,1,,,1,No alert,No
+26H1434,Current-day workload,Routine small biopsy,Routine,None,Scanning,Day 1 08:11,2,2,0,2,,,2,No alert,No
+26H1435,Current-day workload,Larger tissue sample,Routine,None,Scanning,Day 1 08:18,5,5,0,3,,,3,No alert,No
+26H1436,Current-day workload,Skin biopsy,Routine,None,Scanning,Day 1 08:25,2,2,0,4,,,4,No alert,No
+26H1437,Current-day workload,Routine small biopsy,Routine,None,Scanning,Day 1 08:32,1,1,0,1,,,1,No alert,No
+26H1438,Current-day workload,Larger tissue sample,Routine,None,Scanning,Day 1 08:39,4,4,0,2,,,2,No alert,No
+26H1439,Current-day workload,Skin biopsy,Routine,None,Scanning,Day 1 08:46,1,1,0,3,,,3,No alert,No
+26H1440,Current-day workload,Cervical biopsy,Routine,Cervical screening,IQC,Day 1 10:00,2,2,0,4,,,4,Screening clock,No
+26H1441,Current-day workload,Gastrointestinal mucosal biopsy,Routine,BCSP,IQC,Day 1 10:00,1,1,0,1,,,1,Screening clock,No
+26H1442,Current-day workload,Bone sample,Routine,None,IQC,Day 1 10:00,2,2,0,2,,,2,No alert,No
+26H1443,Current-day workload,Cervical biopsy,Routine,Cervical screening,IQC,Day 1 10:00,1,1,0,3,,,3,Screening clock,No
+26H1444,Current-day workload,Bone sample,Routine,None,Ready for pathologist handoff,Day 1 10:30,2,2,0,4,,,4,No alert,No
+26H1445,Current-day workload,Cervical biopsy,Routine,Cervical screening,Ready for pathologist handoff,Day 1 10:30,1,1,0,1,,,1,Screening clock,No
+26H1446,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Ready for pathologist handoff,Day 1 10:30,2,2,0,2,,,2,No alert,No
+26H1447,Current-day workload,Bone sample,Routine,None,Ready for pathologist handoff,Day 1 10:30,1,1,0,3,,,3,No alert,No
+26H1448,Current-day workload,Cervical biopsy,Routine,Cervical screening,Ready for pathologist handoff,Day 1 10:30,2,2,0,4,,,4,Screening clock,No
+26H1449,Current-day workload,Gastrointestinal mucosal biopsy,Routine,None,Ready for pathologist handoff,Day 1 10:30,1,1,0,1,,,1,No alert,No
