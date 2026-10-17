@@ -168,7 +168,7 @@ export interface CaseDetail extends CaseSummary {
   /** Block `stage` is null when it cannot be derived from recorded data ("not enough information"). */
   blocks: { blockId: string; stage: Stage | null; location: string; status: string; levelsRequired?: number; levelsRecorded?: number }[];
   slides: { slideId: string; blockId: string; level?: string; basket?: string }[];
-  timeline: { eventId: string; at: SimTime; type: string; stage: string; blockId?: string; details: string }[];
+  timeline: { eventId: string; at: SimTime; type: string; stage: string; station?: string; blockId?: string; details: string }[];
 }
 
 export interface Overview {

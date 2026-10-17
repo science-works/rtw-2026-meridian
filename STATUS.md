@@ -9,3 +9,5 @@
 [18:17] [T0] [note: docs/CELLPATH_MASTER_PRODUCT_VISUAL_SPEC.md still missing; /tdd skill not installed, TDD done by hand (red->green)] blocked:missing-input
 [18:21] [A] [A3+A4 alert rules + acceptance tests] started
 [18:23] [A] [A3+A4 four alert rules (server/src/domain/alerts.ts), one-shot trigger (trigger.ts), wording guard, generic labels (shared/labels.ts), CLAUDE.md acceptance suite; 64 green, 1 todo (#13 waits for A5)] done
+[18:24] [B] [B1 in-memory state + real API] started
+[18:26] [B] [B1 in-memory state (server/src/state.ts), real read API with alerts, filters, holds + 'target comparison unavailable', generic labels and authoring-note filter on all display text; contract: timeline.station added] done
