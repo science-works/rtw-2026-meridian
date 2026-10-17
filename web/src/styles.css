@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 /* Meridian design tokens (CLAUDE.md). Crimson is for real alerts only; amber marks a hold. */
 :root {
   --bg: #f8f5f2;
@@ -8,7 +10,7 @@
   --periwinkle: #5a6fd6;
   --amber: #c98a1b; /* fills and borders only: 2.7:1 on cream */
   --amber-ink: #8a5a00; /* amber text: 5.5:1 on cream */
-  --muted: #8a7a82;
+  --muted: #76666e; /* darkened from #8a7a82 for 4.96:1 on cream (WCAG AA) */
   --card: #ffffff;
   --line: #e8e0e4;
   --serif: "Source Serif 4", Georgia, serif;
@@ -66,6 +68,7 @@ h1, h2, h3 { font-family: var(--serif); color: var(--plum); margin: 0; font-weig
 .demo-controls { display: grid; gap: 6px; width: 210px; }
 .btn-trigger { background: var(--plum); color: #fff; border: 0; border-radius: 8px; padding: 9px 14px; font-weight: 600; }
 .btn-trigger:not(:disabled):hover { background: #7a1748; }
+.fx-toggle { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted); cursor: pointer; justify-content: center; }
 .btn-quiet { background: transparent; border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; }
 .btn-quiet:hover { border-color: var(--muted); }
 .btn-quiet.small { padding: 2px 10px; font-size: 14px; }
@@ -122,7 +125,7 @@ th { position: sticky; top: 0; background: var(--card); text-align: left; font-s
 td { padding: 6px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
 tbody tr { cursor: pointer; }
 tbody tr:hover { background: #fbf8fa; }
-.case-id, td.mono { white-space: nowrap; }
+.case-id, td.mono, td .mono { white-space: nowrap; }
 .case-id { font-weight: 600; }
 .dot-alert { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--crimson); margin-right: 6px; vertical-align: middle; }
 .chip-urgent { display: inline-block; padding: 1px 8px; border: 1.5px solid var(--plum); border-radius: 999px; color: var(--plum); font-weight: 700; font-size: 14px; }
@@ -149,7 +152,7 @@ tbody tr:hover { background: #fbf8fa; }
 .alert-body { margin: 0; font-size: 15px; line-height: 1.35; }
 .alert-body dt { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-top: 3px; }
 .alert-body dd { margin: 0; }
-.alert-body ul { margin: 0; padding-left: 18px; }
+.alert-body ul { margin: 0; padding-left: 18px; list-style: disc; }
 .alert-check { font-weight: 600; }
 .ev-id { font-size: 13px; color: var(--muted); }
 

@@ -1,4 +1,5 @@
 import type { Overview } from "../../../shared/types";
+import { useFx } from "../fx";
 
 interface Props {
   overview: Overview | null;
@@ -16,6 +17,7 @@ function clockLabel(clock: string) {
 }
 
 export function Header({ overview, connected, busy, onTrigger, onReset }: Props) {
+  const fx = useFx();
   const tiles = overview
     ? [
         { label: "Tracked cases", value: overview.total },
@@ -53,6 +55,9 @@ export function Header({ overview, connected, busy, onTrigger, onReset }: Props)
         <button className="btn-quiet" onClick={onReset} disabled={busy}>
           Reset demo
         </button>
+        <label className="fx-toggle" title={fx.reason === "env" ? "Effects are off (VITE_FX=off)" : fx.reason === "reduced" ? "Effects are off (reduced motion is set)" : undefined}>
+          <input type="checkbox" checked={!fx.on} disabled={fx.reason === "env" || fx.reason === "reduced"} onChange={(e) => fx.setSkip(e.target.checked)} /> Skip animations
+        </label>
       </div>
     </header>
   );

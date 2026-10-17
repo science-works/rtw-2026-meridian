@@ -11,3 +11,7 @@
 | react + react-dom | https://github.com/facebook/react | MIT | npm ^19 | 2026-10-17 | Dashboard UI | adopted (via npm) |
 | tsx, concurrently, typescript | https://github.com/privatenumber/tsx | MIT / MIT / Apache-2.0 | npm | 2026-10-17 | Run TS directly; run server + web together | adopted (via npm) |
 | @modelcontextprotocol/inspector | https://github.com/modelcontextprotocol/inspector | MIT | 0.15.0 via npx (newest for Node 20) | 2026-10-17 | Testing tools; on-stage backup | adopted (npx, not a dependency) |
+| motion | https://github.com/motiondivision/motion | MIT | npm ^14.3 | 2026-10-17 | Effects (formerly Framer Motion); also replaces Magic UI components, see below | adopted (via npm) |
+| @number-flow/react | https://github.com/barvian/number-flow | MIT | npm ^0.6 | 2026-10-17 | Counts and times that roll to new values | adopted (via npm) |
+| tailwindcss + @tailwindcss/vite | https://github.com/tailwindlabs/tailwindcss | MIT | npm ^4.3 | 2026-10-17 | Utility CSS (approved 17 Oct) | adopted (via npm) |
+| shadcn/ui + Magic UI registry | https://github.com/shadcn-ui/ui, https://github.com/magicuidesign/magicui | MIT | — | 2026-10-17 | Planned for animated list / ripple | rejected (shadcn CLI deps need Node ≥20.17; this build pins Node 20.11. Same effects built directly with motion) |
