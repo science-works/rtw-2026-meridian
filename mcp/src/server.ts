@@ -1,8 +1,8 @@
-// Meridian MCP server: three read-only tools over the Meridian HTTP API.
+// Meridian MCP server: three read-only tools and one prompt over the Meridian HTTP API.
 // It keeps no data of its own, so Claude and the dashboard always see the same state.
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import type { Alert, CaseDetail, CaseSummary, DelayedResponse } from "../../shared/types";
+import type { Alert, CaseDetail, CaseSummary, DelayedResponse, Estimate } from "../../shared/types";
 
 /** Fetches an API path (e.g. "/api/alerts"). Over HTTP in production, in-process in tests. */
 export type ApiFetch = (path: string) => Response | Promise<Response>;
@@ -16,8 +16,7 @@ const DATA_NOTE = "Simulated data: fictional cases and illustrative timings; not
 const ANSWER_PATTERN =
   "Direct answer → case IDs and recorded stage → evidence → handoff estimate with its assumptions, or 'unknown' with the reason → the suggested staff check. Plain language.";
 
-const SCOPE =
-  "Read-only. Simulated histology workflow data. Covers lab preparation up to pathologist handoff only.";
+const SCOPE = "Read-only. Simulated histology workflow data. Covers lab preparation up to pathologist handoff only.";
 
 export const INSTRUCTIONS = [
   "Meridian is an open, read-only layer that sits alongside a histology lab's LIMS. This demo runs on simulated, fictional data.",
@@ -49,6 +48,131 @@ const failed = (e: unknown) => {
   throw e;
 };
 
+// ---------- Data functions shared by the tools and the shift_handover prompt ----------
+
+export async function caseData(api: ApiFetch, caseId: string) {
+  const id = caseId.trim().toUpperCase();
+  const res = await getJson<CaseDetail | { error: string }>(api, `/api/cases/${encodeURIComponent(id)}`);
+  if (res.status === 404 || "error" in res.body) return null;
+  const c = res.body;
+  const alerts = (await getJson<Alert[]>(api, "/api/alerts")).body.filter((a) => a.caseIds.includes(c.caseId));
+  return {
+    caseId: c.caseId,
+    recordedStage: c.stage,
+    stageEnteredAt: c.stageEnteredAt,
+    cohort: c.cohort,
+    priority: c.priority,
+    programmeTag: c.programmeTag,
+    specimen: c.specimen,
+    detailedDemoCase: c.isDemo,
+    blocks: c.blocks,
+    slides: c.slides,
+    alerts,
+    estimate: c.estimate,
+    timeline: c.timeline,
+  };
+}
+
+export async function alertsData(api: ApiFetch, filters: { kind?: Alert["kind"]; caseId?: string } = {}) {
+  const id = filters.caseId?.trim().toUpperCase();
+  const alerts = (await getJson<Alert[]>(api, "/api/alerts")).body
+    .filter((a) => !filters.kind || a.kind === filters.kind)
+    .filter((a) => !id || a.caseIds.includes(id));
+  const clock = (await getJson<{ clock: string }>(api, "/api/health")).body.clock;
+  return { clock, count: alerts.length, alerts };
+}
+
+export async function delayedData(api: ApiFetch, filters: { programme?: string; priority?: "Urgent" | "Routine" } = {}) {
+  const p = filters.programme && /^screening$/i.test(filters.programme.trim()) ? "any" : filters.programme?.trim();
+  const q = p ? `?programme=${encodeURIComponent(p)}` : "";
+  const delayed = (await getJson<DelayedResponse>(api, `/api/delayed${q}`)).body;
+  const cases = delayed.cases.filter((c) => !filters.priority || c.priority === filters.priority);
+  const tracked = p ? (await getJson<CaseSummary[]>(api, `/api/cases${q}`)).body.length : undefined;
+  const urgent = (await getJson<CaseSummary[]>(api, `/api/cases?priority=Urgent${p ? `&programme=${encodeURIComponent(p)}` : ""}`)).body;
+  return {
+    ...(delayed.note ? { note: delayed.note } : {}),
+    count: cases.length,
+    cases: cases.map((c) => ({
+      caseId: c.caseId,
+      recordedStage: c.stage,
+      priority: c.priority,
+      programmeTag: c.programmeTag,
+      alertIds: c.alertIds,
+      estimate: c.estimate,
+    })),
+    ...(tracked !== undefined ? { screeningCasesTracked: tracked } : {}),
+    urgentWatchList: {
+      note: "Urgent by recorded priority; listed for visibility, not as a delay claim.",
+      cases: urgent.map((c) => ({
+        caseId: c.caseId,
+        recordedStage: c.stage,
+        handoffEstimate: c.estimate.readyAt ?? `unknown: ${c.estimate.reasonUnknown ?? "not enough information"}`,
+        alertIds: c.alertIds,
+      })),
+    },
+  };
+}
+
+// ---------- shift_handover: a deterministic brief built from the same calls ----------
+
+const estimateText = (e: Estimate) =>
+  e.status === "ready"
+    ? `ready for pathologist handoff since ${e.readyAt}`
+    : e.status === "estimated"
+      ? `handoff estimate ${e.readyAt}${e.components.some((c) => c.step.startsWith("Repeat")) ? " (includes the repeat H&E run)" : ""}`
+      : `estimate unknown: ${e.reasonUnknown}`;
+
+export async function buildShiftHandover(api: ApiFetch): Promise<string> {
+  const { clock, alerts } = await alertsData(api);
+  const affected = [...new Set(alerts.flatMap((a) => a.caseIds))];
+  const cases = (await Promise.all(affected.map((id) => caseData(api, id)))).filter((c) => c !== null);
+  const delayed = await delayedData(api);
+  const all = (await getJson<CaseSummary[]>(api, "/api/cases")).body;
+
+  const unknownCounts = new Map<string, number>();
+  for (const c of all) if (c.estimate.status === "unknown" && !affected.includes(c.caseId)) {
+    const r = c.estimate.reasonUnknown ?? "not enough information";
+    unknownCounts.set(r, (unknownCounts.get(r) ?? 0) + 1);
+  }
+  const order = { high: 0, medium: 1 } as const;
+  const sorted = [...alerts].sort((a, b) => order[a.severity] - order[b.severity]);
+  const lines: string[] = [];
+  const out = (s = "") => lines.push(s);
+
+  out(`# Shift handover: ${clock} (simulated data)`);
+  out(`Built from list_alerts → get_case for each affected case → cases_delayed. Read-only; staff decide every action. ${DATA_NOTE}`);
+  out();
+  out(`## Open alerts (${alerts.length})`);
+  sorted.forEach((a, i) => {
+    const ids = a.evidence.map((e) => e.eventId).filter(Boolean);
+    out(`${i + 1}. [${a.severity.toUpperCase()}] ${a.what} (raised ${a.raisedAt})`);
+    out(`   Evidence: ${ids.length ? ids.join(", ") : "see alert text"}. Cases: ${a.caseIds.join(", ")}.`);
+    out(`   Why: ${a.why}`);
+  });
+  if (!alerts.length) out("None.");
+  out();
+  out(`## Cases at risk (${cases.length})`);
+  for (const c of cases) out(`- ${c.caseId} · ${c.recordedStage}${c.priority === "Urgent" ? " · URGENT" : ""} · ${estimateText(c.estimate)}`);
+  if (!cases.length) out("None.");
+  out();
+  out("## Unknowns (not enough information)");
+  for (const c of cases.filter((x) => x.estimate.status === "unknown")) out(`- ${c.caseId}: ${c.estimate.reasonUnknown}`);
+  for (const [reason, n] of [...unknownCounts].sort((a, b) => b[1] - a[1])) out(`- ${n} × ${reason}`);
+  out();
+  out(`## Urgent watch list (${delayed.urgentWatchList.cases.length}; recorded priority, not a delay claim)`);
+  for (const u of delayed.urgentWatchList.cases) out(`- ${u.caseId} · ${u.recordedStage} · ${u.handoffEstimate.startsWith("unknown") ? u.handoffEstimate : `handoff estimate ${u.handoffEstimate}`}`);
+  out();
+  out("## Staff checks");
+  for (const a of sorted) out(`- [ ] ${a.caseIds.length > 3 ? `${a.caseIds.length} cases (${a.caseIds[0]}–${a.caseIds.at(-1)})` : a.caseIds.join(", ")}: ${a.suggestedCheck}`);
+  out();
+  out("## Targets");
+  out(delayed.note ?? "Compared against config/targets.json.");
+  out();
+  out("## Not in scope");
+  out("Diagnosis, reporting times and screening-programme deadlines are not in scope. Meridian covers lab preparation up to pathologist handoff.");
+  return lines.join("\n");
+}
+
 export function createMeridianMcp(api: ApiFetch = httpFetch()): McpServer {
   const server = new McpServer({ name: "meridian", version: "0.1.0" }, { instructions: INSTRUCTIONS });
 
@@ -62,29 +186,12 @@ export function createMeridianMcp(api: ApiFetch = httpFetch()): McpServer {
     },
     async ({ case_id }) => {
       try {
-        const id = case_id.trim().toUpperCase();
-        const res = await getJson<CaseDetail | { error: string }>(api, `/api/cases/${encodeURIComponent(id)}`);
-        if (res.status === 404 || "error" in res.body) {
+        const c = await caseData(api, case_id);
+        if (!c) {
+          const id = case_id.trim().toUpperCase();
           return { content: [{ type: "text" as const, text: `Not enough information: there is no case ${id} in the simulated dataset. ${DATA_NOTE}` }] };
         }
-        const c = res.body;
-        const alerts = (await getJson<Alert[]>(api, "/api/alerts")).body.filter((a) => a.caseIds.includes(c.caseId));
-        return ok({
-          caseId: c.caseId,
-          recordedStage: c.stage,
-          stageEnteredAt: c.stageEnteredAt,
-          cohort: c.cohort,
-          priority: c.priority,
-          programmeTag: c.programmeTag,
-          specimen: c.specimen,
-          detailedDemoCase: c.isDemo,
-          blocks: c.blocks,
-          slides: c.slides,
-          alerts,
-          estimate: c.estimate,
-          timeline: c.timeline,
-          answerPattern: ANSWER_PATTERN,
-        });
+        return ok({ ...c, answerPattern: ANSWER_PATTERN });
       } catch (e) {
         return failed(e);
       }
@@ -104,11 +211,7 @@ export function createMeridianMcp(api: ApiFetch = httpFetch()): McpServer {
     },
     async ({ kind, case_id }) => {
       try {
-        const id = case_id?.trim().toUpperCase();
-        const alerts = (await getJson<Alert[]>(api, "/api/alerts")).body
-          .filter((a) => !kind || a.kind === kind)
-          .filter((a) => !id || a.caseIds.includes(id));
-        return ok({ clock: (await getJson<{ clock: string }>(api, "/api/health")).body.clock, count: alerts.length, alerts, answerPattern: ANSWER_PATTERN });
+        return ok({ ...(await alertsData(api, { kind, caseId: case_id })), answerPattern: ANSWER_PATTERN });
       } catch (e) {
         return failed(e);
       }
@@ -128,38 +231,42 @@ export function createMeridianMcp(api: ApiFetch = httpFetch()): McpServer {
     },
     async ({ programme, priority }) => {
       try {
-        const p = programme && /^screening$/i.test(programme.trim()) ? "any" : programme?.trim();
-        const q = p ? `?programme=${encodeURIComponent(p)}` : "";
-        const delayed = (await getJson<DelayedResponse>(api, `/api/delayed${q}`)).body;
-        const cases = delayed.cases.filter((c) => !priority || c.priority === priority);
-        const tracked = p ? (await getJson<CaseSummary[]>(api, `/api/cases${q}`)).body.length : undefined;
-        const urgent = (await getJson<CaseSummary[]>(api, `/api/cases?priority=Urgent${p ? `&programme=${encodeURIComponent(p)}` : ""}`)).body;
-        return ok({
-          ...(delayed.note ? { note: delayed.note } : {}),
-          count: cases.length,
-          cases: cases.map((c) => ({
-            caseId: c.caseId,
-            recordedStage: c.stage,
-            priority: c.priority,
-            programmeTag: c.programmeTag,
-            alertIds: c.alertIds,
-            estimate: c.estimate,
-          })),
-          ...(tracked !== undefined ? { screeningCasesTracked: tracked } : {}),
-          urgentWatchList: {
-            note: "Urgent by recorded priority; listed for visibility, not as a delay claim.",
-            cases: urgent.map((c) => ({
-              caseId: c.caseId,
-              recordedStage: c.stage,
-              handoffEstimate: c.estimate.readyAt ?? `unknown: ${c.estimate.reasonUnknown ?? "not enough information"}`,
-              alertIds: c.alertIds,
-            })),
-          },
-          answerPattern: ANSWER_PATTERN,
-        });
+        return ok({ ...(await delayedData(api, { programme, priority })), answerPattern: ANSWER_PATTERN });
       } catch (e) {
         return failed(e);
       }
+    },
+  );
+
+  server.registerPrompt(
+    "shift_handover",
+    {
+      title: "Shift handover brief",
+      description: `${SCOPE} Builds a handover brief from list_alerts, get_case for each affected case and cases_delayed: open alerts with evidence IDs, cases at risk, unknowns, the urgent watch list and staff checks.`,
+    },
+    async () => {
+      let brief: string;
+      try {
+        brief = await buildShiftHandover(api);
+      } catch (e) {
+        if (!(e instanceof ApiUnreachable)) throw e;
+        brief = `Not enough information: ${e.message}`;
+      }
+      return {
+        description: "Shift handover brief from live Meridian data (simulated)",
+        messages: [
+          {
+            role: "user" as const,
+            content: {
+              type: "text" as const,
+              text:
+                "Present this shift handover brief to the incoming shift. Keep every case ID, evidence ID and time exactly as given, add no facts, " +
+                "and say 'not enough information' wherever the brief says unknown. You may shorten the wording but keep every section.\n\n" +
+                brief,
+            },
+          },
+        ],
+      };
     },
   );
 

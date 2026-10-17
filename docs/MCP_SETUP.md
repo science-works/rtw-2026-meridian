@@ -8,6 +8,8 @@ Meridian exposes three **read-only** MCP tools over stdio. Each tool calls the M
 | `list_alerts(kind?, case_id?)` | Active alerts, each with what, evidence, why it is flagged, affected cases and slides, the time, and the suggested staff check |
 | `cases_delayed(programme?, priority?)` | Cases with a recorded hold, plus cases past a configured target (`config/targets.json`); otherwise "target comparison unavailable". Also an urgent watch list by recorded priority |
 
+One **prompt**, `shift_handover`, builds a handover brief from the same calls a person would make: `list_alerts` → `get_case` for each affected case → `cases_delayed`. The brief is assembled in code from live API data, so every case ID, evidence ID and time comes from the rules, not from the model. Sections: open alerts with evidence IDs, cases at risk, unknowns, the urgent watch list, staff checks, targets, and "not in scope" (diagnosis, reporting times, screening deadlines). In Claude Desktop, pick it from the "+" (attach) menu → meridian → shift_handover.
+
 All data is simulated. Meridian estimates readiness for pathologist handoff only; it never diagnoses, reports, or predicts reporting times or screening deadlines.
 
 ## 1. Start the API
@@ -74,6 +76,59 @@ npx @modelcontextprotocol/inspector@0.15.0 --cli "$(which node)" "$PWD/node_modu
 ```
 
 Run these from the repo root, with `npm run dev` running.
+
+### The shift_handover prompt in the Inspector
+
+```bash
+curl -X POST localhost:8787/api/sim/basket-failure     # optional: same as the dashboard button
+npx @modelcontextprotocol/inspector@0.15.0 --cli "$(which node)" "$PWD/node_modules/tsx/dist/cli.mjs" "$PWD/mcp/src/index.ts" \
+  --method prompts/get --prompt-name shift_handover
+```
+
+In the visual Inspector, open the **Prompts** tab → `shift_handover` → **Get prompt**. Output captured after the trigger (abridged):
+
+```text
+# Shift handover: Day 1 11:30 (simulated data)
+Built from list_alerts → get_case for each affected case → cases_delayed. Read-only; staff decide every action.
+
+## Open alerts (4)
+1. [HIGH] Stainer 1 basket 01 stain run failed: 20 slides across 10 cases (raised Day 1 11:30)
+   Evidence: EV-01215. Cases: 26H1005, 26H1006, … 26H1014.
+2. [HIGH] 26H1004 block A1: 1 of 3 required levels recorded (raised Day 1 10:40)
+   Evidence: EV-01230, EV-01210. Cases: 26H1004.
+3. [MEDIUM] 26H1003: 5 of 6 blocks complete; F1 outstanding (raised Day 1 11:15)
+   Evidence: EV-01121, EV-00368, EV-01226, EV-01227, EV-01228, EV-01229. Cases: 26H1003.
+4. [MEDIUM] 26H1015: missing scan event (scan expected since Day 0 15:30) (raised Day 1 11:30)
+   Evidence: EV-01098, EV-01099. Cases: 26H1015.
+
+## Cases at risk (13)
+- 26H1005 · H&E staining · handoff estimate Day 1 12:55 (includes the repeat H&E run)
+  … (26H1006–26H1014 the same)
+- 26H1004 · Microtomy · estimate unknown: Block A1: 1 of 3 required levels recorded; staff review is needed before the case advances.
+- 26H1003 · Waiting for dissection/cut-up · estimate unknown: No reliable whole-case estimate: 5 of 6 blocks complete; F1 outstanding. …
+- 26H1015 · Scanning · estimate unknown: Missing scan event; scan status unknown until the slide location or scan record is checked.
+
+## Unknowns (not enough information)
+- 72 × Cut-up duration is not configured and no processor is assigned yet.
+- 20 × Decalcification has no configured duration (a normal, longer-running step).
+- 2 × Pathologist cut-up time is not recorded or configured.
+
+## Urgent watch list (15; recorded priority, not a delay claim)
+- 26H2345 · Awaiting processor or processing · handoff estimate Day 2 12:21
+  …
+
+## Staff checks
+- [ ] 10 cases (26H1005–26H1014): Check the stainer run log and the 20 slides from Stainer 1 basket 01, then decide on the repeat stain.
+- [ ] 26H1004: Staff review: check the protocol and the cutting record at Microtome station 4 before the case advances.
+- [ ] 26H1003: Confirm with the cut-up bench when F1 will be cut up; the rest of the case cannot be handed off without it.
+- [ ] 26H1015: Missing scan event; check the slide location or scan record.
+
+## Targets
+target comparison unavailable
+
+## Not in scope
+Diagnosis, reporting times and screening-programme deadlines are not in scope. Meridian covers lab preparation up to pathologist handoff.
+```
 
 ## Troubleshooting
 
