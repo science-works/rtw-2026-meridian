@@ -153,17 +153,28 @@ function estimateCase(c: CaseRecord, ctx: EstimateContext, rules: Rules, events:
       }
     }
 
-    // 4. H&E staining run, plus the repeat run when the basket failed.
+    // 4. H&E staining run, or, after a recorded basket failure, the repeat run.
     if (at("H&E staining")) {
       const run = need(rules.stainRun, "H&E run");
-      const start = c.stageSnapshot === "H&E staining" ? (latest("BASKET_LOADED") ?? entered) : intoWindow(t, staffed);
-      const f = finish(start + run);
-      push("H&E staining run", run, "Prisma H&E run", f.late ? ELAPSED_NOTE : undefined);
-      t = f.end;
-      if (alerts.some((a) => a.kind === "basket_failure")) {
+      const failure = alerts.find((a) => a.kind === "basket_failure");
+      if (failure) {
         const repeat = need(rules.repeatStain, "Repeat stain");
-        t = intoWindow(t, staffed) + repeat;
-        push("Repeat H&E run (failed basket)", repeat, "Prisma repeat stain");
+        const basketId = failure.id.replace("basket_failure:", "");
+        // The repeat-run event names the basket or one of its cases.
+        const started = ctx.data.events
+          .filter((e) => e.type === "REPEAT_STAIN_STARTED" && (e.details.includes(basketId) || failure.caseIds.includes(e.caseId)))
+          .map((e) => parseSimTime(e.at));
+        push(`H&E run failed at ${failure.raisedAt.slice(-5)}`, undefined, "H&E auto-stainer run", "no recut assumed");
+        if (!started.length) throw new Unknown(`Repeat H&E run for ${basketId} not yet started; no reliable estimate until it is recorded`);
+        const start = Math.max(...started);
+        const f = finish(start + repeat);
+        push(`Repeat H&E run (started ${formatSimTime(start).slice(-5)})`, repeat, "H&E repeat stain", f.late ? ELAPSED_NOTE : undefined);
+        t = f.end;
+      } else {
+        const start = c.stageSnapshot === "H&E staining" ? (latest("STAINING_STARTED") ?? latest("BASKET_LOADED") ?? entered) : intoWindow(t, staffed);
+        const f = finish(start + run);
+        push("H&E staining run", run, "H&E auto-stainer run", f.late ? ELAPSED_NOTE : undefined);
+        t = f.end;
       }
     }
 
@@ -220,7 +231,7 @@ function withTarget(c: CaseRecord, e: Estimate, ctx: EstimateContext, rules: Rul
 export function estimateAll(ctx: EstimateContext): Map<string, Estimate> {
   const rules = parseRules(ctx.data.timingRules);
   const byCase = new Map<string, EventRecord[]>();
-  for (const e of ctx.data.events) if (e.activation === "Recorded") byCase.set(e.caseId, [...(byCase.get(e.caseId) ?? []), e]);
+  for (const e of ctx.data.events) byCase.set(e.caseId, [...(byCase.get(e.caseId) ?? []), e]);
   const out = new Map<string, Estimate>();
   for (const c of ctx.data.cases) {
     const events = byCase.get(c.caseId) ?? [];

@@ -2,19 +2,21 @@ import { beforeAll, describe, expect, it } from "vitest";
 import { loadData } from "../../server/src/domain/load";
 import { computeAlerts } from "../../server/src/domain/alerts";
 import { fireBasketFailure, isTriggerFired } from "../../server/src/domain/trigger";
+import { splitStaged } from "../../server/src/domain/incident";
 import { findOverclaims } from "../../server/src/domain/wording";
-import type { Alert, CellpathData } from "../../shared/types";
+import type { Alert, CellpathData, EventRecord } from "../../shared/types";
 
 let data: CellpathData;
+let staged: EventRecord[];
 let before: Alert[];
 let after: Alert[];
 const byKind = (alerts: Alert[], kind: Alert["kind"]) => alerts.filter((a) => a.kind === kind);
 const allText = (a: Alert) => [a.what, a.why, a.suggestedCheck, ...a.evidence.map((e) => e.text)].join(" ");
 
 beforeAll(() => {
-  data = loadData();
+  ({ data, staged } = splitStaged(loadData()));
   before = computeAlerts(data);
-  after = computeAlerts(fireBasketFailure(data));
+  after = computeAlerts(fireBasketFailure(data, staged));
 });
 
 describe("alerts before the trigger", () => {
@@ -77,35 +79,41 @@ describe("rule 2: protocol mismatch (26H1004)", () => {
   });
 });
 
-describe("rule 3: basket failure (stainer basket 01)", () => {
-  it("is pending (no alert) before the trigger", () => {
+describe("rule 3: failed basket (H&E-BASKET-01)", () => {
+  it("is held back (no alert) until the incident is replayed", () => {
     expect(byKind(before, "basket_failure")).toHaveLength(0);
     expect(isTriggerFired(data)).toBe(false);
   });
 
-  it("after the trigger flags exactly 20 slides across 10 cases, 26H1005-26H1014", () => {
+  it("after the replay flags exactly 20 slides across 10 cases, 26H1005-26H1014", () => {
     const list = byKind(after, "basket_failure");
     expect(list).toHaveLength(1);
     const [a] = list;
     expect(a.slideIds).toHaveLength(20);
     expect(a.caseIds).toEqual(Array.from({ length: 10 }, (_, i) => `26H10${String(5 + i).padStart(2, "0")}`));
     expect(a.evidence.map((e) => e.eventId)).toContain("EV-01215");
-    expect(a.raisedAt).toBe("Day 1 11:30");
-    expect(a.id).toBe("basket_failure:PRISMA-BASKET-01");
-    expect(a.severity).toBe("high");
-    expect(allText(a)).toMatch(/60[- ]minute repeat/i);
-    expect(allText(a)).not.toMatch(/Prisma/);
+    expect(a.raisedAt).toBe("Day 1 10:45");
+    expect(a.id).toBe("basket_failure:H&E-BASKET-01");
+    expect(a.what).toBe("H&E-BASKET-01 H&E run failed: 20 slides across 10 cases");
+    expect(allText(a)).toMatch(/30-minute repeat/i);
+    expect(allText(a)).toMatch(/no recut is assumed/i);
+    expect(allText(a)).not.toMatch(/Prisma|Stainer 1/);
+  });
+
+  it("lists the recorded staff actions in time order as evidence", () => {
+    const [a] = byKind(after, "basket_failure");
+    expect(a.evidence.filter((e) => e.eventId).map((e) => e.eventId)).toEqual(["EV-01215", "EV-01250", "EV-01255", "EV-01251", "EV-01254", "EV-01256"]);
   });
 
   it("can only fire once", () => {
-    const fired = fireBasketFailure(data);
+    const fired = fireBasketFailure(data, staged);
     expect(isTriggerFired(fired)).toBe(true);
-    expect(() => fireBasketFailure(fired)).toThrow(/already/i);
+    expect(() => fireBasketFailure(fired, staged)).toThrow(/already/i);
     expect(fired.events.filter((e) => e.eventId === "EV-01215")).toHaveLength(1);
   });
 
   it("does not mutate the input dataset", () => {
-    fireBasketFailure(data);
+    fireBasketFailure(data, staged);
     expect(isTriggerFired(data)).toBe(false);
   });
 

@@ -11,7 +11,7 @@ beforeAll(() => {
 describe("Hugging Face dataset export", () => {
   it("has the five files from the dataset card with the right row counts", () => {
     const rows = Object.fromEntries(Object.entries(files).map(([f, r]) => [f, r.length - 1]));
-    expect(rows).toEqual({ "cases.csv": 450, "blocks.csv": 712, "slides.csv": 423, "events.csv": 1230, "timing_rules.csv": 26 });
+    expect(rows).toEqual({ "cases.csv": 450, "blocks.csv": 712, "slides.csv": 426, "events.csv": 1253, "timing_rules.csv": 36 });
   });
 
   it("uses exactly the columns listed in hf_dataset/README.md", () => {
@@ -22,17 +22,20 @@ describe("Hugging Face dataset export", () => {
 
   it("uses generic equipment names and strips authoring notes", () => {
     const all = Object.values(files).map((r) => toCsv(r)).join("\n");
-    expect(all).not.toMatch(/Pegasus|Logos|Prisma|PRISMA/);
+    expect(all).not.toMatch(/Pegasus|Logos|Prisma|PRISMA|Stainer 1|Scanner [34]|Microtome |IQC desk/);
     expect(all).not.toMatch(/PENDING LIVE DEMO|Trigger this event|during the pitch|Show lab-preparation/);
-    expect(all).not.toMatch(/CellPath/);
     expect(all).toContain("Processor D");
-    expect(all).toContain("Stainer 1 basket 01");
+    expect(all).toContain("H&E auto-stainer 1");
+    expect(all).toContain("H&E-BASKET-01");
   });
 
-  it("keeps exactly one staged live-trigger event", () => {
+  it("keeps the recorded H&E incident states and the AA/BB initials", () => {
     const ev = files["events.csv"];
-    const col = ev[0].indexOf("Activation state");
-    expect(ev.slice(1).filter((r) => r[col] === "Pending live trigger").map((r) => r[0])).toEqual(["EV-01215"]);
+    const act = ev[0].indexOf("Activation state");
+    const ini = ev[0].indexOf("Fictional staff initials");
+    const notRecorded = Object.fromEntries(ev.slice(1).filter((r) => r[act] !== "Recorded").map((r) => [r[0], r[act]]));
+    expect(notRecorded).toEqual({ "EV-01215": "Detected; attention required", "EV-01255": "Acknowledged", "EV-01254": "In progress", "EV-01256": "In progress" });
+    expect(new Set(ev.slice(1).map((r) => r[ini]).filter(Boolean))).toEqual(new Set(["AA", "BB"]));
   });
 
   it("writes valid CSV (quotes commas, quotes and newlines)", () => {

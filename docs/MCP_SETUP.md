@@ -108,8 +108,8 @@ In the visual Inspector, open the **Prompts** tab → `shift_handover`, set `mod
 Built from list_alerts → get_case for each affected case → cases_delayed. Read-only; staff decide every action.
 
 ## Open alerts (4)
-1. [HIGH] Stainer 1 basket 01 stain run failed: 20 slides across 10 cases (raised Day 1 11:30)
-   Evidence: EV-01215. Cases: 26H1005, 26H1006, … 26H1014.
+1. [HIGH] H&E-BASKET-01 H&E run failed: 20 slides across 10 cases (raised Day 1 10:45)
+   Evidence: EV-01215, EV-01250, EV-01255, EV-01251, EV-01254, EV-01256. Cases: 26H1005, 26H1006, … 26H1014.
 2. [HIGH] 26H1004 block A1: 1 of 3 required levels recorded (raised Day 1 10:40)
    Evidence: EV-01230, EV-01210. Cases: 26H1004.
 3. [MEDIUM] 26H1003: 5 of 6 blocks complete; F1 outstanding (raised Day 1 11:15)
@@ -118,7 +118,7 @@ Built from list_alerts → get_case for each affected case → cases_delayed. Re
    Evidence: EV-01098, EV-01099. Cases: 26H1015.
 
 ## Cases at risk (13)
-- 26H1005 · H&E staining · handoff estimate Day 1 12:55 (includes the repeat H&E run)
+- 26H1005 · H&E staining · handoff estimate Day 1 11:45 (includes the repeat H&E run)
   … (26H1006–26H1014 the same)
 - 26H1004 · Microtomy · estimate unknown: Block A1: 1 of 3 required levels recorded; staff review is needed before the case advances.
 - 26H1003 · Waiting for dissection/cut-up · estimate unknown: No reliable whole-case estimate: 5 of 6 blocks complete; F1 outstanding. …
@@ -130,11 +130,11 @@ Built from list_alerts → get_case for each affected case → cases_delayed. Re
 - 2 × Pathologist cut-up time is not recorded or configured.
 
 ## Urgent watch list (15; recorded priority, not a delay claim)
-- 26H2345 · Awaiting processor or processing · handoff estimate Day 2 12:21
+- 26H2345 · Ready for pathologist handoff · ready since Day 1 09:30
   …
 
 ## Staff checks
-- [ ] 10 cases (26H1005–26H1014): Check the stainer run log and the 20 slides from Stainer 1 basket 01, then decide on the repeat stain.
+- [ ] 10 cases (26H1005–26H1014): Check the H&E auto-stainer and the 20 slides in H&E-BASKET-01; record the repeat run and the follow-up check.
 - [ ] 26H1004: Staff review: check the protocol and the cutting record at Microtome station 4 before the case advances.
 - [ ] 26H1003: Confirm with the cut-up bench when F1 will be cut up; the rest of the case cannot be handed off without it.
 - [ ] 26H1015: Missing scan event; check the slide location or scan record.

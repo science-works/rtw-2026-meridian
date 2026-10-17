@@ -69,7 +69,8 @@ export interface SlideRecord {
   scanStatus: string;
 }
 
-export type ActivationState = "Recorded" | "Pending live trigger";
+/** Workbook activation/incident state, e.g. "Recorded", "Detected; attention required", "Acknowledged", "In progress". */
+export type ActivationState = string;
 
 export interface EventRecord {
   eventId: string;
@@ -83,6 +84,8 @@ export interface EventRecord {
   type: string;
   details: string;
   activation: ActivationState;
+  /** Fictional staff initials (AA/BB), embedding events only. Traceability, never ranking. */
+  initials: string | null;
 }
 
 export interface TimingRule {
@@ -198,8 +201,13 @@ export interface FeedEvent {
   slideId?: string;
   stage: string;
   station?: string;
+  /** Stainer box and basket, split out of the raw station string where present. */
+  box?: string;
+  basket?: string;
   type: string;
   details: string;
+  activation?: string;
+  initials?: string;
 }
 
 export interface EventsPage {

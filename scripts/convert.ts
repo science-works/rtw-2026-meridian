@@ -124,6 +124,7 @@ export function convertWorkbook(path: string = DEFAULT_IN): CellpathData {
     type: text(r["Event type"]),
     details: text(r["Event details"]),
     activation: text(r["Activation state"]) as ActivationState,
+    initials: optText(r["Fictional staff initials"]),
   }));
 
   const timingRules: TimingRule[] = rows(wb, "Timing Rules", "Rule / stage").map((r) => ({

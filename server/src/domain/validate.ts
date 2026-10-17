@@ -1,6 +1,7 @@
 import { CLOCK_MINUTES, formatSimTime, parseSimTime } from "../../../shared/clock";
 import { STAGES } from "../../../shared/types";
 import type { CellpathData, EventRecord, OverviewStageRow } from "../../../shared/types";
+import { INCIDENT } from "./incident";
 
 export interface ValidationError {
   code: string;
@@ -22,8 +23,6 @@ export interface ValidationResult {
   };
 }
 
-/** The one staged event that only the dashboard simulator may activate. */
-export const PENDING_TRIGGER_ID = "EV-01215";
 
 /** [earlier, later]: within a case, every `later` event must not precede the last `earlier` event. */
 export const EVENT_ORDER: [string, string][] = [
@@ -33,6 +32,7 @@ export const EVENT_ORDER: [string, string][] = [
   ["SCAN_COMPLETE", "IQC_PASSED"],
   ["STAINING_COMPLETE", "IQC_PASSED"],
   ["PROCESSOR_COMPLETE", "EMBEDDING_STARTED"],
+  ["MICROTOMY_STARTED", "LEVELS_CUT"],
 ];
 
 const blockKey = (caseId: string, blockId: string) => `${caseId}/${blockId}`;
@@ -143,9 +143,8 @@ export function validate(data: CellpathData): ValidationResult {
       if (a.length && b.length && Math.min(...b) < Math.max(...a)) fail("event_order", `${c.caseId}: ${later} before ${earlier}`);
     }
 
-    // The latest recorded event is the source of truth; it must agree with the snapshot.
-    const recorded = evs.filter((e) => e.activation === "Recorded");
-    const latest = recorded.reduce<EventRecord | null>(
+    // The latest event is the source of truth; it must agree with the snapshot.
+    const latest = evs.reduce<EventRecord | null>(
       (best, e) => (!best || time(e) > time(best) || (time(e) === time(best) && e.eventId > best.eventId) ? e : best),
       null,
     );
@@ -154,10 +153,24 @@ export function validate(data: CellpathData): ValidationResult {
     }
   }
 
-  // --- exactly one staged trigger ---
-  const pending = data.events.filter((e) => e.activation !== "Recorded");
-  if (pending.length !== 1 || pending[0].eventId !== PENDING_TRIGGER_ID || pending[0].type !== "STAIN_RUN_FAILED") {
-    fail("pending_trigger", `Expected exactly one pending STAIN_RUN_FAILED (${PENDING_TRIGGER_ID}); found ${pending.map((e) => e.eventId).join(", ") || "none"}`);
+  // --- the recorded H&E incident is complete (it is staged for replay by the server) ---
+  for (const { id, type } of Object.values(INCIDENT)) {
+    const e = data.events.find((x) => x.eventId === id);
+    if (!e || e.type !== type) fail("incident_events", `Expected ${id} ${type}; found ${e ? e.type : "none"}`);
+  }
+
+  // --- staff initials: fictional AA/BB, embedding only ---
+  for (const e of data.events) {
+    if (e.initials && (!["AA", "BB"].includes(e.initials) || !/^Embedding station \d$/.test(e.station ?? ""))) {
+      fail("initials", `${e.eventId}: initials "${e.initials}" at "${e.station}"`);
+    }
+  }
+
+  // --- no slides for cases that have not reached microtomy (spec §10) ---
+  const preMicrotomy = new Set(["Received/booked", "Waiting for dissection/cut-up", "Awaiting processor or processing", "Decalcification", "Embedding"]);
+  for (const s of data.slides) {
+    const c = caseById.get(s.caseId);
+    if (c && preMicrotomy.has(c.stageSnapshot)) fail("slide_before_microtomy", `${s.slideId} exists but ${c.caseId} is at ${c.stageSnapshot}`);
   }
 
   const latestMinute = timed.length ? Math.max(...timed.map(time)) : null;

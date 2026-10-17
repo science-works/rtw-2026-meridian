@@ -127,7 +127,7 @@ describe("C2b: shift_handover in brief mode (deterministic, for the Inspector)",
     expect(section(t, "Open alerts")).toContain("EV-01215");
     const risk = section(t, "Cases at risk");
     expect(risk).toMatch(/Cases at risk \(13\)/);
-    expect(risk).toMatch(/26H1005 .*Day 1 12:55/);
+    expect(risk).toMatch(/26H1005 .*Day 1 11:45/);
   });
 
   it("groups its calls as one run of at least three distinct tools", async () => {
@@ -148,7 +148,7 @@ describe("C2b: shift_handover in brief mode (deterministic, for the Inspector)",
   it("keeps urgent cases visible by recorded priority only", async () => {
     const w = section(await brief(), "Urgent watch list");
     expect(w).toMatch(/not a delay claim/i);
-    expect(w).toMatch(/26H2345 .*Day 2 12:21/);
+    expect(w).toMatch(/26H2345 .*ready since Day 1 09:30/);
   });
 
   it("is safe: no overclaims outside the scope line, no workbook names, no mutation", async () => {
@@ -157,7 +157,7 @@ describe("C2b: shift_handover in brief mode (deterministic, for the Inspector)",
     const t = await brief();
     const body = t.slice(0, t.indexOf("## Not in scope"));
     expect(findOverclaims(body)).toEqual([]);
-    expect(t).not.toMatch(/Pegasus|Logos|Prisma /);
+    expect(t).not.toMatch(/Pegasus|Logos|Prisma |Stainer 1|Microtome |IQC desk/);
     expect(section(t, "Not in scope")).toMatch(/diagnosis.*reporting.*screening/i);
     expect(api.state.version).toBe(version);
   });

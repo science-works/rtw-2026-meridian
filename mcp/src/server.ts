@@ -128,7 +128,10 @@ export async function delayedData(api: ApiFetch, filters: { programme?: string; 
       cases: urgent.map((c) => ({
         caseId: c.caseId,
         recordedStage: c.stage,
-        handoffEstimate: c.estimate.readyAt ?? `unknown: ${c.estimate.reasonUnknown ?? "not enough information"}`,
+        handoffEstimate:
+          c.estimate.status === "ready"
+            ? `ready since ${c.estimate.readyAt}`
+            : (c.estimate.readyAt ?? `unknown: ${c.estimate.reasonUnknown ?? "not enough information"}`),
         alertIds: c.alertIds,
       })),
     },
@@ -182,7 +185,7 @@ export async function buildShiftHandover(api: ApiFetch, runId: string = randomUU
   for (const [reason, n] of [...unknownCounts].sort((a, b) => b[1] - a[1])) out(`- ${n} × ${reason}`);
   out();
   out(`## Urgent watch list (${delayed.urgentWatchList.cases.length}; recorded priority, not a delay claim)`);
-  for (const u of delayed.urgentWatchList.cases) out(`- ${u.caseId} · ${u.recordedStage} · ${u.handoffEstimate.startsWith("unknown") ? u.handoffEstimate : `handoff estimate ${u.handoffEstimate}`}`);
+  for (const u of delayed.urgentWatchList.cases) out(`- ${u.caseId} · ${u.recordedStage} · ${/^(unknown|ready)/.test(u.handoffEstimate) ? u.handoffEstimate : `handoff estimate ${u.handoffEstimate}`}`);
   out();
   out("## Staff checks");
   for (const a of sorted) out(`- [ ] ${a.caseIds.length > 3 ? `${a.caseIds.length} cases (${a.caseIds[0]}–${a.caseIds.at(-1)})` : a.caseIds.join(", ")}: ${a.suggestedCheck}`);

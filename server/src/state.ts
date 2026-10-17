@@ -3,6 +3,7 @@ import type { Alert, CellpathData, Estimate } from "../../shared/types";
 import { computeAlerts } from "./domain/alerts";
 import { estimateAll } from "./domain/estimate";
 import { loadData } from "./domain/load";
+import { splitStaged } from "./domain/incident";
 import { fireBasketFailure, isTriggerFired } from "./domain/trigger";
 import { loadTargets, type Targets } from "./targets";
 
@@ -23,8 +24,9 @@ export interface MeridianState {
 }
 
 export function createState(initial: CellpathData = loadData(), targets: Targets = loadTargets(), feed = "workbook"): MeridianState {
-  const pristine = structuredClone(initial);
-  let data = structuredClone(initial);
+  // The full workbook is the state after the incident; start (and reset) with it held back.
+  const pristine = splitStaged(structuredClone(initial));
+  let data = structuredClone(pristine.data);
   let version = 0;
   let alerts = computeAlerts(data);
   let estimates = estimateAll({ data, alerts, targets });
@@ -58,12 +60,12 @@ export function createState(initial: CellpathData = loadData(), targets: Targets
     },
     fireBasketFailure() {
       if (isTriggerFired(data)) throw new AlreadyFiredError("Basket failure has already been triggered");
-      commit(fireBasketFailure(data));
+      commit(fireBasketFailure(data, pristine.staged));
       const basket = alerts.find((a) => a.kind === "basket_failure")!;
       return { affectedCases: basket.caseIds.length, affectedSlides: basket.slideIds?.length ?? 0 };
     },
     reset() {
-      commit(structuredClone(pristine));
+      commit(structuredClone(pristine.data));
     },
     subscribe(fn) {
       listeners.add(fn);

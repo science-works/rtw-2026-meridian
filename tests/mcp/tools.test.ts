@@ -70,7 +70,7 @@ describe("C2: tools return live data from the HTTP API", () => {
     expect(json.alerts).toHaveLength(1);
     expect(json.alerts[0].slideIds).toHaveLength(20);
     expect(json.alerts[0].caseIds).toHaveLength(10);
-    expect((await call("get_case", { case_id: "26H1005" })).json.estimate.readyAt).toBe("Day 1 12:55");
+    expect((await call("get_case", { case_id: "26H1005" })).json.estimate.readyAt).toBe("Day 1 11:45");
   });
 
   it("list_alerts filters by case", async () => {
@@ -93,7 +93,7 @@ describe("C2: tools return live data from the HTTP API", () => {
     expect(json.urgentWatchList.cases).toHaveLength(15);
     expect(json.urgentWatchList.note).toMatch(/recorded priority/i);
     const u = json.urgentWatchList.cases.find((c: { caseId: string }) => c.caseId === "26H2345");
-    expect(u).toMatchObject({ recordedStage: "Awaiting processor or processing", handoffEstimate: "Day 2 12:21", alertIds: [] });
+    expect(u).toMatchObject({ recordedStage: "Ready for pathologist handoff", handoffEstimate: "ready since Day 1 09:30", alertIds: [] });
   });
 
   it("every tool output is safe: no overclaims, no workbook equipment names, simulated flag", async () => {
@@ -108,7 +108,7 @@ describe("C2: tools return live data from the HTTP API", () => {
     ];
     for (const o of outputs) {
       expect(findOverclaims(o.text)).toEqual([]);
-      expect(o.text).not.toMatch(/Pegasus|Logos|Prisma /);
+      expect(o.text).not.toMatch(/Pegasus|Logos|Prisma |Stainer 1|Microtome |IQC desk/);
       expect(o.json.dataNote).toMatch(/simulated/i);
     }
   });

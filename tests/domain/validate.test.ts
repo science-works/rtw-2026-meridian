@@ -19,7 +19,7 @@ describe("validate: the real dataset (P1 done-when)", () => {
   });
 
   it("reconciles 450 = 104 backlog + 346 current-day", () => {
-    expect(validate(data).counts).toMatchObject({ cases: 450, backlog: 104, today: 346, blocks: 712, slides: 423, events: 1230 });
+    expect(validate(data).counts).toMatchObject({ cases: 450, backlog: 104, today: 346, blocks: 712, slides: 426, events: 1253 });
   });
 
   it("reconciles computed stage counts with the workbook Overview tab", () => {
@@ -27,6 +27,18 @@ describe("validate: the real dataset (P1 done-when)", () => {
     expect(stages).toEqual(data.meta.overviewStages);
     expect(stages.reduce((n, s) => n + s.total, 0)).toBe(450);
     expect(stages.find((s) => s.stage === "Microtomy")).toEqual({ stage: "Microtomy", backlog: 103, today: 36, total: 139 });
+    expect(Object.fromEntries(stages.map((s) => [s.stage, s.total]))).toEqual({
+      "Received/booked": 72,
+      "Waiting for dissection/cut-up": 3,
+      "Awaiting processor or processing": 151,
+      Decalcification: 20,
+      Embedding: 29,
+      Microtomy: 139,
+      "H&E staining": 15,
+      Scanning: 8,
+      IQC: 5,
+      "Ready for pathologist handoff": 8,
+    });
   });
 
   it("finds no event after Day 1 11:30", () => {
@@ -102,10 +114,24 @@ describe("validate: catches broken data", () => {
     expect(c).toContain("duplicate_slide");
   });
 
-  it("flags anything other than exactly one pending trigger (EV-01215)", () => {
+  it("flags a missing or altered incident event", () => {
     const d = clone();
-    d.events.find((e) => e.eventId === "EV-01215")!.activation = "Recorded";
-    expect(codes(d)).toContain("pending_trigger");
+    d.events = d.events.filter((e) => e.eventId !== "EV-01256");
+    expect(codes(d)).toContain("incident_events");
+  });
+
+  it("flags staff initials other than AA/BB, or outside embedding", () => {
+    const d = clone();
+    d.events.find((e) => e.initials === "AA")!.initials = "ZZ";
+    d.events.find((e) => e.type === "CASE_RECEIVED")!.initials = "BB";
+    expect(validate(d).errors.filter((e) => e.code === "initials")).toHaveLength(2);
+  });
+
+  it("flags a slide for a case that has not reached microtomy", () => {
+    const d = clone();
+    const early = d.cases.find((c) => c.stageSnapshot === "Received/booked")!;
+    d.slides.push({ ...d.slides[0], slideId: "X-S01", caseId: early.caseId, blockId: d.blocks.find((b) => b.caseId === early.caseId)!.blockId });
+    expect(codes(d)).toContain("slide_before_microtomy");
   });
 
   it("flags a latest-event stage that disagrees with the snapshot", () => {

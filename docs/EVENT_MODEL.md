@@ -17,7 +17,7 @@ case ──< block ──< slide >── basket
 | **Case** | `caseId` (e.g. `26H1003`) | cohort, specimen, priority, programme tag, recorded stage and when it was entered, blocks expected/complete, levels required/recorded, processor, demo flag |
 | **Block** | `caseId` + `blockId` (e.g. `26H1003`/`F1`) | location, status, levels required/recorded |
 | **Slide** | `slideId` (e.g. `26H1005-S01`) | case, block, level (`L1`…), stainer basket, slide status, scan status |
-| **Basket** | basket ID on the slide (e.g. `PRISMA-BASKET-01`, shown as "Stainer 1 basket 01") | the slides loaded together into one stain run |
+| **Basket** | basket ID on the slide (e.g. `H&E-BASKET-01`; `URGENT-H&E-RUN-01`) | the slides loaded together into one H&E run (H&E auto-stainer 1: 3 boxes × 3 baskets × 20 slides) |
 | **Station** | `station` on the event (e.g. "Microtome station 4") | where the event happened; generic labels in the UI |
 | **Event** | `eventId` (e.g. `EV-01215`) | time, case, optional block and slide, stage, station, type, details, activation |
 | **Timing rule** | rule name | the editable durations and windows that estimates use (Timing Rules tab) |
@@ -34,23 +34,25 @@ A case can have blocks at different stages. Whole-case handoff waits for every r
 | `blockId` | string \| null | must resolve to a block of that case when present |
 | `slideId` | string \| null | must resolve to a slide of that case when present |
 | `stage` | string | stage the event belongs to |
-| `station` | string \| null | workbook names are mapped to generic labels for display |
+| `station` | string \| null | raw workbook strings are normalised for display (e.g. "Microtome 1" → "Microtomy station 1", "IQC desk" → "IQC workstation 1"); stainer box/basket are split into `box` / `basket` |
 | `type` | string | see below |
 | `details` | string | free text; workbook authoring notes are removed for display |
-| `activation` | `"Recorded"` \| `"Pending live trigger"` | only recorded events count; the single staged event (EV-01215) becomes recorded when the dashboard trigger fires |
+| `activation` | string | `Recorded`, or an incident state: `Detected; attention required`, `Acknowledged`, `In progress` |
+| `initials` | string \| null | fictional staff initials `AA`/`BB` on embedding events only: traceability, never ranking |
 
-Event types in the demo feed (26), grouped by workflow step:
+Event types in the demo feed (36), grouped by workflow step:
 
 | Step | Types |
 |---|---|
 | Receipt | `CASE_RECEIVED`, `URGENT_REFERRAL_FLAG`, `URGENT_PRIORITY_TRACKED`, `SCREENING_CLOCK_ACTIVE` |
 | Cut-up | `CUTUP_STARTED`, `CUTUP_COMPLETE`, `PATHOLOGIST_CUTUP_PENDING`, `BLOCK_PENDING` |
 | Decalcification | `DECALCIFICATION_STARTED` |
-| Processing | `PROCESSOR_LOADED`, `PROCESSOR_COMPLETE` |
+| Processing | `PROCESSOR_LOADED`, `PROCESSOR_RUN_STARTED`, `PROCESSOR_COMPLETE` |
 | Embedding | `EMBEDDING_STARTED`, `EMBEDDING_COMPLETE` |
 | Microtomy | `BACKLOG_ENTERED_MICROTOMY`, `MICROTOMY_STARTED`, `LEVELS_CUT`, `LEVEL_PROTOCOL_MISMATCH` |
-| H&E staining | `BASKET_LOADED`, `STAINING_COMPLETE`, `STAIN_RUN_FAILED` |
-| Scanning | `SCAN_EXPECTED`, `SCAN_COMPLETE` |
+| H&E staining | `SLIDE_OVEN_STARTED`, `SLIDE_OVEN_COMPLETE`, `BASKET_LOADED`, `STAINING_STARTED`, `STAINING_COMPLETE` |
+| H&E incident | `STAIN_RUN_FAILED`, `TEAM_NOTIFIED`, `INCIDENT_ACKNOWLEDGED`, `TROUBLESHOOTING_STARTED`, `BASKET_RELOADED`, `REPEAT_STAIN_STARTED` |
+| Scanning | `SCAN_EXPECTED`, `SCANNING_STARTED`, `SCAN_COMPLETE` |
 | IQC | `IQC_STARTED`, `IQC_PASSED` |
 | Handoff | `CASE_READY_FOR_PATHOLOGIST` |
 | Snapshot | `CURRENT_STAGE_SNAPSHOT` (recorded stage at the clock) |
@@ -70,7 +72,7 @@ GET /api/events?type=SCAN_COMPLETE            # one event type
 ```json
 {
   "feed": "workbook",
-  "total": 1229,
+  "total": 1237,
   "offset": 0,
   "limit": 100,
   "nextOffset": 100,
@@ -81,7 +83,7 @@ GET /api/events?type=SCAN_COMPLETE            # one event type
 }
 ```
 
-`total` becomes 1230 after the basket-failure trigger and returns to 1229 on reset. Any agent or tool can pull the full log by following `nextOffset` until it is `null`.
+The server holds back the 16 events of the recorded H&E incident (its six events plus the ten affected cases' 11:30 snapshots, which describe it) until it is replayed from the dashboard: `total` is 1237 before the replay, 1253 (the whole workbook) after it, and 1237 again on reset. Events are always ordered by parsed simulated time; event IDs are not chronological. Any agent or tool can pull the full log by following `nextOffset` until it is `null`.
 
 ## 4. Feed adapters
 
@@ -125,7 +127,7 @@ XES flattens everything onto the case. That loses the fact that one stain-run fa
 |---|---|
 | **Object types** | `case`, `block`, `slide`, `basket`, `station` |
 | Object attributes | case: priority, programmeTag, cohort, specimen; block: levelsRequired, levelsRecorded; slide: level, scanStatus |
-| **Event types** | the 26 event types above |
+| **Event types** | the 36 event types above |
 | Event attributes | `eventId`, `stage`, `details` |
 | **Event-to-object (E2O)** | event → case (`for`), → block (`on`), → slide (`on`), → station (`at`); `STAIN_RUN_FAILED` → basket (`run`) |
 | **Object-to-object (O2O)** | block → case (`part of`), slide → block (`cut from`), slide → basket (`loaded into`) |

@@ -16,7 +16,7 @@ describe("Agent-Live: activity log of MCP reads", () => {
     expect(log.map((a) => a.tool)).toEqual(["list_alerts", "get_case", "cases_delayed"]);
     expect(log[0].resultSummary).toBe("3 alerts · 3 cases");
     expect(log[0].caseIds.sort()).toEqual(["26H1003", "26H1004", "26H1015"]);
-    expect(log[1]).toMatchObject({ args: { case_id: "26H1005" }, resultSummary: "26H1005 · H&E staining · est. Day 1 11:55", caseIds: ["26H1005"] });
+    expect(log[1]).toMatchObject({ args: { case_id: "26H1005" }, resultSummary: "26H1005 · H&E staining · est. Day 1 11:40", caseIds: ["26H1005"] });
     expect(log[2].resultSummary).toBe("3 cases on hold · target comparison unavailable");
     expect(log[0].at).toMatch(/^\d\d:\d\d:\d\d$/);
   });

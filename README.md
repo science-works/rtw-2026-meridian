@@ -33,7 +33,7 @@ It answers the brief's "disconnected tools or closed data" with an open event mo
 | **Live lab map** | 10 stage lanes with one dot per case; counts reconcile to 450 = 104 previous-day backlog + 346 current-day; click a lane to filter |
 | **Four deterministic alerts** | Outstanding block (26H1003: F1 still at cut-up) · protocol mismatch (26H1004: 1 of 3 levels) · stain-run failure (20 slides, 10 cases, after the trigger) · missing scan event (26H1015) |
 | **Handoff estimates** | Remaining steps × the workbook's timing rules, inside working windows; components, active vs wall-clock time, and assumptions shown; "unknown" with a reason when data is missing (e.g. decalcification) |
-| **Live failure** | "Trigger stainer basket failure" appends one staged event; Server-Sent Events push it to every screen; a crimson ripple shows the 10 affected cases, whose estimates roll forward 60 minutes. "Reset demo" restores the start state |
+| **Incident replay** | The recorded H&E incident (basket `H&E-BASKET-01` failed at 10:45, acknowledged, reloaded, 30-minute repeat run started 11:05) is held back and replayed from the dashboard; Server-Sent Events push it to every screen; the 10 affected cases are flagged and their estimates include the repeat run. "Reset demo" restores the start state |
 | **Case drawer** | A flight-tracker journey bar, blocks shown separately (A1–E1 at the processor, F1 at cut-up), levels, recorded timeline, estimate breakdown |
 | **MCP + agent console** | Claude Desktop (or any MCP client) calls `get_case`, `list_alerts`, `cases_delayed` and the `shift_handover` prompt; each call appears live in the dashboard's console with a one-way beam into the case it read |
 | **Story mode** | Plays the pitch arc on live state (no recorded numbers); arrow keys advance |
@@ -96,7 +96,7 @@ See **[docs/MCP_SETUP.md](docs/MCP_SETUP.md)** for the Claude Desktop config (ab
 ## Open event model: bring your own LIMS export
 
 See **[docs/EVENT_MODEL.md](docs/EVENT_MODEL.md)**:
-- the entities (case → block → slide, basket, station, event) and the 26 event types;
+- the entities (case → block → slide, basket, station, event) and the 36 event types;
 - the paged `GET /api/events`;
 - the `FeedAdapter` interface;
 - an **IEEE XES / OCEL 2.0 mapping**;
@@ -106,7 +106,7 @@ See **[docs/EVENT_MODEL.md](docs/EVENT_MODEL.md)**:
 
 - **[docs/DATA_PROVENANCE.md](docs/DATA_PROVENANCE.md)**: how the synthetic, expert-elicited dataset was built and validated, the evidence base, and its limitations.
 - `hf_dataset/`: the open dataset (five CSVs, CC BY 4.0) with generic equipment names and demo notes removed. See its [dataset card](hf_dataset/README.md).
-- Volumes: 450 cases · 712 blocks · 423 slides · 1,230 events · 22 detailed demo cases. All identifiers are fictional.
+- Volumes: 450 cases · 712 blocks · 426 slides · 1,253 events · 22 detailed demo cases. All identifiers, devices and staff initials (AA/BB) are fictional.
 
 ## Tests
 
@@ -114,7 +114,7 @@ See **[docs/EVENT_MODEL.md](docs/EVENT_MODEL.md)**:
 - data reconciliation and validation (counts, links, ordering, clock, the single staged event);
 - each alert's IDs and evidence;
 - the trigger (exactly 20 slides / 10 cases, once, three times in a row after reset);
-- estimates (26H1003 and 26H1016 unknown, 26H1018 ready, +60 minutes after the failure);
+- estimates (26H1003 and 26H1016 unknown, 26H1018 and 26H2345 ready, the 30-minute repeat run from 11:05 after the incident);
 - targets;
 - every API route, SSE, the events API and the feed adapter;
 - MCP tools, prompt and resource over an in-memory MCP client;

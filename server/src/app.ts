@@ -2,7 +2,7 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { streamSSE } from "hono/streaming";
-import { displayText, generic } from "../../shared/labels";
+import { displayText, generic, stationParts } from "../../shared/labels";
 import { parseSimTime } from "../../shared/clock";
 import { STAGES } from "../../shared/types";
 import type { BlockRecord, CaseDetail, CaseRecord, CaseSummary, DelayedResponse, EventRecord, EventsPage, FeedEvent, Overview, Stage, TriggerResponse } from "../../shared/types";
@@ -18,9 +18,11 @@ const toFeedEvent = (e: EventRecord): FeedEvent => ({
   ...(e.blockId ? { blockId: e.blockId } : {}),
   ...(e.slideId ? { slideId: e.slideId } : {}),
   stage: e.stage,
-  ...(e.station ? { station: generic(e.station) } : {}),
+  ...(e.station ? { station: generic(e.station), ...stationParts(e.station) } : {}),
   type: e.type,
   details: displayText(e.details),
+  ...(e.activation && e.activation !== "Recorded" ? { activation: e.activation } : {}),
+  ...(e.initials ? { initials: e.initials } : {}),
 });
 
 /**
@@ -30,7 +32,7 @@ const toFeedEvent = (e: EventRecord): FeedEvent => ({
  */
 function blockStage(c: CaseRecord, b: BlockRecord, events: EventRecord[]): Stage | null {
   const diverged = c.blocksComplete > 0 && c.blocksComplete < c.blocksExpected;
-  const own = events.filter((e) => e.blockId === b.blockId && e.activation === "Recorded");
+  const own = events.filter((e) => e.blockId === b.blockId);
   if (!diverged || own.length === 0) return c.stageSnapshot;
   const last = own.reduce((x, y) => (parseSimTime(y.at) > parseSimTime(x.at) || (y.at === x.at && y.eventId > x.eventId) ? y : x));
   return (STAGES as readonly string[]).includes(last.stage) ? (last.stage as Stage) : null;
@@ -91,7 +93,6 @@ export function createApp(state: MeridianState = createState(), activity: Activi
     const offset = Math.max(intParam(q.offset, 0), 0);
     const caseId = q.caseId?.toUpperCase();
     const all = state.data.events
-      .filter((e) => e.activation === "Recorded")
       .filter((e) => !caseId || e.caseId === caseId)
       .filter((e) => !q.type || e.type === q.type)
       .sort((a, b) => parseSimTime(a.at) - parseSimTime(b.at) || a.eventId.localeCompare(b.eventId));
@@ -154,7 +155,7 @@ export function createApp(state: MeridianState = createState(), activity: Activi
       slides: state.data.slides
         .filter((s) => s.caseId === id)
         .map((s) => ({ slideId: s.slideId, blockId: s.blockId, level: s.level ?? undefined, basket: s.basket ? generic(s.basket) : undefined })),
-      timeline: caseEvents.filter((e) => e.activation === "Recorded").map(toFeedEvent),
+      timeline: [...caseEvents].sort((a, b) => parseSimTime(a.at) - parseSimTime(b.at) || a.eventId.localeCompare(b.eventId)).map(toFeedEvent),
     };
     return c.json(detail);
   });

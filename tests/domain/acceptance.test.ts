@@ -7,12 +7,17 @@ import { computeAlerts } from "../../server/src/domain/alerts";
 import { fireBasketFailure } from "../../server/src/domain/trigger";
 import { findOverclaims } from "../../server/src/domain/wording";
 import { estimateAll } from "../../server/src/domain/estimate";
-import type { CellpathData } from "../../shared/types";
+import { splitStaged } from "../../server/src/domain/incident";
+import type { CellpathData, EventRecord } from "../../shared/types";
 
-let data: CellpathData;
+let data: CellpathData; // the full workbook
+let log: CellpathData; // the 11:30 log with the incident held back
+let staged: EventRecord[];
+const fired = () => fireBasketFailure(log, staged);
 const caseOf = (id: string) => data.cases.find((c) => c.caseId === id)!;
 beforeAll(() => {
   data = loadData();
+  ({ data: log, staged } = splitStaged(data));
 });
 
 describe("CLAUDE.md required tests", () => {
@@ -30,8 +35,8 @@ describe("CLAUDE.md required tests", () => {
     expect(errs).not.toContain("event_after_clock");
   });
 
-  it("4. each of the four alerts returns the expected IDs", () => {
-    const alerts = computeAlerts(fireBasketFailure(data));
+  it("4. each of the four alerts returns the expected IDs (incident replayed)", () => {
+    const alerts = computeAlerts(fired());
     const ids = Object.fromEntries(alerts.map((a) => [a.kind, a.caseIds]));
     expect(ids.outstanding_block).toEqual(["26H1003"]);
     expect(ids.protocol_mismatch).toEqual(["26H1004"]);
@@ -39,17 +44,17 @@ describe("CLAUDE.md required tests", () => {
     expect(ids.basket_failure).toHaveLength(10);
   });
 
-  it("5. the trigger flags exactly 20 slides and 10 cases, exactly once", () => {
-    const fired = fireBasketFailure(data);
-    const basket = computeAlerts(fired).find((a) => a.kind === "basket_failure")!;
+  it("5. the incident replay flags exactly 20 slides and 10 cases, exactly once", () => {
+    const once = fired();
+    const basket = computeAlerts(once).find((a) => a.kind === "basket_failure")!;
     expect(basket.slideIds).toHaveLength(20);
     expect(basket.caseIds).toHaveLength(10);
-    expect(() => fireBasketFailure(fired)).toThrow();
+    expect(() => fireBasketFailure(once, staged)).toThrow();
   });
 
   it("6. 26H1003 is not ready while F1 is outstanding", () => {
     expect(caseOf("26H1003").stageSnapshot).not.toBe("Ready for pathologist handoff");
-    expect(computeAlerts(data).some((a) => a.kind === "outstanding_block" && a.caseIds.includes("26H1003"))).toBe(true);
+    expect(computeAlerts(log).some((a) => a.kind === "outstanding_block" && a.caseIds.includes("26H1003"))).toBe(true);
   });
 
   it("7. 26H1004 shows 1 of 3 levels", () => {
@@ -63,12 +68,15 @@ describe("CLAUDE.md required tests", () => {
   });
 
   it("9. 26H1016 (decalcification) is not flagged", () => {
-    expect(computeAlerts(fireBasketFailure(data)).flatMap((a) => a.caseIds)).not.toContain("26H1016");
+    expect(computeAlerts(fired()).flatMap((a) => a.caseIds)).not.toContain("26H1016");
   });
 
-  it("10. 26H2345 stays urgent with no invented fault", () => {
+  it("10. 26H2345 stays urgent with no invented fault, ready for handoff at 09:30", () => {
     expect(caseOf("26H2345").priority).toBe("Urgent");
-    expect(computeAlerts(fireBasketFailure(data)).flatMap((a) => a.caseIds)).not.toContain("26H2345");
+    expect(caseOf("26H2345").stageSnapshot).toBe("Ready for pathologist handoff");
+    const e = estimateAll({ data: log, alerts: computeAlerts(log), targets: { urgent: null, screening: null, routine: null } }).get("26H2345")!;
+    expect(e).toMatchObject({ status: "ready", readyAt: "Day 1 09:30" });
+    expect(computeAlerts(fired()).flatMap((a) => a.caseIds)).not.toContain("26H2345");
   });
 
   it("11. 26H1018 is ready for pathologist handoff", () => {
@@ -76,7 +84,7 @@ describe("CLAUDE.md required tests", () => {
   });
 
   it("12. no alert claims a diagnosis, a reporting time or a screening deadline", () => {
-    expect(findOverclaims(JSON.stringify(computeAlerts(fireBasketFailure(data))))).toEqual([]);
+    expect(findOverclaims(JSON.stringify(computeAlerts(fired())))).toEqual([]);
   });
 
   it("13. missing data returns explicit uncertainty", () => {

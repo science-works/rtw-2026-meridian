@@ -3,26 +3,26 @@ Case ID,Block ID,Slide ID,Level,Stainer basket,Slide status,Scan status
 26H1002,A1,26H1002-S02,L2,,Cut; awaiting H&E staining,Not yet scanned
 26H1002,A1,26H1002-S03,L3,,Cut; awaiting H&E staining,Not yet scanned
 26H1004,A1,26H1004-S01,L1,,Level L1 cut; required L2-L3 not recorded,Not yet scanned
-26H1005,A1,26H1005-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1005,A1,26H1005-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1006,A1,26H1006-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1006,A1,26H1006-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1007,A1,26H1007-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1007,A1,26H1007-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1008,A1,26H1008-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1008,A1,26H1008-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1009,A1,26H1009-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1009,A1,26H1009-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1010,A1,26H1010-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1010,A1,26H1010-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1011,A1,26H1011-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1011,A1,26H1011-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1012,A1,26H1012-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1012,A1,26H1012-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1013,A1,26H1013-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1013,A1,26H1013-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1014,A1,26H1014-S01,L1,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
-26H1014,A1,26H1014-S02,L2,Stainer 1 basket 01,In H&E basket Stainer 1 basket 01,Not yet scanned; awaits stain completion
+26H1005,A1,26H1005-S01,L1,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1005,A1,26H1005-S02,L2,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1006,A1,26H1006-S01,L1,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1006,A1,26H1006-S02,L2,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1007,A1,26H1007-S01,L1,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1007,A1,26H1007-S02,L2,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1008,A1,26H1008-S01,L1,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1008,A1,26H1008-S02,L2,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1009,A1,26H1009-S01,L1,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1009,A1,26H1009-S02,L2,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1010,A1,26H1010-S01,L1,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1010,A1,26H1010-S02,L2,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1011,A1,26H1011-S01,L1,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1011,A1,26H1011-S02,L2,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1012,A1,26H1012-S01,L1,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1012,A1,26H1012-S02,L2,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1013,A1,26H1013-S01,L1,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1013,A1,26H1013-S02,L2,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1014,A1,26H1014-S01,L1,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
+26H1014,A1,26H1014-S02,L2,H&E-BASKET-01,Repeat H&E staining in progress,Not yet scanned
 26H1015,A1,26H1015-S01,L1,,Scan-ready; waiting in digital scan queue,Expected; no scan-complete event recorded
 26H1015,A1,26H1015-S02,L2,,Scan-ready; waiting in digital scan queue,Expected; no scan-complete event recorded
 26H1017,A1,26H1017-S01,L1,,Scanned; awaiting IQC,SCAN_COMPLETE recorded
@@ -422,3 +422,6 @@ Case ID,Block ID,Slide ID,Level,Stainer basket,Slide status,Scan status
 26H1448,A1,26H1448-S03,L3,,Scan complete; case ready for handoff,Scan-complete event recorded
 26H1448,A1,26H1448-S04,L4,,Scan complete; case ready for handoff,Scan-complete event recorded
 26H1449,A1,26H1449-S01,L1,,Scan complete; case ready for handoff,Scan-complete event recorded
+26H2345,A1,26H2345-S01,L1,URGENT-H&E-RUN-01,H&E stained; scanned; IQC passed,Complete
+26H2345,A1,26H2345-S02,L2,URGENT-H&E-RUN-01,H&E stained; scanned; IQC passed,Complete
+26H2345,A1,26H2345-S03,L3,URGENT-H&E-RUN-01,H&E stained; scanned; IQC passed,Complete

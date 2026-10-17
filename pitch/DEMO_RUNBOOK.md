@@ -24,7 +24,7 @@ The spoken lines are in `SCRIPT.md`. This file is the click path, the checklist 
 | Opening (Victoria) | Slide 2. |
 | The whole lab | Switch to Meridian. Point at the header tiles (450 = 104 + 346) and the lanes (103 backlog at microtomy). |
 | One block holds a case | Click **26H1003** in the case list → the drawer shows the journey bar, A1–E1 at Processor and F1 at Cut-up, with "Unknown" and the reason. Optional: **Spotlight**. Close with Esc. |
-| Live failure | Click **Trigger stainer basket failure** → ripple from H&E, 10 rows flash, 4 alerts, estimates roll to Day 1 12:55. Click **26H1005** → the "Repeat H&E run 60 min" line. Esc. |
+| Live incident | Replay the H&E incident (control renamed in Phase D) → 10 rows flagged, 4 alerts, estimates read Day 1 11:45. Click **26H1005** → the "Repeat H&E run (started 11:05) 30 min" line. Esc. |
 | The agent | Claude Desktop on the left, Meridian on the right. Ask "I'm starting the next shift. What do I need to know?" (or attach the `shift_handover` prompt). The agent console fills with tool calls and the beam points into the cases. |
 | Trust and vision (Victoria) | Slides 4 and 5. |
 | After the pitch | **Reset demo** for the next rehearsal. |

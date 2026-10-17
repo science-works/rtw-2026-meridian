@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { parseSimTime } from "../../shared/clock";
 import type { Alert, CaseDetail, Overview } from "../../shared/types";
 import { freshApp } from "./helpers";
 
@@ -20,13 +21,13 @@ describe("B3: basket-failure trigger", () => {
     await post("/api/sim/basket-failure");
     const c = (await get<CaseDetail>("/api/cases/26H1005")).body;
     expect(c.timeline.filter((e) => e.eventId === "EV-01215")).toHaveLength(1);
-    expect(c.timeline.at(-1)!.details).not.toMatch(/PENDING|pitch/i);
-    expect(c.alertIds).toEqual(["basket_failure:PRISMA-BASKET-01"]);
+    expect(c.timeline.map((e) => e.at)).toEqual([...c.timeline.map((e) => e.at)].sort((a, b) => parseSimTime(a) - parseSimTime(b)));
+    expect(c.alertIds).toEqual(["basket_failure:H&E-BASKET-01"]);
     for (let i = 5; i <= 14; i++) {
       const id = `26H10${String(i).padStart(2, "0")}`;
-      expect((await get<CaseDetail>(`/api/cases/${id}`)).body.alertIds).toContain("basket_failure:PRISMA-BASKET-01");
+      expect((await get<CaseDetail>(`/api/cases/${id}`)).body.alertIds).toContain("basket_failure:H&E-BASKET-01");
     }
-    expect((await get<CaseDetail>("/api/cases/26H1015")).body.alertIds).not.toContain("basket_failure:PRISMA-BASKET-01");
+    expect((await get<CaseDetail>("/api/cases/26H1015")).body.alertIds).not.toContain("basket_failure:H&E-BASKET-01");
   });
 
   it("marks the overview as fired without changing stage counts", async () => {
@@ -49,15 +50,15 @@ describe("B3: basket-failure trigger", () => {
 });
 
 describe("A5 + B3: the trigger recalculates handoff estimates", () => {
-  it("26H1005 moves from Day 1 11:55 to Day 1 12:55, and back on reset", async () => {
+  it("26H1005 moves from Day 1 11:40 to Day 1 11:45 (30-min repeat from 11:05), and back on reset", async () => {
     const { get, post } = freshApp();
     const at = async () => (await get<CaseDetail>("/api/cases/26H1005")).body.estimate.readyAt;
-    expect(await at()).toBe("Day 1 11:55");
+    expect(await at()).toBe("Day 1 11:40");
     await post("/api/sim/basket-failure");
-    expect(await at()).toBe("Day 1 12:55");
-    expect((await get<CaseDetail>("/api/cases/26H1005")).body.estimate.components.map((c) => c.step)).toContain("Repeat H&E run (failed basket)");
+    expect(await at()).toBe("Day 1 11:45");
+    expect((await get<CaseDetail>("/api/cases/26H1005")).body.estimate.components.map((c) => c.step)).toContain("Repeat H&E run (started 11:05)");
     await post("/api/sim/reset");
-    expect(await at()).toBe("Day 1 11:55");
+    expect(await at()).toBe("Day 1 11:40");
   });
 });
 

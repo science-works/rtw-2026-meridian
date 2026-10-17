@@ -11,7 +11,7 @@ export const HEADERS = {
   "cases.csv": ["Case ID", "Cohort", "Sample type", "Priority", "Programme tag", "Stage snapshot", "Stage entered (simulated)", "Blocks expected", "Blocks complete", "Levels required", "Levels recorded", "Processor", "Stainer basket", "Slides in case", "Alert category", "Demo case?"],
   "blocks.csv": ["Case ID", "Block ID", "Sample type", "Current location", "Block status", "Levels required", "Levels recorded", "Case-level effect"],
   "slides.csv": ["Case ID", "Block ID", "Slide ID", "Level", "Stainer basket", "Slide status", "Scan status"],
-  "events.csv": ["Event ID", "Simulated time", "Case ID", "Block ID", "Slide ID", "Stage", "Station / equipment", "Event type", "Event details", "Activation state"],
+  "events.csv": ["Event ID", "Simulated time", "Case ID", "Block ID", "Slide ID", "Stage", "Station / equipment", "Event type", "Event details", "Activation state", "Fictional staff initials"],
   "timing_rules.csv": ["Rule / stage", "Description", "Starting value", "Unit", "Status", "Notes"],
 } as const;
 
@@ -37,7 +37,7 @@ export function buildDataset(d: CellpathData): Record<keyof typeof HEADERS, stri
     "slides.csv": [[...HEADERS["slides.csv"]], ...d.slides.map((x) => [x.caseId, x.blockId, x.slideId, x.level, label(x.basket), text(x.status), text(x.scanStatus)].map(s))],
     "events.csv": [
       [...HEADERS["events.csv"]],
-      ...d.events.map((e) => [e.eventId, e.at, e.caseId, e.blockId, e.slideId, e.stage, label(e.station), e.type, text(e.details), e.activation].map(s)),
+      ...d.events.map((e) => [e.eventId, e.at, e.caseId, e.blockId, e.slideId, e.stage, label(e.station), e.type, text(e.details), e.activation, e.initials].map(s)),
     ],
     "timing_rules.csv": [[...HEADERS["timing_rules.csv"]], ...d.timingRules.map((r) => [label(r.rule), label(r.description), label(r.value), r.unit, r.status, label(r.notes)].map(s))],
   };

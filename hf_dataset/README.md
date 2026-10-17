@@ -36,7 +36,7 @@ Public pathology datasets are almost all slide **images**. As far as we could fi
   - stage counts reconcile (450 = 104 backlog + 346 current-day);
   - plausible event order;
   - no events after the shared clock (Tuesday, Day 1, 11:30);
-  - one staged "live trigger" event (EV-01215, failed stain basket).
+  - one recorded H&E incident (EV-01215 basket failure at 10:45 → acknowledged 10:47 → reloaded 11:04 → 30-minute repeat run started 11:05; Activation state carries its status).
 - **Standard event-log shape:** compatible with IEEE XES and OCEL 2.0 (object-centric: case, block, slide, basket, station).
 
 ## Contents
@@ -44,13 +44,13 @@ Public pathology datasets are almost all slide **images**. As far as we could fi
 |---|---|---|
 | `cases.csv` | 450 | Case ID, Cohort, Sample type, Priority, Programme tag, Stage snapshot, Stage entered (simulated), Blocks expected / complete, Levels required / recorded, Processor, Stainer basket, Slides in case, Alert category, Demo case? |
 | `blocks.csv` | 712 | Case ID, Block ID, Sample type, Current location, Block status, Levels required / recorded, Case-level effect |
-| `slides.csv` | 423 | Case ID, Block ID, Slide ID, Level, Stainer basket, Slide status, Scan status |
-| `events.csv` | 1,230 | Event ID, Simulated time ("Day N HH:MM"; Day 0 = Monday), Case / Block / Slide ID, Stage, Station / equipment, Event type, Event details, Activation state |
-| `timing_rules.csv` | — | Rule / stage, Description, Starting value, Unit, Status (illustrative / unknown), Notes |
+| `slides.csv` | 426 | Case ID, Block ID, Slide ID, Level, Stainer basket, Slide status, Scan status |
+| `events.csv` | 1,253 | Event ID, Simulated time ("Day N HH:MM"; Day 0 = Monday), Case / Block / Slide ID, Stage, Station / equipment, Event type, Event details, Activation state, Fictional staff initials (AA/BB, embedding only) |
+| `timing_rules.csv` | 36 | Rule / stage, Description, Starting value, Unit, Status (illustrative / unknown), Notes |
 
-Equipment names are generic (Processor A–D, Stainer 1, Scanner 1–4). Authoring notes used only for the hackathon demo have been removed.
+Equipment names are generic and normalised: Processor A–D, Embedding station 1–2, Microtomy station 1–6, H&E auto-stainer 1, Digital scanner 1–2, IQC workstation 1. Authoring notes used only for the hackathon demo have been removed.
 
-**Demo scenarios (22 cases):** outstanding block (26H1003), protocol/level mismatch (26H1004), failed stain basket affecting 20 slides across 10 cases (26H1005–26H1014), missing scan event (26H1015), decalcification (26H1016), urgent priority (26H2345), ready for handoff (26H1018), and more.
+**Demo scenarios (22 cases):** outstanding block (26H1003), protocol/level mismatch (26H1004), failed H&E basket `H&E-BASKET-01` affecting 20 slides across 10 cases (26H1005–26H1014), missing scan event (26H1015), decalcification (26H1016), urgent priority, ready for handoff at 09:30 (26H2345), ready for handoff (26H1018), and more.
 
 ## Intended uses
 - Prototyping lab-operations dashboards, alert rules and handoff estimators.

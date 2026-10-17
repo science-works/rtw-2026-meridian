@@ -9,9 +9,9 @@ describe("B1: read API over the in-memory state", () => {
     expect((await get("/api/health")).body).toMatchObject({ ok: true, simulated: true, clock: "Day 1 11:30" });
   });
 
-  it("GET /api/overview reconciles to 450 = 104 + 346 with 7 ready", async () => {
+  it("GET /api/overview reconciles to 450 = 104 + 346 with 8 ready", async () => {
     const { body } = await freshApp().get<Overview>("/api/overview");
-    expect(body).toMatchObject({ clock: "Day 1 11:30", total: 450, backlog: 104, today: 346, ready: 7, triggerFired: false });
+    expect(body).toMatchObject({ clock: "Day 1 11:30", total: 450, backlog: 104, today: 346, ready: 8, triggerFired: false });
     expect(body.stages).toHaveLength(10);
     expect(body.stages.reduce((n, s) => n + s.total, 0)).toBe(450);
   });
@@ -82,7 +82,8 @@ describe("B1: read API over the in-memory state", () => {
     const { get } = freshApp();
     const est = async (id: string) => (await get<CaseDetail>(`/api/cases/${id}`)).body.estimate;
     expect(await est("26H1018")).toMatchObject({ status: "ready", readyAt: "Day 1 11:15" });
-    expect(await est("26H1001")).toMatchObject({ status: "estimated", readyAt: "Day 1 12:58" });
+    expect(await est("26H1001")).toMatchObject({ status: "estimated", readyAt: "Day 1 12:28" });
+    expect(await est("26H2345")).toMatchObject({ status: "ready", readyAt: "Day 1 09:30" });
     expect((await est("26H1016")).status).toBe("unknown");
     expect((await est("26H1003")).reasonUnknown).toMatch(/F1/);
   });
@@ -110,7 +111,7 @@ describe("B1: read API over the in-memory state", () => {
       ...(await Promise.all(ids.map((id) => get(`/api/cases/${id}`)))),
     ].map((r) => JSON.stringify(r.body));
     for (const s of bodies) {
-      expect(s).not.toMatch(/Prisma|Pegasus|Logos/);
+      expect(s).not.toMatch(/Prisma|Pegasus|Logos|Stainer 1|Microtome |IQC desk/);
       expect(findOverclaims(s)).toEqual([]);
     }
   });

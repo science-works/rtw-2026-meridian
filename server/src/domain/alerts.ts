@@ -1,7 +1,7 @@
-// The four deterministic alert rules (CLAUDE.md). Rules read recorded events only;
-// the staged basket failure counts only after the simulator has appended it.
+// The four deterministic alert rules (CLAUDE.md). Rules read the event log as it stands;
+// the staged H&E incident counts only after the dashboard has replayed it.
 import { parseSimTime } from "../../../shared/clock";
-import { generic } from "../../../shared/labels";
+import { displayText, generic } from "../../../shared/labels";
 import type { Alert, BlockRecord, CellpathData, EventRecord } from "../../../shared/types";
 
 const byTime = (a: EventRecord, b: EventRecord) => parseSimTime(a.at) - parseSimTime(b.at) || a.eventId.localeCompare(b.eventId);
@@ -16,7 +16,7 @@ export function blockRange(ids: string[]): string {
   return consecutive ? `${sorted[0]}–${sorted.at(-1)}` : sorted.join(", ");
 }
 
-/** Minutes from a timing rule's value, e.g. "60 minutes per repeat" → 60. */
+/** Minutes from a timing rule's value, e.g. "30 minutes per repeat cycle" → 30. */
 function ruleMinutes(data: CellpathData, rule: string): number | null {
   const v = data.timingRules.find((r) => r.rule === rule)?.value;
   const m = v ? /(\d+)\s*min/.exec(v) : null;
@@ -87,34 +87,42 @@ function protocolMismatches(data: CellpathData, events: EventRecord[]): Alert[] 
     });
 }
 
-// Rule 3: the staged stain-run failure, once the simulator has appended it.
+// Rule 3: a recorded stain-run failure. The basket is named in the event; its slides
+// and cases come from the Slides sheet. Later staff actions are shown as evidence.
+const STAFF_ACTIONS = ["TEAM_NOTIFIED", "INCIDENT_ACKNOWLEDGED", "TROUBLESHOOTING_STARTED", "BASKET_RELOADED", "REPEAT_STAIN_STARTED"];
+
 function basketFailures(data: CellpathData, events: EventRecord[]): Alert[] {
-  const repeat = ruleMinutes(data, "Prisma repeat stain");
+  const repeat = ruleMinutes(data, "H&E repeat stain");
   return events
     .filter((e) => e.type === "STAIN_RUN_FAILED")
     .map((f) => {
-      const slides = data.slides.filter((s) => s.basket && f.station?.includes(s.basket));
+      const basketId = /[A-Z&]+-BASKET-\d+/.exec(`${f.station ?? ""} ${f.details}`)?.[0] ?? null;
+      const slides = basketId ? data.slides.filter((s) => s.basket === basketId) : [];
       const caseIds = [...new Set(slides.map((s) => s.caseId))].sort();
-      const loaded = events.filter((e) => e.type === "BASKET_LOADED" && slides.some((s) => s.slideId === e.slideId));
-      const basketId = slides[0]?.basket ?? f.eventId;
-      const basket = generic(basketId);
+      const loaded = events.filter((e) => e.type === "BASKET_LOADED" && slides.some((s) => s.slideId === e.slideId)).sort(byTime);
+      const actions = events
+        .filter((e) => STAFF_ACTIONS.includes(e.type) && parseSimTime(e.at) >= parseSimTime(f.at))
+        .filter((e) => (basketId !== null && e.details.includes(basketId)) || caseIds.includes(e.caseId))
+        .sort(byTime);
+      const basket = basketId ?? "the basket";
       return {
-        id: `basket_failure:${basketId}`,
+        id: `basket_failure:${basketId ?? f.eventId}`,
         kind: "basket_failure",
         severity: "high",
         raisedAt: f.at,
         caseIds,
         slideIds: slides.map((s) => s.slideId),
-        what: `${basket} stain run failed: ${slides.length} slides across ${caseIds.length} cases`,
+        what: `${basket} H&E run failed: ${slides.length} slides across ${caseIds.length} cases`,
         evidence: [
-          { eventId: f.eventId, text: `${f.at}: stain run failed for ${basket} (simulated event)` },
-          { text: `${loaded.length} slides were loaded into ${basket}${loaded[0] ? ` at ${loaded[0].at}` : ""}: ${caseIds.join(", ")}` },
+          { eventId: f.eventId, text: `${f.at}: H&E run failed for ${basket} on ${generic(f.station ?? "the H&E auto-stainer")}` },
+          ...(loaded.length ? [{ text: `${loaded.length} slides were loaded into ${basket} at ${loaded[0].at}: ${caseIds.join(", ")}` }] : []),
+          ...actions.map((e) => ({ eventId: e.eventId, text: `${e.at}: ${displayText(e.details)}` })),
         ],
         why:
           repeat === null
-            ? `Every slide in a failed basket needs staining again. The repeat-run duration is not configured, so the extra time is unknown.`
-            : `Every slide in a failed basket needs staining again. Each affected case's handoff estimate moves back by the ${repeat}-minute repeat run (illustrative timing rule); queue time is not modelled.`,
-        suggestedCheck: `Check the stainer run log and the ${slides.length} slides from ${basket}, then decide on the repeat stain.`,
+            ? "Every slide in a failed basket needs staining again. The repeat-run duration is not configured, so the extra time is unknown."
+            : `Every slide in a failed basket needs staining again. The ${repeat}-minute repeat H&E run (illustrative timing rule) is added to each affected case's handoff estimate; queue time is not modelled. No recut is assumed.`,
+        suggestedCheck: `Check the H&E auto-stainer and the ${slides.length} slides in ${basket}; record the repeat run and the follow-up check.`,
       } satisfies Alert;
     });
 }
@@ -154,7 +162,7 @@ function scanGaps(data: CellpathData, events: EventRecord[]): Alert[] {
 }
 
 export function computeAlerts(data: CellpathData): Alert[] {
-  const events = data.events.filter((e) => e.activation === "Recorded");
+  const events = data.events; // the log as it stands (staged incident events are not in it until replayed)
   return [
     ...basketFailures(data, events),
     ...protocolMismatches(data, events),
