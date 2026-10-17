@@ -3,10 +3,28 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { streamSSE } from "hono/streaming";
 import { displayText, generic } from "../../shared/labels";
-import type { CaseDetail, CaseRecord, CaseSummary, DelayedResponse, Overview, TriggerResponse } from "../../shared/types";
+import { parseSimTime } from "../../shared/clock";
+import type { CaseDetail, CaseRecord, CaseSummary, DelayedResponse, EventRecord, EventsPage, FeedEvent, Overview, TriggerResponse } from "../../shared/types";
 import { validate } from "./domain/validate";
 import { AlreadyFiredError, createState, type MeridianState } from "./state";
 import { hasAnyTarget } from "./targets";
+
+const toFeedEvent = (e: EventRecord): FeedEvent => ({
+  eventId: e.eventId,
+  at: e.at,
+  caseId: e.caseId,
+  ...(e.blockId ? { blockId: e.blockId } : {}),
+  ...(e.slideId ? { slideId: e.slideId } : {}),
+  stage: e.stage,
+  ...(e.station ? { station: generic(e.station) } : {}),
+  type: e.type,
+  details: displayText(e.details),
+});
+
+const intParam = (v: string | undefined, fallback: number) => {
+  const n = Number.parseInt(v ?? "", 10);
+  return Number.isFinite(n) ? n : fallback;
+};
 
 const matchesProgramme = (tag: string | null, q: string) =>
   q === "any" ? tag !== null : (tag ?? "").toLowerCase() === q.toLowerCase();
@@ -34,7 +52,29 @@ export function createApp(state: MeridianState = createState()) {
     estimate: state.estimates.get(c.caseId)!,
   });
 
-  app.get("/api/health", (c) => c.json({ ok: true, simulated: true, clock: state.data.meta.clock, version: state.version }));
+  app.get("/api/health", (c) => c.json({ ok: true, simulated: true, clock: state.data.meta.clock, version: state.version, feed: state.feed }));
+
+  // Paged, read-only event log: recorded events only (the staged trigger appears once fired).
+  app.get("/api/events", (c) => {
+    const q = c.req.query();
+    const limit = Math.min(Math.max(intParam(q.limit, 100), 1), 500);
+    const offset = Math.max(intParam(q.offset, 0), 0);
+    const caseId = q.caseId?.toUpperCase();
+    const all = state.data.events
+      .filter((e) => e.activation === "Recorded")
+      .filter((e) => !caseId || e.caseId === caseId)
+      .filter((e) => !q.type || e.type === q.type)
+      .sort((a, b) => parseSimTime(a.at) - parseSimTime(b.at) || a.eventId.localeCompare(b.eventId));
+    const page = all.slice(offset, offset + limit);
+    return c.json<EventsPage>({
+      feed: state.feed,
+      total: all.length,
+      offset,
+      limit,
+      nextOffset: offset + limit < all.length ? offset + limit : null,
+      events: page.map(toFeedEvent),
+    });
+  });
 
   app.get("/api/overview", (c) => {
     const { counts } = validate(state.data);
@@ -83,17 +123,7 @@ export function createApp(state: MeridianState = createState()) {
       slides: state.data.slides
         .filter((s) => s.caseId === id)
         .map((s) => ({ slideId: s.slideId, blockId: s.blockId, level: s.level ?? undefined, basket: s.basket ? generic(s.basket) : undefined })),
-      timeline: state.data.events
-        .filter((e) => e.caseId === id && e.activation === "Recorded")
-        .map((e) => ({
-          eventId: e.eventId,
-          at: e.at,
-          type: e.type,
-          stage: e.stage,
-          station: generic(e.station) ?? undefined,
-          blockId: e.blockId ?? undefined,
-          details: displayText(e.details),
-        })),
+      timeline: state.data.events.filter((e) => e.caseId === id && e.activation === "Recorded").map(toFeedEvent),
     };
     return c.json(detail);
   });

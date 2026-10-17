@@ -14,13 +14,15 @@ export interface MeridianState {
   readonly alerts: Alert[];
   readonly estimates: Map<string, Estimate>;
   readonly targets: Targets;
+  /** Name of the feed adapter the data came from. */
+  readonly feed: string;
   readonly triggerFired: boolean;
   fireBasketFailure(): { affectedCases: number; affectedSlides: number };
   reset(): void;
   subscribe(fn: (version: number) => void): () => void;
 }
 
-export function createState(initial: CellpathData = loadData(), targets: Targets = loadTargets()): MeridianState {
+export function createState(initial: CellpathData = loadData(), targets: Targets = loadTargets(), feed = "workbook"): MeridianState {
   const pristine = structuredClone(initial);
   let data = structuredClone(initial);
   let version = 0;
@@ -50,6 +52,7 @@ export function createState(initial: CellpathData = loadData(), targets: Targets
       return estimates;
     },
     targets,
+    feed,
     get triggerFired() {
       return isTriggerFired(data);
     },

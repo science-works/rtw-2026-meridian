@@ -22,3 +22,5 @@
 [19:25] [C] [C1-C3 MCP server 'meridian' (mcp/src): get_case, list_alerts, cases_delayed (+urgent watch list) - read-only annotations, boundaries in instructions, calls :8787 only; 11 MCP tests incl. live trigger visibility + no-mutation + wording guard; verified over real stdio and Inspector 0.15.0 CLI; docs/MCP_SETUP.md; REGISTRY rows for adopted libs] done
 [19:28] [C] [C2b shift_handover MCP prompt] started
 [19:30] [C] [C2b shift_handover prompt: deterministic brief from list_alerts -> get_case (affected) -> cases_delayed; sections alerts+evidence IDs, cases at risk, unknowns, urgent watch list, staff checks, targets, not in scope; 7 tests; verified via Inspector 0.15.0 prompts/get over stdio; docs/MCP_SETUP.md updated] done
+[19:30] [B] [B5 /api/events + FeedAdapter + EVENT_MODEL.md] started
+[19:32] [B] [B5 GET /api/events (paged 1-500, case/type filters, recorded only, generic labels; 1229 -> 1230 on trigger), FeedAdapter (workbookFeed default, jsonExportFeed via MERIDIAN_DATA), health shows feed, startup validation report; docs/EVENT_MODEL.md with XES + OCEL 2.0 mapping and BYO LIMS export; 10 tests] done

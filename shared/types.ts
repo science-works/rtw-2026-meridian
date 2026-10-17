@@ -171,7 +171,7 @@ export interface CaseDetail extends CaseSummary {
   /** Block `stage` is null when it cannot be derived from recorded data ("not enough information"). */
   blocks: { blockId: string; stage: Stage | null; location: string; status: string; levelsRequired?: number; levelsRecorded?: number }[];
   slides: { slideId: string; blockId: string; level?: string; basket?: string }[];
-  timeline: { eventId: string; at: SimTime; type: string; stage: string; station?: string; blockId?: string; details: string }[];
+  timeline: FeedEvent[];
 }
 
 export interface Overview {
@@ -187,6 +187,28 @@ export interface Overview {
 export interface DelayedResponse {
   cases: CaseSummary[];
   note?: string; // "target comparison unavailable" when no target is configured
+}
+
+/** One recorded event as served by GET /api/events (generic labels, display text). */
+export interface FeedEvent {
+  eventId: string;
+  at: SimTime;
+  caseId: string;
+  blockId?: string;
+  slideId?: string;
+  stage: string;
+  station?: string;
+  type: string;
+  details: string;
+}
+
+export interface EventsPage {
+  feed: string;
+  total: number;
+  offset: number;
+  limit: number;
+  nextOffset: number | null;
+  events: FeedEvent[];
 }
 
 export interface TriggerResponse {
