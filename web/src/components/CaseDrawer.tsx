@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Alert, CaseDetail } from "../../../shared/types";
 import { api } from "../api";
 import { AlertCard } from "./AlertCard";
+import { JourneyBar } from "./JourneyBar";
 
 interface Props {
   caseId: string;
@@ -64,6 +65,7 @@ export function CaseDrawer({ caseId, version, alerts, onClose, onOpenCase }: Pro
               <p className="stage-now">
                 {detail.stage} <span className="muted mono">since {detail.stageEnteredAt}</span>
               </p>
+              <JourneyBar detail={detail} alerts={caseAlerts} />
             </section>
 
             <section>
@@ -78,14 +80,14 @@ export function CaseDrawer({ caseId, version, alerts, onClose, onOpenCase }: Pro
                   </span>
                 </p>
               )}
-              {est?.status === "unknown" && <p className="muted">Unknown: {est.reasonUnknown}</p>}
+              {est?.status === "unknown" && <p className="est-unknown">Unknown: {est.reasonUnknown}</p>}
               {est && est.components.length > 0 && (
                 <ul className="est-parts">
                   {est.components.map((c, i) => (
-                    <li key={i}>
-                      {c.step}
-                      {c.minutes !== undefined && <span className="mono"> {c.minutes} min</span>}
-                      {c.note && <span className="muted"> — {c.note}</span>}
+                    <li key={i} className={c.step.startsWith("Repeat") ? "est-repeat" : ""}>
+                      <span>{c.step}</span>
+                      <span className="mono est-min">{c.minutes !== undefined ? `${c.minutes} min` : ""}</span>
+                      {c.note && <span className="est-note muted">{c.note}</span>}
                     </li>
                   ))}
                 </ul>
@@ -120,6 +122,7 @@ export function CaseDrawer({ caseId, version, alerts, onClose, onOpenCase }: Pro
                 <thead>
                   <tr>
                     <th>Block</th>
+                    <th>Stage</th>
                     <th>Location</th>
                     <th>Status</th>
                     <th>Levels</th>
@@ -129,6 +132,7 @@ export function CaseDrawer({ caseId, version, alerts, onClose, onOpenCase }: Pro
                   {detail.blocks.map((b) => (
                     <tr key={b.blockId}>
                       <td className="mono">{b.blockId}</td>
+                      <td>{b.stage ?? <span className="muted">not enough information</span>}</td>
                       <td>{b.location}</td>
                       <td>{b.status}</td>
                       <td className="mono">{b.levelsRequired ? `${b.levelsRecorded} of ${b.levelsRequired}` : "—"}</td>

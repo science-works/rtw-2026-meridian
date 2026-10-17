@@ -4,7 +4,8 @@ import { cors } from "hono/cors";
 import { streamSSE } from "hono/streaming";
 import { displayText, generic } from "../../shared/labels";
 import { parseSimTime } from "../../shared/clock";
-import type { CaseDetail, CaseRecord, CaseSummary, DelayedResponse, EventRecord, EventsPage, FeedEvent, Overview, TriggerResponse } from "../../shared/types";
+import { STAGES } from "../../shared/types";
+import type { BlockRecord, CaseDetail, CaseRecord, CaseSummary, DelayedResponse, EventRecord, EventsPage, FeedEvent, Overview, Stage, TriggerResponse } from "../../shared/types";
 import { validate } from "./domain/validate";
 import { AlreadyFiredError, createState, type MeridianState } from "./state";
 import { hasAnyTarget } from "./targets";
@@ -20,6 +21,19 @@ const toFeedEvent = (e: EventRecord): FeedEvent => ({
   type: e.type,
   details: displayText(e.details),
 });
+
+/**
+ * A block's stage. When a case's blocks have diverged (some complete, some outstanding),
+ * each block takes the stage of its own latest recorded event; otherwise it shares the
+ * case's recorded stage. Null when that event's stage is not a case stage.
+ */
+function blockStage(c: CaseRecord, b: BlockRecord, events: EventRecord[]): Stage | null {
+  const diverged = c.blocksComplete > 0 && c.blocksComplete < c.blocksExpected;
+  const own = events.filter((e) => e.blockId === b.blockId && e.activation === "Recorded");
+  if (!diverged || own.length === 0) return c.stageSnapshot;
+  const last = own.reduce((x, y) => (parseSimTime(y.at) > parseSimTime(x.at) || (y.at === x.at && y.eventId > x.eventId) ? y : x));
+  return (STAGES as readonly string[]).includes(last.stage) ? (last.stage as Stage) : null;
+}
 
 const intParam = (v: string | undefined, fallback: number) => {
   const n = Number.parseInt(v ?? "", 10);
@@ -108,13 +122,14 @@ export function createApp(state: MeridianState = createState()) {
     const id = c.req.param("id").toUpperCase();
     const rec = state.data.cases.find((x) => x.caseId === id);
     if (!rec) return c.json({ error: `No case ${id} in the simulated dataset` }, 404);
+    const caseEvents = state.data.events.filter((e) => e.caseId === id);
     const detail: CaseDetail = {
       ...summary(rec, alertIdsByCase()),
       blocks: state.data.blocks
         .filter((b) => b.caseId === id)
         .map((b) => ({
           blockId: b.blockId,
-          stage: null, // per-block stage is not derived yet: location and status are the recorded facts
+          stage: blockStage(rec, b, caseEvents),
           location: generic(b.location),
           status: displayText(b.status),
           levelsRequired: b.levelsRequired,
@@ -123,7 +138,7 @@ export function createApp(state: MeridianState = createState()) {
       slides: state.data.slides
         .filter((s) => s.caseId === id)
         .map((s) => ({ slideId: s.slideId, blockId: s.blockId, level: s.level ?? undefined, basket: s.basket ? generic(s.basket) : undefined })),
-      timeline: state.data.events.filter((e) => e.caseId === id && e.activation === "Recorded").map(toFeedEvent),
+      timeline: caseEvents.filter((e) => e.activation === "Recorded").map(toFeedEvent),
     };
     return c.json(detail);
   });

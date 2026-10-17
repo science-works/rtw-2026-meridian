@@ -164,7 +164,41 @@ tbody tr:hover { background: #fbf8fa; }
 .drawer-body { overflow: auto; padding: 8px 24px 24px; display: grid; gap: 14px; align-content: start; }
 .drawer-body h3 { font-size: 18px; margin-bottom: 4px; }
 .stage-now { margin: 0; font-size: 20px; font-weight: 600; }
-.est-parts { margin: 4px 0; padding-left: 20px; }
+.est-parts { margin: 6px 0; padding: 0; list-style: none; display: grid; gap: 2px; }
+.est-parts li { display: grid; grid-template-columns: 1fr auto; column-gap: 12px; padding: 3px 10px; background: var(--card); border: 1px solid var(--line); border-radius: 6px; }
+.est-parts li.est-repeat { border-color: var(--crimson); background: #fdf1f3; }
+.est-min { text-align: right; }
+.est-note { grid-column: 1 / -1; font-size: 14px; }
+.est-unknown { margin: 0; padding: 8px 12px; border-left: 4px solid var(--amber); background: #fbf4e6; color: var(--amber-ink); font-weight: 600; }
+
+/* ---------- Journey bar ---------- */
+.journey { margin-top: 10px; padding: 12px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); display: grid; gap: 10px; }
+.journey-track { list-style: none; margin: 0; padding: 0; display: grid; position: relative; }
+.j-step { display: grid; justify-items: center; gap: 2px; position: relative; text-align: center; }
+.j-step::before { content: ""; position: absolute; top: 9px; left: -50%; width: 100%; height: 3px; background: var(--line); z-index: 0; }
+.j-step:first-child::before { display: none; }
+.j-step.done::before, .j-step.now::before, .j-step.hold::before, .j-step.alert::before { background: var(--teal); }
+.j-dot { width: 20px; height: 20px; border-radius: 50%; background: var(--card); border: 3px solid var(--line); z-index: 1; }
+.j-step.done .j-dot { background: var(--teal); border-color: var(--teal); }
+.j-step.now .j-dot { background: var(--periwinkle); border-color: var(--periwinkle); box-shadow: 0 0 0 4px rgba(90, 111, 214, 0.25); }
+.j-step.hold .j-dot { background: var(--amber); border-color: var(--amber); box-shadow: 0 0 0 4px rgba(201, 138, 27, 0.25); }
+.j-step.alert .j-dot { background: var(--crimson); border-color: var(--crimson); box-shadow: 0 0 0 4px rgba(214, 46, 76, 0.25); }
+.j-label { font-size: 13px; font-weight: 600; line-height: 1.15; }
+.j-step.next .j-label { color: var(--muted); font-weight: 400; }
+.j-time { font-size: 12px; color: var(--muted); min-height: 1em; }
+.journey-blocks { display: grid; gap: 4px; }
+.jb-row { display: grid; align-items: center; column-gap: 0; }
+.jb-bar { height: 12px; border-radius: 999px; margin: 0 4px 0 6px; }
+.jb-text { font-size: 14px; font-weight: 600; white-space: nowrap; padding-left: 4px; color: var(--teal); }
+.jb-text.hold { color: var(--amber-ink); }
+.jb-bar.ok { background: var(--teal); }
+.jb-bar.hold { background: var(--amber-ink); }
+.journey-dest { display: flex; gap: 10px; align-items: baseline; padding: 6px 10px; border-radius: 8px; background: var(--bg); }
+.jd-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.jd-value { font-weight: 700; }
+.journey-dest.estimated .jd-value { color: var(--periwinkle); font-size: 18px; }
+.journey-dest.ready .jd-value { color: var(--teal); }
+.journey-dest.unknown .jd-value { color: var(--amber-ink); }
 .est-line { margin: 0; }
 .est-time { font-size: 20px; font-weight: 700; color: var(--periwinkle); }
 table.mini { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); }

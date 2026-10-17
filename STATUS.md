@@ -24,3 +24,5 @@
 [19:30] [C] [C2b shift_handover prompt: deterministic brief from list_alerts -> get_case (affected) -> cases_delayed; sections alerts+evidence IDs, cases at risk, unknowns, urgent watch list, staff checks, targets, not in scope; 7 tests; verified via Inspector 0.15.0 prompts/get over stdio; docs/MCP_SETUP.md updated] done
 [19:30] [B] [B5 /api/events + FeedAdapter + EVENT_MODEL.md] started
 [19:32] [B] [B5 GET /api/events (paged 1-500, case/type filters, recorded only, generic labels; 1229 -> 1230 on trigger), FeedAdapter (workbookFeed default, jsonExportFeed via MERIDIAN_DATA), health shows feed, startup validation report; docs/EVENT_MODEL.md with XES + OCEL 2.0 mapping and BYO LIMS export; 10 tests] done
+[19:33] [D] [D5 case drawer journey bar + per-block stage] started
+[19:35] [D] [D5 drawer: flight-tracker journey bar (done teal / now periwinkle / hold amber / alert crimson, stage times from timeline, decalc shown only when used), per-block rows for diverged cases (A1-E1 at Processor, F1 at Cut-up outstanding), API per-block stage, estimate components incl. repeat run highlighted, unknown reason box, target line; browser-checked 26H1003/1005/1016] done

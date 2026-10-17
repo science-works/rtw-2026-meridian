@@ -48,6 +48,18 @@ describe("B1: read API over the in-memory state", () => {
     expect(basket.slides).toHaveLength(2);
   });
 
+  it("derives each block's stage: 26H1003 A1-E1 in processing, F1 at cut-up", async () => {
+    const { get } = freshApp();
+    const c = (await get<CaseDetail>("/api/cases/26H1003")).body;
+    const stageOf = Object.fromEntries(c.blocks.map((b) => [b.blockId, b.stage]));
+    for (const id of ["A1", "B1", "C1", "D1", "E1"]) expect(stageOf[id]).toBe("Awaiting processor or processing");
+    expect(stageOf.F1).toBe("Waiting for dissection/cut-up");
+    const ready = (await get<CaseDetail>("/api/cases/26H1018")).body;
+    expect(ready.blocks.map((b) => b.stage)).toEqual(["Ready for pathologist handoff"]);
+    const queue = (await get<CaseDetail>("/api/cases/26H1020")).body;
+    expect(new Set(queue.blocks.map((b) => b.stage))).toEqual(new Set(["Waiting for dissection/cut-up"]));
+  });
+
   it("GET /api/cases/:id is case-insensitive and 404s unknown IDs", async () => {
     const { get } = freshApp();
     expect((await get<CaseDetail>("/api/cases/26h1004")).body.caseId).toBe("26H1004");
