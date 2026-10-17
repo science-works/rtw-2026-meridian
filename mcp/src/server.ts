@@ -8,7 +8,7 @@ import type { Alert, CaseDetail, CaseSummary, DelayedResponse, Estimate } from "
 export type ApiFetch = (path: string) => Response | Promise<Response>;
 
 export const httpFetch =
-  (base = process.env.MERIDIAN_API ?? "http://localhost:8787"): ApiFetch =>
+  (base = process.env.MERIDIAN_API_URL ?? process.env.MERIDIAN_API ?? "http://localhost:8787"): ApiFetch =>
   (path) =>
     fetch(new URL(path, base));
 
@@ -173,6 +173,30 @@ export async function buildShiftHandover(api: ApiFetch): Promise<string> {
   return lines.join("\n");
 }
 
+/** Agent mode: the model makes the calls itself, so every step is visible and sourced. */
+export function agentHandoverPrompt(focus?: string): string {
+  return [
+    "I'm starting the next shift in the histology lab. Use the Meridian tools (read-only, simulated data) to brief me.",
+    focus ? `Focus: ${focus}. Cover it first, then the rest.` : "",
+    "",
+    "Steps, in this order:",
+    "1. Call list_alerts.",
+    "2. For each affected case in those alerts, call get_case (one call per case ID; for a basket failure, one representative case is enough if the others share its stage and estimate, and say so).",
+    "3. Call cases_delayed.",
+    "",
+    "Then write the brief with exactly these sections:",
+    "1. Open alerts: each with its severity, what happened, and its evidence event IDs (e.g. EV-01215).",
+    "2. Cases at risk: case ID, recorded stage, and the handoff estimate, or 'unknown' with the reason the tool gives.",
+    "3. Things we can't know yet: every 'unknown' or missing value, said as 'not enough information' plus the reason. Include the target comparison note.",
+    "4. Suggested staff checks: the suggestedCheck from each alert, as a checklist.",
+    "5. Not in scope: diagnosis, reporting times and screening-programme deadlines; Meridian covers lab preparation up to pathologist handoff.",
+    "",
+    "Rules: cite case and event IDs from the tool results; invent nothing (no times, causes or events the tools did not return); no clinical advice; you cannot change anything in Meridian, so staff decide every action.",
+  ]
+    .filter((l, i, a) => l !== "" || a[i - 1] !== "")
+    .join("\n");
+}
+
 export function createMeridianMcp(api: ApiFetch = httpFetch()): McpServer {
   const server = new McpServer({ name: "meridian", version: "0.1.0" }, { instructions: INSTRUCTIONS });
 
@@ -242,31 +266,51 @@ export function createMeridianMcp(api: ApiFetch = httpFetch()): McpServer {
     "shift_handover",
     {
       title: "Shift handover brief",
-      description: `${SCOPE} Builds a handover brief from list_alerts, get_case for each affected case and cases_delayed: open alerts with evidence IDs, cases at risk, unknowns, the urgent watch list and staff checks.`,
+      description: `${SCOPE} Agent mode (default): you investigate with list_alerts → get_case for each affected case → cases_delayed and write a sourced brief. Brief mode: Meridian returns the same brief, built in code from the same calls.`,
+      argsSchema: {
+        focus: z.string().optional().describe("Optional case ID or topic to emphasise, e.g. 26H1005 or 'screening'"),
+        mode: z.enum(["agent", "brief"]).optional().describe("agent (default): the model calls the tools; brief: a deterministic brief built by Meridian"),
+      },
     },
-    async () => {
-      let brief: string;
-      try {
-        brief = await buildShiftHandover(api);
-      } catch (e) {
-        if (!(e instanceof ApiUnreachable)) throw e;
-        brief = `Not enough information: ${e.message}`;
+    async ({ focus, mode }) => {
+      if (mode === "brief") {
+        let brief: string;
+        try {
+          brief = await buildShiftHandover(api);
+        } catch (e) {
+          if (!(e instanceof ApiUnreachable)) throw e;
+          brief = `Not enough information: ${e.message}`;
+        }
+        return {
+          description: "Shift handover brief from live Meridian data (simulated)",
+          messages: [
+            {
+              role: "user" as const,
+              content: {
+                type: "text" as const,
+                text:
+                  "Present this shift handover brief to the incoming shift. Keep every case ID, evidence ID and time exactly as given, add no facts, " +
+                  "and say 'not enough information' wherever the brief says unknown. You may shorten the wording but keep every section.\n\n" +
+                  brief,
+              },
+            },
+          ],
+        };
       }
       return {
-        description: "Shift handover brief from live Meridian data (simulated)",
-        messages: [
-          {
-            role: "user" as const,
-            content: {
-              type: "text" as const,
-              text:
-                "Present this shift handover brief to the incoming shift. Keep every case ID, evidence ID and time exactly as given, add no facts, " +
-                "and say 'not enough information' wherever the brief says unknown. You may shorten the wording but keep every section.\n\n" +
-                brief,
-            },
-          },
-        ],
+        description: "Investigate the lab with Meridian's read-only tools and write a shift handover brief",
+        messages: [{ role: "user" as const, content: { type: "text" as const, text: agentHandoverPrompt(focus) } }],
       };
+    },
+  );
+
+  server.registerResource(
+    "overview",
+    "meridian://overview",
+    { title: "Lab overview", description: `${SCOPE} Clock, totals and stage counts.`, mimeType: "application/json" },
+    async (uri) => {
+      const body = (await getJson<object>(api, "/api/overview")).body;
+      return { contents: [{ uri: uri.href, mimeType: "application/json", text: JSON.stringify({ ...body, dataNote: DATA_NOTE }, null, 2) }] };
     },
   );
 

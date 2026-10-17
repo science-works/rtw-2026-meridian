@@ -8,7 +8,14 @@ Meridian exposes three **read-only** MCP tools over stdio. Each tool calls the M
 | `list_alerts(kind?, case_id?)` | Active alerts, each with what, evidence, why it is flagged, affected cases and slides, the time, and the suggested staff check |
 | `cases_delayed(programme?, priority?)` | Cases with a recorded hold, plus cases past a configured target (`config/targets.json`); otherwise "target comparison unavailable". Also an urgent watch list by recorded priority |
 
-One **prompt**, `shift_handover`, builds a handover brief from the same calls a person would make: `list_alerts` → `get_case` for each affected case → `cases_delayed`. The brief is assembled in code from live API data, so every case ID, evidence ID and time comes from the rules, not from the model. Sections: open alerts with evidence IDs, cases at risk, unknowns, the urgent watch list, staff checks, targets, and "not in scope" (diagnosis, reporting times, screening deadlines). In Claude Desktop, pick it from the "+" (attach) menu → meridian → shift_handover.
+One **prompt**, `shift_handover`, makes an agent investigate across the tools. It has two modes:
+
+- **`mode=agent` (default)**: the prompt tells the model to call `list_alerts` → `get_case` for each affected case → `cases_delayed`, then write a brief with five sections (open alerts with evidence event IDs, cases at risk, things we can't know yet, suggested staff checks, not in scope). Every call is visible in Claude Desktop, and in Meridian's agent console. Optional `focus` (e.g. `26H1005`).
+- **`mode=brief`**: Meridian builds the same brief in code from the same calls and returns it ready-made. Use it in the MCP Inspector, where no model runs, or as a fallback on stage.
+
+One **resource**, `meridian://overview`, returns the live clock, totals and stage counts.
+
+In Claude Desktop, pick the prompt from the "+" (attach) menu → meridian → shift_handover.
 
 All data is simulated. Meridian estimates readiness for pathologist handoff only; it never diagnoses, reports, or predicts reporting times or screening deadlines.
 
@@ -82,10 +89,10 @@ Run these from the repo root, with `npm run dev` running.
 ```bash
 curl -X POST localhost:8787/api/sim/basket-failure     # optional: same as the dashboard button
 npx @modelcontextprotocol/inspector@0.15.0 --cli "$(which node)" "$PWD/node_modules/tsx/dist/cli.mjs" "$PWD/mcp/src/index.ts" \
-  --method prompts/get --prompt-name shift_handover
+  --method prompts/get --prompt-name shift_handover --prompt-args mode=brief
 ```
 
-In the visual Inspector, open the **Prompts** tab → `shift_handover` → **Get prompt**. Output captured after the trigger (abridged):
+In the visual Inspector, open the **Prompts** tab → `shift_handover`, set `mode` to `brief` → **Get prompt**. Without `mode=brief` you get the agent instructions instead, because the Inspector has no model to run them. Output captured after the trigger (abridged):
 
 ```text
 # Shift handover: Day 1 11:30 (simulated data)
@@ -132,5 +139,5 @@ Diagnosis, reporting times and screening-programme deadlines are not in scope. M
 
 ## Troubleshooting
 
-- **"Meridian API not reachable"**: start `npm run dev`, or set `MERIDIAN_API` in the config if the API runs elsewhere.
+- **"Meridian API not reachable"**: start `npm run dev`, or set `MERIDIAN_API_URL` (or `MERIDIAN_API`) in the config if the API runs elsewhere.
 - **No tools appear in Claude Desktop**: check `~/Library/Logs/Claude/mcp-server-meridian.log`. The usual cause is a wrong absolute path.
