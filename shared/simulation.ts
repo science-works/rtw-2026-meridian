@@ -216,3 +216,24 @@ export function stateAt(timeline: Timeline, t: number): SimState {
   const incidents = [...new Set(timeline.incidents.filter((i) => i.t <= t).map((i) => i.node))];
   return { t, positions, counts, incidents };
 }
+
+export interface SeriesPoint {
+  t: number;
+  /** Cases of the set received by t. */
+  received: number;
+  /** Cases of the set at "Cases emitted" (ready for pathologist handoff) by t. */
+  cleared: number;
+}
+
+/** Received and cleared counts over time for a set of cases, from the same stateAt(t). Pure. */
+export function seriesFor(timeline: Timeline, caseIds: Iterable<string>, from: number, to: number, stepMin = 60): SeriesPoint[] {
+  const ids = new Set(caseIds);
+  const sub: Timeline = { cases: new Map([...timeline.cases].filter(([id]) => ids.has(id))), incidents: [] };
+  const out: SeriesPoint[] = [];
+  for (let t = from; ; t = Math.min(to, t + stepMin)) {
+    const s = stateAt(sub, t);
+    out.push({ t, received: s.positions.size, cleared: s.counts.get("emitted") ?? 0 });
+    if (t >= to) break;
+  }
+  return out;
+}

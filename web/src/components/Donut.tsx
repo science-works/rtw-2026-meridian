@@ -16,6 +16,8 @@ export function Donut({ done, total, label = "completed", size = 150, color = "v
           stroke={color}
           strokeWidth={14}
           strokeLinecap="round"
+          className="donut-arc"
+          style={{ ["--c" as string]: `${c}` }}
           strokeDasharray={`${Math.max(frac * c, 0.001)} ${c}`}
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
         />

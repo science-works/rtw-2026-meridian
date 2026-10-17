@@ -86,3 +86,16 @@ describe("GET /api/simulation and station history", () => {
     for (const c of cards) for (const i of c.initials ?? []) expect(data.events.find((e) => e.eventId === i.eventId)?.initials).toBe(i.initials);
   });
 });
+
+describe("seriesFor (section pages: cleared over time)", () => {
+  it("ends at the section's recorded counts and never decreases for cleared", async () => {
+    const { seriesFor } = await import("../../shared/simulation");
+    const all = data.cases.map((c) => c.caseId);
+    const s = seriesFor(timeline, all, PLAY_FROM, CLOCK_MINUTES);
+    expect(s.at(-1)).toEqual({ t: CLOCK_MINUTES, received: 450, cleared: 8 });
+    for (let i = 1; i < s.length; i++) expect(s[i].cleared).toBeGreaterThanOrEqual(s[i - 1].cleared);
+    const urgent = data.cases.filter((c) => c.priority === "Urgent").map((c) => c.caseId);
+    const u = seriesFor(timeline, urgent, PLAY_FROM, CLOCK_MINUTES);
+    expect(u.find((p) => p.t >= parseSimTime("Day 1 09:30"))!.cleared).toBeGreaterThanOrEqual(1); // 26H2345 ready at 09:30
+  });
+});

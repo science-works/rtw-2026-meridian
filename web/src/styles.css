@@ -655,3 +655,37 @@ a { color: inherit; text-decoration: none; }
 .worked-rows { list-style: none; margin: 0; padding: 0; display: grid; }
 .worked-rows li { display: grid; grid-template-columns: 130px 90px minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 8px 0; border-top: 1px solid var(--line); }
 .worked-rows a { color: var(--ink); }
+
+/* ---------- Reference patterns, section C (tokens and rules only) ---------- */
+/* Urgent ring: 2 px urgent + soft halo, urgent cases only */
+.urgent-panel { border: 2px solid var(--urgent); box-shadow: 0 0 0 4px rgba(255, 92, 92, 0.18); }
+/* Donut sweeps once on load (≤ 900 ms); reduced motion / VITE_FX=off draw it complete */
+.fx .donut-arc { animation: donut-sweep 850ms cubic-bezier(0.2, 0.8, 0.2, 1) 1; }
+@keyframes donut-sweep { from { stroke-dasharray: 0 var(--c); } }
+/* Section pages: donut + over-time left, list right; rows ≥ 44 px, no zebra; urgent rows get a 3 px red rule */
+.section-grid { display: grid; grid-template-columns: minmax(280px, 340px) minmax(0, 1fr); gap: 16px; align-items: start; }
+.section-side { display: grid; gap: 16px; }
+.section-rows .case-row { min-height: 44px; border-left: 3px solid transparent; transition: background-color 150ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.section-rows .case-row:hover { background: var(--card-2); }
+.section-rows .is-urgent-row .case-row { border-left-color: var(--urgent); }
+.over-time { margin: 0; display: grid; gap: 8px; }
+.ot-received { fill: none; stroke: var(--muted); stroke-width: 2; }
+.ot-cleared { fill: none; stroke: var(--accent); stroke-width: 3; }
+.ot-midnight { stroke: var(--line); stroke-dasharray: 3 4; }
+.ot-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 14px; color: var(--muted); }
+.ot-key { display: inline-block; width: 14px; height: 3px; vertical-align: middle; margin-right: 4px; }
+.ot-key.received { background: var(--muted); }
+.ot-key.cleared { background: var(--accent); }
+/* Incident flag: the hint sits under the card */
+.flag-slot { display: grid; justify-items: center; gap: 4px; }
+.flag-slot > .flag-hint { margin: 0; color: var(--muted); font-size: 14px; }
+/* Case page: ID 30 px/800; stations and timeline as vertical rails (2 px edge, dots, latest dot in accent) */
+.case-page .page-head h1 { font-size: 30px; font-weight: 800; }
+.visited, .timeline { list-style: none; margin: 0; padding: 0 0 0 4px; display: grid; gap: 0; border-left: 0; position: relative; }
+.visited::before, .timeline::before { content: ""; position: absolute; left: 10px; top: 14px; bottom: 14px; width: 2px; background: var(--edge-active); }
+.visited li { position: relative; padding: 5px 0 5px 24px; }
+.visited li::before, .timeline li::before { content: ""; position: absolute; left: 0; top: 11px; z-index: 1; width: 10px; height: 10px; border-radius: 50%; background: var(--card); border: 2px solid var(--edge-active); }
+.visited li:last-child::before, .timeline li:first-child::before { background: var(--accent); border-color: var(--accent); }
+.timeline li { padding: 5px 0 7px 24px; }
+.fx .timeline li, .fx .visited li { animation: rail-in 300ms cubic-bezier(0.2, 0.8, 0.2, 1) 1 both; }
+@keyframes rail-in { from { opacity: 0; transform: translateY(8px); } }
