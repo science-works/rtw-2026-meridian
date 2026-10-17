@@ -32,3 +32,5 @@
 [19:41] [D] [VX1+VX2: lab river (one dot per real case per lane: crimson flagged / plum urgent / faded backlog; staggered entrance <=800ms; counts roll 0->total via NumberFlow; verified 450 counted = 450 dots), rolling tiles/queue counts, TimeFlow estimates (11:55->12:55->11:55 verified), alert stream slides in with layout animation; fixed pulse firing on first load] done
 [19:41] [D] [VX3 failure ripple] started
 [19:42] [D] [VX3 failure ripple: 3 crimson rings from the H&E lane + '20 slides · 10 cases' label from the alert (<=900ms), staggered row flash (<=875ms), estimates roll 11:55->12:55; browser-run 3x trigger->reset identical] done
+[19:43] [D] [VX4 spotlight] started
+[19:44] [D] [VX4 spotlight: dim scrim + case card with block chips at API-derived stages (A1-E1 teal at Processor, F1 amber pulsing x3 at Cut-up, <=900ms), caption computed from blocks/estimate ('No whole-case handoff time yet: F1 outstanding.'); drawer 'Spotlight' button; browser-verified 26H1003 + 26H1018] done

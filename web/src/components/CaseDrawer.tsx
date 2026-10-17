@@ -4,6 +4,7 @@ import { api } from "../api";
 import { AlertCard } from "./AlertCard";
 import { TimeFlow } from "./Flow";
 import { JourneyBar } from "./JourneyBar";
+import { Spotlight } from "./Spotlight";
 
 interface Props {
   caseId: string;
@@ -19,6 +20,7 @@ const humanType = (t: string) => t.charAt(0) + t.slice(1).toLowerCase().replace(
 export function CaseDrawer({ caseId, version, alerts, onClose, onOpenCase }: Props) {
   const [detail, setDetail] = useState<CaseDetail | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [spot, setSpot] = useState(false);
 
   useEffect(() => {
     let live = true;
@@ -32,10 +34,10 @@ export function CaseDrawer({ caseId, version, alerts, onClose, onOpenCase }: Pro
   }, [caseId, version]);
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && !spot && onClose();
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
+  }, [onClose, spot]);
 
   const caseAlerts = alerts.filter((a) => a.caseIds.includes(caseId));
   const est = detail?.estimate;
@@ -54,6 +56,9 @@ export function CaseDrawer({ caseId, version, alerts, onClose, onOpenCase }: Pro
             )}
           </div>
           {detail?.priority === "Urgent" && <span className="chip-urgent">Urgent</span>}
+          <button className="btn-quiet" onClick={() => setSpot(true)}>
+            Spotlight
+          </button>
           <button className="btn-quiet" onClick={onClose} aria-label="Close">
             Close ✕
           </button>
@@ -173,6 +178,7 @@ export function CaseDrawer({ caseId, version, alerts, onClose, onOpenCase }: Pro
           </div>
         )}
       </aside>
+      {spot && <Spotlight caseId={caseId} onClose={() => setSpot(false)} />}
     </div>
   );
 }
