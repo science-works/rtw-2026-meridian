@@ -12,3 +12,4 @@
 [18:24] [B] [B1 in-memory state + real API] started
 [18:26] [B] [B1 in-memory state (server/src/state.ts), real read API with alerts, filters, holds + 'target comparison unavailable', generic labels and authoring-note filter on all display text; contract: timeline.station added] done
 [18:26] [B] [B2 SSE /api/stream emits state-changed {version} on connect, trigger and reset] done
+[18:26] [B] [B3+B4 trigger appends EV-01215 once (20 slides/10 cases, 409 after), reset restores state; 3 runs in a row tested; tests mutation-checked] done
