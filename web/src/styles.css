@@ -277,7 +277,7 @@ table.mini { background: var(--card); border: 1px solid var(--line); border-radi
 
 /* ---------- Agent console (playbook 05) ---------- */
 .agent-console { border-top: 1px solid var(--line); padding: 8px 0 10px; display: grid; gap: 6px; }
-.agent-console.open { max-height: 240px; grid-template-rows: auto minmax(0, 1fr); }
+.agent-console.open { max-height: 200px; grid-template-rows: auto minmax(0, 1fr); }
 .agent-head { display: flex; align-items: center; gap: 10px; }
 .agent-badge { display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid var(--periwinkle); color: var(--periwinkle); background: var(--card); border-radius: 999px; padding: 3px 12px; font-weight: 700; font-size: 15px; }
 .agent-head .btn-quiet { margin-left: auto; }
