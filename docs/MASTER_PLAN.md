@@ -4,10 +4,14 @@
 
 Order of authority:
 1. Safety and scope rules in `CLAUDE.md`.
-2. `docs/CELLPATH_MASTER_PRODUCT_VISUAL_SPEC.md`, when present (screens, interactions, timelines).
-3. **This file** (tasks, contracts, timeline, judging).
-4. `context/05_DECISION_LOG.md`.
-5. Everything else.
+2. `docs/PRD.md` (problem, users, flows, functional requirements).
+3. `docs/CELLPATH_MASTER_PRODUCT_VISUAL_SPEC.md`, when present (screens, interactions, timelines).
+4. **This file** (tasks, contracts, timeline, judging).
+5. `docs/playbooks/*` (how; start at `docs/playbooks/00_INDEX.md`).
+6. `context/05_DECISION_LOG.md`.
+7. Everything else.
+
+Related: `docs/DATA_PROVENANCE.md` (how the synthetic dataset was made and why it is credible), `docs/EVENT_MODEL.md` (open event model), `docs/MCP_SETUP.md`.
 
 ---
 

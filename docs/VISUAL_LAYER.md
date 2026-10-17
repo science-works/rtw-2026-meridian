@@ -14,7 +14,7 @@ Hard constraints:
 - **`web/` only.** Consume the `shared/` contract (`/api/overview`, `/api/cases`, `/api/alerts`, `/api/stream`, `/api/sim/*`). Never edit `server/`, `mcp/` or `shared/`. If an effect needs data the API lacks, log it in `STATUS.md` as a contract request; don't fake it.
 - **Feature flag:** `VITE_FX=off` turns every effect off and leaves a fully working plain dashboard. That's the demo fallback.
 - Each animation lasts no longer than about **900 ms**. Respect `prefers-reduced-motion`. Provide a "skip animations" toggle.
-- **No WebGL or 3D.** Projector laptops and venue machines are unpredictable. Use CSS, SVG and Motion only. 450 dots in SVG/DOM is fine.
+- **3D only via `docs/playbooks/03_3D_LAB_FLOOR.md`, behind `VITE_3D` (off by default), with an automatic 2D fallback.** Projector laptops and venue machines are unpredictable, so everything else uses CSS, SVG and Motion. 450 dots in SVG/DOM is fine.
 - Use the palette in CLAUDE.md:
   - crimson only for real alerts;
   - teal for on track;

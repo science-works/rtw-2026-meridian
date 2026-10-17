@@ -103,7 +103,7 @@ At start-up the server validates whatever the adapter returns and prints every f
 
 ## 5. Standards mapping
 
-Meridian's events are already an **event log**, so they map directly onto the two open process-mining standards. Tools such as PM4Py, ProM or Celonis can then analyse months of history (bottlenecks, rework loops, error trends). This is the "Lab-wide" step on the roadmap; it is not built yet.
+Meridian's events are already an **event log**, the same shape as real, published hospital process logs (see `docs/DATA_PROVENANCE.md` §3). They map directly onto the two open process-mining standards: **IEEE XES** (case id, activity, timestamp, attributes) and **OCEL 2.0** (Object-Centric Event Logs, [arXiv:2403.01975](https://arxiv.org/abs/2403.01975)), where each event relates to several objects. Tools such as PM4Py, ProM or Celonis can then analyse months of history (bottlenecks, rework loops, error trends). This is the "Lab-wide" step on the roadmap; it is not built yet.
 
 ### IEEE XES (IEEE 1849): one trace per case
 
@@ -132,6 +132,8 @@ XES flattens everything onto the case. That loses the fact that one stain-run fa
 | Timestamps | `at`, converted as for XES |
 
 In OCEL the basket failure is a single event linked to one basket object, which is linked to 20 slide objects in 10 cases. That is exactly the knock-on effect Meridian shows on the dashboard.
+
+**Structural references** (shape only; none of their data is used here): the *BPIC 2011 Hospital log*, a real-life event log from a Dutch academic hospital (4TU.ResearchData, DOI 10.4121/uuid:d9769f3d-0ab0-4fb8-803b-0d1120ffcf54), and the *Sepsis Cases* event log (4TU.ResearchData). Because the shape is standard, a lab's real export, if approved, maps onto Meridian through a `FeedAdapter` without changing the rules engine.
 
 Exporters to `.xes` and OCEL 2.0 JSON are straightforward from `GET /api/events` plus the case, block and slide records. They are listed as next steps, not claimed as built.
 

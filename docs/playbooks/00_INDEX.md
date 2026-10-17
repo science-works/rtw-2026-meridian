@@ -17,6 +17,8 @@ These are Devin-style playbooks for Meridian. Each has the same sections:
 | `!meridian-agentic` | `02_OPEN_MODEL_AND_AGENT.md` | After CP2 | Impact, Technical (brief fit) |
 | `!meridian-3d` | `03_3D_LAB_FLOOR.md` | Only after CP4; strictly time-boxed | Presentation |
 | `!meridian-ship` | `04_DEMO_READY.md` | From 22:00 Saturday until submission | All three |
+| `!meridian-agent-live` | `05_LIVE_AGENT_CONSOLE.md` | After CP3 (C2b) and VX0; before D5/VX | Impact, Presentation (brief fit) |
+| `!meridian-skills` | `06_EXTERNAL_SKILLS.md` | **DEFERRED:** don't clone or distil external repos tonight; only if everything else is done | — |
 
 Global rules for every playbook (from CLAUDE.md; they always apply):
 - Tests first.
