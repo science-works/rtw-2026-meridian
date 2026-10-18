@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { navigate } from "../router";
+import { vizOn } from "../vizFlags";
+import { BiopsyStrip } from "../viz/BiopsyStrip";
 import type { EventsPage, FeedEvent } from "../../../shared/types";
 
 /** The pitch's "old way": what a LIMS shows. Plain events up to 11:30, newest last; no colour, alerts or estimates. */
@@ -23,6 +25,7 @@ export function LimsView({ version }: { version: number }) {
   }, [version]);
   return (
     <section className="lims">
+      {vizOn(1) && <BiopsyStrip tone="lims" />}
       <h1>What a LIMS shows: what already happened</h1>
       <a href="/compare" className="lims-compare" onClick={(e) => (e.preventDefault(), navigate("/compare"))}>
         Compare one case: a LIMS today vs Meridian →

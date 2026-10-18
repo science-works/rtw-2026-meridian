@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ScriptCard } from "../../../shared/script";
 import { openChannel, useScript } from "../story/script";
+import { vizOn } from "../vizFlags";
+import { BiopsyStrip } from "../viz/BiopsyStrip";
 
 const TOTAL = 180;
 /** The script marks cuttable lines with a scissors sign (U+2702). */
@@ -22,6 +24,7 @@ function Card({ card, big }: { card: ScriptCard; big?: boolean }) {
         {card.speaker}
         {card.cue && <span className="pr-cue">[{card.cue}]</span>}
       </p>
+      {big && vizOn(1) && card.section.startsWith("1 ·") && <BiopsyStrip />}
       {card.extra && card.lines.length === 0 && <p className="pr-line muted">Added screen: no script line. Show the side-by-side, then move on.</p>}
       {card.lines.map((l, i) => (
         <p key={i} className={`pr-line${l.startsWith(CUT_MARK) ? " cut" : ""}`}>

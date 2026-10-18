@@ -6,6 +6,8 @@ import { etaText } from "../caseLine";
 import { AlertCard } from "../components/AlertCard";
 import { Link, navigate, paths } from "../router";
 import { stationsVisited } from "./CasePage";
+import { vizOn } from "../vizFlags";
+import { BiopsyStrip } from "../viz/BiopsyStrip";
 
 export const COMPARE_DEFAULT = "26H1004";
 
@@ -28,7 +30,8 @@ export function ComparePage({ caseId, alerts, version }: { caseId: string; alert
   const eta = d ? etaText(d) : null;
 
   return (
-    <section className="compare">
+    <section className={`compare${vizOn(1) ? " with-strip" : ""}`}>
+      {vizOn(1) && <BiopsyStrip />}
       <header className="compare-head">
         <p className="compare-caption">Same events. One records what happened; the other shows what&apos;s happening.</p>
         <form
