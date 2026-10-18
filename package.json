@@ -20,6 +20,7 @@
     "demo:walk": "tsx scripts/demo-walk.ts",
     "demo:walk:fx": "FX=all tsx scripts/demo-walk.ts",
     "test:count": "tsx scripts/test-count.ts",
+    "demo:walk:viz": "VIZ=all tsx scripts/demo-walk.ts",
     "screenshots": "tsx scripts/screenshots.ts"
   },
   "dependencies": {

@@ -165,6 +165,11 @@ async function main() {
     await page.goto(`${BASE}/?fx=${process.env.FX}`);
     console.log(`Motion Pack effects on: ${process.env.FX}`);
   }
+  // VIZ=all (or VIZ=1,3) walks the demo with Insight visuals switched on for this tab.
+  if (process.env.VIZ) {
+    await page.goto(`${BASE}/?viz=${process.env.VIZ}`);
+    console.log(`Insight visuals on: ${process.env.VIZ}`);
+  }
   for (const b of beats) {
     try {
       await b.run(page);
