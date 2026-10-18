@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useFxFlag } from "../fxFlags";
+import { useFx } from "../fx";
+import { CornerLayer, cornersOn } from "../corners/CornerLayer";
 import type { Alert, CaseSummary, Overview } from "../../../shared/types";
 import { api } from "../api";
 import { Donut } from "../components/Donut";
@@ -76,6 +78,7 @@ function useWake(): { waking: boolean; zero: boolean } {
 /** Main dashboard (Victoria's design): status at a glance, calm; detail lives on section pages. */
 export function Dashboard({ overview: o, cases, alerts }: Props) {
   const wake = useWake();
+  const fx = useFx();
   const z = (n: number) => (wake.zero ? 0 : n);
   const urgent = cases
     .filter((c) => c.priority === "Urgent")
@@ -86,6 +89,7 @@ export function Dashboard({ overview: o, cases, alerts }: Props) {
   const csp = group("Cervical screening");
   return (
     <div className={`dash${wake.waking ? " waking" : ""}`}>
+      {cornersOn && <CornerLayer overview={o} cases={cases} alerts={alerts} motion={fx.on} />}
       <section className="dash-hero">
         <Link to={paths.section("all")} className="hero-total">
           <Count className="hero-number mono" value={z(o.total)} />

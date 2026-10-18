@@ -153,6 +153,30 @@ const beats: Beat[] = [
       check((await text(page)).includes("Same events. One records what happened; the other shows what's happening."), "caption missing");
     },
   },
+  {
+    n: 10,
+    name: "Corner instruments (?corners=1, preview) never cover the dashboard",
+    async run(page) {
+      await page.goto(`${BASE}/?corners=1`);
+      await page.locator("[data-testid=corner-top-left]").waitFor();
+      await page.waitForTimeout(1800);
+      const t = await text(page);
+      check(/next handoffs/i.test(t) && /lab pulse/i.test(t), "top corners missing");
+      const overlap = await page.evaluate(() => {
+        const main = [...document.querySelectorAll(".hero-total, .dash-hero .case-search, .dash-grid > *, .flag-card")].map((e) => e.getBoundingClientRect());
+        return [...document.querySelectorAll<HTMLElement>("[data-slot]")]
+          .filter((s) => getComputedStyle(s).visibility === "visible")
+          .some((s) => {
+            const r = s.getBoundingClientRect();
+            return main.some((m) => r.left < m.right && r.right > m.left && r.top < m.bottom && r.bottom > m.top);
+          });
+      });
+      check(!overlap, "a visible corner overlaps dashboard content");
+      await page.goto(`${BASE}/?corners=0`);
+      await page.locator(".flag-card").first().waitFor();
+      check((await page.locator("[data-testid^=corner-]").count()) === 0, "corners still showing after ?corners=0");
+    },
+  },
 ];
 
 async function main() {

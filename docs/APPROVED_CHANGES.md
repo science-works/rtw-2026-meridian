@@ -28,6 +28,12 @@ Dates are the commit dates (simulated hackathon calendar). Tags mark the pushed 
 | 20 | 2026-10-18 04:20 | **Magic UI extras (effects 8–11)**, built and pushed but **off by default** (preview `?fx=8,9,10,11`) | revert `29ecedf` | `29ecedf` | `submission-candidate` |
 | 21 | 2026-10-18 04:40 | **Default type: clinical** (Instrument Serif display, JetBrains Mono data, Inter body), self-hosted OFL fonts; `?type=default` (original), `?type=editorial`, `?type=instrument` still work | `DEFAULT_TYPE` in `web/src/theme/type.ts` | `72f9256`, `2da7ce5`, `e696920`, default (submission commit) | `submission-candidate` |
 
+## Previews built (not approved yet)
+
+| Preview | How to see it | Commit |
+|---|---|---|
+| **Corner instruments** on the dashboard: Lab pulse, Next handoffs, Stainer, Handed off; off by default; any corner that would touch content or run under the footer hides itself | `?corners=1` (`?corners=0` off) | corner commit |
+
 ## Standing decisions
 
 - **Urgent red stays as it is** (`#ff5c5c`, about 5–6:1). It is not lifted to 7:1, which would turn it pink. Body text is 7:1 or higher in every look.

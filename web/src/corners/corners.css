@@ -1,0 +1,15 @@
+/* Corner instruments (preview ?corners=1). Small, quiet cards in the dashboard's empty corners. */
+.corner { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 10px; align-items: center; width: 250px; padding: 8px 12px; border-radius: 14px; border: 1px solid var(--line); background: color-mix(in srgb, var(--card) 70%, transparent); color: var(--ink); text-decoration: none; transition: border-color 150ms ease; }
+.corner:hover, .corner:focus-visible { border-color: var(--progress); outline: none; }
+.corner-art { display: grid; place-items: center; width: 56px; height: 56px; color: var(--progress); }
+.corner-art svg { width: 56px; height: 56px; overflow: visible; }
+.corner-body { display: grid; gap: 2px; min-width: 0; }
+.corner-title { font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.corner-value { font-size: 16px; font-weight: 700; color: var(--ink); }
+.corner-sub { font-size: 14px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.corner-mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+html[data-spectrum] .corner-art { color: var(--st-reception); }
+/* Layer: absolutely positioned inside the dashboard, so it takes no space and moves nothing. */
+.dash:has(> .corner-layer) { position: relative; }
+.corner-layer { position: absolute; inset: 0; pointer-events: none; }
+.corner-slot { position: absolute; pointer-events: auto; }
