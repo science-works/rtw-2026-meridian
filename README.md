@@ -74,6 +74,8 @@ Tool versions are pinned so the project runs on Node 20.11 (Vite 6, Vitest 3, Ty
 
 ## Architecture
 
+![How Meridian works: lab systems feed an open event model; deterministic rules build one live state; screens and read-only AI agents read it. Guardrails: AI read-only (tested), unknown never guessed, no diagnosis, runs on the lab's network.](docs/screenshots/architecture.png)
+
 ```mermaid
 flowchart LR
   X[data/CellPath_Mock_Data.xlsx] -->|npm run convert| J[data/cellpath.json]

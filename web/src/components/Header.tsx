@@ -1,4 +1,5 @@
 import { useFx } from "../fx";
+import { vizOn } from "../vizFlags";
 import { Link } from "../router";
 import { useState } from "react";
 import { SearchIcon } from "../theme/icons";
@@ -96,6 +97,11 @@ export function ControlBar({ busy, onReset, onStory, story, storyActive, agent }
         <Link to="/compare" className="btn-quiet">
           Compare
         </Link>
+        {vizOn(2) && (
+          <Link to="/how-it-works" className="btn-quiet">
+            How it works
+          </Link>
+        )}
         <a href="/presenter" target="meridian-presenter" className="btn-quiet" title="Opens the speaker notes in their own window">
           Presenter
         </a>

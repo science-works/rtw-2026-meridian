@@ -876,3 +876,20 @@ html[data-vt~="page"] .page-wrap { view-transition-name: page; }
 .biopsy-strip.lims .bs-caption { color: var(--lims-muted); }
 .compare.with-strip { grid-template-rows: auto auto minmax(0, 1fr); }
 .lims:has(.biopsy-strip) { grid-template-rows: auto auto auto auto minmax(0, 1fr); }
+
+/* ---------- Viz 2 · How it works ---------- */
+.how { display: grid; gap: 20px; padding-right: 56px; }
+.how-grid { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 24px; align-items: center; }
+.how-diagram { position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-rows: auto auto; column-gap: 44px; row-gap: 36px; align-items: center; padding: 24px 8px; }
+.how-arrows { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.how-arrow { fill: none; stroke: var(--accent); stroke-width: 2; opacity: 0.55; }
+.how-packet { fill: var(--accent); opacity: 0.9; }
+.how-node { position: relative; z-index: 1; display: grid; gap: 4px; padding: 14px 14px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow-card); align-self: center; }
+.how-node.how-state { border-color: var(--accent); }
+.how-node.how-agents { border-color: var(--progress); }
+.how-title { margin: 0; font-weight: 800; font-size: 17px; }
+.how-line { margin: 0; font-size: 14px; color: var(--muted); }
+.how-guard { display: grid; gap: 10px; align-content: center; }
+.how-guard-title { margin: 0; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.how-badge { display: block; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--accent); color: var(--ink); font-weight: 700; font-size: 15px; background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.how-note { margin: 0; font-size: 14px; }

@@ -15,6 +15,7 @@ import { IncidentsPage } from "./pages/IncidentsPage";
 import { LimsView } from "./pages/LimsView";
 import { SectionPage } from "./pages/SectionPage";
 import { COMPARE_DEFAULT, ComparePage } from "./pages/ComparePage";
+import { HowItWorks } from "./pages/HowItWorks";
 import { PresenterPage } from "./pages/PresenterPage";
 import { SimulationPage } from "./pages/SimulationPage";
 import { StationPage } from "./pages/StationPage";
@@ -58,6 +59,7 @@ export function App() {
   let m: Record<string, string> | null = null;
   if (o) {
     if (path === "/") page = <Dashboard overview={o} cases={live.cases} alerts={live.alerts} />;
+    else if (path === "/how-it-works") page = <HowItWorks />;
     else if (path === "/lims-view") page = <LimsView version={live.version} />;
     else if (path === "/compare" || (m = match("/compare/:id", path))) page = <ComparePage caseId={(m?.id ?? COMPARE_DEFAULT).toUpperCase()} alerts={live.alerts} version={live.version} />;
     else if ((m = match("/case/:id", path))) page = <CasePage caseId={m.id.toUpperCase()} version={live.version} alerts={live.alerts} />;
