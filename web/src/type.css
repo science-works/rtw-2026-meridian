@@ -1,0 +1,24 @@
+/*
+ * Typography previews (web/src/theme/type.ts). Only applies under html[data-type]; without it the current
+ * type is unchanged. Display face: titles and big numbers. Data face (--mono): IDs, times, ETAs, codes.
+ * Inter stays the UI face for body, nav, buttons and small labels. Sizes are unchanged (no layout change).
+ */
+
+/* Display face: page titles, the 450, lab-clock percentages, tile titles, how-it-works labels */
+html[data-type] .page h1, html[data-type] .page-head h1, html[data-type] .hero-number, html[data-type] .lc-pct, html[data-type] .donut-pct,
+html[data-type] .tile-title, html[data-type] .how-title, html[data-type] .pr-head h1, html[data-type] .panel > h2, html[data-type] .sim-caption {
+  font-family: var(--display);
+}
+
+/* All sets: tabular numbers everywhere; big numbers heavy and tight */
+html[data-type] body { font-variant-numeric: tabular-nums; }
+html[data-type] .hero-number, html[data-type] .lc-pct, html[data-type] .donut-pct, html[data-type] .sim-count, html[data-type] .pr-timer { font-weight: 800; letter-spacing: -0.02em; }
+/* The dashboard 450 only: a very subtle blue → white gradient */
+/* (NumberFlow draws digits in a shadow DOM, so background-clip text can't reach them; a multiply overlay
+   tints the white digits towards blue at the bottom and leaves the dark page as it is.) */
+html[data-type] .hero-number { position: relative; display: inline-block; color: #ffffff; }
+html[data-type] .hero-number::after { content: ""; position: absolute; inset: 8% 0 12% 0; background: linear-gradient(180deg, rgba(255, 255, 255, 1) 35%, #bcd2ff 100%); mix-blend-mode: multiply; pointer-events: none; }
+/* Eyebrow labels: uppercase, wide tracking */
+html[data-type] .page-kicker, html[data-type] .pr-meta, html[data-type] .jd-label, html[data-type] .how-guard-title, html[data-type] .story-label { letter-spacing: 0.14em; text-transform: uppercase; }
+/* Weight contrast: labels lighter, numbers heavier */
+html[data-type] .hero-label, html[data-type] .donut-counts { font-weight: 400; }

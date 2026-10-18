@@ -157,6 +157,7 @@ See **[docs/EVENT_MODEL.md](docs/EVENT_MODEL.md)**:
 | [NumberFlow](https://number-flow.barvian.me): rolling counts and times | MIT |
 | [Magic UI](https://github.com/magicuidesign/magicui): Magic Card, Border Beam, Shine Border and Animated List, adapted into `web/src/fx/` with the MIT notice kept (optional effects 8–11, off by default) | MIT |
 | [Tailwind CSS](https://tailwindcss.com) | MIT |
+| Fonts for the typography previews (`?type=`), self-hosted via [Fontsource](https://fontsource.org): Fraunces, IBM Plex Mono, Sora, Martian Mono, Instrument Serif, JetBrains Mono | OFL-1.1 (each) |
 | [Vitest](https://vitest.dev): tests | MIT |
 | [Playwright](https://playwright.dev): demo walk and screenshots (dev only) | Apache-2.0 |
 | [SheetJS](https://sheetjs.com) (from cdn.sheetjs.com): workbook conversion | Apache-2.0 |

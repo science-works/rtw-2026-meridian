@@ -1,0 +1,7 @@
+/* Type set: editorial (Fraunces + IBM Plex Mono). */
+@import "@fontsource-variable/fraunces/full.css";
+@import "@fontsource/ibm-plex-mono/latin-400.css";
+@import "@fontsource/ibm-plex-mono/latin-600.css";
+html[data-type="editorial"] { --display: "Fraunces Variable", Georgia, serif; --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace; }
+html[data-type="editorial"] .hero-number, html[data-type="editorial"] .lc-pct { font-variation-settings: "opsz" 144, "SOFT" 50; }
+html[data-type="editorial"] .page h1 { font-variation-settings: "opsz" 72; }

@@ -5,8 +5,10 @@ import { FxProvider } from "./fx";
 import "./styles.css";
 import "./looks.css";
 import { applyLookFromUrl } from "./theme/looks";
+import { applyTypeFromUrl } from "./theme/type";
 
 applyLookFromUrl();
+applyTypeFromUrl();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
