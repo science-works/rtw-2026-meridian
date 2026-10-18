@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import type { Alert, CaseDetail } from "../../../shared/types";
 import { api } from "../api";
 import { stageOfCase } from "../theme/looks";
+import { vizOn } from "../vizFlags";
+import { CaseSits } from "../viz/CaseSits";
 import { TimeFlow } from "../components/Flow";
 import { JourneyBar } from "../components/JourneyBar";
 import { Link, paths } from "../router";
@@ -74,6 +76,8 @@ export function CasePage({ caseId, version, alerts }: { caseId: string; version:
             </p>
             <JourneyBar detail={d} alerts={linked} />
           </section>
+
+          {vizOn(3) && <CaseSits caseId={d.caseId} version={version} />}
 
           <section className="panel">
             <h2>Why is it waiting?</h2>

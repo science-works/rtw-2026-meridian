@@ -893,3 +893,16 @@ html[data-vt~="page"] .page-wrap { view-transition-name: page; }
 .how-guard-title { margin: 0; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
 .how-badge { display: block; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--accent); color: var(--ink); font-weight: 700; font-size: 15px; background: color-mix(in srgb, var(--accent) 10%, transparent); }
 .how-note { margin: 0; font-size: 14px; }
+
+/* ---------- Viz 3 · Where this case sits ---------- */
+.cs-rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.cs-row { display: grid; gap: 2px; }
+.cs-label { margin: 0; font-size: 15px; }
+.cs-bar { display: block; overflow: visible; }
+.cs-whisker { stroke: var(--muted); stroke-width: 2; }
+.cs-band { fill: color-mix(in srgb, var(--progress) 35%, transparent); stroke: var(--progress); stroke-width: 1; }
+.cs-median { stroke: var(--ink); stroke-width: 2.5; }
+.cs-dot { fill: var(--accent); stroke: var(--bg); stroke-width: 2; }
+.cs-dot.beyond { stroke: var(--attention); stroke-width: 3; }
+.cs-note { margin: 0; font-size: 14px; }
+html[data-spectrum] .cs-row[data-stage] .cs-band { fill: color-mix(in srgb, var(--stage) 30%, transparent); stroke: var(--stage); }
