@@ -1,0 +1,5 @@
+/* Type set: instrument (Sora + Martian Mono). */
+@import "@fontsource-variable/sora/index.css";
+@import "@fontsource-variable/martian-mono/wdth.css";
+html[data-type="instrument"] { --display: "Sora Variable", Inter, system-ui, sans-serif; --mono: "Martian Mono Variable", ui-monospace, Menlo, monospace; }
+html[data-type="instrument"] .hero-number { font-family: "Martian Mono Variable", var(--display); font-stretch: 87.5%; }
