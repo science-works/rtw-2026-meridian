@@ -21,3 +21,5 @@ external/*
 # --- OS / editor ---
 .DS_Store
 *.log
+# Playwright CLI output (may contain credentials)
+.playwright-cli/
