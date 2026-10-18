@@ -56,3 +56,7 @@ export const cssVar = (k: keyof typeof color) => `--${k.replace(/[A-Z0-9]/g, (m)
 /** Completion donuts: "3d" lab clock or "flat" ring. Set to "flat" to restore the flat look (one line). */
 export type RingStyle = "3d" | "flat";
 export const ringStyle: RingStyle = "3d";
+
+/** Top-left logo: "3d" interactive tile or "flat" badge. Set to "flat" to restore the flat logo (one line). */
+export type LogoStyle = "3d" | "flat";
+export const logoStyle: LogoStyle = "3d";
