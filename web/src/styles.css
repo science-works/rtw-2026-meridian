@@ -827,3 +827,11 @@ html[data-vt~="page"] .page-wrap { view-transition-name: page; }
 .fly-ghost { position: fixed; z-index: 60; pointer-events: none; display: grid; place-items: center; padding: 8px 14px; border: 1px solid var(--attention); border-radius: 12px; background: var(--card); color: var(--ink); font-weight: 700; font-size: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; box-shadow: 0 0 24px rgba(255, 181, 71, 0.25); transform-origin: center; }
 .tab-count { display: inline-grid; place-items: center; min-width: 22px; height: 22px; margin-left: 6px; padding: 0 6px; border-radius: 999px; background: var(--attention); color: var(--on-light); font-size: 14px; font-weight: 800; transition: opacity 300ms ease, background-color 300ms ease; }
 .tab-count.zero { background: var(--card-2); color: var(--muted); }
+
+/* Motion Pack 3: the case journey draws on left to right (≈ 800 ms); the handoff line glows once at the end */
+.journey.drawon .j-step::before { transform-origin: left center; animation: j-draw calc(800ms / var(--n)) linear both; animation-delay: calc((var(--i) - 1) * 800ms / var(--n)); }
+.journey.drawon .j-dot, .journey.drawon .j-label, .journey.drawon .j-time { animation: j-pop 220ms ease-out both; animation-delay: calc(var(--i) * 800ms / var(--n)); }
+.journey.drawon .journey-dest { animation: j-glow 700ms ease-out 820ms 1 both; }
+@keyframes j-draw { from { transform: scaleX(0); } }
+@keyframes j-pop { from { opacity: 0; transform: translateY(4px); } }
+@keyframes j-glow { 0% { box-shadow: 0 0 0 0 rgba(127, 220, 169, 0); } 40% { box-shadow: 0 0 0 4px rgba(127, 220, 169, 0.45), 0 0 24px rgba(127, 220, 169, 0.45); } 100% { box-shadow: 0 0 0 0 rgba(127, 220, 169, 0); } }

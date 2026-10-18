@@ -1,4 +1,5 @@
 import type { Alert, CaseDetail } from "../../../shared/types";
+import { useFxFlag } from "../fxFlags";
 
 // "Flight tracker for tissue": where the case has been, where it is, what is next,
 // and the handoff estimate (or why there is none). Every value comes from the API.
@@ -38,6 +39,7 @@ interface Props {
 }
 
 export function JourneyBar({ detail, alerts }: Props) {
+  const drawOn = useFxFlag(3);
   const usesDecal = detail.stage === "Decalcification" || detail.timeline.some((e) => e.stage === "Decalcification");
   const steps = STEPS.filter((s) => s.key !== "decal" || usesDecal);
   const current = stepIndex(steps, detail.stage);
@@ -56,12 +58,12 @@ export function JourneyBar({ detail, alerts }: Props) {
   const est = detail.estimate;
 
   return (
-    <div className="journey" aria-label="Case journey">
+    <div className={`journey${drawOn ? " drawon" : ""}`} aria-label="Case journey" style={{ ["--n" as string]: steps.length }}>
       <ol className="journey-track" style={{ gridTemplateColumns: `repeat(${steps.length}, minmax(0, 1fr))` }}>
         {steps.map((s, i) => {
           const state = est.status === "ready" || i < current ? "done" : i === current ? (flagged ? "alert" : hold ? "hold" : "now") : "next";
           return (
-            <li key={s.key} className={`j-step ${state}`} title={s.stages[0]}>
+            <li key={s.key} className={`j-step ${state}`} title={s.stages[0]} style={{ ["--i" as string]: i }}>
               <span className="j-dot" aria-hidden />
               <span className="j-label">{s.label}</span>
               <span className="j-time mono">{reached[i] ? reached[i]!.replace(/^Day (-?\d+) /, "D$1 ") : i <= current ? "—" : ""}</span>
