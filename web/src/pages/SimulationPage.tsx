@@ -7,6 +7,8 @@ import { captionAt, EDGES, NODE_TO_CARD, NODES, rateAt, stateAt, timelineFrom, t
 import type { Alert, SimulationResponse } from "../../../shared/types";
 import { useFx } from "../fx";
 import { useFxFlag } from "../fxFlags";
+import { vizOn } from "../vizFlags";
+import { LabPulse } from "../viz/LabPulse";
 import { spectrumOn, stageColor, stageOfNode } from "../theme/looks";
 import { Link, navigate, paths } from "../router";
 import { motion as motionTokens } from "../theme/tokens";
@@ -239,7 +241,7 @@ export function SimulationPage({ alerts }: { alerts: Alert[] }) {
   const popCases = focus ? [...(casesAt.get(focus) ?? [])].sort((a, b) => Number(urgentIds.has(b)) - Number(urgentIds.has(a)) || a.localeCompare(b)) : [];
 
   return (
-    <section className="page sim-page">
+    <section className={`page sim-page${vizOn(4) ? " with-pulse" : ""}`}>
       <header className="page-head">
         <div>
           <p className="page-kicker">Light simulation · replayed from recorded events · simulated data</p>
@@ -429,6 +431,7 @@ export function SimulationPage({ alerts }: { alerts: Alert[] }) {
           </span>
         )}
       </div>
+      {vizOn(4) && <LabPulse events={tl.events} now={now} end={tl.to} incidents={tl.timeline.incidents} />}
     </section>
   );
 }
