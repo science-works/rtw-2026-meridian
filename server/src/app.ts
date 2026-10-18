@@ -13,6 +13,7 @@ import { validate } from "./domain/validate";
 import { computeStations, whyWaiting } from "./domain/stations";
 import { blockRange } from "./domain/alerts";
 import { answerQuestion } from "./domain/chat";
+import { dwellsByCase, dwellStats, type DwellStats } from "../../shared/insights";
 import { createActivityLog, summarise, wallClock, type ActivityLog } from "./activity";
 import { ConflictError, NotFoundError, createState, type MeridianState } from "./state";
 import { hasAnyTarget } from "./targets";
@@ -244,6 +245,17 @@ export function createApp(state: MeridianState = createState(), activity: Activi
   };
 
   app.get("/api/delayed", (c) => c.json(delayed(c.req.query().programme)));
+
+  // Insight visuals: typical dwell per stage across all cases, and one case's own dwells.
+  let dwellMemo: { version: number; dwells: ReturnType<typeof dwellsByCase>; stats: DwellStats[] } | null = null;
+  app.get("/api/insights/dwell", (c) => {
+    if (!dwellMemo || dwellMemo.version !== state.version) {
+      const dwells = dwellsByCase(state.data);
+      dwellMemo = { version: state.version, dwells, stats: dwellStats(dwells) };
+    }
+    const id = c.req.query().case?.toUpperCase();
+    return c.json({ stats: dwellMemo.stats, cases: state.data.cases.length, case: id ? (dwellMemo.dwells.get(id) ?? null) : null });
+  });
 
   // Presenter notes: pitch/SCRIPT.md verbatim (read on each request, so edits show on reload).
   app.get("/api/pitch", (c) => {
