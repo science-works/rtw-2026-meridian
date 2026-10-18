@@ -8,6 +8,8 @@ import { FlagArea } from "../components/FlagArea";
 import { CaseLine } from "../caseLine";
 import { Link, navigate, paths } from "../router";
 import { SearchIcon } from "../theme/icons";
+import { MagicSpotlight } from "../fx/MagicCard";
+import { BorderBeam } from "../fx/BorderBeam";
 
 interface Props {
   overview: Overview;
@@ -105,9 +107,11 @@ export function Dashboard({ overview: o, cases, alerts }: Props) {
         <Link to={paths.section("emitted")} className="panel donut-panel">
           <h2>Left the lab to the pathologist</h2>
           <Donut done={o.ready} total={o.total} size={180} />
+          <MagicSpotlight size={280} />
         </Link>
 
         <div className="panel urgent-panel">
+          <BorderBeam color="var(--urgent)" borderWidth={2} />
           <div className="panel-head">
             <h2>
               <span className="urgent-flag" aria-hidden>
@@ -139,20 +143,24 @@ export function Dashboard({ overview: o, cases, alerts }: Props) {
           <Link to={paths.section("bcsp")} className="panel tile tile-bcsp">
             <span className="tile-title">BCSP screening</span>
             <Donut done={ready(bcsp)} total={bcsp.length} size={84} color="var(--bcsp)" />
+            <MagicSpotlight />
           </Link>
           <Link to={paths.section("csp")} className="panel tile tile-csp">
             <span className="tile-title">Cervical screening (CSP)</span>
             <Donut done={ready(csp)} total={csp.length} size={84} color="var(--csp)" />
+            <MagicSpotlight />
           </Link>
           <Link to={paths.section("cytopathology")} className="panel tile">
             <span className="tile-title">Diagnostic cytopathology</span>
             <span className="tile-empty">No cases received today</span>
+            <MagicSpotlight />
           </Link>
           <Link to={paths.incidents} className="panel tile tile-incidents">
             <span className="tile-title">Incidents</span>
             <span className="tile-empty">
               <Count className="mono" value={o.openAttention} /> open
             </span>
+            <MagicSpotlight />
           </Link>
         </div>
       </section>

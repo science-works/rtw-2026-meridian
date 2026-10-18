@@ -4,7 +4,7 @@
 // Reduced motion, VITE_FX=off and "Skip animations" still turn every effect off (see useFx).
 import { useFx } from "./fx";
 
-export type FxId = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+export type FxId = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
 export const FX_NAMES: Record<FxId, string> = {
   1: "Flag → incident morph",
   2: "Acknowledge: settle, fly to Incidents, count ticks",
@@ -13,9 +13,12 @@ export const FX_NAMES: Record<FxId, string> = {
   5: "Dashboard wakes up (first load per session)",
   6: "Page transitions",
   7: "Agent console beam",
-  8: "Cursor spotlight on the dashboard",
+  8: "Magic Card spotlight on dashboard tiles and the station header (hover only)",
+  9: "Border Beam on the urgent card and the incident flag (slow loop)",
+  10: "Shine Border once when a case is ready for the pathologist",
+  11: "Animated List: incident rows and timeline entries enter in turn",
 };
-/** Approved effects, on without ?fx (approved 1–7; 8 was not built). */
+/** Approved effects, on without ?fx (approved 1–7). 8–11 are Magic UI extras, preview with ?fx=8,9,10,11. */
 const DEFAULT_ON: FxId[] = [1, 2, 3, 4, 5, 6, 7];
 const KEY = "meridian.fx";
 

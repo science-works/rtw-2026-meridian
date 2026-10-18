@@ -3,6 +3,7 @@ import { CaseLine } from "../caseLine";
 import { BasketGrid } from "../flow/LabFlow";
 import { Link, navigate, paths } from "../router";
 import { stageOfNode } from "../theme/looks";
+import { MagicSpotlight } from "../fx/MagicCard";
 
 /** Station page: who is there (recorded initials only), current cases, queue, load, its incident. */
 export function StationPage({ id, stations, cases, alerts }: { id: string; stations: StationCard[]; cases: CaseSummary[]; alerts: Alert[] }) {
@@ -19,6 +20,7 @@ export function StationPage({ id, stations, cases, alerts }: { id: string; stati
           <h1>{card.label}</h1>
           <p className="page-sub">{card.state}</p>
         </div>
+        <MagicSpotlight size={260} soft />
       </header>
       <div className="case-grid">
         <div className="case-main">

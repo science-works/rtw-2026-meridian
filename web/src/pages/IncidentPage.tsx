@@ -8,6 +8,7 @@ import { fxActive } from "../fxFlags";
 import { flyTo, settle } from "../motionPack";
 import { vizOn } from "../vizFlags";
 import { BlastRadius } from "../viz/BlastRadius";
+import { useAnimatedList } from "../fx/AnimatedList";
 
 const STEPS = ["Run failed", "Team notified", "Acknowledged", "Troubleshooting started", "Basket reloaded", "Repeat H&E run started"];
 
@@ -21,6 +22,7 @@ export function IncidentPage({ id, alerts, cases, stations }: { id: string; aler
   const a = alerts.find((x) => x.id === id);
   const [msg, setMsg] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const stepsRef = useAnimatedList<HTMLOListElement>(":scope > li", a ? a.history.length + 1 : 0);
   if (!a) {
     return (
       <section className="page">
@@ -81,7 +83,7 @@ export function IncidentPage({ id, alerts, cases, stations }: { id: string; aler
           {isBasket ? (
             <section className="panel">
               <h2>Action timeline</h2>
-              <ol className="steps">
+              <ol ref={stepsRef} className="steps">
                 {STEPS.map((s) => {
                   const h = a.history.find((x) => x.label === s);
                   return (
@@ -102,7 +104,7 @@ export function IncidentPage({ id, alerts, cases, stations }: { id: string; aler
           ) : (
             <section className="panel">
               <h2>History</h2>
-              <ol className="steps">
+              <ol ref={stepsRef} className="steps">
                 {a.history.map((h) => (
                   <li key={h.at + h.label} className="done">
                     <span className="step-dot" aria-hidden />

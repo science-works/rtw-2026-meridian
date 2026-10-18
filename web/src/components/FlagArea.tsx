@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "motion/react";
 import type { Alert } from "../../../shared/types";
 import { useFx } from "../fx";
 import { navigate, paths } from "../router";
+import { BorderBeam } from "../fx/BorderBeam";
 
 /** One-line brief, e.g. "Incident · Microtomy station 4 · levels not recorded (1 of 3)". */
 export function briefOf(a: Alert): string {
@@ -44,6 +45,7 @@ export function FlagArea({ alerts, dropIn = false }: { alerts: Alert[]; /** Moti
                 !
               </span>
               <span className="flag-brief">{briefOf(a)}</span>
+              <BorderBeam color="var(--attention)" borderWidth={1} size={56} />
             </div>
             <p className="flag-hint">Double-click to open</p>
           </motion.div>

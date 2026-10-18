@@ -1,5 +1,6 @@
 import type { Alert, CaseDetail } from "../../../shared/types";
 import { useFxFlag } from "../fxFlags";
+import { ShineBorder } from "../fx/ShineBorder";
 
 // "Flight tracker for tissue": where the case has been, where it is, what is next,
 // and the handoff estimate (or why there is none). Every value comes from the API.
@@ -97,6 +98,7 @@ export function JourneyBar({ detail, alerts }: Props) {
       <div className={`journey-dest ${est.status}`}>
         <span className="jd-label">Pathologist handoff</span>
         {est.status === "ready" && <span className="jd-value">Ready since {est.readyAt}</span>}
+        {est.status === "ready" && <ShineBorder delayMs={drawOn ? 820 : 0} />}
         {est.status === "estimated" && <span className="jd-value">Ready for pathologist ~<span className="mono">{est.readyAt}</span></span>}
         {est.status === "unknown" && <span className="jd-value">Unknown (reason below)</span>}
       </div>

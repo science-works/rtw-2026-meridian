@@ -1,5 +1,6 @@
 import type { Alert } from "../../../shared/types";
 import { navigate, paths } from "../router";
+import { useAnimatedList } from "../fx/AnimatedList";
 
 export const KIND_LABEL: Record<Alert["kind"], string> = {
   outstanding_block: "Outstanding block",
@@ -13,8 +14,9 @@ export const STATE_LABEL: Record<Alert["state"], string> = { new: "New", check_n
 export const statusText = (a: Alert) => (a.state === "in_progress" && a.stateDetail ? a.stateDetail : STATE_LABEL[a.state]);
 
 function Rows({ alerts }: { alerts: Alert[] }) {
+  const listRef = useAnimatedList<HTMLTableElement>("tbody tr", alerts.length);
   return (
-    <table className="mini incidents-table">
+    <table ref={listRef} className="mini incidents-table">
       <thead>
         <tr>
           <th />
