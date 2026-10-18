@@ -7,12 +7,15 @@ import "../type/editorial.css";
 import frauncesUrl from "@fontsource-variable/fraunces/files/fraunces-latin-full-normal.woff2?url";
 import "../type/instrument.css";
 import soraUrl from "@fontsource-variable/sora/files/sora-latin-wght-normal.woff2?url";
+import "../type/clinical.css";
+import instrumentUrl from "@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2?url";
 
-export type TypeId = "editorial" | "instrument";
+export type TypeId = "editorial" | "instrument" | "clinical";
 
 export const TYPE_SETS: Record<TypeId, { display: string; mono: string; licence: string; preload: string }> = {
   editorial: { display: "Fraunces Variable", mono: "IBM Plex Mono", licence: "OFL-1.1", preload: frauncesUrl },
   instrument: { display: "Sora Variable", mono: "Martian Mono Variable", licence: "OFL-1.1", preload: soraUrl },
+  clinical: { display: "Instrument Serif", mono: "JetBrains Mono Variable", licence: "OFL-1.1", preload: instrumentUrl },
 };
 
 /** Approved type set (none yet: the current type stays the default). */

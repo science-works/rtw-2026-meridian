@@ -1,0 +1,10 @@
+/* Type set: clinical (Instrument Serif + JetBrains Mono). */
+@import "@fontsource/instrument-serif/latin-400.css";
+@import "@fontsource/instrument-serif/latin-400-italic.css";
+@import "@fontsource-variable/jetbrains-mono/index.css";
+html[data-type="clinical"] { --display: "Instrument Serif", Georgia, serif; --mono: "JetBrains Mono Variable", ui-monospace, Menlo, monospace; }
+html[data-type="clinical"] .page h1, html[data-type="clinical"] .page-head h1, html[data-type="clinical"] .tile-title, html[data-type="clinical"] .how-title,
+html[data-type="clinical"] .pr-head h1, html[data-type="clinical"] .panel > h2, html[data-type="clinical"] .sim-caption { font-weight: 400; letter-spacing: 0; }
+html[data-type="clinical"] .page h1, html[data-type="clinical"] .page-head h1 { font-size: 34px; }
+html[data-type="clinical"] .hero-number, html[data-type="clinical"] .lc-pct, html[data-type="clinical"] .donut-pct { font-weight: 400; }
+html[data-type="clinical"] .panel > h2, html[data-type="clinical"] .tile-title { font-size: 22px; }
