@@ -1,0 +1,111 @@
+/*
+ * Design Lab looks (docs/DESIGN_LAB.md). Selected with ?look=A|B|C; without it nothing here applies
+ * and the current look is unchanged. Colour, gradient, shadow, glow, blur and border only: no layout.
+ * Variable values mirror web/src/theme/looks.ts (tested).
+ */
+
+/* ---------- A · Deep Lab: cinematic navy, cool top-left key light, tinted shadows, gradient faces, vignette ---------- */
+html[data-look="A"] {
+  --bg: #070f26;
+  --bg-raised: #0b1636;
+  --card: #122251;
+  --card-2: #18295e;
+  --ink: #f3f6fb;
+  --muted: #b6c0d6;
+  --line: #26396e;
+  --accent: #7fdca9;
+  --urgent: #ff6b6b;
+  --attention: #ffb547;
+  --bcsp: #c8aeff;
+  --csp: #74e3b4;
+  --progress: #a7b8ff;
+}
+html[data-look="A"], html[data-look="A"] body {
+  /* Key light from the top left, falling off into a gentle vignette */
+  background:
+    radial-gradient(120% 80% at 12% -10%, rgba(74, 110, 210, 0.28) 0%, rgba(74, 110, 210, 0) 55%),
+    radial-gradient(140% 120% at 50% 40%, rgba(7, 15, 38, 0) 55%, rgba(2, 5, 16, 0.75) 100%),
+    #070f26;
+  background-attachment: fixed;
+}
+html[data-look="A"] .topbar, html[data-look="A"] .footer { background: linear-gradient(180deg, #0e1b42 0%, #0a1534 100%); border-color: rgba(120, 150, 230, 0.16); }
+html[data-look="A"] .panel, html[data-look="A"] .tile, html[data-look="A"] .chat-dock, html[data-look="A"] .compare-meridian, html[data-look="A"] .pr-card {
+  background: linear-gradient(160deg, #1a2e66 0%, #122251 48%, #0e1c46 100%);
+  border-color: rgba(130, 160, 240, 0.18);
+  /* top-edge highlight from the key light; shadows tinted navy, never black */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), inset 1px 0 0 rgba(255, 255, 255, 0.04), 0 1px 2px rgba(3, 9, 32, 0.55), 0 14px 30px -10px rgba(4, 12, 48, 0.7);
+}
+html[data-look="A"] .flag-card { background: linear-gradient(160deg, #1a2e66, #101f4b); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 0 26px rgba(255, 181, 71, 0.18), 0 12px 26px -10px rgba(4, 12, 48, 0.7); }
+html[data-look="A"] .urgent-panel { box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 14px 30px -10px rgba(4, 12, 48, 0.7); }
+html[data-look="A"] .lc-shadow { background: radial-gradient(ellipse at center, rgba(3, 10, 40, 0.75), rgba(3, 10, 40, 0) 70%); }
+
+/* ---------- B · Clinical Glass: frosted panels over a lab texture, hairline borders, brighter data glow ---------- */
+html[data-look="B"] {
+  --bg: #0a1430;
+  --bg-raised: #111e44;
+  --card: #16244f;
+  --card-2: #1d2c5c;
+  --ink: #f5f8fd;
+  --muted: #bcc6da;
+  --line: #3a4c80;
+  --accent: #8ff0bd;
+  --urgent: #ff6b6b;
+  --attention: #ffb547;
+  --bcsp: #cdb6ff;
+  --csp: #7ee8bc;
+  --progress: #a9b9ff;
+}
+html[data-look="B"], html[data-look="B"] body {
+  /* Lab texture: a fine slide-grid of dots over two soft colour washes */
+  background:
+    radial-gradient(rgba(170, 190, 240, 0.09) 1px, transparent 1.2px) 0 0 / 22px 22px,
+    radial-gradient(60% 50% at 18% 12%, rgba(127, 220, 169, 0.14), rgba(127, 220, 169, 0) 70%),
+    radial-gradient(55% 60% at 88% 85%, rgba(90, 111, 214, 0.22), rgba(90, 111, 214, 0) 70%),
+    #0a1430;
+  background-attachment: fixed;
+}
+html[data-look="B"] .topbar, html[data-look="B"] .footer { background: rgba(17, 30, 68, 0.62); backdrop-filter: blur(16px) saturate(140%); border-color: rgba(255, 255, 255, 0.12); }
+html[data-look="B"] .panel, html[data-look="B"] .tile, html[data-look="B"] .chat-dock, html[data-look="B"] .compare-meridian, html[data-look="B"] .pr-card, html[data-look="B"] .flag-card {
+  background: rgba(26, 42, 92, 0.6);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 10px 30px rgba(3, 10, 40, 0.35);
+}
+html[data-look="B"] .flag-card { border-color: var(--attention); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 0 28px rgba(255, 181, 71, 0.22); }
+html[data-look="B"] .urgent-panel { border: 2px solid var(--urgent); box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.14); }
+/* Brighter accent glow on data: the clock arc and the headline counts */
+html[data-look="B"] .lc-tilt { filter: drop-shadow(0 0 22px color-mix(in srgb, var(--ring) 45%, transparent)); }
+html[data-look="B"] .hero-number { text-shadow: 0 0 28px rgba(143, 240, 189, 0.35); }
+
+/* ---------- C · Night Shift: near-black base, higher contrast, saturated accent, strong incident and clock glow ---------- */
+html[data-look="C"] {
+  --bg: #04060d;
+  --bg-raised: #080c18;
+  --card: #0c1222;
+  --card-2: #131b31;
+  --ink: #ffffff;
+  --muted: #c3cbdb;
+  --line: #161f38;
+  --accent: #5ef0a4;
+  --urgent: #ff5c5c;
+  --attention: #ffb547;
+  --bcsp: #c9a8ff;
+  --csp: #6ff0bd;
+  --progress: #9fb2ff;
+}
+html[data-look="C"], html[data-look="C"] body { background: linear-gradient(180deg, #070a14 0%, #04060d 40%); background-attachment: fixed; }
+html[data-look="C"] .topbar, html[data-look="C"] .footer { background: #060912; border-color: transparent; }
+/* Minimal borders: surfaces separate by a tone step */
+html[data-look="C"] .panel, html[data-look="C"] .tile, html[data-look="C"] .chat-dock, html[data-look="C"] .compare-meridian, html[data-look="C"] .pr-card { border-color: transparent; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+html[data-look="C"] .flag-card { box-shadow: 0 0 36px rgba(255, 181, 71, 0.32), 0 0 0 1px rgba(255, 181, 71, 0.5); }
+html[data-look="C"] .flag.big { box-shadow: 0 0 18px 4px rgba(255, 181, 71, 0.65); }
+html[data-look="C"] .lc-tilt { filter: drop-shadow(0 0 26px color-mix(in srgb, var(--ring) 55%, transparent)); }
+html[data-look="C"] .urgent-panel { box-shadow: 0 0 0 4px rgba(255, 92, 92, 0.2), 0 0 30px rgba(255, 92, 92, 0.12); }
+
+/* All looks keep Victoria's colour cues even where a look changes card borders:
+   red ring on urgent, purple BCSP, green CSP, warm orange incident tile. */
+html[data-look] .urgent-panel { border: 2px solid var(--urgent); }
+html[data-look] .tile-bcsp { border-top: 4px solid var(--bcsp); }
+html[data-look] .tile-csp { border-top: 4px solid var(--csp); }
+html[data-look] .tile-incidents { border-top: 4px solid var(--attention); }
+html[data-look] .flag-card { border: 1px solid var(--attention); }
