@@ -52,3 +52,7 @@ export const zoom = { lodThreshold: 0.9 } as const;
 
 /** CSS variable name for each colour token, e.g. alert → --alert. */
 export const cssVar = (k: keyof typeof color) => `--${k.replace(/[A-Z0-9]/g, (m) => `-${m.toLowerCase()}`)}`;
+
+/** Completion donuts: "3d" lab clock or "flat" ring. Set to "flat" to restore the flat look (one line). */
+export type RingStyle = "3d" | "flat";
+export const ringStyle: RingStyle = "3d";

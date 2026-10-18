@@ -76,7 +76,7 @@ export function Dashboard({ overview: o, cases, alerts }: Props) {
       <section className="dash-grid">
         <Link to={paths.section("emitted")} className="panel donut-panel">
           <h2>Left the lab to the pathologist</h2>
-          <Donut done={o.ready} total={o.total} />
+          <Donut done={o.ready} total={o.total} size={180} />
         </Link>
 
         <div className="panel urgent-panel">

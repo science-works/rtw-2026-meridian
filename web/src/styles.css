@@ -742,3 +742,19 @@ a { color: inherit; text-decoration: none; }
 /* Story mode bar (demo window): beat number and section only; cues stay on the presenter's screen */
 .storyline { display: inline-flex; align-items: center; gap: 8px; padding: 2px 4px 2px 12px; border: 1px solid var(--accent); border-radius: 999px; font-size: 14px; white-space: nowrap; }
 .story-label { color: var(--accent); font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ---------- Lab-clock donut (ringStyle "3d" in tokens.ts; "flat" restores the plain ring) ---------- */
+.lab-clock { margin: 0; display: grid; justify-items: center; gap: 10px; }
+.lc-stage { --size: var(--d-override, var(--d)); position: relative; width: var(--size); height: var(--size); perspective: 1000px; }
+.lc-tilt { position: absolute; inset: 0; transform-style: preserve-3d; will-change: transform; filter: drop-shadow(0 0 16px color-mix(in srgb, var(--ring) 28%, transparent)); }
+.lc-shadow { position: absolute; left: 10%; right: 10%; bottom: -9%; height: 24%; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 70%); filter: blur(5px); }
+.lc-tick { stroke: var(--muted); stroke-width: 1; opacity: 0.5; stroke-linecap: round; }
+.lc-tick.long { stroke-width: 2.2; opacity: 0.9; }
+.lc-centre { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+.lc-pct { font-family: var(--sans); font-weight: 800; font-size: calc(var(--size) * 0.2); line-height: 1; color: var(--ink); text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7); font-variant-numeric: tabular-nums; }
+.lab-clock.small .lc-pct { font-size: max(16px, calc(var(--size) * 0.22)); }
+.tile .lab-clock .donut-counts { font-size: 14px; }
+@media (max-height: 800px) {
+  .donut-panel .lab-clock { --d-override: 140px; }
+  .tile .lab-clock { --d-override: 70px; }
+}
