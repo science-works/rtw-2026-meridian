@@ -10,6 +10,8 @@ export interface ScriptCard {
   cue?: string;
   /** Spoken lines, verbatim. Lines starting with ✂️ are the first to cut. */
   lines: string[];
+  /** A card Meridian adds for a demo screen; it is not in SCRIPT.md and has no spoken lines. */
+  extra?: boolean;
 }
 
 export interface Script {
@@ -83,7 +85,21 @@ export const mmss = (s: string) => {
   return m * 60 + sec;
 };
 
-const SCREENS: Record<string, string> = { dashboard: "/", "lims view": "/lims-view", simulation: "/simulation", incidents: "/incidents" };
+const SCREENS: Record<string, string> = { dashboard: "/", "lims view": "/lims-view", simulation: "/simulation", incidents: "/incidents", compare: "/compare" };
+
+/** The side-by-side card, shown between "the old way" and "the reinvention". */
+export const COMPARE_CARD: ScriptCard = {
+  section: "Between 2 and 3 · SIDE BY SIDE",
+  cue: "Compare: 26H1004, a LIMS today on the left, Meridian on the right",
+  lines: [],
+  extra: true,
+};
+
+/** Cards as presented: the script's cards, plus the compare card after the last "2 ·" card. */
+export function presentedCards(cards: ScriptCard[]): ScriptCard[] {
+  const i = cards.reduce((last, c, k) => (c.section.startsWith("2 ·") ? k : last), -1);
+  return i < 0 ? [...cards, COMPARE_CARD] : [...cards.slice(0, i + 1), COMPARE_CARD, ...cards.slice(i + 1)];
+}
 
 /**
  * The screen a beat starts on, when its cue names one ("[Simulation → Play]" → /simulation).

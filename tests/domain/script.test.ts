@@ -41,3 +41,17 @@ describe("routeForCue", () => {
     expect(s.cards.map((c) => routeForCue(c.cue))).toEqual(["/", "/lims-view", "/", null, "/simulation", null, null, null, "/incidents", null, null, null, null]);
   });
 });
+
+describe("presentedCards", () => {
+  it("adds the compare card between the old way and the reinvention, without touching the script's cards", async () => {
+    const { presentedCards, routeForCue } = await import("../../shared/script");
+    const cards = presentedCards(s.cards);
+    expect(cards).toHaveLength(s.cards.length + 1);
+    const i = cards.findIndex((c) => c.extra);
+    expect(cards[i - 1].section).toMatch(/^2 ·/);
+    expect(cards[i + 1].section).toMatch(/^3 ·/);
+    expect(cards[i].lines).toEqual([]);
+    expect(routeForCue(cards[i].cue)).toBe("/compare");
+    expect(cards.filter((c) => !c.extra)).toEqual(s.cards);
+  });
+});

@@ -90,6 +90,9 @@ export function ControlBar({ busy, onReset, onStory, story, storyActive }: Contr
         <Link to="/lims-view" className="btn-quiet">
           LIMS view
         </Link>
+        <Link to="/compare" className="btn-quiet">
+          Compare
+        </Link>
         <a href="/presenter" target="meridian-presenter" className="btn-quiet" title="Opens the speaker notes in their own window">
           Presenter
         </a>

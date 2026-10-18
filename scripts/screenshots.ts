@@ -27,6 +27,7 @@ const PAGES: [string, string][] = [
   ["station-microtomy-4", "/station/microtomy-4"],
   ["presenter", "/presenter"],
   ["lims-view", "/lims-view"],
+  ["compare", "/compare"],
 ];
 
 async function main() {

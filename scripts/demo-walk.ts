@@ -133,6 +133,24 @@ const beats: Beat[] = [
       check((await text(page)).includes("8 of 450 completed · 2%"), "donut changed");
     },
   },
+  {
+    n: 9,
+    name: "Compare: a LIMS today vs Meridian (26H1004)",
+    async run(page) {
+      await page.goto(`${BASE}/lims-view`);
+      await page.locator(".lims-compare").click();
+      await page.waitForURL("**/compare");
+      const lims = page.locator("[data-testid=compare-lims] tbody tr");
+      await lims.first().waitFor();
+      check((await lims.count()) >= 5, "LIMS side shows fewer than 5 events");
+      const left = await page.locator(".compare-lims").innerText();
+      check(!/Ready|ETA|incident/i.test(left), "LIMS side shows estimates or incidents");
+      const right = await page.locator(".compare-meridian").innerText();
+      check(right.includes("1 of 3") && right.includes("Microtomy station 4"), "Meridian side is missing the 26H1004 incident");
+      check(/ETA unknown|Ready/.test(right), "Meridian side has no handoff time or reason");
+      check((await text(page)).includes("Same events. One records what happened; the other shows what's happening."), "caption missing");
+    },
+  },
 ];
 
 async function main() {

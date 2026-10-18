@@ -12,6 +12,7 @@ import { IncidentPage } from "./pages/IncidentPage";
 import { IncidentsPage } from "./pages/IncidentsPage";
 import { LimsView } from "./pages/LimsView";
 import { SectionPage } from "./pages/SectionPage";
+import { COMPARE_DEFAULT, ComparePage } from "./pages/ComparePage";
 import { PresenterPage } from "./pages/PresenterPage";
 import { SimulationPage } from "./pages/SimulationPage";
 import { StationPage } from "./pages/StationPage";
@@ -39,10 +40,11 @@ export function App() {
   // Speaker notes stand alone: no nav, chat or agent console.
   if (path === "/presenter") return <PresenterPage />;
   let page: React.ReactNode = <p className="page muted">Loading…</p>;
-  let m: Record<string, string> | null;
+  let m: Record<string, string> | null = null;
   if (o) {
     if (path === "/") page = <Dashboard overview={o} cases={live.cases} alerts={live.alerts} />;
     else if (path === "/lims-view") page = <LimsView version={live.version} />;
+    else if (path === "/compare" || (m = match("/compare/:id", path))) page = <ComparePage caseId={(m?.id ?? COMPARE_DEFAULT).toUpperCase()} alerts={live.alerts} version={live.version} />;
     else if ((m = match("/case/:id", path))) page = <CasePage caseId={m.id.toUpperCase()} version={live.version} alerts={live.alerts} />;
     else if (path === "/incidents") page = <IncidentsPage alerts={live.alerts} />;
     else if ((m = match("/incident/:id", path))) page = <IncidentPage id={m.id} alerts={live.alerts} cases={live.cases} stations={live.stations} />;

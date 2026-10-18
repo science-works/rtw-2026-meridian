@@ -46,6 +46,7 @@ export const paths = {
   simulator: "/simulator",
   station: (id: string) => `/station/${encodeURIComponent(id)}`,
   section: (name: string) => `/section/${name}`,
+  compare: (id?: string) => (id ? `/compare/${encodeURIComponent(id)}` : "/compare"),
 };
 
 export function Link({ to, onClick, ...rest }: AnchorHTMLAttributes<HTMLAnchorElement> & { to: string }) {

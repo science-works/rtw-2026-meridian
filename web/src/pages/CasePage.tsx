@@ -9,7 +9,7 @@ const humanType = (t: string) => t.charAt(0) + t.slice(1).toLowerCase().replace(
 const fmtDuration = (m: number) => (m >= 60 ? `${Math.floor(m / 60)} h ${m % 60} min` : `${m} min`);
 
 /** Stations visited, in recorded order with times (consecutive repeats merged). */
-function stationsVisited(d: CaseDetail) {
+export function stationsVisited(d: CaseDetail) {
   const out: { station: string; at: string; type: string }[] = [];
   for (const e of d.timeline) {
     if (!e.station || e.type === "CURRENT_STAGE_SNAPSHOT") continue;

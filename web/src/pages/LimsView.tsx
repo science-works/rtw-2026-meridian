@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { navigate } from "../router";
 import type { EventsPage, FeedEvent } from "../../../shared/types";
 
 /** The pitch's "old way": what a LIMS shows. Plain events up to 11:30, newest last; no colour, alerts or estimates. */
@@ -23,6 +24,9 @@ export function LimsView({ version }: { version: number }) {
   return (
     <section className="lims">
       <h1>What a LIMS shows: what already happened</h1>
+      <a href="/compare" className="lims-compare" onClick={(e) => (e.preventDefault(), navigate("/compare"))}>
+        Compare one case: a LIMS today vs Meridian →
+      </a>
       <p className="lims-sub">{rows ? `${rows.length} events up to Day 1 11:30, oldest first.` : "Loading…"}</p>
       <div className="lims-scroll">
         <table className="lims-table">

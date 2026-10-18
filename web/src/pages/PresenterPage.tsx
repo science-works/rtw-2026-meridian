@@ -22,6 +22,7 @@ function Card({ card, big }: { card: ScriptCard; big?: boolean }) {
         {card.speaker}
         {card.cue && <span className="pr-cue">[{card.cue}]</span>}
       </p>
+      {card.extra && card.lines.length === 0 && <p className="pr-line muted">Added screen: no script line. Show the side-by-side, then move on.</p>}
       {card.lines.map((l, i) => (
         <p key={i} className={`pr-line${l.startsWith(CUT_MARK) ? " cut" : ""}`}>
           {l}

@@ -1,6 +1,6 @@
 // The pitch script (pitch/SCRIPT.md via /api/pitch) and the presenter ↔ demo-window channel.
 import { useEffect, useState } from "react";
-import { parseScript, type Script } from "../../../shared/script";
+import { parseScript, presentedCards, type Script } from "../../../shared/script";
 
 let cache: Promise<Script> | null = null;
 export function useScript(): { script: Script | null; error: string | null } {
@@ -10,7 +10,10 @@ export function useScript(): { script: Script | null; error: string | null } {
     let live = true;
     cache ??= fetch("/api/pitch")
       .then((r) => (r.ok ? (r.json() as Promise<{ markdown: string }>) : Promise.reject(new Error(String(r.status)))))
-      .then((r) => parseScript(r.markdown))
+      .then((r) => {
+        const s = parseScript(r.markdown);
+        return { ...s, cards: presentedCards(s.cards) };
+      })
       .catch((e) => {
         cache = null;
         throw e;
