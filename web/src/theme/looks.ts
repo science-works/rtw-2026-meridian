@@ -74,20 +74,25 @@ export const looks: Record<LookId, LookTokens> = {
 };
 
 const KEY = "meridian.look";
+/** The approved default look (C · Night Shift). ?look=classic shows the original palette. */
+export const DEFAULT_LOOK: LookId | null = "C";
 
-/** Reads ?look=A|B|C (kept for this tab; ?look=default clears it) and sets html[data-look]. */
+/** Reads ?look=A|B|C|classic (kept for this tab; ?look=default returns to DEFAULT_LOOK) and sets html[data-look]. */
 export function applyLookFromUrl() {
   let look: string | null = null;
   try {
     const q = new URLSearchParams(window.location.search).get("look");
     if (q !== null) {
       if (q.toUpperCase() in looks) sessionStorage.setItem(KEY, q.toUpperCase());
+      else if (q.toLowerCase() === "classic") sessionStorage.setItem(KEY, "classic");
       else sessionStorage.removeItem(KEY);
     }
     look = sessionStorage.getItem(KEY);
   } catch {
     look = new URLSearchParams(window.location.search).get("look")?.toUpperCase() ?? null;
   }
+  if (look === "classic") return void delete document.documentElement.dataset.look;
+  look ??= DEFAULT_LOOK;
   if (look && look in looks) document.documentElement.dataset.look = look;
   else delete document.documentElement.dataset.look;
 }
