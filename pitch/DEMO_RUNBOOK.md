@@ -1,48 +1,63 @@
-# Demo runbook
+# Demo runbook (v8)
 
-The spoken lines are in `SCRIPT.md`. This file is the click path, the checklist and what to do when something breaks.
+The spoken lines are in `SCRIPT.md` and on `/presenter`; the judges' Q&A is in `QA.md`. This file is the setup, the click path and what to do when something breaks.
 
-## Pre-demo checklist (5 minutes before)
+## The night before
+
+- [ ] **Backup clone:** `git clone https://github.com/Manthanbhanushali010/meridian-lab.git ~/Projects/meridian-backup && cd ~/Projects/meridian-backup && git checkout demo-safe-v8-p6 && npm install`. Run `npm run demo:serve` once there to check it starts.
+- [ ] **Backup video** of the full 3-minute run recorded, on the desktop, opened once to check it plays.
+- [ ] `npm run demo:walk` passes (9/9).
+
+## Pre-demo checklist (10 minutes before)
 
 - [ ] Charger in; battery not in low-power mode.
-- [ ] Notifications off (Focus mode on); Slack, Mail and Messages quit.
-- [ ] Display mirrored or extended to the projector at 1440×900; browser zoom **100%**.
-- [ ] `npm run dev` already running in a terminal (API :8787, dashboard :5173).
-- [ ] http://localhost:5173 open, full screen. The live dot in the header is green.
-- [ ] **Reset demo** pressed: 3 alerts, the trigger button enabled, the agent console empty.
+- [ ] Focus mode on (notifications off); Slack, Mail and Messages quit.
+- [ ] Keep the Mac awake: in the macOS Terminal app run `caffeinate -dis &`.
+- [ ] **Close every Claude Code session and VS Code.** Nothing else should be editing or watching the repo.
+- [ ] Projector cable in; System Settings → Displays: **Extend, not mirror**. The demo window goes on the projector, `/presenter` stays on the laptop.
+- [ ] From the **macOS Terminal app** (not an editor terminal), in `~/Projects/meridian-lab`:
+  - `npm run demo:serve` for the pitch: a fixed build with no hot reload. If ports are busy, `npm run demo:start` frees them (then Ctrl-C it and run `demo:serve`).
+  - Or `npm run demo:start` for the live dev server (frees ports 8787 and 5173, then starts).
+- [ ] Demo window: http://localhost:5173/ in full screen on the projector, browser zoom **100%** (⌘0). "simulated feed" shows in green.
+- [ ] Presenter: http://localhost:5173/presenter on the laptop. Check the 3:00 timer, then press Restart.
+- [ ] Press **Reset demo**: one bouncing flag (26H1004), the agent console empty.
 - [ ] "Skip animations" **unticked** (tick it only if the projector stutters).
-- [ ] Claude Desktop open, signed in, "meridian" visible under the tools menu. Test question asked once, then the chat cleared.
-- [ ] MCP Inspector open in a backup browser tab (command in `docs/MCP_SETUP.md`).
-- [ ] Backup video on the desktop, opened once to check it plays.
-- [ ] 3D view: off (`VITE_3D` unset), unless rehearsed on the venue screen.
-- [ ] Timer ready (3:00).
+- [ ] Claude Desktop open and signed in, with **meridian** connected under the tools menu. Ask one test question, then start a new chat.
+- [ ] MCP Inspector command ready in a second Terminal tab (do not run it yet): `npx @modelcontextprotocol/inspector npx tsx mcp/src/index.ts` (details in `docs/MCP_SETUP.md`).
+- [ ] Backup video open in QuickTime, paused at 0:00, behind the browser.
 
-## Click path
+## Click path (follows `SCRIPT.md`)
 
-| Beat | Action on screen |
+| Beat | Screen and action |
 |---|---|
-| Opening (Victoria) | Slide 2. |
-| The whole lab | Switch to Meridian. Point at the header tiles (450 = 104 + 346) and the lanes (103 backlog at microtomy). |
-| One block holds a case | Click **26H1003** in the case list → the drawer shows the journey bar, A1–E1 at Processor and F1 at Cut-up, with "Unknown" and the reason. Optional: **Spotlight**. Close with Esc. |
-| Live incident | Replay the H&E incident (control renamed in Phase D) → 10 rows flagged, 4 alerts, estimates read Day 1 11:45. Click **26H1005** → the "Repeat H&E run (started 11:05) 30 min" line. Esc. |
-| The agent | Claude Desktop on the left, Meridian on the right. Ask "I'm starting the next shift. What do I need to know?" (or attach the `shift_handover` prompt). The agent console fills with tool calls and the beam points into the cases. |
-| Trust and vision (Victoria) | Slides 4 and 5. |
-| After the pitch | **Reset demo** for the next rehearsal. |
+| 1 · The problem (Victoria) | Dashboard, no clicks. |
+| 2 · The old way (Victoria) | Demo bar → **LIMS view**: the biopsy strip and the grey event rows. |
+| Side by side | Demo bar → **Compare** (26H1004): a LIMS today on the left, Meridian on the right. |
+| 3 · The reinvention (Manthan) | Dashboard: 450 · 346 new · 104 backlog, the clock, urgent cases in red. |
+| One search | Type **26H2345** in the search → the case page draws its journey, ending "Ready since 09:30". |
+| The lab's morning (Victoria) | **Simulation** → **Play the lab's morning** (≈40 s). Captions narrate; the stainer pulses at 10:45. It ends with "a new incident is waiting" → **Dashboard**. |
+| Incident (Manthan) | Double-click the bouncing flag "Incident · Microtomy station 4": 1 of 3 levels, evidence, suggested check. |
+| Acknowledge (Victoria) | **Acknowledge**: the card flies to Incidents; it stays open as "Acknowledged — awaiting check". |
+| Stainer (Manthan) | **Incidents** → the H&E basket failure: blast radius (20 slides, 10 cases), action timeline, "Stain run completes ~11:35". |
+| The agent | Claude Desktop beside Meridian: "I'm starting the next shift. What do I need to know?" The agent console lights up. Say nothing for ~8 s. |
+| Close (Victoria) | Dashboard. |
+| After | **Reset demo**. |
 
-**Alternative:** **Story mode** plays the same arc on live state; → or Space to advance, Esc to exit. Use it if the presenter prefers one button.
+Story mode can drive the screens from the presenter window: press → on `/presenter`, then **Open demo window**.
 
 ## Recovery
 
 | Symptom | Do this |
 |---|---|
-| The page freezes or looks wrong | Reload (⌘R), then **Reset demo**. |
-| Live dot grey / no updates (SSE stalled) | Reload the page. If still stuck, restart `npm run dev` (Ctrl-C, ↑, Enter) and reload. |
-| The trigger button is disabled | It already fired: **Reset demo**, then trigger again. |
-| Claude Desktop doesn't answer or doesn't see "meridian" | Switch to the Inspector tab and run `get_case 26H1003`, `list_alerts`, or `shift_handover` with `mode=brief`. The agent console shows those calls too. |
+| The page freezes or looks wrong | Hard reload (⌘⇧R), then **Reset demo**. |
+| "reconnecting" or no updates | Hard reload. If it's still stuck, in Terminal press Ctrl-C, then run `npm run demo:start` (it frees ports 8787 and 5173 and restarts). Reload the browser. |
+| Ports still busy, or the app won't start | `lsof -ti tcp:8787 tcp:5173 \| xargs kill`, then `npm run demo:serve`. |
+| The repo is broken | Switch to the backup: `cd ~/Projects/meridian-backup && npm run demo:start`. |
+| Claude Desktop doesn't answer or doesn't see "meridian" | Run the MCP Inspector command and call `get_case 26H1003`, `list_alerts`, or `shift_handover` with `mode=brief`. The agent console shows those calls too. |
 | Animations stutter on the projector | Tick **Skip animations**. Everything still works. |
 | Anything else | Play the backup video and narrate over it. Don't debug on stage. |
 
 ## After the demo
 
 - **Reset demo**.
-- Leave `npm run dev` running for the Q&A; judges may ask to see a case.
+- Leave the app running for the Q&A; judges may ask to see a case. `/how-it-works` shows the architecture and the test count.

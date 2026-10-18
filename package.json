@@ -21,7 +21,9 @@
     "demo:walk:fx": "FX=all tsx scripts/demo-walk.ts",
     "test:count": "vitest run",
     "demo:walk:viz": "VIZ=all tsx scripts/demo-walk.ts",
-    "screenshots": "tsx scripts/screenshots.ts"
+    "screenshots": "tsx scripts/screenshots.ts",
+    "demo:start": "bash scripts/demo-start.sh",
+    "demo:serve": "bash scripts/demo-serve.sh"
   },
   "dependencies": {
     "@hono/node-server": "^2.1.5",

@@ -15,6 +15,6 @@ if (errors.length) {
   for (const e of errors.slice(0, 20)) console.warn(`  [${e.code}] ${e.message}`);
 }
 
-serve({ fetch: createApp(createState(data, loadTargets(), feed.name)).fetch, port: API_PORT }, (info) => {
+serve({ fetch: createApp(createState(data, loadTargets(), feed.name)).fetch, port: Number(process.env.PORT ?? API_PORT) }, (info) => {
   console.log(`Meridian API (simulated data, feed: ${feed.name}) on http://localhost:${info.port}`);
 });

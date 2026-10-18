@@ -13,4 +13,10 @@ export default defineConfig({
     port: 5173,
     proxy: { "/api": "http://localhost:8787" },
   },
+  // `npm run demo:serve`: the built app, no hot reload (WEB_PORT / MERIDIAN_API_URL override the defaults).
+  preview: {
+    port: Number(process.env.WEB_PORT ?? 5173),
+    strictPort: true,
+    proxy: { "/api": process.env.MERIDIAN_API_URL ?? "http://localhost:8787" },
+  },
 });

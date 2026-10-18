@@ -23,3 +23,5 @@ external/*
 *.log
 # Playwright CLI output (may contain credentials)
 .playwright-cli/
+# Local-only third-party reference images (never committed)
+web/public/local-ref/
