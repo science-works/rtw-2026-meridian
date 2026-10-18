@@ -1,7 +1,7 @@
 // Design Lab: alternative colour gradings, selectable with ?look=A|B|C (default: the current look).
 // Token values only; web/src/looks.css applies them under html[data-look="X"]. Nothing here is the
 // default until approved. Red stays urgent-only, warm orange incident-only, purple BCSP, green CSP.
-export type LookId = "A" | "B" | "C";
+export type LookId = "A" | "B" | "C" | "MIDNIGHT";
 
 export interface LookTokens {
   name: string;
@@ -64,6 +64,23 @@ export const looks: Record<LookId, LookTokens> = {
     ink: "#ffffff",
     muted: "#c3cbdb",
     line: "#161f38",
+    accent: "#5ef0a4",
+    urgent: "#ff5c5c",
+    attention: "#ffb547",
+    bcsp: "#c9a8ff",
+    csp: "#6ff0bd",
+    progress: "#9fb2ff",
+  },
+  MIDNIGHT: {
+    // "Midnight Blue": look C graded to black and blue. card = the middle of the card gradient.
+    name: "Midnight Blue",
+    bg: "#05070d",
+    bgRaised: "#05070d",
+    card: "#0b1228",
+    card2: "#111b3a",
+    ink: "#ffffff",
+    muted: "#9fb0d0",
+    line: "#1b2c55",
     accent: "#5ef0a4",
     urgent: "#ff5c5c",
     attention: "#ffb547",
@@ -141,6 +158,11 @@ export function applyLookFromUrl() {
   let look: string | null = null;
   try {
     const q = new URLSearchParams(window.location.search).get("look");
+    const sp = new URLSearchParams(window.location.search).get("spectrum");
+    if (sp !== null) {
+      if (sp === "1") sessionStorage.setItem(`${KEY}.spectrum`, "1");
+      else sessionStorage.removeItem(`${KEY}.spectrum`);
+    }
     if (q !== null) {
       if (q.toUpperCase() in looks) sessionStorage.setItem(KEY, q.toUpperCase());
       else if (["classic", "spectrum"].includes(q.toLowerCase())) sessionStorage.setItem(KEY, q.toLowerCase());
@@ -151,11 +173,20 @@ export function applyLookFromUrl() {
     look = new URLSearchParams(window.location.search).get("look")?.toUpperCase() ?? null;
   }
   const root = document.documentElement;
-  // "Stain spectrum" (preview): the default look plus stage hues on lines, edges, arcs and dots.
+  // "Stain spectrum" (preview): stage hues on lines, edges, arcs and dots, on top of a look.
+  // ?look=spectrum = default look + spectrum; ?spectrum=1 adds it to any look (e.g. ?look=midnight&spectrum=1).
+  let spectrum = false;
+  try {
+    spectrum = sessionStorage.getItem(`${KEY}.spectrum`) === "1";
+  } catch {
+    spectrum = new URLSearchParams(window.location.search).get("spectrum") === "1";
+  }
   if (look === "spectrum") {
-    root.dataset.spectrum = "on";
+    spectrum = true;
     look = null;
-  } else delete root.dataset.spectrum;
+  }
+  if (spectrum) root.dataset.spectrum = "on";
+  else delete root.dataset.spectrum;
   if (look === "classic") return void delete root.dataset.look;
   look ??= DEFAULT_LOOK;
   if (look && look in looks) document.documentElement.dataset.look = look;

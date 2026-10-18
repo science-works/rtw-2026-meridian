@@ -41,6 +41,7 @@ describe.each(Object.keys(looks) as LookId[])("look %s", (id) => {
   });
   it("looks.css sets the same values under html[data-look]", () => {
     const block = css.slice(css.indexOf(`html[data-look="${id}"] {`));
+    expect(css.indexOf(`html[data-look="${id}"] {`)).toBeGreaterThanOrEqual(0);
     const vars = block.slice(0, block.indexOf("}"));
     for (const [k, v] of Object.entries(L)) {
       if (k === "name") continue;
@@ -73,11 +74,16 @@ describe("looks never drop a colour cue", () => {
       expect(css).toContain(rule);
     // The re-assertions come last, so no look-specific border rule can override them.
     expect(css.lastIndexOf("html[data-look] .urgent-panel")).toBeGreaterThan(css.lastIndexOf('html[data-look="C"]'));
+    // Midnight re-asserts the same cues after its own card rule
+    for (const sel of [".urgent-panel { border: 2px solid var(--urgent)", ".tile-bcsp { border-top: 4px solid var(--bcsp)", ".tile-csp { border-top: 4px solid var(--csp)", ".flag-card { border: 1px solid var(--attention)"])
+      expect(css.lastIndexOf(`html[data-look="MIDNIGHT"] ${sel}`)).toBeGreaterThan(css.indexOf('html[data-look="MIDNIGHT"] .panel'));
   });
 });
 
 describe("Stain spectrum (preview)", () => {
-  const spec = css.slice(css.indexOf('"Stain spectrum"'));
+  const from = css.indexOf('"Stain spectrum"');
+  const to = css.indexOf("Midnight Blue (preview", from);
+  const spec = css.slice(from, to > 0 ? to : undefined);
   it("uses stage hues only for lines, edges, arcs and dots — never as text colour", () => {
     expect(spec).not.toMatch(/(^|[;{\s])color:\s*var\(--(st-|stage)/m);
   });

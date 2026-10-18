@@ -62,3 +62,17 @@ The idea: one hue per workflow stage, in lab order, echoing H&E. Haematoxylin's 
 - **Header:** an aurora behind it at 8% opacity or less.
 
 Text colours are unchanged, so contrast is the same as look C. The urgent, incident, BCSP and CSP cues are untouched, which is tested. Side-by-side comparisons: `docs/screenshots/spectrum-side-<page>.png`.
+
+## Preview: "Midnight Blue" (`?look=midnight`)
+
+Look C graded to black and blue:
+- a `#05070D` base, with a deep-blue light from the top centre and a faint blue pool low on the left;
+- cards with a gradient face (`#0A1020 → #0D1530`), a `#1B2C55` hairline, a top highlight and blue-tinted shadows;
+- a black header with an electric-blue hairline and glow;
+- a soft blue halo behind each ring; the arcs keep their colours;
+- blue hover and focus (`#60A5FA`, 2 px focus ring);
+- headings and numbers in white, body text `#E6ECF8`, secondary text `#9FB0D0`.
+
+Contrast (lowest of page and card): ink 18.6 · muted 8.5 · accent 12.8 · urgent 6.1 · incident 10.6 · BCSP 9.3 · CSP 13.1. The urgent ring, BCSP/CSP edges and incident border are re-asserted after the card rule, which is tested. The simulation board keeps its own light surface.
+
+To combine it with the spectrum: `?look=midnight&spectrum=1`. Side-by-side comparisons: `docs/screenshots/midnight-side-<page>.png`.
