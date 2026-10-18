@@ -927,3 +927,23 @@ html[data-spectrum] .cs-row[data-stage] .cs-band { fill: color-mix(in srgb, var(
 .lp-axis span { position: absolute; top: 0; white-space: nowrap; }
 .lp-axis span.end { right: 0; }
 html[data-spectrum] .lp-labels li[data-stage] { border-left: 3px solid var(--stage); padding-left: 6px; }
+
+/* ---------- Viz 5 · Incident blast radius ---------- */
+.blast { margin-bottom: 16px; }
+.blast-svg { width: 100%; height: auto; max-height: 380px; display: block; }
+.blast-branch { fill: none; stroke: var(--progress); opacity: 0.4; stroke-linecap: butt; }
+.fx .blast-branch { stroke-dasharray: 1; stroke-dashoffset: 0; animation: blast-draw 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes blast-draw { from { stroke-dashoffset: 1; } }
+.blast-src { fill: var(--card-2); stroke: var(--progress); stroke-width: 1.5; }
+.blast-src-t { fill: var(--ink); font: 700 15px var(--mono); }
+.blast-src-n { fill: var(--muted); font: 600 15px var(--sans); }
+.blast-case { cursor: pointer; }
+.blast-case rect { fill: var(--card-2); stroke: var(--line); }
+.blast-case:hover rect, .blast-case:focus-visible rect { stroke: var(--accent); }
+.blast-case:focus { outline: none; }
+.blast-id { fill: var(--ink); font: 700 15px var(--mono); }
+.blast-n { fill: var(--muted); font: 600 14px var(--sans); }
+.blast-eta { fill: var(--progress); font: 700 15px var(--mono); }
+.blast-eta.ready { fill: var(--accent); }
+.blast-eta.unknown { fill: var(--muted); }
+.blast-note { margin: 0; font-size: 14px; }

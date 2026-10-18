@@ -6,6 +6,8 @@ import { CaseLine } from "../caseLine";
 import { KIND_LABEL, statusText } from "./IncidentsPage";
 import { fxActive } from "../fxFlags";
 import { flyTo, settle } from "../motionPack";
+import { vizOn } from "../vizFlags";
+import { BlastRadius } from "../viz/BlastRadius";
 
 const STEPS = ["Run failed", "Team notified", "Acknowledged", "Troubleshooting started", "Basket reloaded", "Repeat H&E run started"];
 
@@ -71,6 +73,8 @@ export function IncidentPage({ id, alerts, cases, stations }: { id: string; aler
           {msg && <p className="alert-text small">{msg}</p>}
         </div>
       </header>
+
+      {isBasket && vizOn(5) && <BlastRadius alert={a} cases={cases} />}
 
       <div className="case-grid">
         <div className="case-main">
