@@ -43,6 +43,9 @@ export function CaseSearch({ big }: { big?: boolean }) {
 }
 
 /** Main dashboard (Victoria's design): status at a glance, calm; detail lives on section pages. */
+/** Urgent rows shown on the dashboard; rows wrap rather than truncate, the rest are one click away. */
+const URGENT_ROWS = 3;
+
 export function Dashboard({ overview: o, cases, alerts }: Props) {
   const urgent = cases
     .filter((c) => c.priority === "Urgent")
@@ -54,9 +57,6 @@ export function Dashboard({ overview: o, cases, alerts }: Props) {
   return (
     <div className="dash">
       <section className="dash-hero">
-        <div className="logo-placeholder" aria-label="Logo placeholder">
-          MERIDIAN
-        </div>
         <Link to={paths.section("all")} className="hero-total">
           <Count className="hero-number mono" value={o.total} />
           <span className="hero-label">total cases</span>
@@ -92,7 +92,7 @@ export function Dashboard({ overview: o, cases, alerts }: Props) {
             </Link>
           </div>
           <ul className="urgent-list">
-            {urgent.slice(0, 5).map((c) => (
+            {urgent.slice(0, URGENT_ROWS).map((c) => (
               <li key={c.caseId}>
                 <Link to={paths.case(c.caseId)} className="urgent-row">
                   <CaseLine c={c} />
@@ -100,9 +100,9 @@ export function Dashboard({ overview: o, cases, alerts }: Props) {
               </li>
             ))}
           </ul>
-          {urgent.length > 5 && (
+          {urgent.length > URGENT_ROWS && (
             <Link to={paths.section("urgent")} className="panel-link">
-              +{urgent.length - 5} more urgent cases
+              +{urgent.length - URGENT_ROWS} more urgent cases
             </Link>
           )}
         </div>

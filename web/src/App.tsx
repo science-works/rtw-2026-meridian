@@ -63,11 +63,15 @@ export function App() {
       <NavBar path={path} overview={o} connected={live.connected} />
       {live.error && <p className="error banner">Cannot reach the Meridian API ({live.error}). Is `npm run dev` running?</p>}
       <main className="page-wrap">{page}</main>
-      <ControlBar busy={busy} onReset={() => run(api.reset)} story={<StoryBar active={story} onActive={setStory} />} storyActive={story} onStory={() => setStory(true)} />
+      <ControlBar
+        busy={busy}
+        onReset={() => run(api.reset)}
+        story={<StoryBar active={story} onActive={setStory} />}
+        storyActive={story}
+        onStory={() => setStory(true)}
+        agent={<AgentConsole activity={live.activity} onOpenCase={(id) => navigate(paths.case(id))} onClear={() => void api.clearAgent()} />}
+      />
       <ChatDock />
-      <div className="agent-float">
-        <AgentConsole activity={live.activity} onOpenCase={(id) => navigate(paths.case(id))} onClear={() => void api.clearAgent()} />
-      </div>
     </div>
   );
 }

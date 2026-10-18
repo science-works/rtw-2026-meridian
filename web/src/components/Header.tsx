@@ -72,13 +72,16 @@ interface ControlProps {
   /** Story mode controls, shown in place of the Story mode button while it runs. */
   story: React.ReactNode;
   storyActive: boolean;
+  /** The agent console: its own column in the footer, so it never covers the footer text or controls. */
+  agent: React.ReactNode;
 }
 
 /** Small demo bar: Reset demo · LIMS view · Presenter · Story mode, plus the boundary sentence. */
-export function ControlBar({ busy, onReset, onStory, story, storyActive }: ControlProps) {
+export function ControlBar({ busy, onReset, onStory, story, storyActive, agent }: ControlProps) {
   const fx = useFx();
   return (
     <footer className="footer">
+      <div className="footer-agent">{agent}</div>
       <p className="footer-text" title="Simulated feed: the agent reads case events from the lab's workflow systems; a live version would connect through the interfaces available at each lab. Lab preparation to pathologist handoff only: no diagnosis, reporting or screening deadlines.">
         Simulated feed: the agent reads case events from the lab&apos;s workflow systems; a live version would connect through the interfaces available at each lab. Lab preparation to
         pathologist handoff only: no diagnosis, reporting or screening deadlines.
