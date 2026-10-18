@@ -2,6 +2,8 @@ import type { Overview } from "../../../shared/types";
 import { CaseSearch } from "../pages/Dashboard";
 import { Link, paths } from "../router";
 import { Logo } from "./Logo";
+import { Count } from "./Flow";
+import { useFxFlag } from "../fxFlags";
 
 const NAV: { to: string; label: string; match: (p: string) => boolean }[] = [
   { to: paths.dashboard, label: "Dashboard", match: (p) => p === "/" || p.startsWith("/section") },
@@ -17,7 +19,8 @@ const clockLabel = (clock: string) => {
 };
 
 /** Global navigation: logo placeholder, four sections, search always visible, fixed clock, SIMULATED. */
-export function NavBar({ path, overview, connected }: { path: string; overview: Overview | null; connected: boolean }) {
+export function NavBar({ path, overview, connected, newIncidents = 0 }: { path: string; overview: Overview | null; connected: boolean; newIncidents?: number }) {
+  const showCount = useFxFlag(2);
   return (
     <header className="topbar">
       <Logo />
@@ -25,6 +28,11 @@ export function NavBar({ path, overview, connected }: { path: string; overview: 
         {NAV.map((n) => (
           <Link key={n.to} to={n.to} className={`tab ${n.match(path) ? "on" : ""}`} aria-current={n.match(path) ? "page" : undefined}>
             {n.label}
+            {showCount && n.to === paths.incidents && (
+              <span className={`tab-count${newIncidents ? "" : " zero"}`} aria-label={`${newIncidents} new`}>
+                <Count value={newIncidents} />
+              </span>
+            )}
           </Link>
         ))}
       </nav>

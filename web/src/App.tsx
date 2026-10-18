@@ -60,7 +60,7 @@ export function App() {
 
   return (
     <div className={`app ${fx.on ? "fx" : "no-fx"}`}>
-      <NavBar path={path} overview={o} connected={live.connected} />
+      <NavBar path={path} overview={o} connected={live.connected} newIncidents={live.alerts.filter((a) => a.state === "new").length} />
       {live.error && <p className="error banner">Cannot reach the Meridian API ({live.error}). Is `npm run dev` running?</p>}
       <main className="page-wrap">{page}</main>
       <ControlBar

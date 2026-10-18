@@ -4,6 +4,8 @@ import { BasketGrid } from "../flow/LabFlow";
 import { Link, navigate, paths } from "../router";
 import { CaseLine } from "../caseLine";
 import { KIND_LABEL, statusText } from "./IncidentsPage";
+import { fxActive } from "../fxFlags";
+import { flyTo, settle } from "../motionPack";
 
 const STEPS = ["Run failed", "Team notified", "Acknowledged", "Troubleshooting started", "Basket reloaded", "Repeat H&E run started"];
 
@@ -51,7 +53,12 @@ export function IncidentPage({ id, alerts, cases, stations }: { id: string; aler
             <button
               className="btn-trigger btn-ack"
               disabled={busy}
-              onClick={async () => {
+              onClick={async (e) => {
+                if (fxActive(2)) {
+                  const head = e.currentTarget.closest(".page-head");
+                  settle(head?.querySelector(".page-kicker .flag") ?? null);
+                  flyTo(head?.querySelector("h1") ?? null, document.querySelector('.tab[href="/incidents"]'), a.what);
+                }
                 setBusy(true);
                 setMsg(await acknowledge(a.id));
                 setBusy(false);
