@@ -9,8 +9,8 @@ import { BottomLeft } from "./BottomLeft";
 import { BottomRight } from "./BottomRight";
 
 const KEY = "meridian.corners";
-/** Approved? (not yet: preview only). ?corners=1 turns them on for this tab, ?corners=0 off. */
-const DEFAULT_ON = false;
+/** Approved: on by default. ?corners=0 turns them off for this tab, ?corners=1 back on. */
+const DEFAULT_ON = true;
 
 function readFlag(): boolean {
   try {

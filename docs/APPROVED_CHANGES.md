@@ -27,12 +27,8 @@ Dates are the commit dates (simulated hackathon calendar). Tags mark the pushed 
 | 19 | 2026-10-18 04:30 | **LIMS reference gallery** on `/lims-view` and the presenter's old-way card, figures 1–4 only, from local-only files (gitignored; renders nothing without them) | revert `e4920ff`, `1293cbc` | `e4920ff`, `1293cbc`, figures 1–4 (submission commit) | `submission-candidate` |
 | 20 | 2026-10-18 04:20 | **Magic UI extras (effects 8–11)**, built and pushed but **off by default** (preview `?fx=8,9,10,11`) | revert `29ecedf` | `29ecedf` | `submission-candidate` |
 | 21 | 2026-10-18 04:40 | **Default type: clinical** (Instrument Serif display, JetBrains Mono data, Inter body), self-hosted OFL fonts; `?type=default` (original), `?type=editorial`, `?type=instrument` still work | `DEFAULT_TYPE` in `web/src/theme/type.ts` | `72f9256`, `2da7ce5`, `e696920`, default (submission commit) | `submission-candidate` |
+| 22 | 2026-10-18 | Corner instruments (Lab pulse, Next handoffs, Stainer, Handed off) — default on — switch off with ?corners=0 | `?corners=0`; `DEFAULT_ON` in `web/src/corners/CornerLayer.tsx` | `1c32621`, default (this commit) | `demo-safe-v9-corners` |
 
-## Previews built (not approved yet)
-
-| Preview | How to see it | Commit |
-|---|---|---|
-| **Corner instruments** on the dashboard: Lab pulse, Next handoffs, Stainer, Handed off; off by default; any corner that would touch content or run under the footer hides itself | `?corners=1` (`?corners=0` off) | corner commit |
 
 ## Standing decisions
 

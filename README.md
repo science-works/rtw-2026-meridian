@@ -54,7 +54,7 @@ git clone https://github.com/Manthanbhanushali010/meridian-lab.git
 cd meridian-lab
 npm install
 npm run dev        # API on http://localhost:8787, dashboard on http://localhost:5173
-npm test           # 225 acceptance tests
+npm test           # 285 acceptance tests
 ```
 
 Open http://localhost:5173. Search 26H2345, open **Simulation** and press **Play the lab's morning**, double-click the incident flag and press **Acknowledge**, then **Reset demo**. **Presenter** opens the speaker notes in their own window.
@@ -121,7 +121,7 @@ See **[docs/EVENT_MODEL.md](docs/EVENT_MODEL.md)**:
 
 ## Tests
 
-`npm test` runs **225 tests in 25 files**, all passing. They cover:
+`npm test` runs **285 tests in 33 files**, all passing. They cover:
 - data reconciliation and validation (counts, links, ordering, the 11:30 clock);
 - each alert's IDs, evidence and state (New, Check needed, Acknowledged — awaiting check, In progress);
 - estimates (26H1003 and 26H1016 unknown, 26H1018 and 26H2345 ready, the 30-minute repeat run from 11:05);
