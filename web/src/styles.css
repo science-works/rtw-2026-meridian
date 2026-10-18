@@ -841,3 +841,14 @@ html[data-vt~="page"] .page-wrap { view-transition-name: page; }
 .sim-slide-flash { fill: var(--sim-ink); animation: sim-slide 700ms ease-out 1 both; }
 @keyframes sim-shock { from { transform: scale(0.2); opacity: 0.9; } to { transform: scale(4); opacity: 0; } }
 @keyframes sim-slide { 0% { opacity: 0; } 25% { opacity: 1; r: 3.6; } 100% { opacity: 0.35; } }
+
+/* Motion Pack 5: the dashboard wakes up once per session (≤ 1.2 s): cards rise in a 60 ms stagger */
+.dash.waking .dash-hero, .dash.waking .dash-grid > *, .dash.waking .tile-stack > * { animation: wake-rise 480ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.dash.waking .dash-grid > :nth-child(1) { animation-delay: 60ms; }
+.dash.waking .dash-grid > :nth-child(2) { animation-delay: 120ms; }
+.dash.waking .tile-stack > :nth-child(1) { animation-delay: 180ms; }
+.dash.waking .tile-stack > :nth-child(2) { animation-delay: 240ms; }
+.dash.waking .tile-stack > :nth-child(3) { animation-delay: 300ms; }
+.dash.waking .tile-stack > :nth-child(4) { animation-delay: 360ms; }
+@keyframes wake-rise { from { opacity: 0; transform: translateY(16px); } }
+.dash.waking .dash-grid > .tile-stack { animation: none; }

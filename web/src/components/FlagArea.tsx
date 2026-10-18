@@ -17,18 +17,18 @@ export function briefOf(a: Alert): string {
 }
 
 /** Only New incidents: a bouncing warm "!" and a one-line brief. Double-click or Enter opens it. */
-export function FlagArea({ alerts }: { alerts: Alert[] }) {
+export function FlagArea({ alerts, dropIn = false }: { alerts: Alert[]; /** Motion Pack 5: drop in at the end of the wake-up. */ dropIn?: boolean }) {
   const fx = useFx();
   const fresh = alerts.filter((a) => a.state === "new");
   return (
     <section className="flag-area" aria-label="New incidents">
-      <AnimatePresence initial={false}>
+      <AnimatePresence initial={dropIn && fx.on}>
         {fresh.map((a) => (
           <motion.div
             key={a.id}
             className="flag-slot"
-            initial={fx.on ? { opacity: 0, y: 12 } : false}
-            animate={{ opacity: 1, y: 0 }}
+            initial={fx.on ? (dropIn ? { opacity: 0, y: -28 } : { opacity: 0, y: 12 }) : false}
+            animate={{ opacity: 1, y: 0, transition: dropIn ? { type: "spring", stiffness: 420, damping: 18, delay: 0.62 } : undefined }}
             exit={fx.on ? { opacity: 0, scale: 0.9, y: 16, transition: { duration: 0.35 } } : { opacity: 0, transition: { duration: 0 } }}
             layout
           >

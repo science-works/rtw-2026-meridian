@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useFxFlag } from "../fxFlags";
 import type { Alert, CaseSummary, Overview } from "../../../shared/types";
 import { api } from "../api";
 import { Donut } from "../components/Donut";
@@ -42,11 +43,38 @@ export function CaseSearch({ big }: { big?: boolean }) {
   );
 }
 
-/** Main dashboard (Victoria's design): status at a glance, calm; detail lives on section pages. */
 /** Urgent rows shown on the dashboard; rows wrap rather than truncate, the rest are one click away. */
 const URGENT_ROWS = 3;
+const WOKE_KEY = "meridian.woke";
 
+/** Motion Pack 5: true for the first ~1.2 s of the first dashboard load in this browser session. */
+function useWake(): { waking: boolean; zero: boolean } {
+  const on = useFxFlag(5);
+  const [first] = useState(() => {
+    if (!on) return false;
+    try {
+      if (sessionStorage.getItem(WOKE_KEY)) return false;
+      sessionStorage.setItem(WOKE_KEY, "1");
+    } catch {
+      /* storage blocked: wake every time */
+    }
+    return true;
+  });
+  const [zero, setZero] = useState(first);
+  const [waking, setWaking] = useState(first);
+  useEffect(() => {
+    if (!first) return;
+    const a = setTimeout(() => setZero(false), 60);
+    const b = setTimeout(() => setWaking(false), 1200);
+    return () => (clearTimeout(a), clearTimeout(b));
+  }, [first]);
+  return { waking, zero };
+}
+
+/** Main dashboard (Victoria's design): status at a glance, calm; detail lives on section pages. */
 export function Dashboard({ overview: o, cases, alerts }: Props) {
+  const wake = useWake();
+  const z = (n: number) => (wake.zero ? 0 : n);
   const urgent = cases
     .filter((c) => c.priority === "Urgent")
     .sort((a, b) => Number(a.stage === "Ready for pathologist handoff") - Number(b.stage === "Ready for pathologist handoff") || a.caseId.localeCompare(b.caseId));
@@ -55,19 +83,19 @@ export function Dashboard({ overview: o, cases, alerts }: Props) {
   const bcsp = group("BCSP");
   const csp = group("Cervical screening");
   return (
-    <div className="dash">
+    <div className={`dash${wake.waking ? " waking" : ""}`}>
       <section className="dash-hero">
         <Link to={paths.section("all")} className="hero-total">
-          <Count className="hero-number mono" value={o.total} />
+          <Count className="hero-number mono" value={z(o.total)} />
           <span className="hero-label">total cases</span>
         </Link>
         <div className="hero-split">
           <Link to={paths.section("new")}>
-            <Count className="mono" value={o.today} /> new
+            <Count className="mono" value={z(o.today)} /> new
           </Link>
           <span aria-hidden>·</span>
           <Link to={paths.section("backlog")}>
-            <Count className="mono" value={o.backlog} /> backlog
+            <Count className="mono" value={z(o.backlog)} /> backlog
           </Link>
         </div>
         <CaseSearch big />
@@ -129,7 +157,7 @@ export function Dashboard({ overview: o, cases, alerts }: Props) {
         </div>
       </section>
 
-      <FlagArea alerts={alerts} />
+      <FlagArea alerts={alerts} dropIn={wake.waking} />
     </div>
   );
 }
