@@ -1,5 +1,6 @@
-// Motion Pack switches: each effect is off until approved. Turn them on for this browser tab with
-// ?fx=all or ?fx=1,2,3 (kept in sessionStorage so it survives navigation; ?fx=off clears it).
+// Motion Pack switches. Approved effects are on by default (DEFAULT_ON). For this browser tab,
+// ?fx=all or ?fx=1,2,3 picks effects, ?fx=none turns them all off, ?fx=default restores the defaults
+// (kept in sessionStorage so it survives navigation).
 // Reduced motion, VITE_FX=off and "Skip animations" still turn every effect off (see useFx).
 import { useFx } from "./fx";
 
@@ -14,8 +15,8 @@ export const FX_NAMES: Record<FxId, string> = {
   7: "Agent console beam",
   8: "Cursor spotlight on the dashboard",
 };
-/** Approved effects that are on without ?fx (none yet). */
-const DEFAULT_ON: FxId[] = [];
+/** Approved effects, on without ?fx (approved 1–7; 8 was not built). */
+const DEFAULT_ON: FxId[] = [1, 2, 3, 4, 5, 6, 7];
 const KEY = "meridian.fx";
 
 function read(): Set<FxId> {
@@ -23,16 +24,17 @@ function read(): Set<FxId> {
   try {
     const q = new URLSearchParams(window.location.search).get("fx");
     if (q !== null) {
-      if (q === "off" || q === "") sessionStorage.removeItem(KEY);
+      if (q === "default" || q === "") sessionStorage.removeItem(KEY);
       else sessionStorage.setItem(KEY, q);
     }
     raw = sessionStorage.getItem(KEY);
   } catch {
     raw = new URLSearchParams(window.location.search).get("fx");
   }
-  if (!raw || raw === "off") return new Set(DEFAULT_ON);
+  if (!raw) return new Set(DEFAULT_ON);
+  if (raw === "none" || raw === "off") return new Set();
   if (raw === "all") return new Set(Object.keys(FX_NAMES).map(Number) as FxId[]);
-  return new Set([...DEFAULT_ON, ...raw.split(",").map((s) => Number(s.trim())).filter((n): n is FxId => n in FX_NAMES)]);
+  return new Set([...raw.split(",").map((s) => Number(s.trim())).filter((n): n is FxId => n in FX_NAMES)]);
 }
 
 const flags = typeof window === "undefined" ? new Set<FxId>() : read();
