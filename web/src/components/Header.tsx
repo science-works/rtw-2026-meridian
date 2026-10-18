@@ -79,7 +79,7 @@ export function ControlBar({ busy, onReset, onStory, story, storyActive }: Contr
   const fx = useFx();
   return (
     <footer className="footer">
-      <p className="footer-text">
+      <p className="footer-text" title="Simulated feed: the agent reads case events from the lab's workflow systems; a live version would connect through the interfaces available at each lab. Lab preparation to pathologist handoff only: no diagnosis, reporting or screening deadlines.">
         Simulated feed: the agent reads case events from the lab&apos;s workflow systems; a live version would connect through the interfaces available at each lab. Lab preparation to
         pathologist handoff only: no diagnosis, reporting or screening deadlines.
       </p>

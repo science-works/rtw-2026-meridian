@@ -251,7 +251,7 @@ table.mini { background: var(--card); border: 1px solid var(--line); border-radi
 .tl-detail { grid-column: 2; font-size: 15px; }
 
 .footer { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 16px; padding: 6px 24px; font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); background: var(--bg-raised); }
-.footer-text { margin: 0; line-height: 1.3; }
+.footer-text { margin: 0; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .footer .demo-controls { display: flex; width: auto; gap: 8px; align-items: center; }
 
 /* ---------- Motion (off with VITE_FX=off or reduced motion) ---------- */
