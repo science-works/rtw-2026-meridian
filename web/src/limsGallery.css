@@ -1,0 +1,36 @@
+/* "A real LIMS screen" reference gallery (LimsGallery.tsx). Local-only images; nothing renders without them. */
+
+/* When the gallery is present the LIMS page scrolls as a whole and the event table keeps a usable height. */
+.lims-top { display: grid; gap: 12px; }
+.lims:has(.lims-gallery) { grid-template-rows: auto auto auto auto minmax(420px, 1fr); overflow: auto; }
+
+/* Keep LIMS-page headings in LIMS ink under every look (the Midnight look whitens h1/h2). */
+html[data-look] .lims h1, html[data-look] .lims h2, .lims h2.lg-title { color: var(--lims-ink); }
+
+.lims-gallery { display: grid; gap: 8px; padding: 12px 14px; border: 1px solid var(--lims-line); background: var(--lims-panel); color: var(--lims-ink); }
+.lims-gallery .lg-title { margin: 0; font-family: var(--mono); font-size: 20px; font-weight: 700; }
+.lg-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.lg-grid > li { display: flex; }
+.lg-thumb { display: grid; align-content: start; gap: 6px; width: 100%; height: 100%; padding: 6px; border: 1px solid var(--lims-line); border-radius: 4px; background: var(--lims-bg); color: var(--lims-ink); font: inherit; text-align: left; cursor: zoom-in; }
+.lg-thumb:hover, .lg-thumb:focus-visible { border-color: var(--lims-muted); outline: 2px solid var(--lims-muted); outline-offset: 1px; }
+.lg-thumb img { display: block; width: 100%; height: 120px; object-fit: cover; object-position: top left; border: 1px solid var(--lims-line); background: #fff; }
+.lg-name { font-family: var(--mono); font-size: 14px; line-height: 1.3; color: var(--lims-ink); }
+.lg-caption { margin: 0; font-size: 14px; line-height: 1.4; color: var(--lims-muted); }
+
+.lims-gallery.compact { padding: 8px 10px; gap: 6px; }
+.lims-gallery.compact .lg-title { font-size: 16px; }
+.lims-gallery.compact .lg-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.lims-gallery.compact .lg-thumb img { height: 80px; }
+
+.lg-overlay { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 24px; background: rgba(20, 24, 30, 0.82); cursor: zoom-out; }
+.lg-figure { display: grid; gap: 8px; max-width: min(1200px, 94vw); max-height: 92vh; margin: 0; padding: 12px; border: 1px solid var(--lims-line); background: var(--lims-panel); color: var(--lims-ink); font-family: var(--mono); cursor: default; }
+.lg-figure img { display: block; max-width: 100%; max-height: calc(92vh - 130px); margin: 0 auto; object-fit: contain; background: #fff; }
+.lg-figure figcaption { display: flex; align-items: center; gap: 16px; }
+.lg-figure .lg-name { font-size: 16px; font-weight: 700; }
+.lg-hint { font-size: 14px; color: var(--lims-muted); }
+.lg-close { margin-left: auto; padding: 4px 12px; border: 1px solid var(--lims-line); border-radius: 4px; background: var(--lims-bg); color: var(--lims-ink); font: inherit; font-size: 14px; cursor: pointer; }
+.lg-close:hover, .lg-close:focus-visible { border-color: var(--lims-muted); }
+
+@media (max-width: 900px) {
+  .lg-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
