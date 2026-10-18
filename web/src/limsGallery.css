@@ -5,7 +5,7 @@
 .lims:has(.lims-gallery) { grid-template-rows: auto auto auto auto minmax(420px, 1fr); overflow: auto; }
 
 /* Keep LIMS-page headings in LIMS ink under every look (the Midnight look whitens h1/h2). */
-html[data-look] .lims h1, html[data-look] .lims h2, .lims h2.lg-title { color: var(--lims-ink); }
+html[data-look] .lims h1, html[data-look] .lims h2, .lims h2.lg-title, html[data-look] .lims-gallery h2.lg-title, .lims-gallery h2.lg-title { color: var(--lims-ink); }
 
 .lims-gallery { display: grid; gap: 8px; padding: 12px 14px; border: 1px solid var(--lims-line); background: var(--lims-panel); color: var(--lims-ink); }
 .lims-gallery .lg-title { margin: 0; font-family: var(--mono); font-size: 20px; font-weight: 700; }
