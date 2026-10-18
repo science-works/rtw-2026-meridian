@@ -75,3 +75,4 @@
 [02:33] [D] [Motion Pack fx 1-7 behind ?fx (all off by default; 8 skipped: no lab texture to reveal); demo:walk:fx 9/9; Design Lab looks A/B/C behind ?look (default unchanged), DESIGN_LAB.md, contrast tests; 245 tests; demo-walk 9/9; nothing pushed, nothing made default]
 [02:42] [D] [Approved fx 1-7 (default on) + look C (default); docs/APPROVED_CHANGES.md; urgent red unchanged; screenshots/README images refreshed; 245 tests; demo:walk, demo:walk:fx and FX=none all 9/9; pushed main + tag demo-safe-v8-p5]
 [03:25] [D] [Approved viz 1-5 default + Midnight+spectrum default look; test count written by a vitest reporter on every full run; APPROVED_CHANGES with dates; 259 tests; demo:walk/fx/viz 9/9; pushed + tag demo-safe-v8-p6]
+[04:33] [D] [Submission candidate: default type clinical; LIMS gallery figures 1-4 only; scripts/page-check.ts (8 pages pass); 265 tests; demo:walk/fx/viz 9/9; privacy check clean; pushed + tag submission-candidate]

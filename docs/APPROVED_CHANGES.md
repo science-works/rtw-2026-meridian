@@ -22,6 +22,11 @@ Dates are the commit dates (simulated hackathon calendar). Tags mark the pushed 
 | 14 | 2026-10-18 02:37 | **Look C · Night Shift** was the default look from p5 to p6; now selectable with `?look=C` | `?look=C` | `690799d`, `d23e7af` | `demo-safe-v8-p5` |
 | 15 | 2026-10-18 03:05 | **Insight visuals 1–5, on by default**: 1 Life of a biopsy strip · 2 `/how-it-works` (test badge reads the real count, written by the test run) · 3 Where this case sits · 4 Lab pulse heatmap · 5 incident blast radius. Their animations are static under reduced motion, `VITE_FX=off` and "Skip animations". | `DEFAULT_ON` in `web/src/vizFlags.ts`; `?viz=none` for a tab | `704edd9` … `3dce131`, `54cec35`, default (p6 commit) | `demo-safe-v8-p6` |
 | 16 | 2026-10-18 03:17 | **Default look: Midnight Blue with the Stain spectrum on top** | `DEFAULT_LOOK` / `DEFAULT_SPECTRUM` in `web/src/theme/looks.ts`; per tab `?look=C`, `?look=A`, `?look=B`, `?look=classic`, `?spectrum=0` | `6872098`, `48dd396`, default (p6 commit) | `demo-safe-v8-p6` |
+| 17 | 2026-10-18 04:02 | **Pitch Q&A card and technical questions**, verbatim | — | `b0a19d9` | `submission-candidate` |
+| 18 | 2026-10-18 04:08 | **Demo runbook v8**, `npm run demo:start`, `npm run demo:serve` (fixed build) | — | `360d8d2` | `submission-candidate` |
+| 19 | 2026-10-18 04:30 | **LIMS reference gallery** on `/lims-view` and the presenter's old-way card, figures 1–4 only, from local-only files (gitignored; renders nothing without them) | revert `e4920ff`, `1293cbc` | `e4920ff`, `1293cbc`, figures 1–4 (submission commit) | `submission-candidate` |
+| 20 | 2026-10-18 04:20 | **Magic UI extras (effects 8–11)**, built and pushed but **off by default** (preview `?fx=8,9,10,11`) | revert `29ecedf` | `29ecedf` | `submission-candidate` |
+| 21 | 2026-10-18 04:40 | **Default type: clinical** (Instrument Serif display, JetBrains Mono data, Inter body), self-hosted OFL fonts; `?type=default` (original), `?type=editorial`, `?type=instrument` still work | `DEFAULT_TYPE` in `web/src/theme/type.ts` | `72f9256`, `2da7ce5`, `e696920`, default (submission commit) | `submission-candidate` |
 
 ## Standing decisions
 

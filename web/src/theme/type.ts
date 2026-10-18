@@ -18,24 +18,24 @@ export const TYPE_SETS: Record<TypeId, { display: string; mono: string; licence:
   clinical: { display: "Instrument Serif", mono: "JetBrains Mono Variable", licence: "OFL-1.1", preload: instrumentUrl },
 };
 
-/** Approved type set (none yet: the current type stays the default). */
-export const DEFAULT_TYPE: TypeId | null = null;
+/** Approved type set: clinical. ?type=default shows the original type (Inter + JetBrains Mono). */
+export const DEFAULT_TYPE: TypeId | null = "clinical";
 const KEY = "meridian.type";
 
-/** Reads ?type= (kept for this tab; ?type=default clears it), sets html[data-type] and preloads the display font. */
+/** Reads ?type= (kept for this tab; ?type=default shows the original type), sets html[data-type] and preloads the display font. */
 export function applyTypeFromUrl() {
   let pick: string | null = null;
   try {
     const q = new URLSearchParams(window.location.search).get("type");
     if (q !== null) {
-      if (q in TYPE_SETS) sessionStorage.setItem(KEY, q);
+      if (q in TYPE_SETS || q === "default") sessionStorage.setItem(KEY, q);
       else sessionStorage.removeItem(KEY);
     }
     pick = sessionStorage.getItem(KEY);
   } catch {
     pick = new URLSearchParams(window.location.search).get("type");
   }
-  const id = (pick && pick in TYPE_SETS ? pick : DEFAULT_TYPE) as TypeId | null;
+  const id = (pick === "default" ? null : pick && pick in TYPE_SETS ? pick : DEFAULT_TYPE) as TypeId | null;
   const root = document.documentElement;
   if (!id) return void delete root.dataset.type;
   root.dataset.type = id;

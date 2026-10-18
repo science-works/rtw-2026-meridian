@@ -34,7 +34,7 @@ export async function loadManifest(
   try {
     const res = await fetchFn(`${base}index.json`);
     if (!res.ok) return null;
-    return parseManifest(await res.json());
+    return parseManifest(await res.json())?.slice(0, 4) ?? null; // figures 1–4 only (5 and 6 show a staff name and results)
   } catch {
     return null;
   }
