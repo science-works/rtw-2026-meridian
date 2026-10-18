@@ -2,6 +2,7 @@ import type { Alert, CaseSummary, StationCard } from "../../../shared/types";
 import { CaseLine } from "../caseLine";
 import { BasketGrid } from "../flow/LabFlow";
 import { Link, navigate, paths } from "../router";
+import { stageOfNode } from "../theme/looks";
 
 /** Station page: who is there (recorded initials only), current cases, queue, load, its incident. */
 export function StationPage({ id, stations, cases, alerts }: { id: string; stations: StationCard[]; cases: CaseSummary[]; alerts: Alert[] }) {
@@ -11,7 +12,7 @@ export function StationPage({ id, stations, cases, alerts }: { id: string; stati
   const incidents = alerts.filter((a) => a.state !== "resolved" && (a.where.includes(card.label) || a.caseIds.some((c) => card.caseIds.includes(c))));
   const initials = card.initials?.length ? [...new Set(card.initials.map((i) => i.initials))].join(", ") : null;
   return (
-    <section className="page">
+    <section className="page" data-stage={stageOfNode(card.id)}>
       <header className="page-head">
         <div>
           <p className="page-kicker">{card.zone}</p>

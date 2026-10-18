@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Alert, CaseDetail } from "../../../shared/types";
 import { api } from "../api";
+import { stageOfCase } from "../theme/looks";
 import { TimeFlow } from "../components/Flow";
 import { JourneyBar } from "../components/JourneyBar";
 import { Link, paths } from "../router";
@@ -42,7 +43,7 @@ export function CasePage({ caseId, version, alerts }: { caseId: string; version:
   const now = d.blocks.length > 1 ? [...new Set(d.blocks.map((b) => b.location))].join(" · ") : (d.blocks[0]?.location ?? "Not recorded");
 
   return (
-    <section className="page case-page">
+    <section className="page case-page" data-stage={stageOfCase[d.stage]}>
       <header className="page-head">
         <div>
           <h1 className="mono">{d.caseId}</h1>

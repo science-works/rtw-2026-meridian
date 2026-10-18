@@ -75,3 +75,19 @@ describe("looks never drop a colour cue", () => {
     expect(css.lastIndexOf("html[data-look] .urgent-panel")).toBeGreaterThan(css.lastIndexOf('html[data-look="C"]'));
   });
 });
+
+describe("Stain spectrum (preview)", () => {
+  const spec = css.slice(css.indexOf('"Stain spectrum"'));
+  it("uses stage hues only for lines, edges, arcs and dots — never as text colour", () => {
+    expect(spec).not.toMatch(/(^|[;{\s])color:\s*var\(--(st-|stage)/m);
+  });
+  it("does not touch the urgent, incident, BCSP or CSP cues", () => {
+    expect(spec).not.toMatch(/\.urgent|\.flag|tile-bcsp \{|tile-csp \{|chip-urgent/);
+  });
+  it("orders the stage hues along the lab flow", async () => {
+    const { STAGE_ORDER, stageColor } = await import("../../web/src/theme/looks");
+    expect(STAGE_ORDER).toEqual(["reception", "decal", "processor", "embedding", "microtomy", "stain", "scan", "iqc", "handoff"]);
+    expect(stageColor.handoff).toBe(color.accent.toUpperCase());
+    for (const [k, v] of Object.entries(stageColor)) expect(spec).toContain(`--st-${k}: ${v};`);
+  });
+});

@@ -109,3 +109,67 @@ html[data-look] .tile-bcsp { border-top: 4px solid var(--bcsp); }
 html[data-look] .tile-csp { border-top: 4px solid var(--csp); }
 html[data-look] .tile-incidents { border-top: 4px solid var(--attention); }
 html[data-look] .flag-card { border: 1px solid var(--attention); }
+
+/* ---------- "Stain spectrum" (preview: ?look=spectrum). Sits on the default look; colour lives only in
+   lines, edges, arcs and dots, one hue per workflow stage, never in text or large fills. ---------- */
+html[data-spectrum] {
+  --st-reception: #5EEAD4;
+  --st-decal: #67E8F9;
+  --st-processor: #60A5FA;
+  --st-embedding: #818CF8;
+  --st-microtomy: #A78BFA; /* haematoxylin */
+  --st-stain: #F472B6; /* eosin */
+  --st-scan: #38BDF8;
+  --st-iqc: #A3E635;
+  --st-handoff: #7FDCA9;
+  --st-spectrum: linear-gradient(90deg, #5EEAD4, #67E8F9, #60A5FA, #818CF8, #A78BFA, #F472B6, #38BDF8, #A3E635, #7FDCA9);
+}
+html[data-spectrum] [data-stage="reception"] { --stage: var(--st-reception); }
+html[data-spectrum] [data-stage="decal"] { --stage: var(--st-decal); }
+html[data-spectrum] [data-stage="processor"] { --stage: var(--st-processor); }
+html[data-spectrum] [data-stage="embedding"] { --stage: var(--st-embedding); }
+html[data-spectrum] [data-stage="microtomy"] { --stage: var(--st-microtomy); }
+html[data-spectrum] [data-stage="stain"] { --stage: var(--st-stain); }
+html[data-spectrum] [data-stage="scan"] { --stage: var(--st-scan); }
+html[data-spectrum] [data-stage="iqc"] { --stage: var(--st-iqc); }
+html[data-spectrum] [data-stage="handoff"] { --stage: var(--st-handoff); }
+
+/* Header: a very soft aurora (≤ 8% opacity) behind the top bar */
+html[data-spectrum] .topbar {
+  background:
+    radial-gradient(40% 140% at 10% 0%, rgba(94, 234, 212, 0.08), transparent 70%),
+    radial-gradient(35% 140% at 40% 0%, rgba(129, 140, 248, 0.08), transparent 70%),
+    radial-gradient(35% 140% at 65% 0%, rgba(244, 114, 182, 0.07), transparent 70%),
+    radial-gradient(35% 140% at 92% 0%, rgba(163, 230, 53, 0.06), transparent 70%),
+    var(--bg-raised);
+}
+
+/* Simulation: a dark board so the stage hues read; stations take their stage edge, lines run source → target */
+html[data-spectrum] .sim-board { background-color: #0a1022; background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1.2px, transparent 1.2px); }
+html[data-spectrum] .sim-node { border: 2px solid var(--stage, var(--sim-edge)); }
+html[data-spectrum] .sim-node.start, html[data-spectrum] .sim-node.end { background: #141c36; color: #ffffff; }
+html[data-spectrum] .sim-edge { stroke-width: 2.5; opacity: 0.85; }
+html[data-spectrum] .sim-edge.hot { opacity: 1; stroke-width: 3.5; }
+html[data-spectrum] .sim-shock { stroke: #ffffff; }
+html[data-spectrum] .sim-slide-flash { fill: #ffffff; }
+html[data-spectrum] .sim-qlabel { background: #0a1022; color: #ffffff; }
+
+/* Detailed simulator: each station card's top edge in its stage hue */
+html[data-spectrum] .st-card[data-station^="reception"] { border-top-color: var(--st-reception); }
+html[data-spectrum] .st-card[data-station^="decal"] { border-top-color: var(--st-decal); }
+html[data-spectrum] .st-card[data-station^="processor"] { border-top-color: var(--st-processor); }
+html[data-spectrum] .st-card[data-station^="embedding"] { border-top-color: var(--st-embedding); }
+html[data-spectrum] .st-card[data-station^="microtomy"] { border-top-color: var(--st-microtomy); }
+html[data-spectrum] .st-card[data-station^="stainer"] { border-top-color: var(--st-stain); }
+html[data-spectrum] .st-card[data-station^="scanner"] { border-top-color: var(--st-scan); }
+html[data-spectrum] .st-card[data-station^="iqc"] { border-top-color: var(--st-iqc); }
+html[data-spectrum] .st-card[data-station="handoff"] { border-top-color: var(--st-handoff); }
+
+/* Case journey: passed and current stations in their stage hue (holds and incidents keep their own colour) */
+html[data-spectrum] .j-step.done .j-dot, html[data-spectrum] .j-step.now .j-dot { background: var(--stage); border-color: var(--stage); box-shadow: 0 0 0 4px color-mix(in srgb, var(--stage) 25%, transparent); }
+html[data-spectrum] .j-step.done::before, html[data-spectrum] .j-step.now::before, html[data-spectrum] .j-step.hold::before, html[data-spectrum] .j-step.alert::before { background: var(--stage); }
+
+/* Cards: a 2 px top edge in the stage of the page (case or station); dashboard tiles in spectrum order */
+html[data-spectrum] .page[data-stage] .panel { box-shadow: inset 0 2px 0 var(--stage), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+html[data-spectrum] .donut-panel { box-shadow: inset 0 2px 0 var(--st-handoff), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+html[data-spectrum] .tile-stack > .tile:not(.tile-bcsp):not(.tile-csp):not(.tile-incidents) { background: var(--st-spectrum) top / 100% 2px no-repeat, var(--card); }

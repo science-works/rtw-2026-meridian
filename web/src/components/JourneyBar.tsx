@@ -23,6 +23,9 @@ const STEPS: Step[] = [
   { key: "ready", label: "Ready", stages: ["Ready for pathologist handoff"] },
 ];
 
+/** Journey step → "Stain spectrum" stage key. */
+const JOURNEY_STAGE: Record<string, string> = { received: "reception", cutup: "reception", ready: "handoff" };
+
 export function stepIndex(steps: Step[], stage: string | null): number {
   return stage === null ? -1 : steps.findIndex((s) => s.stages.includes(stage));
 }
@@ -63,7 +66,7 @@ export function JourneyBar({ detail, alerts }: Props) {
         {steps.map((s, i) => {
           const state = est.status === "ready" || i < current ? "done" : i === current ? (flagged ? "alert" : hold ? "hold" : "now") : "next";
           return (
-            <li key={s.key} className={`j-step ${state}`} title={s.stages[0]} style={{ ["--i" as string]: i }}>
+            <li key={s.key} className={`j-step ${state}`} title={s.stages[0]} data-stage={JOURNEY_STAGE[s.key] ?? s.key} style={{ ["--i" as string]: i }}>
               <span className="j-dot" aria-hidden />
               <span className="j-label">{s.label}</span>
               <span className="j-time mono">{reached[i] ? reached[i]!.replace(/^Day (-?\d+) /, "D$1 ") : i <= current ? "—" : ""}</span>

@@ -49,3 +49,16 @@ Every look re-asserts the urgent ring, the BCSP and CSP tile edges and the incid
 Body text (ink and muted) is 7:1 or higher in every look. The urgent red is under 7:1 in every look, including the current one. It is bold, used on short IDs, and above the 4.5:1 floor. Lifting it to 7:1 would turn it pink.
 
 Screenshots: `docs/screenshots/lab-<look>-<page>.png` and `docs/screenshots/lab-contact-sheet.png`.
+
+## Preview: "Stain spectrum" (`?look=spectrum`)
+
+The idea: one hue per workflow stage, in lab order, echoing H&E. Haematoxylin's blue-violet marks microtomy and eosin's pink marks staining. It sits on top of the default look (C), and colour appears only in lines, edges, arcs and dots.
+
+- **Simulation:** a dark board, station edges in their stage colour, lines graded from source stage to target stage, and moving samples coloured by the station they are heading to. Urgent samples stay red.
+- **Detailed simulator:** each station card's top edge takes its stage colour.
+- **Clock:** the completed arc runs through the spectrum by position around the ring, with a white head dot.
+- **Case journey:** passed stations take their stage colour.
+- **Pages:** case, station and incident pages give their cards a 2 px top edge in their stage colour.
+- **Header:** an aurora behind it at 8% opacity or less.
+
+Text colours are unchanged, so contrast is the same as look C. The urgent, incident, BCSP and CSP cues are untouched, which is tested. Side-by-side comparisons: `docs/screenshots/spectrum-side-<page>.png`.

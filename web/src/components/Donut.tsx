@@ -2,6 +2,7 @@ import { animate, motion, useSpring } from "motion/react";
 import { useEffect, useId, useState } from "react";
 import { useFx } from "../fx";
 import { ringStyle as defaultRing, type RingStyle } from "../theme/tokens";
+import { spectrumAt, spectrumOn } from "../theme/looks";
 import { Count } from "./Flow";
 
 type Props = { done: number; total: number; label?: string; size?: number; color?: string; ring?: RingStyle };
@@ -152,7 +153,20 @@ function LabClock({ done, total, label = "completed", size = 150, color = "var(-
             {/* Recessed track, then the glowing completed arc and its head */}
             <circle cx="100" cy="100" r={ARC_R} fill="none" stroke="#050b1c" strokeWidth="13" />
             <circle cx="100" cy="101.2" r={ARC_R} fill="none" stroke="#1a2c5c" strokeWidth="2" opacity="0.7" />
-            {shown > 0 && (
+            {shown > 0 && spectrumOn() && (
+              // "Stain spectrum": the completed arc runs through the stage hues, position by position.
+              <g filter={`url(#glow-${id})`}>
+                {Array.from({ length: Math.ceil(shown * 72) }, (_, i) => {
+                  const a0 = (i / 72) * 2 * Math.PI - Math.PI / 2;
+                  const a1 = Math.min((i + 1) / 72, shown) * 2 * Math.PI - Math.PI / 2 + 0.01;
+                  const pt = (a: number) => `${100 + ARC_R * Math.cos(a)},${100 + ARC_R * Math.sin(a)}`;
+                  return <path key={i} d={`M${pt(a0)} A${ARC_R},${ARC_R} 0 0 1 ${pt(a1)}`} fill="none" stroke={spectrumAt((i + 0.5) / 72)} strokeWidth="11" />;
+                })}
+                <circle cx={head.x} cy={head.y} r="7.5" fill={spectrumAt(shown)} />
+                <circle cx={head.x} cy={head.y} r="3.6" fill="#ffffff" />
+              </g>
+            )}
+            {shown > 0 && !spectrumOn() && (
               <g filter={`url(#glow-${id})`}>
                 <circle
                   cx="100"

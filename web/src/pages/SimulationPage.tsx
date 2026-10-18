@@ -7,6 +7,7 @@ import { captionAt, EDGES, NODE_TO_CARD, NODES, rateAt, stateAt, timelineFrom, t
 import type { Alert, SimulationResponse } from "../../../shared/types";
 import { useFx } from "../fx";
 import { useFxFlag } from "../fxFlags";
+import { spectrumOn, stageColor, stageOfNode } from "../theme/looks";
 import { Link, navigate, paths } from "../router";
 import { motion as motionTokens } from "../theme/tokens";
 import { PauseIcon, PlayIcon } from "../theme/icons";
@@ -75,6 +76,7 @@ const easeOut = (p: number) => 1 - (1 - p) ** 3;
 export function SimulationPage({ alerts }: { alerts: Alert[] }) {
   const fx = useFx();
   const fx4 = useFxFlag(4);
+  const spectrum = spectrumOn();
   const [tl, setTl] = useState<{ timeline: Timeline; from: number; to: number; events: SimulationResponse["events"] } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [t, setT] = useState<number | null>(null);
@@ -266,11 +268,31 @@ export function SimulationPage({ alerts }: { alerts: Alert[] }) {
 
       <div className="sim-board" ref={boardRef} onClick={(e) => e.target === e.currentTarget && setPinned(null)}>
         <svg className="sim-lines" width={size.w} height={size.h} aria-hidden>
+          {spectrum && (
+            <defs>
+              {EDGES.map(([a, b]) => {
+                const p = at(a), q = at(b);
+                return (
+                  <linearGradient key={`g-${a}-${b}`} id={`edge-${a}-${b}`} gradientUnits="userSpaceOnUse" x1={p.x} y1={p.y} x2={q.x} y2={q.y}>
+                    <stop offset="0" stopColor={stageColor[stageOfNode(a)]} />
+                    <stop offset="1" stopColor={stageColor[stageOfNode(b)]} />
+                  </linearGradient>
+                );
+              })}
+            </defs>
+          )}
           {EDGES.map(([a, b]) => {
             const p = at(a), q = at(b);
             const mx = (p.x + q.x) / 2;
             const hot = activeEdges.has(`${a}>${b}`) || (focus !== null && (a === focus || b === focus));
-            return <path key={`${a}>${b}`} className={hot ? "sim-edge hot" : "sim-edge"} d={`M${p.x},${p.y} C${mx},${p.y} ${mx},${q.y} ${q.x},${q.y}`} />;
+            return (
+              <path
+                key={`${a}>${b}`}
+                className={hot ? "sim-edge hot" : "sim-edge"}
+                d={`M${p.x},${p.y} C${mx},${p.y} ${mx},${q.y} ${q.x},${q.y}`}
+                style={spectrum ? { stroke: `url(#edge-${a}-${b})` } : undefined}
+              />
+            );
           })}
           {shock && (
             <g key={`shock-${stainerT}`} className="sim-shock-layer">
@@ -284,7 +306,8 @@ export function SimulationPage({ alerts }: { alerts: Alert[] }) {
             [3, 2, 1, 0].map((k) => {
               if (k > motionTokens.trailSteps) return null;
               const pt = along(f.path, f.p - k * 0.05);
-              return <circle key={`${f.caseId}-${k}`} cx={pt.x} cy={pt.y} r={k ? 4 : 5} className={f.urgent ? "sim-token urgent" : "sim-token"} opacity={[1, 0.6, 0.35, 0.15][k]} />;
+              const toward = spectrum && !f.urgent ? { fill: stageColor[stageOfNode(f.path.at(-1)!)] } : undefined; // urgent stays red
+              return <circle key={`${f.caseId}-${k}`} cx={pt.x} cy={pt.y} r={k ? 4 : 5} className={f.urgent ? "sim-token urgent" : "sim-token"} opacity={[1, 0.6, 0.35, 0.15][k]} style={toward} />;
             }),
           )}
         </svg>
@@ -301,6 +324,7 @@ export function SimulationPage({ alerts }: { alerts: Alert[] }) {
               className={`sim-node ${n.kind}${focus === n.id ? " focus" : ""}${pulsing(n.id) ? " pulse" : ""}${arriving.has(n.id) ? " arrive" : ""}`}
               style={{ left: p.x, top: p.y, ...(queueSize ? { width: queueSize, height: queueSize } : {}), ...(loadGlow(n.id, n.kind) ? { boxShadow: loadGlow(n.id, n.kind) } : {}) }}
               data-node={n.id}
+              data-stage={stageOfNode(n.id)}
               aria-label={`${n.label}: ${count} cases. Double-click or press Enter to open the station page.`}
               onMouseEnter={() => setHover(n.id)}
               onMouseLeave={() => setHover((h) => (h === n.id ? null : h))}

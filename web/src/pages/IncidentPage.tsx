@@ -32,8 +32,9 @@ export function IncidentPage({ id, alerts, cases, stations }: { id: string; aler
   const isBasket = a.kind === "basket_failure";
   const stainer = stations.find((s) => s.id === "stainer-1");
   const recorded = new Set(a.history.map((h) => h.label));
+  const stage = { protocol_mismatch: "microtomy", basket_failure: "stain", outstanding_block: "reception", scan_gap: "scan" }[a.kind];
   return (
-    <section className="page">
+    <section className="page" data-stage={stage}>
       <header className="page-head">
         <div>
           <p className="page-kicker">
