@@ -835,3 +835,9 @@ html[data-vt~="page"] .page-wrap { view-transition-name: page; }
 @keyframes j-draw { from { transform: scaleX(0); } }
 @keyframes j-pop { from { opacity: 0; transform: translateY(4px); } }
 @keyframes j-glow { 0% { box-shadow: 0 0 0 0 rgba(127, 220, 169, 0); } 40% { box-shadow: 0 0 0 4px rgba(127, 220, 169, 0.45), 0 0 24px rgba(127, 220, 169, 0.45); } 100% { box-shadow: 0 0 0 0 rgba(127, 220, 169, 0); } }
+
+/* Motion Pack 4: stainer shockwave at the recorded failure, its 20 slides flash once */
+.sim-shock { fill: none; stroke: var(--sim-ink); stroke-width: 3; transform-box: fill-box; transform-origin: center; animation: sim-shock 900ms cubic-bezier(0.2, 0.8, 0.2, 1) 1 both; }
+.sim-slide-flash { fill: var(--sim-ink); animation: sim-slide 700ms ease-out 1 both; }
+@keyframes sim-shock { from { transform: scale(0.2); opacity: 0.9; } to { transform: scale(4); opacity: 0; } }
+@keyframes sim-slide { 0% { opacity: 0; } 25% { opacity: 1; r: 3.6; } 100% { opacity: 0.35; } }

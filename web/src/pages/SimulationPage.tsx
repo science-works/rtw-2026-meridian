@@ -6,6 +6,7 @@ import { formatSimTime } from "../../../shared/clock";
 import { captionAt, EDGES, NODE_TO_CARD, NODES, rateAt, stateAt, timelineFrom, type NodeId, type SimNode, type Timeline } from "../../../shared/simulation";
 import type { Alert, SimulationResponse } from "../../../shared/types";
 import { useFx } from "../fx";
+import { useFxFlag } from "../fxFlags";
 import { Link, navigate, paths } from "../router";
 import { motion as motionTokens } from "../theme/tokens";
 import { PauseIcon, PlayIcon } from "../theme/icons";
@@ -73,6 +74,7 @@ const easeOut = (p: number) => 1 - (1 - p) ** 3;
 
 export function SimulationPage({ alerts }: { alerts: Alert[] }) {
   const fx = useFx();
+  const fx4 = useFxFlag(4);
   const [tl, setTl] = useState<{ timeline: Timeline; from: number; to: number; events: SimulationResponse["events"] } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [t, setT] = useState<number | null>(null);
@@ -215,6 +217,18 @@ export function SimulationPage({ alerts }: { alerts: Alert[] }) {
   const pulsing = (id: NodeId) => fx.on && playing && incidentTimes.has(id) && now >= incidentTimes.get(id)! && now - incidentTimes.get(id)! < hopAt(incidentTimes.get(id)!);
   const newIncident = alerts.some((a) => a.state === "new");
   const maxQueue = Math.max(1, ...NODES.filter((n) => n.kind === "queue").map((n) => state.counts.get(n.id) ?? 0));
+  // Motion Pack 4: at the recorded stainer failure, a shockwave and the basket's slides flash once;
+  // stations glow in proportion to their live load. Only while playing; recorded events only.
+  const stainerT = incidentTimes.get("stainer");
+  const shock = fx4 && playing && stainerT !== undefined && now >= stainerT && now - stainerT < speed(stainerT) * 900;
+  const basketSlides = alerts.find((a) => a.kind === "basket_failure")?.slideIds ?? [];
+  const maxLoad = Math.max(1, ...NODES.filter((n) => n.kind === "station").map((n) => state.counts.get(n.id) ?? 0));
+  const loadGlow = (id: NodeId, kind: SimNode["kind"]) => {
+    if (!fx4 || !playing || kind === "start" || kind === "end") return undefined;
+    const c = state.counts.get(id) ?? 0;
+    const f = Math.min(1, Math.sqrt(c / (kind === "queue" ? maxQueue : maxLoad)));
+    return f > 0.05 ? `0 0 ${Math.round(6 + 18 * f)}px ${Math.round(2 + 6 * f)}px rgba(90, 111, 214, ${(0.12 + 0.33 * f).toFixed(2)})` : undefined;
+  };
 
   const open = (id: NodeId) => navigate(paths.station(NODE_TO_CARD[id]));
 
@@ -258,6 +272,14 @@ export function SimulationPage({ alerts }: { alerts: Alert[] }) {
             const hot = activeEdges.has(`${a}>${b}`) || (focus !== null && (a === focus || b === focus));
             return <path key={`${a}>${b}`} className={hot ? "sim-edge hot" : "sim-edge"} d={`M${p.x},${p.y} C${mx},${p.y} ${mx},${q.y} ${q.x},${q.y}`} />;
           })}
+          {shock && (
+            <g key={`shock-${stainerT}`} className="sim-shock-layer">
+              <circle className="sim-shock" cx={at("stainer").x} cy={at("stainer").y} r={60} />
+              {basketSlides.map((s, i) => (
+                <circle key={s} className="sim-slide-flash" cx={at("stainer").x - 34 + (i % 10) * 7.5} cy={at("stainer").y + 34 + Math.floor(i / 10) * 8} r={2.6} style={{ animationDelay: `${i * 12}ms` }} />
+              ))}
+            </g>
+          )}
           {flights.map((f) =>
             [3, 2, 1, 0].map((k) => {
               if (k > motionTokens.trailSteps) return null;
@@ -277,7 +299,7 @@ export function SimulationPage({ alerts }: { alerts: Alert[] }) {
               key={n.id}
               type="button"
               className={`sim-node ${n.kind}${focus === n.id ? " focus" : ""}${pulsing(n.id) ? " pulse" : ""}${arriving.has(n.id) ? " arrive" : ""}`}
-              style={{ left: p.x, top: p.y, ...(queueSize ? { width: queueSize, height: queueSize } : {}) }}
+              style={{ left: p.x, top: p.y, ...(queueSize ? { width: queueSize, height: queueSize } : {}), ...(loadGlow(n.id, n.kind) ? { boxShadow: loadGlow(n.id, n.kind) } : {}) }}
               data-node={n.id}
               aria-label={`${n.label}: ${count} cases. Double-click or press Enter to open the station page.`}
               onMouseEnter={() => setHover(n.id)}
