@@ -40,7 +40,7 @@ export function etaText(c: CaseSummary): { text: string; tone: "ready" | "eta" |
 export function CaseLine({ c, showId = true }: { c: CaseSummary; showId?: boolean }) {
   const eta = etaText(c);
   return (
-    <span className="case-line">
+    <span className="case-line" data-case={c.caseId}>
       {showId && <span className={`mono case-id ${c.priority === "Urgent" ? "is-urgent" : ""}`}>{c.caseId}</span>}
       <span className="case-where">{whereOf(c)}</span>
       <span className={`case-eta ${eta.tone}`}>{eta.text}</span>

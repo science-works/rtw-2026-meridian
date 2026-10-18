@@ -1,4 +1,6 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { AgentBeam } from "./agent/AgentBeam";
+import { useFxFlag } from "./fxFlags";
 import { AgentConsole } from "./agent/AgentConsole";
 import { api } from "./api";
 import { ChatDock } from "./components/ChatDock";
@@ -36,6 +38,19 @@ export function App() {
     }
   }, []);
 
+  // Motion Pack 7: a beam from the agent badge to the case the agent just read (if it is on screen).
+  const beamOn = useFxFlag(7);
+  const lastActivity = live.activity.at(-1);
+  const [beam, setBeam] = useState<{ id: number; caseIds: string[] } | null>(null);
+  const seen = useRef<number | null>(null);
+  useEffect(() => {
+    if (!lastActivity) return void (seen.current = 0);
+    if (seen.current === null) return void (seen.current = lastActivity.id); // not on first load
+    if (lastActivity.id === seen.current) return;
+    seen.current = lastActivity.id;
+    if (beamOn && lastActivity.caseIds.length) setBeam({ id: lastActivity.id, caseIds: lastActivity.caseIds });
+  }, [lastActivity, beamOn]);
+
   const o = live.overview;
   // Speaker notes stand alone: no nav, chat or agent console.
   if (path === "/presenter") return <PresenterPage />;
@@ -72,6 +87,7 @@ export function App() {
         agent={<AgentConsole activity={live.activity} onOpenCase={(id) => navigate(paths.case(id))} onClear={() => void api.clearAgent()} />}
       />
       <ChatDock />
+      {beam && <AgentBeam key={beam.id} caseIds={beam.caseIds} onDone={() => setBeam(null)} />}
     </div>
   );
 }

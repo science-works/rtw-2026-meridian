@@ -852,3 +852,6 @@ html[data-vt~="page"] .page-wrap { view-transition-name: page; }
 .dash.waking .tile-stack > :nth-child(4) { animation-delay: 360ms; }
 @keyframes wake-rise { from { opacity: 0; transform: translateY(16px); } }
 .dash.waking .dash-grid > .tile-stack { animation: none; }
+
+/* Motion Pack 7: the case the agent just read glows for 1.5 s */
+.agent-read { outline: 2px solid var(--progress); outline-offset: 2px; border-radius: 8px; box-shadow: 0 0 18px rgba(159, 178, 255, 0.45); transition: outline-color 300ms ease, box-shadow 300ms ease; }

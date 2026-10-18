@@ -7,12 +7,21 @@ interface Props {
   onDone: () => void;
 }
 
+const visible = (el: Element | null | undefined): el is Element => {
+  if (!el) return false;
+  const r = el.getBoundingClientRect();
+  return r.height > 0 && r.bottom > 0 && r.top < window.innerHeight && r.right > 0 && r.left < window.innerWidth;
+};
+
+/** The first on-screen element showing one of these cases: a case row, the case page title, a chip. */
 function targetFor(caseIds: string[]): Element | null {
   for (const id of caseIds) {
-    const row = document.querySelector(`tr[data-case="${id}"]`);
-    if (row && row.getBoundingClientRect().height > 0) return row;
-    const chip = [...document.querySelectorAll(".queue .alert-card .chip")].find((c) => c.textContent === id);
-    if (chip) return chip.closest(".alert-card");
+    const candidates = [
+      ...document.querySelectorAll(`[data-case="${id}"]`),
+      ...[...document.querySelectorAll(".case-page h1, .chip, .compare-meridian h2 a")].filter((c) => c.textContent?.trim() === id),
+    ];
+    const hit = candidates.find(visible);
+    if (hit) return hit.closest(".case-row, .urgent-row, .flag-card") ?? hit;
   }
   return null;
 }
@@ -23,10 +32,13 @@ export function AgentBeam({ caseIds, onDone }: Props) {
 
   useLayoutEffect(() => {
     const from = document.querySelector(".agent-badge")?.getBoundingClientRect();
-    const to = targetFor(caseIds)?.getBoundingClientRect();
-    if (!from || !to) return onDone();
-    const x1 = from.left + 12;
-    const y1 = from.top + from.height / 2;
+    const target = targetFor(caseIds);
+    const to = target?.getBoundingClientRect();
+    if (!from || !to || !target) return onDone(); // skip when the case is not on screen
+    target.classList.add("agent-read");
+    setTimeout(() => target.classList.remove("agent-read"), 1500);
+    const x1 = from.right - 10;
+    const y1 = from.top - 2;
     const x2 = to.right - 8;
     const y2 = to.top + to.height / 2;
     const cx = (x1 + x2) / 2;
