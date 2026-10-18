@@ -1,5 +1,5 @@
-// One consistent line per case everywhere (master prompt): "26H1001 · Microtomy station 3 · cutting · ETA 14:15",
-// or "ETA unknown — reason" when the rules cannot compute one.
+// One consistent line per case everywhere: "26H1001 · Microtomy station 3 · cutting · Ready ~14:15",
+// "Ready since 09:30" once handed off, or "ETA unknown — <full reason>" (never shortened).
 import type { CaseSummary, Stage } from "../../shared/types";
 
 const ACTIVITY: Record<Stage, string> = {
@@ -32,8 +32,8 @@ export const shortTime = (at: string) => (at.startsWith("Day 1 ") ? at.slice(-5)
 
 export function etaText(c: CaseSummary): { text: string; tone: "ready" | "eta" | "unknown"; reason?: string } {
   const e = c.estimate;
-  if (e.status === "ready") return { text: `Ready ${shortTime(e.readyAt!)}`, tone: "ready" };
-  if (e.status === "estimated") return { text: `ETA ${shortTime(e.readyAt!)}`, tone: "eta" };
+  if (e.status === "ready") return { text: `Ready since ${shortTime(e.readyAt!)}`, tone: "ready" };
+  if (e.status === "estimated") return { text: `Ready ~${shortTime(e.readyAt!)}`, tone: "eta" };
   return { text: "ETA unknown", tone: "unknown", reason: e.reasonUnknown?.replace(/\.$/, "") };
 }
 
@@ -43,10 +43,8 @@ export function CaseLine({ c, showId = true }: { c: CaseSummary; showId?: boolea
     <span className="case-line">
       {showId && <span className={`mono case-id ${c.priority === "Urgent" ? "is-urgent" : ""}`}>{c.caseId}</span>}
       <span className="case-where">{whereOf(c)}</span>
-      <span className={`case-eta ${eta.tone}`} title={eta.reason}>
-        {eta.text}
-        {eta.reason && <span className="eta-reason"> — {eta.reason}</span>}
-      </span>
+      <span className={`case-eta ${eta.tone}`}>{eta.text}</span>
+      {eta.reason && <span className="eta-reason">— {eta.reason}</span>}
     </span>
   );
 }

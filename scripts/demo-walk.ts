@@ -105,7 +105,7 @@ const beats: Beat[] = [
       await page.locator(".incidents-table tbody tr", { hasText: "H&E basket failure" }).dblclick();
       await page.waitForURL("**/incident/**");
       const t = await text(page);
-      for (const s of ["H&E-BASKET-01", "20 slides", "10 cases", "re-staining, ETA completion 11:35", "10:45", "11:04", "11:05"]) check(t.includes(s), `stainer detail is missing "${s}"`);
+      for (const s of ["H&E-BASKET-01", "20 slides", "10 cases", "re-staining · Stain run completes ~11:35", "10:45", "11:04", "11:05"]) check(t.includes(s), `stainer detail is missing "${s}"`);
       const rows = await page.locator(".case-side .case-row").allInnerTexts();
       check(rows.length === 10 && rows.every((r) => /ETA|Ready/.test(r)), `expected 10 affected cases each with status + ETA, got ${rows.length}`);
     },

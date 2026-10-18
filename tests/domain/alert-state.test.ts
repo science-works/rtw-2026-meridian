@@ -42,7 +42,7 @@ describe("alert states from recorded events", () => {
     expect(t.stateDetail).toMatch(/troubleshooting/i);
     const r = basket(upTo("EV-01256"));
     expect(r.state).toBe("in_progress");
-    expect(r.stateDetail).toBe("Troubleshooting / resolving — re-staining, ETA completion 11:35");
+    expect(r.stateDetail).toBe("Troubleshooting / resolving — re-staining · Stain run completes ~11:35");
   });
 
   it("is never Resolved at 11:30: no completion or check event exists", () => {

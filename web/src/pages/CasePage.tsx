@@ -100,6 +100,7 @@ export function CasePage({ caseId, version, alerts }: { caseId: string; version:
             {est.status === "ready" && <p className="est-ready">Ready since {est.readyAt}</p>}
             {est.status === "estimated" && (
               <p className="est-line">
+                <span>Ready for pathologist ~</span>
                 <TimeFlow className="mono est-time" value={est.readyAt!} />
                 <span className="muted"> · active {est.activeMinutes} min · wall-clock {fmtDuration(est.wallClockMinutes ?? 0)}</span>
               </p>

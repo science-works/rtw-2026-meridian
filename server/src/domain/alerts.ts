@@ -114,8 +114,8 @@ function incidentState(actions: EventRecord[], repeatMinutes: number | null): Pi
   if (has("STAINING_COMPLETE")) return { state: "resolved" };
   const repeat = actions.find((e) => e.type === "REPEAT_STAIN_STARTED");
   if (repeat) {
-    const eta = repeatMinutes === null ? "ETA unknown (repeat-run duration not configured)" : `ETA completion ${formatSimTime(parseSimTime(repeat.at) + repeatMinutes).slice(-5)}`;
-    return { state: "in_progress", stateDetail: `Troubleshooting / resolving — re-staining, ${eta}` };
+    const eta = repeatMinutes === null ? "stain run completion unknown (repeat-run duration not configured)" : `Stain run completes ~${formatSimTime(parseSimTime(repeat.at) + repeatMinutes).slice(-5)}`;
+    return { state: "in_progress", stateDetail: `Troubleshooting / resolving — re-staining · ${eta}` };
   }
   const progress = actions.filter((e) => IN_PROGRESS.includes(e.type)).at(-1);
   if (progress) return { state: "in_progress", stateDetail: `${ACTION_LABEL[progress.type]} ${progress.at.slice(-5)}` };

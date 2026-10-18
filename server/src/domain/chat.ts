@@ -17,7 +17,7 @@ const etaLine = (c: CaseSummary) =>
   c.estimate.status === "ready"
     ? `Ready for pathologist handoff since ${time(c.estimate.readyAt!)}.`
     : c.estimate.status === "estimated"
-      ? `Estimated handoff ${time(c.estimate.readyAt!)} (configured step durations; queues not modelled).`
+      ? `Ready for pathologist ~${time(c.estimate.readyAt!)} (configured step durations; queues not modelled).`
       : `Handoff time unknown: ${(c.estimate.reasonUnknown ?? "not enough information").replace(/\.$/, "")}.`;
 const caseLink = (id: string) => ({ label: `Open ${id}`, to: `/case/${id}` });
 const incidentLink = (a: Alert) => ({ label: "Open the incident", to: `/incident/${encodeURIComponent(a.id)}` });

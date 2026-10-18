@@ -92,7 +92,7 @@ export function JourneyBar({ detail, alerts }: Props) {
       <div className={`journey-dest ${est.status}`}>
         <span className="jd-label">Pathologist handoff</span>
         {est.status === "ready" && <span className="jd-value">Ready since {est.readyAt}</span>}
-        {est.status === "estimated" && <span className="jd-value mono">{est.readyAt}</span>}
+        {est.status === "estimated" && <span className="jd-value">Ready for pathologist ~<span className="mono">{est.readyAt}</span></span>}
         {est.status === "unknown" && <span className="jd-value">Unknown (reason below)</span>}
       </div>
     </div>

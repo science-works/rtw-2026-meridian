@@ -28,7 +28,7 @@ describe("state at 11:30", () => {
     const { get } = setup();
     const a = byKind(await get<Alert[]>("/api/alerts")).basket_failure;
     expect(a.state).toBe("in_progress");
-    expect(a.stateDetail).toBe("Troubleshooting / resolving — re-staining, ETA completion 11:35");
+    expect(a.stateDetail).toBe("Troubleshooting / resolving — re-staining · Stain run completes ~11:35");
     expect(a.history.map((h) => h.at.slice(-5))).toEqual(["10:45", "10:46", "10:47", "10:50", "11:04", "11:05"]);
   });
 
