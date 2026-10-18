@@ -28,6 +28,8 @@ const beats: Beat[] = [
     async run(page) {
       await page.goto(`${BASE}/`);
       await page.locator(".flag-card").first().waitFor();
+      await page.locator(".dash:not(.waking)").waitFor(); // Motion Pack 5: let the 1.2 s wake-up finish
+      await page.waitForTimeout(800); // and the counts settle (NumberFlow, 700 ms)
       const t = await text(page);
       for (const s of ["450", "346 new", "104 backlog", "8 of 450 completed · 2%", "BCSP", "Cervical screening", "No cases received today"]) check(t.includes(s), `dashboard is missing "${s}"`);
       check((await page.locator(".urgent-row").count()) >= 1, "urgent list is empty");
@@ -158,6 +160,11 @@ async function main() {
   await fetch(`${API}/api/sim/reset`, { method: "POST" });
   const browser = await chromium.launch({ channel: "chrome", headless: true });
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  // FX=all (or FX=1,2,3) walks the demo with Motion Pack effects switched on for this tab.
+  if (process.env.FX) {
+    await page.goto(`${BASE}/?fx=${process.env.FX}`);
+    console.log(`Motion Pack effects on: ${process.env.FX}`);
+  }
   for (const b of beats) {
     try {
       await b.run(page);

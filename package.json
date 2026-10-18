@@ -18,6 +18,7 @@
     "typecheck": "tsc --noEmit",
     "export:hf": "tsx scripts/export_hf_dataset.ts",
     "demo:walk": "tsx scripts/demo-walk.ts",
+    "demo:walk:fx": "FX=all tsx scripts/demo-walk.ts",
     "screenshots": "tsx scripts/screenshots.ts"
   },
   "dependencies": {
