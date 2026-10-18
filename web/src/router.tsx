@@ -1,13 +1,36 @@
 // A tiny router on the History API: real URLs, and the browser's back button works.
 import { useEffect, useState, type AnchorHTMLAttributes, type MouseEvent } from "react";
+import { flushSync } from "react-dom";
+import { fxActive } from "./fxFlags";
 
 const EVENT = "meridian:navigate";
 
-export function navigate(path: string) {
+type ViewTransitionDoc = Document & { startViewTransition?: (update: () => void) => { finished: Promise<void> } };
+
+/**
+ * Go to a path. With Motion Pack effect 6 (page transitions) or 1 (`morph`: the clicked element
+ * grows into the next page's header) the swap runs inside a View Transition where the browser
+ * supports it; otherwise it is instant.
+ */
+export function navigate(path: string, opts: { morph?: HTMLElement | null } = {}) {
   if (path === window.location.pathname) return;
-  window.history.pushState({}, "", path);
-  window.dispatchEvent(new Event(EVENT));
-  window.scrollTo(0, 0);
+  const go = () => {
+    window.history.pushState({}, "", path);
+    window.dispatchEvent(new Event(EVENT));
+    window.scrollTo(0, 0);
+  };
+  const doc = document as ViewTransitionDoc;
+  const morph = opts.morph && fxActive(1) ? opts.morph : null;
+  const page = fxActive(6);
+  if (!doc.startViewTransition || (!morph && !page)) return go();
+  const root = document.documentElement;
+  root.dataset.vt = morph ? (page ? "morph page" : "morph") : "page";
+  if (morph) morph.style.viewTransitionName = "incident-hero";
+  const t = doc.startViewTransition(() => flushSync(go));
+  t.finished.finally(() => {
+    delete root.dataset.vt;
+    if (morph) morph.style.viewTransitionName = "";
+  });
 }
 
 export function usePath(): string {

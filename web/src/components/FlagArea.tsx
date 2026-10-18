@@ -37,8 +37,8 @@ export function FlagArea({ alerts }: { alerts: Alert[] }) {
               role="button"
               tabIndex={0}
               title="Double-click or press Enter to open"
-              onDoubleClick={() => navigate(paths.incident(a.id))}
-              onKeyDown={(e) => e.key === "Enter" && navigate(paths.incident(a.id))}
+              onDoubleClick={(e) => navigate(paths.incident(a.id), { morph: e.currentTarget })}
+              onKeyDown={(e) => e.key === "Enter" && navigate(paths.incident(a.id), { morph: e.currentTarget })}
             >
               <span className={`flag big ${fx.on ? "bounce" : ""}`} aria-hidden>
                 !
