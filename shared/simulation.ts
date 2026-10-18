@@ -1,7 +1,7 @@
 // The light simulation (Victoria's "Histo main lab" drawing) as a pure function of the
 // recorded data and a time. Positions come only from recorded events and each case's
 // recorded "stage entered" time; at 11:30 they equal the server's station map.
-import { CLOCK_MINUTES, parseSimTime } from "./clock";
+import { CLOCK_MINUTES, formatSimTime, parseSimTime } from "./clock";
 import { generic } from "./labels";
 import type { CellpathData, EventRecord } from "./types";
 
@@ -107,7 +107,14 @@ const byTime = (a: EventRecord, b: EventRecord) => parseSimTime(a.at) - parseSim
 export interface Timeline {
   cases: Map<string, { waypoints: { t: number; node: NodeId }[]; urgent: boolean }>;
   incidents: { t: number; node: NodeId }[];
+  /** Blocks recorded at a different station from the rest of their case (e.g. 26H1003 A1–E1 in Processor D). */
+  splits: { caseId: string; t: number; node: NodeId; label: string }[];
 }
+
+const range = (ids: string[]) => {
+  const s = [...ids].sort();
+  return s.length > 1 ? `${s[0]}–${s.at(-1)}` : s[0];
+};
 
 /** Precomputes each case's recorded waypoints. Pure; same input gives the same timeline. */
 export function buildTimeline(data: CellpathData): Timeline {
@@ -117,6 +124,7 @@ export function buildTimeline(data: CellpathData): Timeline {
   for (const b of data.blocks) blocksByCase.set(b.caseId, [...(blocksByCase.get(b.caseId) ?? []), b]);
 
   const cases: Timeline["cases"] = new Map();
+  const splits: Timeline["splits"] = [];
   for (const c of data.cases) {
     const all = [...(eventsByCase.get(c.caseId) ?? [])].sort(byTime);
     const evs = all.filter((e) => e.type !== "CURRENT_STAGE_SNAPSHOT");
@@ -171,6 +179,18 @@ export function buildTimeline(data: CellpathData): Timeline {
     }
     if (snapshotNode) waypoints.push({ t: entered, node: snapshotNode });
     cases.set(c.caseId, { waypoints, urgent: c.priority === "Urgent" });
+
+    // Split cases: blocks whose recorded location is another station, from the latest event there.
+    const groups = new Map<NodeId, string[]>();
+    for (const b of blocks) {
+      const node = nodeForStation(b.location, c.processor);
+      if (node && node !== snapshotNode) groups.set(node, [...(groups.get(node) ?? []), b.blockId]);
+    }
+    if (groups.size && blocks.length > 1)
+      for (const [node, ids] of groups) {
+        const at = [...evs].reverse().find((e) => nodeForStation(e.station, c.processor) === node);
+        splits.push({ caseId: c.caseId, t: at ? parseSimTime(at.at) : entered, node, label: `${c.caseId} · ${range(ids)}` });
+      }
   }
 
   // Incidents, from recorded events: a stain-run failure, and a levels cut short of the protocol.
@@ -181,7 +201,7 @@ export function buildTimeline(data: CellpathData): Timeline {
     const node = cut ? nodeForStation(cut.station, null) : null;
     if (cut && node) incidents.push({ t: parseSimTime(cut.at), node });
   }
-  return { cases, incidents };
+  return { cases, incidents, splits };
 }
 
 export interface SimState {
@@ -191,11 +211,17 @@ export interface SimState {
   counts: Map<NodeId, number>;
   /** Nodes with an incident recorded by time t. */
   incidents: NodeId[];
+  /** Split-case block groups present at a node by time t, e.g. "26H1003 · A1–E1". */
+  blocksAt: Map<NodeId, string[]>;
 }
 
 /** Rebuilds a Timeline from the /api/simulation payload. */
-export function timelineFrom(r: { cases: { caseId: string; urgent: boolean; waypoints: [number, string][] }[]; incidents: { t: number; node: NodeId }[] }): Timeline {
-  return { cases: new Map(r.cases.map((c) => [c.caseId, { urgent: c.urgent, waypoints: c.waypoints.map(([t, node]) => ({ t, node })) }])), incidents: r.incidents };
+export function timelineFrom(r: {
+  cases: { caseId: string; urgent: boolean; waypoints: [number, string][] }[];
+  incidents: { t: number; node: NodeId }[];
+  splits?: Timeline["splits"];
+}): Timeline {
+  return { cases: new Map(r.cases.map((c) => [c.caseId, { urgent: c.urgent, waypoints: c.waypoints.map(([t, node]) => ({ t, node })) }])), incidents: r.incidents, splits: r.splits ?? [] };
 }
 
 /** Where every case is at time t (minutes since Day 0 00:00). Pure. */
@@ -213,8 +239,14 @@ export function stateAt(timeline: Timeline, t: number): SimState {
       counts.set(node, (counts.get(node) ?? 0) + 1);
     }
   }
+  const blocksAt = new Map<NodeId, string[]>();
+  for (const s of timeline.splits ?? []) {
+    if (s.t > t || !positions.has(s.caseId) || positions.get(s.caseId) === s.node) continue;
+    counts.set(s.node, (counts.get(s.node) ?? 0) + 1);
+    blocksAt.set(s.node, [...(blocksAt.get(s.node) ?? []), s.label]);
+  }
   const incidents = [...new Set(timeline.incidents.filter((i) => i.t <= t).map((i) => i.node))];
-  return { t, positions, counts, incidents };
+  return { t, positions, counts, incidents, blocksAt };
 }
 
 export interface SeriesPoint {
@@ -228,7 +260,7 @@ export interface SeriesPoint {
 /** Received and cleared counts over time for a set of cases, from the same stateAt(t). Pure. */
 export function seriesFor(timeline: Timeline, caseIds: Iterable<string>, from: number, to: number, stepMin = 60): SeriesPoint[] {
   const ids = new Set(caseIds);
-  const sub: Timeline = { cases: new Map([...timeline.cases].filter(([id]) => ids.has(id))), incidents: [] };
+  const sub: Timeline = { cases: new Map([...timeline.cases].filter(([id]) => ids.has(id))), incidents: [], splits: [] };
   const out: SeriesPoint[] = [];
   for (let t = from; ; t = Math.min(to, t + stepMin)) {
     const s = stateAt(sub, t);
@@ -236,4 +268,32 @@ export function seriesFor(timeline: Timeline, caseIds: Iterable<string>, from: n
     if (t >= to) break;
   }
   return out;
+}
+
+/**
+ * Playback rate relative to staffed daytime: overnight (17:00–06:30) ×6 faster; the last hour
+ * before the clock (10:30–11:30, where the incidents are recorded) plays 10× slower, so it gets
+ * about a quarter of the playback.
+ */
+export function rateAt(m: number, end: number = PLAY_TO): number {
+  if (m >= end - 60) return 0.1;
+  const d = ((m % 1440) + 1440) % 1440;
+  return d >= 390 && d < 1020 ? 1 : 6;
+}
+
+/** Plain-English caption for the playback clock. Incident times come from the recorded events. */
+export function captionAt(t: number, incidents: { t: number; node: NodeId }[], end: number = PLAY_TO): string {
+  const hhmm = (m: number) => formatSimTime(m).slice(-5);
+  const mismatch = incidents.find((i) => i.node.startsWith("microtome-"));
+  const stainer = incidents.find((i) => i.node === "stainer");
+  if (t >= end) return `${hhmm(end)} — now: same counts as the dashboard`;
+  if (stainer && t >= stainer.t) return `${hhmm(stainer.t)} — Stainer basket failed`;
+  if (mismatch && t >= mismatch.t) return `${hhmm(mismatch.t)} — Microtome ${mismatch.node.slice(-1)}: levels mismatch`;
+  if (t >= parseSimTime("Day 1 08:30")) return "Microtomy queue builds: yesterday's backlog";
+  if (t >= parseSimTime("Day 1 06:30")) return "Tuesday 07:00 — embedding starts";
+  if (t >= parseSimTime("Day 0 17:00")) return "Overnight — processing (×6 speed)";
+  if (t >= parseSimTime("Day 0 16:00")) return "Evening — loaded into processors";
+  if (t >= parseSimTime("Day 0 06:30")) return "Monday — cases arrive and are cut up";
+  if (t >= parseSimTime("Day -1 17:00")) return "Overnight — processing (×6 speed)";
+  return "Previous working day — the first backlog cases arrive";
 }

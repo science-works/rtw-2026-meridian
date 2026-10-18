@@ -166,6 +166,12 @@ export function createApp(state: MeridianState = createState(), activity: Activi
       to: PLAY_TO,
       cases: [...tl.cases].map(([caseId, v]) => ({ caseId, urgent: v.urgent, waypoints: v.waypoints.map((w) => [w.t, w.node] as [number, string]) })),
       incidents: tl.incidents,
+      splits: tl.splits,
+      events: state.data.events
+        .filter((e) => e.type !== "CURRENT_STAGE_SNAPSHOT")
+        .map((e) => ({ t: parseSimTime(e.at), caseId: e.caseId, station: e.station ? generic(e.station) : null, type: e.type, id: e.eventId }))
+        .sort((a, b) => a.t - b.t || a.id.localeCompare(b.id))
+        .map(({ id: _id, ...e }) => e),
     };
     return c.json(body);
   });

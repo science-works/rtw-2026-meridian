@@ -3,7 +3,7 @@
 // the server. Samples move only along drawn lines and only when the clock passes a recorded time.
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { formatSimTime } from "../../../shared/clock";
-import { EDGES, NODE_TO_CARD, NODES, stateAt, timelineFrom, type NodeId, type SimNode, type Timeline } from "../../../shared/simulation";
+import { captionAt, EDGES, NODE_TO_CARD, NODES, rateAt, stateAt, timelineFrom, type NodeId, type SimNode, type Timeline } from "../../../shared/simulation";
 import type { Alert, SimulationResponse } from "../../../shared/types";
 import { useFx } from "../fx";
 import { Link, navigate, paths } from "../router";
@@ -11,19 +11,15 @@ import { motion as motionTokens } from "../theme/tokens";
 import { PauseIcon, PlayIcon } from "../theme/icons";
 
 const PLAY_MS = 40_000;
-/** Overnight (17:00–06:30) plays this many times faster than staffed hours, so the morning gets the screen time. */
-const NIGHT_FACTOR = 6;
-const staffed = (m: number) => {
-  const d = ((m % 1440) + 1440) % 1440;
-  return d >= 390 && d < 1020;
-};
-/** Simulated minutes per real millisecond at simulated time m, for a playback of PLAY_MS. */
+/** Simulated minutes per real millisecond at simulated time m, for a playback of PLAY_MS (rates from rateAt). */
 function speedFn(from: number, to: number) {
   let weight = 0;
-  for (let m = from; m < to; m++) weight += staffed(m) ? 1 : 1 / NIGHT_FACTOR;
+  for (let m = from; m < to; m++) weight += 1 / rateAt(m, to);
   const base = weight / PLAY_MS;
-  return (m: number) => base * (staffed(m) ? 1 : NIGHT_FACTOR);
+  return (m: number) => base * rateAt(m, to);
 }
+const ARRIVE_MS = 350; // station highlight after a sample arrives
+const humanType = (t: string) => t.charAt(0) + t.slice(1).toLowerCase().replace(/_/g, " ");
 const BY_ID = new Map(NODES.map((n) => [n.id, n]));
 
 /** Shortest drawn route between two nodes, so a sample always travels on visible lines (R-Ref-3). */
@@ -77,7 +73,7 @@ const easeOut = (p: number) => 1 - (1 - p) ** 3;
 
 export function SimulationPage({ alerts }: { alerts: Alert[] }) {
   const fx = useFx();
-  const [tl, setTl] = useState<{ timeline: Timeline; from: number; to: number } | null>(null);
+  const [tl, setTl] = useState<{ timeline: Timeline; from: number; to: number; events: SimulationResponse["events"] } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [t, setT] = useState<number | null>(null);
   const [playing, setPlaying] = useState(false);
@@ -94,7 +90,7 @@ export function SimulationPage({ alerts }: { alerts: Alert[] }) {
     fetch("/api/simulation")
       .then((r) => (r.ok ? (r.json() as Promise<SimulationResponse>) : Promise.reject(new Error(String(r.status)))))
       .then((r) => {
-        setTl({ timeline: timelineFrom(r), from: r.from, to: r.to });
+        setTl({ timeline: timelineFrom(r), from: r.from, to: r.to, events: r.events });
         setT(r.to); // the board opens on the present (11:30)
       })
       .catch((e: Error) => setError(e.message));
@@ -152,6 +148,30 @@ export function SimulationPage({ alerts }: { alerts: Alert[] }) {
   const state = useMemo(() => (tl ? stateAt(tl.timeline, Math.floor(now)) : null), [tl, Math.floor(now)]);
   const hopAt = useCallback((m: number) => speed(m) * motionTokens.tokenHopMs, [speed]);
   const flights = useMemo(() => (tl && playing && fx.on ? flightsAt(tl.timeline, now, hopAt) : []), [tl, playing, fx.on, now, hopAt]);
+  // A station lights briefly when a sample lands on it (after its hop), only while playing.
+  const arriving = useMemo(() => {
+    const out = new Set<NodeId>();
+    if (!tl || !playing || !fx.on) return out;
+    for (const { waypoints } of tl.timeline.cases.values())
+      for (let i = 1; i < waypoints.length; i++) {
+        const w = waypoints[i];
+        if (w.t > now) break;
+        const since = now - w.t - hopAt(w.t);
+        if (since >= 0 && since < speed(w.t) * ARRIVE_MS && waypoints[i - 1].node !== w.node) out.add(w.node);
+      }
+    return out;
+  }, [tl, playing, fx.on, now, hopAt, speed]);
+  const recent = useMemo(() => {
+    if (!tl) return [];
+    let hi = tl.events.length;
+    let lo = 0;
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1;
+      if (tl.events[mid].t <= now) lo = mid + 1;
+      else hi = mid;
+    }
+    return tl.events.slice(Math.max(0, lo - 3), lo).reverse();
+  }, [tl, Math.floor(now)]);
 
   if (error) return <section className="page"><h1>Simulation</h1><p className="error">Cannot load the recorded events ({error}).</p></section>;
   if (!tl || !state) return <p className="page muted">Loading the recorded events…</p>;
@@ -216,6 +236,20 @@ export function SimulationPage({ alerts }: { alerts: Alert[] }) {
         </p>
       </header>
 
+      <div className="sim-strip">
+        <p className="sim-caption" aria-live="polite" data-testid="sim-caption">
+          {captionAt(Math.floor(now), tl.timeline.incidents, tl.to)}
+        </p>
+        <ol className="sim-ticker" aria-label="Latest recorded events">
+          {recent.map((e, i) => (
+            <li key={`${e.t}-${e.caseId}-${i}`}>
+              <span className="mono">{formatSimTime(e.t).replace(/^Day (-?\d+) /, "D$1 ")}</span> <span className="mono">{e.caseId}</span> {humanType(e.type).toLowerCase()}
+              {e.station && <span className="muted"> · {e.station}</span>}
+            </li>
+          ))}
+        </ol>
+      </div>
+
       <div className="sim-board" ref={boardRef} onClick={(e) => e.target === e.currentTarget && setPinned(null)}>
         <svg className="sim-lines" width={size.w} height={size.h} aria-hidden>
           {EDGES.map(([a, b]) => {
@@ -242,7 +276,7 @@ export function SimulationPage({ alerts }: { alerts: Alert[] }) {
             <button
               key={n.id}
               type="button"
-              className={`sim-node ${n.kind}${focus === n.id ? " focus" : ""}${pulsing(n.id) ? " pulse" : ""}`}
+              className={`sim-node ${n.kind}${focus === n.id ? " focus" : ""}${pulsing(n.id) ? " pulse" : ""}${arriving.has(n.id) ? " arrive" : ""}`}
               style={{ left: p.x, top: p.y, ...(queueSize ? { width: queueSize, height: queueSize } : {}) }}
               data-node={n.id}
               aria-label={`${n.label}: ${count} cases. Double-click or press Enter to open the station page.`}
@@ -274,7 +308,7 @@ export function SimulationPage({ alerts }: { alerts: Alert[] }) {
           <div className={`sim-pop${pinned ? " pinned" : ""}`} role="dialog" aria-label={popNode.label} style={{ left: Math.min(Math.max(popPos.x, 150), size.w - 150), top: popPos.y > size.h / 2 ? popPos.y - 40 : popPos.y + 40, transform: popPos.y > size.h / 2 ? "translate(-50%, -100%)" : "translate(-50%, 0)" }}>
             <p className="sim-pop-title">{popNode.label}</p>
             <p>
-              <span className="mono">{popCases.length}</span> {popCases.length === 1 ? "case" : "cases"} here at <span className="mono">{formatSimTime(Math.floor(now)).slice(-5)}</span>
+              <span className="mono">{state.counts.get(popNode.id) ?? 0}</span> {(state.counts.get(popNode.id) ?? 0) === 1 ? "case" : "cases"} here at <span className="mono">{formatSimTime(Math.floor(now)).slice(-5)}</span>
               {lastArrival(popNode.id) && <span className="muted"> · last arrival <span className="mono">{lastArrival(popNode.id)}</span></span>}
             </p>
             {popCases.length > 0 && (
@@ -285,6 +319,11 @@ export function SimulationPage({ alerts }: { alerts: Alert[] }) {
                   </Link>
                 ))}
                 {popCases.length > 4 && <span className="muted"> +{popCases.length - 4} more</span>}
+              </p>
+            )}
+            {(state.blocksAt.get(popNode.id) ?? []).length > 0 && (
+              <p>
+                Blocks here from a split case: <span className="mono">{state.blocksAt.get(popNode.id)!.join(", ")}</span>
               </p>
             )}
             {state.incidents.includes(popNode.id) && (

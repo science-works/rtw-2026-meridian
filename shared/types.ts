@@ -301,6 +301,9 @@ export interface SimulationResponse {
   to: number;
   cases: { caseId: string; urgent: boolean; waypoints: [number, string][] }[];
   incidents: { t: number; node: string }[];
+  splits: { caseId: string; t: number; node: string; label: string }[];
+  /** Recorded events in time order (stage snapshots excluded), for the playback ticker. */
+  events: { t: number; caseId: string; station: string | null; type: string }[];
 }
 
 /** GET /api/chat?q=: a deterministic answer built from the same functions as the UI (no model). */

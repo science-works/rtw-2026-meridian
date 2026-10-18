@@ -36,7 +36,11 @@ describe("stateAt(t)", () => {
 
   it("node counts at 11:30 reconcile with the recorded stages (450 in total)", () => {
     const s = stateAt(timeline, CLOCK_MINUTES);
-    expect([...s.counts.values()].reduce((a, b) => a + b, 0)).toBe(450);
+    expect(s.positions.size).toBe(450);
+    // Each case once, plus 26H1003's A1–E1 also counted at Processor D (as on the station map).
+    const split = [...s.blocksAt.values()].flat().length;
+    expect([...s.counts.values()].reduce((a, b) => a + b, 0)).toBe(450 + split);
+    expect(split).toBe(1);
     expect(s.counts.get("emitted")).toBe(8);
     expect(s.counts.get("stainer")).toBe(15);
     expect(s.counts.get("decal")).toBe(20);
@@ -97,5 +101,39 @@ describe("seriesFor (section pages: cleared over time)", () => {
     const urgent = data.cases.filter((c) => c.priority === "Urgent").map((c) => c.caseId);
     const u = seriesFor(timeline, urgent, PLAY_FROM, CLOCK_MINUTES);
     expect(u.find((p) => p.t >= parseSimTime("Day 1 09:30"))!.cleared).toBeGreaterThanOrEqual(1); // 26H2345 ready at 09:30
+  });
+});
+
+describe("split cases (blocks at different stations)", () => {
+  it("/simulation and /simulator count every station the same at 11:30 — 26H1003 A1–E1 in Processor D, F1 at cut-up", () => {
+    const s = stateAt(timeline, CLOCK_MINUTES);
+    const cards = computeStations(data, computeAlerts(data));
+    const byCard = new Map<string, number>();
+    for (const [node, n] of s.counts) byCard.set(NODE_TO_CARD[node], (byCard.get(NODE_TO_CARD[node]) ?? 0) + n);
+    for (const c of cards) expect([c.id, byCard.get(c.id) ?? 0]).toEqual([c.id, c.caseIds.length]);
+    expect(s.counts.get("processor-d")).toBe(1);
+    expect(s.blocksAt.get("processor-d")).toEqual(["26H1003 · A1–E1"]);
+    expect(s.positions.get("26H1003")).toBe("cutup");
+  });
+});
+
+describe("playback captions and rate", () => {
+  it("captions follow the clock, with incident times from the recorded events", async () => {
+    const { captionAt } = await import("../../shared/simulation");
+    const at = (s: string) => captionAt(parseSimTime(s), timeline.incidents);
+    expect(at("Day 0 09:00")).toBe("Monday — cases arrive and are cut up");
+    expect(at("Day 0 16:30")).toBe("Evening — loaded into processors");
+    expect(at("Day 0 23:00")).toBe("Overnight — processing (×6 speed)");
+    expect(at("Day 1 07:00")).toBe("Tuesday 07:00 — embedding starts");
+    expect(at("Day 1 09:30")).toBe("Microtomy queue builds: yesterday's backlog");
+    expect(at("Day 1 10:42")).toBe("10:40 — Microtome 4: levels mismatch");
+    expect(at("Day 1 11:00")).toBe("10:45 — Stainer basket failed");
+    expect(at("Day 1 11:30")).toBe("11:30 — now: same counts as the dashboard");
+  });
+
+  it("the last hour (10:30–11:30) plays slowest; overnight 6× faster than daytime", async () => {
+    const { rateAt } = await import("../../shared/simulation");
+    expect(rateAt(parseSimTime("Day 1 10:45"))).toBeLessThan(rateAt(parseSimTime("Day 1 09:00")));
+    expect(rateAt(parseSimTime("Day 0 23:00"))).toBe(6 * rateAt(parseSimTime("Day 0 12:00")));
   });
 });
