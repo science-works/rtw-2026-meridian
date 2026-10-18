@@ -150,8 +150,9 @@ export function spectrumAt(f: number): string {
 export const spectrumOn = (): boolean => typeof document !== "undefined" && document.documentElement.dataset.spectrum === "on";
 
 const KEY = "meridian.look";
-/** The approved default look (C · Night Shift). ?look=classic shows the original palette. */
-export const DEFAULT_LOOK: LookId | null = "C";
+/** The approved default look: Midnight Blue, with the Stain spectrum on top. ?look=C|A|B|classic and ?spectrum=0 still work. */
+export const DEFAULT_LOOK: LookId | null = "MIDNIGHT";
+export const DEFAULT_SPECTRUM = true;
 
 /** Reads ?look=A|B|C|classic (kept for this tab; ?look=default returns to DEFAULT_LOOK) and sets html[data-look]. */
 export function applyLookFromUrl() {
@@ -160,11 +161,12 @@ export function applyLookFromUrl() {
     const q = new URLSearchParams(window.location.search).get("look");
     const sp = new URLSearchParams(window.location.search).get("spectrum");
     if (sp !== null) {
-      if (sp === "1") sessionStorage.setItem(`${KEY}.spectrum`, "1");
+      if (sp === "1" || sp === "0") sessionStorage.setItem(`${KEY}.spectrum`, sp);
       else sessionStorage.removeItem(`${KEY}.spectrum`);
     }
     if (q !== null) {
       if (q.toUpperCase() in looks) sessionStorage.setItem(KEY, q.toUpperCase());
+      else if (q.toLowerCase() === "midnight") sessionStorage.setItem(KEY, "MIDNIGHT");
       else if (["classic", "spectrum"].includes(q.toLowerCase())) sessionStorage.setItem(KEY, q.toLowerCase());
       else sessionStorage.removeItem(KEY);
     }
@@ -175,12 +177,13 @@ export function applyLookFromUrl() {
   const root = document.documentElement;
   // "Stain spectrum" (preview): stage hues on lines, edges, arcs and dots, on top of a look.
   // ?look=spectrum = default look + spectrum; ?spectrum=1 adds it to any look (e.g. ?look=midnight&spectrum=1).
-  let spectrum = false;
+  let pick: string | null = null;
   try {
-    spectrum = sessionStorage.getItem(`${KEY}.spectrum`) === "1";
+    pick = sessionStorage.getItem(`${KEY}.spectrum`);
   } catch {
-    spectrum = new URLSearchParams(window.location.search).get("spectrum") === "1";
+    pick = new URLSearchParams(window.location.search).get("spectrum");
   }
+  let spectrum = pick === null ? DEFAULT_SPECTRUM : pick === "1";
   if (look === "spectrum") {
     spectrum = true;
     look = null;
