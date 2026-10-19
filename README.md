@@ -1,3 +1,14 @@
+> [!NOTE]
+> **Hackathon submission snapshot**
+>
+> This repository preserves the version submitted to **Reinvent the Wheel, 16–18 October 2026**, hosted by [Science Works](https://science.works) and [Inherent Laboratories](https://inherentlabs.ai/).
+>
+> **For the latest version, issues and contributions, visit the original project: [Manthanbhanushali010/meridian-lab](https://github.com/Manthanbhanushali010/meridian-lab).**
+>
+> Submitted version: [`c997e6f`](https://github.com/science-works/rtw-2026-meridian/tree/c997e6f22e1c751b7457d673c06fb68956ee9d0f). This notice was added after submission. Nothing else in the repository has changed.
+
+---
+
 # Meridian
 
 **Every case, every station, mapped live.**
